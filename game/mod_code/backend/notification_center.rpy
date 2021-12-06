@@ -35,9 +35,12 @@ screen mail_notification():
             text _("You have [persistent.new_email_count] new mail(s).") yalign 0.0
             text _("Click to open Mail Client.") yalign 0.0 style_suffix "open_text"
 
-    on "update" action If(persistent.new_email_count < 1, Hide("mail_notification"))
-
 style mail_notification_text is notification_text
 style mail_notification_open_text is notification_text:
     size 12
     color "#ddd"
+
+init python:
+    def show_notifs():
+        if persistent.new_email_count > 0:
+            renpy.show_screen("mail_notification")

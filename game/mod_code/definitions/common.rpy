@@ -70,3 +70,8 @@ init python:
                     renpy.run(disable)
 
             return ret
+
+label test_prompt_button(t):
+    menu:
+        "[t]":
+            pass

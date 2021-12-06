@@ -12,6 +12,8 @@ label formal_intro_monika():
     m "But hey, enough of the boring stuff, right?"
     m "I can tell we’re going to be great friends!"
     m "Let me know when you’re ready, and we’ll move forward."
+
+    call test_prompt_button("Record Results")
     return
 
 label formal_intro_sayori():
@@ -29,6 +31,8 @@ label formal_intro_sayori():
     s "We’ll learn together! Yaaaay!"
     s "Just don’t be a big meanie about it, okay?"
     s "I can’t wait to talk to you. Let me know when you’re ready!"
+
+    call test_prompt_button("Record Results")
     return
     
 label formal_intro_yuri():
@@ -49,6 +53,8 @@ label formal_intro_yuri():
     y "I need some time to adjust."
     y "But...I believe we will get along wonderfully.."
     y "Let me know when you’re ready to continue."
+
+    call test_prompt_button("Record Results")
     return
 
 label formal_intro_natsuki():
@@ -63,8 +69,11 @@ label formal_intro_natsuki():
     n "Sooo…yeah."
     n "Just don’t be weird, dummy."
     n "And hit me up when you wanna carry on."
+
+    call test_prompt_button("Record Results")
     return
 
 label formal_intro_finished():
     $ rbell_email_2.unlock()
+    $ persistent.current_test += 1
     return

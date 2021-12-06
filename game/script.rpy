@@ -23,6 +23,5 @@ label start():
     return
 
 label wm_desktop():
-    scene black
     call screen desktop with fade
     return

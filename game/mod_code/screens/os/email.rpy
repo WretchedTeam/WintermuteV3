@@ -289,8 +289,8 @@ style mail_content_email_text:
 
 style mail_content_vscrollbar:
     xsize 6
-    base_bar RoundedFrame("#aaa").set_radius(3)
-    thumb RoundedFrame("#ccc").set_radius(3)
+    base_bar RoundedFrame("#ccc").set_radius(3)
+    thumb RoundedFrame("#aaa").set_radius(3)
     top_gutter 2
     bottom_gutter 2
     
@@ -353,14 +353,13 @@ init -10 python:
             return self.email_id in persistent.unlocked_emails
 
         def unlock(self):
-            if not self.is_unlocked():
-                persistent.unlocked_emails.append(self.email_id)
+            if self.is_unlocked():
+                return 
+
+            persistent.unlocked_emails.append(self.email_id)
 
             if not renpy.get_screen("wm_mail_client_program"):
                 persistent.new_email_count += 1
-
-                if not renpy.get_screen("mail_notification"):
-                    renpy.show_screen("mail_notification")
 
         def mark_read(self):
             if self.is_read():

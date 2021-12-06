@@ -52,6 +52,7 @@ init -10:
         xfill True ysize 30
 
 ## Unused experimental code.
+## Everthing below isn't used.
 
 define windows = WindowRenderer()
 

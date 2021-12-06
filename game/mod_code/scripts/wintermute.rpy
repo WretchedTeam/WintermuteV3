@@ -22,17 +22,17 @@ label wm_start():
         $ quick_menu = False
         call screen wintermute_main() with dissolve
 
-        if renpy.has_label(current_test_label):
+        if _return is True:
             scene dev_bg_open
             show layer master at wm_scanlines
 
             pause 1.45
 
             $ quick_menu = True
-            call expression current_test_label
-            $ quick_menu = False
 
-            $ current_test_label = None
+            call wm_choose
+
+            $ quick_menu = False
 
             scene dev_bg_close
             pause 1.45
@@ -40,23 +40,49 @@ label wm_start():
 
             show layer master
 
-            if tests.is_finished():
-                $ finished_label = tests.current_id() + "_finished"
-
-                if renpy.has_label(finished_label):
-                    call expression finished_label
-                else:
-                    $ print("Has no label '%s'." % finished_label)
-
-                $ del finished_label
-
-            elif _return is None:
+            if _return is False:
                 scene expression "#2e2e2e"
                 with dissolve_scene_full
                 show wm_overlay
                 jump wm_loop
 
     jump wm_desktop
+
+label wm_choose():
+    $ start_label = tests.current_id() + "_start"
+
+    if renpy.has_label(start_label):
+        call expression start_label
+    else:
+        $ print("Has no label '%s'." % start_label)
+
+    $ del start_label
+
+    while not tests.is_finished():
+        menu:
+            "Load Sayori" if not tests.seen_test("sayori"):
+                call expression tests.get_label_name("sayori")
+
+            "Load Natsuki" if not tests.seen_test("natsuki"):
+                call expression tests.get_label_name("natsuki")
+
+            "Load Monika" if not tests.seen_test("monika"):
+                call expression tests.get_label_name("monika")
+
+            "Load Yuri" if not tests.seen_test("yuri"):
+                call expression tests.get_label_name("yuri")
+
+    if tests.is_finished():
+        $ finished_label = tests.current_id() + "_finished"
+
+        if renpy.has_label(finished_label):
+            call expression finished_label
+        else:
+            $ print("Has no label '%s'." % finished_label)
+
+        $ del finished_label
+
+    return True
 
 image bg accessment = "mod_assets/wintermute/accessment_bg.png"
 
