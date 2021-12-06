@@ -1,0 +1,41 @@
+# Don't track content of these folders #
+########################################
+cache/
+saves/
+to-**/
+
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+**.app
+**.app/**
+*.o
+*.so
+
+*.rpyc
+*.rpymc
+*.bak
+
+
+# The log file and other misc things #
+######################################
+log.txt
+errors.txt
+traceback.txt
+files.txt
+project.json
+
+
+# Base DDLC assets #
+####################
+*.rpa
+firstrun
+
+# Generally ignored files #
+###########################
+.DS_Store
+desktop.ini
