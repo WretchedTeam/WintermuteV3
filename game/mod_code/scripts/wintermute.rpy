@@ -49,7 +49,11 @@ label wm_start():
     jump wm_desktop
 
 label wm_choose():
-    $ start_label = tests.current_id() + "_start"
+    $ test = WMTest.current_test()
+    $ start_label = test.id + "_start"
+
+    if test is None:
+        return
 
     if renpy.has_label(start_label):
         call expression start_label
@@ -57,23 +61,29 @@ label wm_choose():
         $ print("Has no label '%s'." % start_label)
 
     $ del start_label
+    $ _return = False
 
-    while not tests.is_finished():
+    while not test.is_finished():
+        $ test_label = None
         menu:
-            "Load Sayori" if not tests.seen_test("sayori"):
-                call expression tests.get_label_name("sayori")
+            "Load Sayori" if not test.seen_test("sayori"):
+                $ test_label = test.get_test_label("sayori")
 
-            "Load Natsuki" if not tests.seen_test("natsuki"):
-                call expression tests.get_label_name("natsuki")
+            "Load Natsuki" if not test.seen_test("natsuki"):
+                $ test_label = test.get_test_label("natsuki")
 
-            "Load Monika" if not tests.seen_test("monika"):
-                call expression tests.get_label_name("monika")
+            "Load Monika" if not test.seen_test("monika"):
+                $ test_label = test.get_test_label("monika")
 
-            "Load Yuri" if not tests.seen_test("yuri"):
-                call expression tests.get_label_name("yuri")
+            "Load Yuri" if not test.seen_test("yuri"):
+                $ test_label = test.get_test_label("yuri")
 
-    if tests.is_finished():
-        $ finished_label = tests.current_id() + "_finished"
+        if renpy.has_label(test_label):
+            pause 1.0
+            call expression test_label
+
+    if test.is_finished():
+        $ finished_label = test.id + "_finished"
 
         if renpy.has_label(finished_label):
             call expression finished_label

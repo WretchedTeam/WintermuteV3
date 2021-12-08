@@ -63,7 +63,7 @@ screen register_name():
             xalign 0.5
             text_color "#1EBB2E"
 
-    key "dismiss" action name_input
+    # key "dismiss" action name_input
 
 style register_name_vbox is empty
 style register_name_frame is empty
@@ -99,6 +99,46 @@ style register_name_label_text:
 
 init python:
     config.self_closing_custom_text_tags["user_tick"] = fi_icon("")
+
+    class MultipleInput(Input):
+        def __init__(self, *args, **kwargs):
+            super(MultipleInput, self).__init__(*args, **kwargs)
+
+            if isinstance(self.value, InputValue):
+                disable = self.value.Disable()
+            else:
+                disable = Function(self.disable)
+
+            renpy.run(disable)
+
+        def render(self, *args):
+            self.width, self.height, _, _ = args
+            return super(MultipleInput, self).render(*args)
+
+        def event(self, ev, x, y, st):
+            ret = super(MultipleInput, self).event(ev, x, y, st)
+
+            is_hovered = all([
+                x > 0,
+                y > 0,
+                x < self.width,
+                y < self.height
+            ])
+
+            if isinstance(self.value, InputValue):
+                enable = self.value.Enable()
+                disable = self.value.Disable()
+            else:
+                enable = Function(self.enable)
+                disable = Function(self.disable)
+
+            if renpy.map_event(ev, "mousedown_1"):
+                if is_hovered:
+                    renpy.run(enable)
+                else:
+                    renpy.run(disable)
+
+            return ret
 
     @renpy.pure
     class FinishNameInput(Action):

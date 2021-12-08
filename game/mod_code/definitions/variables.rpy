@@ -27,4 +27,4 @@ default persistent.marked_emails = [ ]
 
 default persistent.new_email_count = 0
 
-define persistent.current_test = 0
+define persistent.current_test = "formal_intro"

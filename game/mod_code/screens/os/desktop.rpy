@@ -25,32 +25,15 @@ transform dock_animation:
         ease_quad 0.5 yoffset 100
 
 transform window_animation():
-    mesh True
-    shader "wm.circle_reveal"
-
-    u_center (0.5, 1.0)
+    crop_relative True
 
     on show:
-        u_complete 0.0
-        easeout 0.75 u_complete 1.0
+        crop (0.0, 0.0, 0.0, 1.0)
+        ease 0.2 crop (0.0, 0.0, 1.0, 1.0)
 
     on hide:
-        u_complete 1.0
-        easeout 0.75 u_complete 0.0
-
-# transform window_animation():
-#     mesh True
-#     shader "wm.genie"
-
-#     u_pos (0.0, 0.5)
-
-#     on show:
-#         u_complete 1.0
-#         easein 0.75 u_complete 0.0
-
-#     on hide:
-#         u_complete 0.0
-#         easein 0.75 u_complete 1.0
+        crop (0.0, 0.0, 1.0, 1.0)
+        ease 0.2 crop (0.0, 0.0, 0.0, 1.0)
 
 style dock_frame:
     xalign 0.5 yalign 0.99

@@ -1,3 +1,9 @@
+init python:
+    WMTest(
+        "formal_intro",
+        "Formal Introduction"
+    )
+
 label formal_intro_monika():
     m "Hello! I’m Monika, your local Literature Club president, ahaha~."
     m "It’s great to meet you."
@@ -75,5 +81,5 @@ label formal_intro_natsuki():
 
 label formal_intro_finished():
     $ rbell_email_2.unlock()
-    $ persistent.current_test += 1
+    $ persistent.current_test = "characterization"
     return

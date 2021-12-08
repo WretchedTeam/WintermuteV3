@@ -15,7 +15,10 @@ screen wintermute_main():
     style_prefix "wintermute_main"
 
     use wm_program():
-        $ test_name = tests.current_display_name()
+        python:
+            test = WMTest.current_test()
+            test_name = test.name if test is not None else "[[ TEST NAME ]"
+
         textbutton _("Start [test_name]") action [ Return(True) ]
         textbutton _("Test Info") action NullAction()
         textbutton _("AI Info") action NullAction()

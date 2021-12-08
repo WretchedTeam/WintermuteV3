@@ -1,3 +1,10 @@
+init python:
+    WMTest(
+        "characterization",
+        "Characterization",
+        True
+    )
+
 default characterization_monika_open_minded = False
 
 label characterization_qa(doki):
@@ -174,6 +181,7 @@ label characterization_monika():
     ##IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
+    call test_prompt_button("What are you thinking right now?")
     mc "What are you thinking right now?"
     m "Hmm…"
     m "I’m thinking of that day I described, how it’d be nice to do that every day…"
@@ -185,7 +193,7 @@ label characterization_monika():
     ##BUTTON:
     # Record Results
     call test_prompt_button("Record Results")
-    return
+    return True
 
 label characterization_sayori_likes():
     mc "What do you like?"
@@ -324,6 +332,7 @@ label characterization_sayori():
     #IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
+    call test_prompt_button("What are you thinking right now?")
     mc "What are you thinking right now?"
     s "Right now?"
     s "I...am still kinda embarrassed over what I said earlier."
@@ -336,7 +345,7 @@ label characterization_sayori():
     ##BUTTON:
     # Record Results
     call test_prompt_button("Record Results")
-    return
+    return True
 
 label characterization_natsuki_likes():
     mc "What do you like?"
@@ -461,6 +470,7 @@ label characterization_natsuki():
     #IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
+    call test_prompt_button("What are you thinking right now?")
     mc "What are you thinking right now?"
     n "The best way to get out of this conversation as quickly as possible."
     n "{i}Exit game.{/i}"
@@ -472,7 +482,7 @@ label characterization_natsuki():
     ##BUTTON:
     # Record Results
     call test_prompt_button("Record Results")
-    return
+    return True
 
 label characterization_yuri_likes():
     mc "What do you like?"
@@ -580,6 +590,7 @@ label characterization_yuri():
     #IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
+    call test_prompt_button("What are you thinking right now?")
     mc "What are you thinking right now?"
     y "Oh, well I'm just hoping to get the chance to read with you."
     y "I'd love nothing more than to share some great stories with you, and immerse ourselves in a captivating fantasy world."
@@ -589,7 +600,7 @@ label characterization_yuri():
     ##BUTTON:
     # Record Results
     call test_prompt_button("Record Results")
-    return
+    return True
 
 label characterization_finished():
     $ josborne_email_2.unlock()

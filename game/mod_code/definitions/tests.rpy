@@ -1,59 +1,40 @@
-init python in tests:
-    from store import (
-        persistent,
-        SetVariable,
-        NullAction,
-        SensitiveIf,
-        AddToSet,
-        Return
-    )
+init python:
+    class WMTest(object):
+        _tests = { }
+        _dokis =  [ "monika", "sayori", "yuri", "natsuki" ] 
 
-    __tests_ids = [
-        "formal_intro",
-        "characterization"
-    ]
+        @classmethod
+        def current_test(cls):
+            return cls._tests.get(persistent.current_test, None)
 
-    __tests_to_display_name_map = {
-        "formal_intro": "Formal Introduction",
-        "characterization": "Characterization"
-    }
+        def __init__(self, _id, name, single=False):
+            self.id = _id
+            self.name = name
+            self.single = single
+            self._tests[_id] = self
 
-    def current_id():
-        global __tests_ids
-        return __tests_ids[persistent.current_test]
+        def is_finished(self):
+            if self.single:
+                return self.any_test_seen()
+            else:
+                return self.all_test_seen()
 
-    def current_display_name():
-        global __tests_to_display_name_map
-        test_id = current_id()
-        return __tests_to_display_name_map.get(test_id, test_id)
+        def all_test_seen(self):
+            return all([ 
+                self.seen_test(x) for x in self._dokis
+            ])
 
-    def display_name(test_id, default=None):
-        global __tests_to_display_name_map
-        return __tests_to_display_name_map.get(test_id, default)
+        def any_test_seen(self):
+            return any([ 
+                self.seen_test(x) for x in self._dokis
+            ])
 
-    def get_label_name(doki):
-        return current_id() + "_" + doki.lower()
+        def get_test_label(self, doki):
+            return self.id + "_" + doki.lower()
 
-    def seen_test(doki):
-        return renpy.seen_label(get_label_name(doki))
+        def seen_test(self, doki):
+            return renpy.seen_label(self.get_test_label(doki))
 
-    def is_finished():
-        return all([ 
-            renpy.seen_label(get_label_name(x)) for x in [ "monika", "sayori", "yuri", "natsuki" ] 
-        ])
-
-    def set_test_call(doki):
-        if persistent.current_test is None:
-            return NullAction()
-
-        label_name = get_label_name(doki)
-
-        return [ 
-            SetVariable("current_test_label", label_name),
-            SensitiveIf(not renpy.seen_label(label_name)),
-            Return()
-        ]
-
-    def mark_unseen_test_labels(test):
-        for x in [ "monika", "sayori", "yuri", "natsuki" ]:
-            renpy.mark_label_unseen(test + "_" + x)
+        def mark_unseen_test_labels(self):
+            for x in self._dokis:
+                renpy.mark_label_unseen(self.get_test_label(x))
