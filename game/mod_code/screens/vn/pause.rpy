@@ -1,7 +1,7 @@
 screen pause_menu():
     tag menu
 
-    default selection_wheel = SelectionWheelControlled("pause_selector")
+    default selection_wheel = SelectionWheelControlled("pause_selector", 150.0)
 
     add gui.game_menu_background
     add "mod_assets/gui/pause/4-divider.png" align (0.5, 0.5) zoom 0.25
@@ -38,7 +38,7 @@ screen pause_menu():
 
 image pause_selector:
     "mod_assets/gui/pause/selection-arrow.png"
-    rotate 90.0
+    zoom 0.25
 
 init python:
     def pause_menu_button(icon, text, color):

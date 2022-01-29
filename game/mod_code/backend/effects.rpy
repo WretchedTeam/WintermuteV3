@@ -183,7 +183,6 @@ init python:
             self.width, self.height = (0, 0)
 
             self.rot = 0.0
-            self.rot_dir = 1
             self.xoffset = 0.0
             self.yoffset = 0.0
             self.alpha = 0.0
@@ -220,10 +219,11 @@ init python:
 
         def hide(self):
             self.target_alpha = 0.0
-            self.target_at_delay = 1.0
 
             self.target_xoffset = -(10.0 * sin(radians(self.rot % 360)))
             self.target_yoffset = -(10.0 * cos(radians(self.rot % 360)))
+            self.target_at_delay = 1.0
+
             self.shown = False
             renpy.redraw(self, 0)
 
@@ -299,7 +299,7 @@ init python:
             return Transform(
                 self.child, 
                 alpha=self.alpha, 
-                # rotate=self.rot, 
+                rotate=360 - self.rot,
                 subpixel=True
             )
 
