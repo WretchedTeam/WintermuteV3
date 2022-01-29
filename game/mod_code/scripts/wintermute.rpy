@@ -6,7 +6,7 @@ label wm_start():
 
     scene expression "#2e2e2e"
     with dissolve_scene_full
-    show wm_overlay at circle_reveal(d=5.0)
+    show wm_overlay at circle_crop(d=5.0)
 
     pause 2.0
 
@@ -24,7 +24,7 @@ label wm_start():
 
         if _return is True:
             scene dev_bg_open
-            show layer master at wm_scanlines
+            show layer master at WMLayer
 
             pause 1.45
 
@@ -126,13 +126,13 @@ label employee_risk_assessment():
 
 init python:
     def WMLayer(child):
-        while isinstance(child, (Transform, GaussianBlur)):
+        while isinstance(child, (Transform)):
             child = child.child
 
         ret = wm_scanlines(child)
 
-        if renpy.context()._menu:
-            ret = GaussianBlur(ret, 16.0)
+        # if renpy.context()._menu:
+        #     return zoomin(ret)
 
         return ret
 
@@ -201,3 +201,18 @@ image wm_overlay:
     contains:
         "wm_eye"
         xalign 1.0 yalign 0.01
+
+transform zoomin(old_widget, new_widget):
+    delay 0.75
+
+    contains:
+        old_widget
+        align (0.5, 0.5) subpixel True alpha 1.0 zoom 1.0
+        mesh True shader "wm.antifisheye" u_value 0.0
+        ease_cubic 0.75 u_value 0.06 zoom 1.4 alpha 0.0
+
+    contains:
+        new_widget
+        align (0.5, 0.5) subpixel True alpha 0.0 zoom 1.4
+        mesh True shader "wm.antifisheye" u_value 0.06
+        ease_cubic 0.75 alpha 1.0 zoom 1.0 u_value 0.0

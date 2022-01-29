@@ -164,6 +164,7 @@ label test7_natsuki():
     n "WHAT THE FUCK DID YOU JUST DO TO ME?!!"
     show natsuki mm at t11
 
+    $ terminal.clear()
     show screen terminal((500, 200))
     $ terminal.set_input(True)
 

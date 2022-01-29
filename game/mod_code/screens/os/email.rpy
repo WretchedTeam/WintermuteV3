@@ -9,7 +9,7 @@ screen wm_mail_client_program(start_pos=(100, 100)):
     python:
         renpy.hide_screen("mail_notification")
 
-    drag at window_animation:
+    drag at [ window_animation ]:
         drag_name "wm_mail_client_program"
 
         activated manager.raise_window

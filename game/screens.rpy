@@ -205,13 +205,17 @@ style input:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
+transform choice_appear(i):
+    alpha 0.0 yoffset -10
+    pause i * 0.5
+    linear 0.25 alpha 1.0 yoffset 0
+
 screen choice(items):
     style_prefix "choice"
 
     vbox:
-        for i in items:
-            textbutton i.caption action i.action
-
+        for idx, i in enumerate(items):
+            textbutton i.caption action i.action at choice_appear(idx)
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.

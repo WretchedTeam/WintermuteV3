@@ -28,12 +28,12 @@ transform window_animation():
     crop_relative True
 
     on show:
-        crop (0.0, 0.0, 0.0, 1.0)
-        ease 0.2 crop (0.0, 0.0, 1.0, 1.0)
+        alpha 0.0 zoom 0.5
+        easein 0.1 alpha 1.0 zoom 1.0
 
     on hide:
-        crop (0.0, 0.0, 1.0, 1.0)
-        ease 0.2 crop (0.0, 0.0, 0.0, 1.0)
+        alpha 1.0 zoom 1.0
+        easein 0.1 alpha 0.0 zoom 0.5
 
 style dock_frame:
     xalign 0.5 yalign 0.99

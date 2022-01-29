@@ -1,5 +1,5 @@
 init python:
-    class WMTest(object):
+    class WMTest(NoRollback):
         _tests = { }
         _dokis =  [ "monika", "sayori", "yuri", "natsuki" ] 
 

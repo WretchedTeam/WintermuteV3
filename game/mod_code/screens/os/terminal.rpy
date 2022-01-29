@@ -139,6 +139,9 @@ init python in terminal:
         renpy.ui.pausebehavior(1.0, True)
         renpy.restart_interaction()
 
+    def clear():
+        terminal_commands.clear()
+
     def __pop():
         global terminal_commands
 

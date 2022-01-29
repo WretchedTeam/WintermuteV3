@@ -1,5 +1,5 @@
 init python:
-    WMTest(
+    characterization_test = WMTest(
         "characterization",
         "Characterization",
         True

@@ -1,5 +1,5 @@
 init python:
-    WMTest(
+    formal_intro_test = WMTest(
         "formal_intro",
         "Formal Introduction"
     )

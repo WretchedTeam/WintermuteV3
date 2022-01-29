@@ -73,8 +73,8 @@ define config.has_voice = True
 
 ## Entering or exiting the game menu.
 
-define config.enter_transition = dissolve
-define config.exit_transition = dissolve
+define config.enter_transition = ZoomInFisheyeCurried(0.75)
+define config.exit_transition = ZoomInFisheyeCurried(0.75)
 
 
 ## Between screens of the game menu.
