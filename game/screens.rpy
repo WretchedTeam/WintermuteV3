@@ -4,7 +4,7 @@
 
 init offset = -1
 
-define _game_menu_screen = "preferences"
+define _game_menu_screen = "pause_menu"
 
 ################################################################################
 ## Styles
