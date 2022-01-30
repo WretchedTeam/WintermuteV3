@@ -98,8 +98,8 @@ init python:
             rv.add_uniform("u_amount", self.amount)
             rv.add_property("mipmap", renpy.config.mipmap_dissolves if (self.style.mipmap is None) else self.style.mipmap)
 
-            rv.blit(top, (0, 0), focus=True, main=True)
             rv.blit(bottom, (0, 0), focus=False, main=False)
+            rv.blit(top, (0, 0), focus=True, main=True)
 
             renpy.redraw(self, 0)
 

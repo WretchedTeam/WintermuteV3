@@ -53,8 +53,8 @@ screen login_password():
 
 style login_password_hbox is empty
 style login_password_frame is empty
-style login_password_button is empty
-style login_password_button_text is empty
+style login_password_button is button
+style login_password_button_text is button_text
 
 style login_password_input is empty
 

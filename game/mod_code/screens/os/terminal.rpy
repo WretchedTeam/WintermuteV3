@@ -94,6 +94,7 @@ init python in terminal:
 
     from renpy.display.layout import AdjustTimes
     from renpy.store import (
+        Play,
         Return,
         terminal_commands,
         Text, 
@@ -148,7 +149,7 @@ init python in terminal:
         if len(terminal_commands) > 0:
             terminal_commands.pop()
 
-    def command(t, pop=False, append_callbacks=(__hard_pause,), end_callbacks=(__skip_hard_pause,)):
+    def command(t, pop=False, append_callbacks=(__hard_pause), end_callbacks=(__skip_hard_pause, Play("sound", "mod_assets/audio/foley/enter_key.ogg"))):
         global terminal_commands
 
         if pop:
@@ -160,6 +161,7 @@ init python in terminal:
             style="terminal_entry_text", 
         )
 
+        renpy.sound.play("mod_assets/audio/foley/typing.ogg")
         d.slow_done = renpy.partial(__handle_callbacks, end_callbacks)
 
         terminal_commands.append(d)

@@ -28,6 +28,8 @@ style gui_text:
 
 style button:
     properties gui.button_properties("button")
+    hover_sound gui.hover_sound
+    activate_sound gui.activate_sound
 
 style button_text is gui_text:
     properties gui.text_properties("button")
@@ -233,10 +235,10 @@ style choice_vbox:
 
     spacing gui.choice_spacing
 
-style choice_button is default:
+style choice_button is button:
     properties gui.button_properties("choice_button")
 
-style choice_button_text is default:
+style choice_button_text is button_text:
     properties gui.button_text_properties("choice_button")
 
 
@@ -303,6 +305,8 @@ screen main_menu():
         use login()
     else:
         use register()
+
+    on "show" action Play("sound", "mod_assets/audio/os/startupsound1.ogg")
 
     # add gui.main_menu_background
 

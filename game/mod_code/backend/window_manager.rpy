@@ -41,6 +41,7 @@ init -10:
 
     style header_text is empty
     style header_frame is empty
+    style header_image_button is button
 
     style header_text:
         font "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"

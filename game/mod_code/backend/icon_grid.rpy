@@ -52,8 +52,9 @@ screen desktop_app_icon(icon, title, screen_name, _pos=(0, 0)):
         idle_child desktop_icon_image(icon, title)
         hover_child desktop_icon_image(icon, title, "#0003")
 
-        clicked Show(screen_name)
+        clicked [ Play("audio", gui.activate_sound), Show(screen_name) ]
         activated desktop_icon_activated
+        hovered Play("audio", gui.hover_sound)
         focus_mask None
 
 screen desktop_label_icon(icon, title, label, _pos=(0, 0)):
@@ -64,7 +65,8 @@ screen desktop_label_icon(icon, title, label, _pos=(0, 0)):
         idle_child desktop_icon_image(icon, title)
         hover_child desktop_icon_image(icon, title, "#0003")
 
-        clicked Jump(label)
+        clicked [ Play("audio", gui.activate_sound), Jump(label) ]
         activated desktop_icon_activated
+        hovered Play("audio", gui.hover_sound)
         focus_mask None
 

@@ -361,6 +361,9 @@ init -10 python:
             if not renpy.get_screen("wm_mail_client_program"):
                 persistent.new_email_count += 1
 
+            if renpy.get_screen("mail_notification"):
+                renpy.sound.play("mod_assets/audio/os/emailget.ogg")
+
         def mark_read(self):
             if self.is_read():
                 return

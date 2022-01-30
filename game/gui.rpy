@@ -149,6 +149,9 @@ define gui.dialogue_text_xalign = 0.0
 define gui.button_width = None
 define gui.button_height = None
 
+define gui.hover_sound = "mod_assets/audio/os/wm_hover.ogg"
+define gui.activate_sound = "mod_assets/audio/os/wm_select.ogg"
+
 ## The borders on each side of the button, in left, top, right, bottom order.
 define gui.button_borders = Borders(4, 4, 4, 4)
 

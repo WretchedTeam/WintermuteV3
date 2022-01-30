@@ -13,8 +13,6 @@ init -100 python:
     """, fragment_functions="""
         #define NEAREST_CORNER(pos) (1.0 - (step(0.5, pos)))
     """,fragment_200="""
-        vec4 color = texture2D(tex0, v_tex_coord);
-
         vec2 uv2 = v_tex_coord * u_amount;
         uv2.x *= res0.x / res0.y;
 
@@ -26,5 +24,5 @@ init -100 python:
             RADIUS * (1.0 - fudge), RADIUS * (1.0 + fudge), dist
         );
 
-        gl_FragColor = mix(texture2D(tex1, v_tex_coord), color, 1.0 - coeff);
+        gl_FragColor = mix(texture2D(tex0, v_tex_coord), texture2D(tex1, v_tex_coord), 1.0 - coeff);
     """)

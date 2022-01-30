@@ -70,6 +70,8 @@ style register_name_frame is empty
 style register_name_input is empty
 style register_name_label is empty
 style register_name_label_text is empty
+style register_name_button is button
+style register_name_button_text is button_text
 
 style register_name_vbox:
     spacing 10
