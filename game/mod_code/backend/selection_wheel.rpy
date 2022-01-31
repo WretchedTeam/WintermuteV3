@@ -3,6 +3,9 @@ init python:
 
     class SelectionWheelControlled(renpy.Displayable, NoRollback):
 
+        duration_per_90 = 0.1
+        max_offset = 10.0
+
         def __init__(self, child, radius=100, time_warp=None, **kwargs):
             super(SelectionWheelControlled, self).__init__(**kwargs)
 
@@ -26,17 +29,25 @@ init python:
             self.target_at = 0
             self.at = 0
 
-            self.duration_per_90 = 0.1
             self.shown = False
 
             self.hide_update_delay = 0
             self.hide_update = 0
 
-            self.force_update = False
+            self.keep_visible = False
+
+        def point_on_circle(self, rad, angle):
+            return (
+                (rad * sin(radians(angle % 360))), 
+                (rad * cos(radians(angle % 360)))
+            )
+
+        def calculate_offsets(self, angle):
+            x, y = self.point_on_circle(self.max_offset, angle)
+            return -x, -y
 
         def show(self, angle=0.0):
-            self.xoffset = -(10.0 * sin(radians(angle % 360)))
-            self.yoffset = -(10.0 * cos(radians(angle % 360)))
+            self.xoffset, self.yoffset = self.calculate_offsets(angle)
 
             self.target_xoffset = 0.0
             self.target_yoffset = 0.0
@@ -50,28 +61,30 @@ init python:
         def hide(self):
             self.target_alpha = 0.0
 
-            self.target_xoffset = -(10.0 * sin(radians(self.rot)))
-            self.target_yoffset = -(10.0 * cos(radians(self.rot)))
+            self.target_xoffset, self.target_yoffset = self.calculate_offsets(self.rot)
             self.target_at_delay = 0.25
 
             self.shown = False
             renpy.redraw(self, 0)
 
         def unhover(self):
-            self.force_update = False
+            self.keep_visible = False
+            renpy.redraw(self, 0)
 
         def set_rotation(self, angle):
+            # Round off the current rotation
+            self.rot %= 360
+
             if not self.shown:
                 self.show(angle)
 
             else:
-                self.rot %= 360
                 self.target_rot = self.nearest_angle(angle % 360)
                 self.target_at_delay = abs(self.rot - self.target_rot) * (self.duration_per_90 / 90.0)
                 renpy.redraw(self, 0)
 
-            self.hide_update_delay = 1.0
-            self.force_update = True
+            self.hide_update_delay = 0.5
+            self.keep_visible = True
 
         def nearest_angle(self, angle):
             if self.rot > 180 and self.is_angle_between(self.rot, self.rot + 180, angle):
@@ -93,18 +106,19 @@ init python:
             return start <= cur < end
 
         def transform_child(self, at):
-            if self.hide_update_delay:
-                self.hide_update = at + self.hide_update_delay
-
-                if not self.force_update:
+            # Logic for hiding the wheel
+            if not self.keep_visible:
+                if self.hide_update_delay:
+                    self.hide_update = at + self.hide_update_delay
                     self.hide_update_delay = 0
 
-                renpy.redraw(self, 0)
-            elif at >= self.hide_update and self.shown:
-                self.hide()
-            else:
-                renpy.redraw(self, 0)
+                    renpy.redraw(self, 0)
+                elif at >= self.hide_update and self.shown:
+                    self.hide()
+                else:
+                    renpy.redraw(self, 0)
 
+            # Interpolation logic
             if self.target_at_delay:
                 self.target_at = at + self.target_at_delay
                 self.target_at_delay = 0
@@ -146,8 +160,9 @@ init python:
 
             halfwidth, halfheight = width / 2.0, height / 2.0
 
-            x = halfwidth + (self.radius * sin(radians(self.rot)))
-            y = halfheight + (self.radius * cos(radians(self.rot)))
+            x, y = self.point_on_circle(self.radius, self.rot)
+            x += halfwidth
+            y += halfheight
 
             rv.subpixel_blit(cr, (x - (cr.width / 2.) + self.xoffset, y - (cr.height / 2.) + self.yoffset))
             self.at = at
