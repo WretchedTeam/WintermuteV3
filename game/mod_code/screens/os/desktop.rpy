@@ -47,7 +47,6 @@ screen icon_grid():
         has draggroup
 
         use desktop_app_icon("email", "Email", "wm_mail_client_program")
-        use desktop_app_icon("terminal", "Terminal", "wm_terminal_program", (0, 100 + 10))
 
         if persistent.wm_received:
             use desktop_label_icon("wintermute", "Wintermute", "wm_start", (0, (100 + 10) * 2))

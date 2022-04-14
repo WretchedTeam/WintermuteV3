@@ -7,7 +7,7 @@ screen pause_menu():
     add "pause_background"
     add "mod_assets/gui/pause/4-divider.png" align (0.5, 0.5) zoom 0.25
 
-    imagebutton action ShowMenu("history"):
+    imagebutton action ShowMenu("history", ShowMenu("pause_menu")):
         xcenter 0.5 ycenter 0.15
         idle "transcript idle" 
         hover "transcript hover"
@@ -21,7 +21,7 @@ screen pause_menu():
         hovered Function(selection_wheel.set_rotation, 0.0)
         unhovered Function(selection_wheel.unhover)
 
-    imagebutton action ShowMenu("preferences"):
+    imagebutton action ShowMenu("preferences", ShowMenu("pause_menu")):
         xcenter 0.28 ycenter 0.5
         idle "preferences idle" 
         hover "preferences hover"

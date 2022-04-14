@@ -6,11 +6,11 @@
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
-screen preferences():
+screen preferences(return_action=None):
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Preferences"), scroll="viewport", return_action=return_action):
 
         vbox:
 

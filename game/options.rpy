@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("WintermuteV3")
+define config.name = _("Project Wintermute")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -79,7 +79,7 @@ define config.exit_transition = ZoomInFisheyeCurried(0.75, time_warp=_warper.eas
 
 ## Between screens of the game menu.
 
-# define config.intra_transition = dissolve
+define config.intra_transition = dissolve
 
 
 ## A transition that is used after a game has been loaded.
@@ -152,6 +152,11 @@ define config.save_directory = "WintermuteV3-1636109150"
 
 define config.window_icon = "gui/window_icon.png"
 
+init python:
+    def game_menu_check():
+        if quick_menu: renpy.call_in_new_context('_game_menu')
+
+    config.game_menu_action = game_menu_check
 
 ## Build configuration #########################################################
 ##

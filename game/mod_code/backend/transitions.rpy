@@ -92,7 +92,7 @@ init python:
 
             rv = renpy.Render(width, height)
             rv.mesh = True
-            rv.add_shader("wm.circle_reveal")
+            rv.add_shader("wm.circle_stipple")
 
             rv.add_uniform("u_complete", complete)
             rv.add_uniform("u_amount", self.amount)

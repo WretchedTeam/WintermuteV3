@@ -1,5 +1,5 @@
 init -100 python:
-    renpy.register_shader("wm.circle_reveal", variables="""
+    renpy.register_shader("wm.circle_stipple", variables="""
         uniform sampler2D tex0;
         uniform sampler2D tex1;
         attribute vec2 a_tex_coord;

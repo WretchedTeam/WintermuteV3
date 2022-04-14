@@ -7,14 +7,14 @@
 ##
 ## https://www.renpy.org/doc/html/history.html
 
-screen history():
+screen history(return_action=None):
 
     tag menu
 
     ## Avoid predicting this screen, as it can be very large.
     predict False
 
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0, return_action=return_action):
 
         style_prefix "history"
 

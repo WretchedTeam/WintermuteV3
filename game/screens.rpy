@@ -368,7 +368,7 @@ style main_menu_version:
 ## this screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
 
-screen game_menu(title, scroll=None, yinitial=0.0):
+screen game_menu(title, scroll=None, yinitial=0.0, return_action=None):
 
     style_prefix "game_menu"
 
@@ -422,17 +422,23 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+    # use navigation
 
     textbutton _("Return"):
         style "return_button"
 
-        action Return()
+        if return_action is None:
+            action Return()
+        else:
+            action return_action
+
+    if return_action:
+        key "game_menu" action return_action
 
     # label title
 
-    if main_menu:
-        key "game_menu" action ShowMenu("main_menu")
+    # if main_menu:
+    #     key "game_menu" action ShowMenu("main_menu")
 
 
 style game_menu_outer_frame is empty

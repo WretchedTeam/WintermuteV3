@@ -3,13 +3,14 @@ init python:
 
     class SelectionWheelControlled(renpy.Displayable, NoRollback):
 
-        duration_per_90 = 0.1
+        duration_per_90 = 0.25
         max_offset = 10.0
 
         def __init__(self, child, radius=100, time_warp=None, **kwargs):
             super(SelectionWheelControlled, self).__init__(**kwargs)
 
             self.child = renpy.displayable(child)
+            self.transform = Transform(self.child, subpixel=True)
             self.radius = radius
             self.time_warp = time_warp
 
@@ -105,7 +106,7 @@ init python:
 
             return start <= cur < end
 
-        def transform_child(self, at):
+        def update_transform(self, at):
             # Logic for hiding the wheel
             if not self.keep_visible:
                 if self.hide_update_delay:
@@ -113,16 +114,20 @@ init python:
                     self.hide_update_delay = 0
 
                     renpy.redraw(self, 0)
+                    renpy.redraw(self.transform, 0)
+
                 elif at >= self.hide_update and self.shown:
                     self.hide()
                 else:
                     renpy.redraw(self, 0)
+                    renpy.redraw(self.transform, 0)
 
             # Interpolation logic
             if self.target_at_delay:
                 self.target_at = at + self.target_at_delay
                 self.target_at_delay = 0
                 renpy.redraw(self, 0)
+                renpy.redraw(self.transform, 0)
 
             elif at >= self.target_at:
                 self.target_rot %= 360
@@ -144,19 +149,18 @@ init python:
                 self.alpha = absolute(self.alpha + done * (self.target_alpha - self.alpha))
 
                 renpy.redraw(self, 0)
+                renpy.redraw(self.transform, 0)
 
-            return Transform(
-                self.child, 
-                alpha=self.alpha, 
-                rotate=360 - self.rot,
-                subpixel=True
-            )
+            self.transform.alpha = absolute(self.alpha)
+            self.transform.rotate = 360 - self.rot
 
         def render(self, width, height, st, at):
             self.width, self.height = width, height
 
+            self.update_transform(at)
+
             rv = renpy.Render(width, height, st, at)
-            cr = renpy.render(self.transform_child(at), width, height, st, at)
+            cr = renpy.render(self.transform, width, height, st, at)
 
             halfwidth, halfheight = width / 2.0, height / 2.0
 
