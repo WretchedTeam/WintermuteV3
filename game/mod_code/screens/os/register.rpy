@@ -100,8 +100,6 @@ style register_name_label_text:
     font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
 
 init python:
-    config.self_closing_custom_text_tags["user_tick"] = fi_icon("")
-
     class MultipleInput(Input):
         def __init__(self, *args, **kwargs):
             super(MultipleInput, self).__init__(*args, **kwargs)

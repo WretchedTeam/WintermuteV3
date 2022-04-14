@@ -1,10 +1,3 @@
-init python:
-    characterization_test = WMTest(
-        "characterization",
-        "Characterization",
-        True
-    )
-
 default characterization_monika_open_minded = False
 
 label characterization_qa(doki):

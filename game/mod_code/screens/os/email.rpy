@@ -297,8 +297,6 @@ style mail_content_vscrollbar:
     thumb_offset 3
 
 init -10 python:
-    config.self_closing_custom_text_tags["unread"] = fi_icon("")
-
     def mail_title_tag(tag, argument, contents):
         return [
                 (renpy.TEXT_TAG, u"font=mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"),

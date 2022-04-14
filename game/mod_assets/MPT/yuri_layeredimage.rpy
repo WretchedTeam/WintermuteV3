@@ -3,16 +3,9 @@
 
 layeredimage yuri turned:
     
-    #This makes the sprite one single texture, instead of multiple textures on top of each other.
-    #This fixes certain problems like alpha fadein/fadeout looking strange, at the cost of some performance.
-    at Flatten
-    
     always "mod_assets/MPT/yuri/yuri_turned_facebase.png"
     
-    #Attributes for autofocus logic.
-    group af_logic multiple:
-        attribute afm null #This attribute controls whether automatic control of the mouths takes place or not.  Add this tag to a character to enable automatic mouth control, remove it to disable it.
-        attribute afz null #This attribute controls whether automatic control of zorder takes place or not.  Add this tag to a character to enable automatic zorder control, remove it to disable it.
+    
     
     group outfit: #These attributes are here only to determine which set of "body" sprites to use later.  "null" is what lets us just use these attributes as logic and nothing else.
         attribute uniform default null
@@ -389,16 +382,9 @@ layeredimage yuri turned:
 
 layeredimage yuri shy:
     
-    #This makes the sprite one single texture, instead of multiple textures on top of each other.
-    #This fixes certain problems like alpha fadein/fadeout looking strange, at the cost of some performance.
-    at Flatten
-    
     always "mod_assets/MPT/yuri/yuri_shy_facebase.png"
     
-    #Attributes for autofocus logic.
-    group af_logic multiple:
-        attribute afm null #This attribute controls whether automatic control of the mouths takes place or not.  Add this tag to a character to enable automatic mouth control, remove it to disable it.
-        attribute afz null #This attribute controls whether automatic control of zorder takes place or not.  Add this tag to a character to enable automatic zorder control, remove it to disable it.
+    
     
     group outfit:
         

@@ -4,12 +4,6 @@
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 
-init python:
-    config.self_closing_custom_text_tags["book"] = fi_icon("")
-    config.self_closing_custom_text_tags["sliders"] = fi_icon("")
-    config.self_closing_custom_text_tags["menu"] = fi_icon("")
-    config.self_closing_custom_text_tags["power"] = fi_icon("")
-
 screen navigation():
     vbox:
         style_prefix "navigation"

@@ -1,6 +1,5 @@
 image desktop_background:
     "mod_assets/os/background.png"
-    size (1280, 720)
 
 image avatar:
     "mod_assets/os/avatar.png"
@@ -92,3 +91,6 @@ image dev_bg_close:
     "mod_assets/animations/dev_texture_bg/dt_outline.png"
     alpha 1.0
     linear 0.5 alpha 0.0
+
+image wintermute_os_mark:
+    Text("{lexend=light}wintermute{/lexend} {lexend=semibold}OS{/lexend}", size=40)

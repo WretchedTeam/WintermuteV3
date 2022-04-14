@@ -181,14 +181,7 @@ image nat_fs_b3:
 
 layeredimage natsuki turned:
     
-    #This makes the sprite one single texture, instead of multiple textures on top of each other.
-    #This fixes certain problems like alpha fadein/fadeout looking strange, at the cost of some performance.
-    at [ Flatten, ]
     
-    #Attributes for autofocus logic.
-    group af_logic multiple:
-        attribute afm null #This attribute controls whether automatic control of the mouths takes place or not.  Add this tag to a character to enable automatic mouth control, remove it to disable it.
-        attribute afz null #This attribute controls whether automatic control of zorder takes place or not.  Add this tag to a character to enable automatic zorder control, remove it to disable it.
     
     group outfit:
         attribute uniform default null
@@ -514,42 +507,35 @@ layeredimage natsuki turned:
     
     
     
-    group eyebrows:
+    group eyebrows if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
         
         ###All eyebrows - truncated tags:
-        attribute b1a if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1a:
             "nat_ff_b1a"
-        attribute b1b if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1b:
             "nat_ff_b1b"
-        attribute b1c if_all(["ff"]) if_not(["fta","fs",]):
+        attribute b1c:
             "nat_ff_b1c"
-        attribute b1d if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1d:
             "nat_ff_b1d"
-        attribute b1e if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1e:
             "nat_ff_b1e"
-        attribute b1f if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1f:
             "nat_ff_b1f"
-        attribute b2a if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b2a:
             "nat_ff_b2a"
-        attribute b2b if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b2b:
             "nat_ff_b2b"
-        attribute b2c if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b2c:
             "nat_ff_b2c"
-        attribute b3a if_all(["ff"]) if_not(["fta","fs"]) if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
+        attribute b3a if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
             "nat_ff_b3a"
-        attribute b3b if_all(["ff"]) if_not(["fta","fs"]) if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
+        attribute b3b if_any(["e1d","e4a","e4b","e4c","e4d","e4e","ce"]):
             "nat_ff_b3b"
-        attribute b3c if_all(["ff"]) if_not(["fta","fs"]) if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
+        attribute b3c if_any(["e1d","e4a","e4b","e4c","e4d","e4e","ce"]):
             "nat_ff_b3c"
-        #If the user tries to specifically use a closed-eyebrow variant with open eyes, we intentionally replace the eyebrow graphic in use with an appropriate - but not identical - replacement from the regular eyebrows:
-        attribute b3a if_all(["ff"]) if_not(["fta","fs","e4a","e4b","e4c","e4d","e4e","ce"]):
-            "nat_ff_b1e"
-        attribute b3b if_all(["ff"]) if_not(["fta","fs","e4a","e4b","e4c","e4d","e4e","ce"]):
-            "nat_ff_b1d"
-        attribute b3c if_all(["ff"]) if_not(["fta","fs","e4a","e4b","e4c","e4d","e4e","ce"]):
-            "nat_ff_b1c"
     
     
     
@@ -701,14 +687,7 @@ layeredimage natsuki turned:
 
 layeredimage natsuki cross:
     
-    #This makes the sprite one single texture, instead of multiple textures on top of each other.
-    #This fixes certain problems like alpha fadein/fadeout looking strange, at the cost of some performance.
-    at [ Flatten, ]
     
-    #Attributes for autofocus logic.
-    group af_logic multiple:
-        attribute afm null #This attribute controls whether automatic control of the mouths takes place or not.  Add this tag to a character to enable automatic mouth control, remove it to disable it.
-        attribute afz null #This attribute controls whether automatic control of zorder takes place or not.  Add this tag to a character to enable automatic zorder control, remove it to disable it.
     
     group outfit:
         attribute uniform default null
@@ -993,9 +972,9 @@ layeredimage natsuki cross:
             "nat_ff_b2a"
         attribute brow default if_any(["cry","vsur"]):
             "nat_ff_b2c"
-    
-    
-    
+        
+        
+        
     #Some of Natsuki's eyebrows can only be used with closed eye expressions: the following moods take advantage of this, and thus need logic to check whether the eyes are open or not.
     group eyebrows:#In case you're wondering why there's no if_all or if_not logic on this group line, it's because the attributes below explicitly use the same logic - and if you have a group and an attribute both using the same logic tag, the attribute one will COMPLETELY overwrite and ignore the group logic.  It took me way too long to figure this out.
         
@@ -1019,47 +998,40 @@ layeredimage natsuki cross:
             "nat_ff_b1d"
         attribute brow default if_any(["anno","angr"]) if_all(["ce","ff"]) if_not(["fta","fs"]):
             "nat_ff_b3b"
-    
-    
-    
-    group eyebrows:
+        
+        
+        
+    group eyebrows if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
         xoffset (18)
         yoffset (22)
         
         ###All eyebrows - truncated tags:
-        attribute b1a if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1a:
             "nat_ff_b1a"
-        attribute b1b if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1b:
             "nat_ff_b1b"
-        attribute b1c if_all(["ff"]) if_not(["fta","fs",]):
+        attribute b1c:
             "nat_ff_b1c"
-        attribute b1d if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1d:
             "nat_ff_b1d"
-        attribute b1e if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1e:
             "nat_ff_b1e"
-        attribute b1f if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b1f:
             "nat_ff_b1f"
-        attribute b2a if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b2a:
             "nat_ff_b2a"
-        attribute b2b if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b2b:
             "nat_ff_b2b"
-        attribute b2c if_all(["ff"]) if_not(["fta","fs"]):
+        attribute b2c:
             "nat_ff_b2c"
-        attribute b3a if_all(["ff"]) if_not(["fta","fs"]) if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
+        attribute b3a if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
             "nat_ff_b3a"
-        attribute b3b if_all(["ff"]) if_not(["fta","fs"]) if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
+        attribute b3b if_any(["e1d","e4a","e4b","e4c","e4d","e4e","ce"]):
             "nat_ff_b3b"
-        attribute b3c if_all(["ff"]) if_not(["fta","fs"]) if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
+        attribute b3c if_any(["e1d","e4a","e4b","e4c","e4d","e4e","ce"]):
             "nat_ff_b3c"
-        #If the user tries to specifically use a closed-eyebrow variant with open eyes, we intentionally replace the eyebrow graphic in use with an appropriate - but not identical - replacement from the regular eyebrows:
-        attribute b3a if_all(["ff"]) if_not(["fta","fs","e4a","e4b","e4c","e4d","e4e","ce"]):
-            "nat_ff_b1e"
-        attribute b3b if_all(["ff"]) if_not(["fta","fs","e4a","e4b","e4c","e4d","e4e","ce"]):
-            "nat_ff_b1d"
-        attribute b3c if_all(["ff"]) if_not(["fta","fs","e4a","e4b","e4c","e4d","e4e","ce"]):
-            "nat_ff_b1c"
     
     
     

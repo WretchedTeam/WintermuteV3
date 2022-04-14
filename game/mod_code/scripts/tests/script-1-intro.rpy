@@ -1,9 +1,3 @@
-init python:
-    formal_intro_test = WMTest(
-        "formal_intro",
-        "Formal Introduction"
-    )
-
 label formal_intro_monika():
     show monika forward e1a b1a mb rhip at t11 
     m "Hello! I’m Monika, your local Literature Club president, ahaha~."

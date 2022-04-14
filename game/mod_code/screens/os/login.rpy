@@ -4,6 +4,9 @@ screen login():
     use login_form()
     use power_control()
 
+    add "wintermute_os_mark" offset (50, 50)
+    use wm_clock_text()
+
     on "hide" action With(dissolve)
 
 screen login_form():
@@ -110,6 +113,3 @@ style power_control_button_text:
     size 18
     font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
 
-init python:
-    config.self_closing_custom_text_tags["power"] = fi_icon("")
-    config.self_closing_custom_text_tags["reload"] = fi_icon("")

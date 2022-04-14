@@ -2,6 +2,24 @@
 
 # This defines the placements and animations in DDLC
 
+init python:
+    def calculate_position(n, i, margin=80):
+        assert n >= i
+        assert i > 0
+
+        if n == 1:
+            return int(config.screen_width / 2)
+
+        mult = ceil(n * 1.5)
+        dist = (screen_width - margin) / mult
+
+        first = floor(dist)
+        last = floor(screen_width - dist)
+
+        common_difference = (last - first) / (n - 1)
+
+        return int(floor(first + (i - 1) * common_difference))
+
 # Base for other transforms (not used in the game)
 transform tcommon(x=640, z=0.80):
     yanchor 1.0 subpixel True
@@ -101,201 +119,201 @@ transform rhide:
 
 # Normal positioning and animation based on how many characters
 transform t41:
-    tcommon(200)
+    tcommon(calculate_position(4, 1))
 transform t42:
-    tcommon(493)
+    tcommon(calculate_position(4, 2))
 transform t43:
-    tcommon(786)
+    tcommon(calculate_position(4, 3))
 transform t44:
-    tcommon(1080)
+    tcommon(calculate_position(4, 4))
 transform t31:
-    tcommon(240)
+    tcommon(calculate_position(3, 1))
 transform t32:
-    tcommon(640)
+    tcommon(calculate_position(3, 2))
 transform t33:
-    tcommon(1040)
+    tcommon(calculate_position(3, 3))
 transform t21:
-    tcommon(400)
+    tcommon(calculate_position(2, 1))
 transform t22:
-    tcommon(880)
+    tcommon(calculate_position(2, 2))
 transform t11:
-    tcommon(640)
+    tcommon(calculate_position(1, 1))
 
 # Makes the character pop in 
 transform i41:
-    tinstant(200)
+    tinstant(calculate_position(4, 1))
 transform i42:
-    tinstant(493)
+    tinstant(calculate_position(4, 2))
 transform i43:
-    tinstant(786)
+    tinstant(calculate_position(4, 3))
 transform i44:
-    tinstant(1080)
+    tinstant(calculate_position(4, 4))
 transform i31:
-    tinstant(240)
+    tinstant(calculate_position(3, 1))
 transform i32:
-    tinstant(640)
+    tinstant(calculate_position(3, 2))
 transform i33:
-    tinstant(1040)
+    tinstant(calculate_position(3, 3))
 transform i21:
-    tinstant(400)
+    tinstant(calculate_position(2, 1))
 transform i22:
-    tinstant(880)
+    tinstant(calculate_position(2, 2))
 transform i11:
-    tinstant(640)
+    tinstant(calculate_position(1, 1))
 
 # Makes the character the focus
 transform f41:
-    focus(200)
+    focus(calculate_position(4, 1))
 transform f42:
-    focus(493)
+    focus(calculate_position(4, 2))
 transform f43:
-    focus(786)
+    focus(calculate_position(4, 3))
 transform f44:
-    focus(1080)
+    focus(calculate_position(4, 4))
 transform f31:
-    focus(240)
+    focus(calculate_position(3, 1))
 transform f32:
-    focus(640)
+    focus(calculate_position(3, 2))
 transform f33:
-    focus(1040)
+    focus(calculate_position(3, 3))
 transform f21:
-    focus(400)
+    focus(calculate_position(2, 1))
 transform f22:
-    focus(880)
+    focus(calculate_position(2, 2))
 transform f11:
-    focus(640)
+    focus(calculate_position(1, 1))
 
 # Makes the character sink
 transform s41:
-    sink(200)
+    sink(calculate_position(4, 1))
 transform s42:
-    sink(493)
+    sink(calculate_position(4, 2))
 transform s43:
-    sink(786)
+    sink(calculate_position(4, 3))
 transform s44:
-    sink(1080)
+    sink(calculate_position(4, 4))
 transform s31:
-    sink(240)
+    sink(calculate_position(3, 1))
 transform s32:
-    sink(640)
+    sink(calculate_position(3, 2))
 transform s33:
-    sink(1040)
+    sink(calculate_position(3, 3))
 transform s21:
-    sink(400)
+    sink(calculate_position(2, 1))
 transform s22:
-    sink(880)
+    sink(calculate_position(2, 2))
 transform s11:
-    sink(640)
+    sink(calculate_position(1, 1))
 
 # Makes the character hop
 transform h41:
-    hop(200)
+    hop(calculate_position(4, 1))
 transform h42:
-    hop(493)
+    hop(calculate_position(4, 2))
 transform h43:
-    hop(786)
+    hop(calculate_position(4, 3))
 transform h44:
-    hop(1080)
+    hop(calculate_position(4, 4))
 transform h31:
-    hop(240)
+    hop(calculate_position(3, 1))
 transform h32:
-    hop(640)
+    hop(calculate_position(3, 2))
 transform h33:
-    hop(1040)
+    hop(calculate_position(3, 3))
 transform h21:
-    hop(400)
+    hop(calculate_position(2, 1))
 transform h22:
-    hop(880)
+    hop(calculate_position(2, 2))
 transform h11:
-    hop(640)
+    hop(calculate_position(1, 1))
 
 # Makes the character in focus, hop
 transform hf41:
-    hopfocus(200)
+    hopfocus(calculate_position(4, 1))
 transform hf42:
-    hopfocus(493)
+    hopfocus(calculate_position(4, 2))
 transform hf43:
-    hopfocus(786)
+    hopfocus(calculate_position(4, 3))
 transform hf44:
-    hopfocus(1080)
+    hopfocus(calculate_position(4, 4))
 transform hf31:
-    hopfocus(240)
+    hopfocus(calculate_position(3, 1))
 transform hf32:
-    hopfocus(640)
+    hopfocus(calculate_position(3, 2))
 transform hf33:
-    hopfocus(1040)
+    hopfocus(calculate_position(3, 3))
 transform hf21:
-    hopfocus(400)
+    hopfocus(calculate_position(2, 1))
 transform hf22:
-    hopfocus(880)
+    hopfocus(calculate_position(2, 2))
 transform hf11:
-    hopfocus(640)
+    hopfocus(calculate_position(1, 1))
 
 # Makes the character dip
 transform d41:
-    dip(200)
+    dip(calculate_position(4, 1))
 transform d42:
-    dip(493)
+    dip(calculate_position(4, 2))
 transform d43:
-    dip(786)
+    dip(calculate_position(4, 3))
 transform d44:
-    dip(1080)
+    dip(calculate_position(4, 4))
 transform d31:
-    dip(240)
+    dip(calculate_position(3, 1))
 transform d32:
-    dip(640)
+    dip(calculate_position(3, 2))
 transform d33:
-    dip(1040)
+    dip(calculate_position(3, 3))
 transform d21:
-    dip(400)
+    dip(calculate_position(2, 1))
 transform d22:
-    dip(880)
+    dip(calculate_position(2, 2))
 transform d11:
-    dip(640)
+    dip(calculate_position(1, 1))
 
 # Makes the character fly in from the left
 transform l41:
-    leftin(200)
+    leftin(calculate_position(4, 1))
 transform l42:
-    leftin(493)
+    leftin(calculate_position(4, 2))
 transform l43:
-    leftin(786)
+    leftin(calculate_position(4, 3))
 transform l44:
-    leftin(1080)
+    leftin(calculate_position(4, 4))
 transform l31:
-    leftin(240)
+    leftin(calculate_position(3, 1))
 transform l32:
-    leftin(640)
+    leftin(calculate_position(3, 2))
 transform l33:
-    leftin(1040)
+    leftin(calculate_position(3, 3))
 transform l21:
-    leftin(400)
+    leftin(calculate_position(2, 1))
 transform l22:
-    leftin(880)
+    leftin(calculate_position(2, 2))
 transform l11:
-    leftin(640)
+    leftin(calculate_position(1, 1))
 
 # Makes the character fly in from the right
 transform r41:
-    rightin(200)
+    rightin(calculate_position(4, 1))
 transform r42:
-    rightin(493)
+    rightin(calculate_position(4, 2))
 transform r43:
-    rightin(786)
+    rightin(calculate_position(4, 3))
 transform r44:
-    rightin(1080)
+    rightin(calculate_position(4, 4))
 transform r31:
-    rightin(240)
+    rightin(calculate_position(3, 1))
 transform r32:
-    rightin(640)
+    rightin(calculate_position(3, 2))
 transform r33:
-    rightin(1040)
+    rightin(calculate_position(3, 3))
 transform r21:
-    rightin(400)
+    rightin(calculate_position(2, 1))
 transform r22:
-    rightin(880)
+    rightin(calculate_position(2, 2))
 transform r11:
-    rightin(640)
+    rightin(calculate_position(1, 1))
 
 # When MC opens his eyes to Sayori's face
 transform face(z=0.80, y=500):
