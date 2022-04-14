@@ -1,5 +1,5 @@
 init python:
-    renpy.register_shader("wm.glitch_shader", variables="""
+    renpy.register_shader("wm.reload_glitch", variables="""
         uniform sampler2D tex0;
         uniform vec2 res0;
         attribute vec2 a_tex_coord;
