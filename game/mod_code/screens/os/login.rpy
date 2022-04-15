@@ -1,115 +1,31 @@
 screen login():
+    style_prefix "login"
+
+    default focused = False
+
     add "desktop_background"
 
-    use login_form()
-    use power_control()
-
     add "wintermute_os_mark" offset (50, 50)
-    use wm_clock_text()
 
-    on "hide" action With(dissolve)
+    frame xalign 1.0:
+        offset (-50, 50)
+        use wm_clock_text()
 
-screen login_form():
-    style_prefix "login_form"
+    showif not focused:
+        text "{lexend=regular}Press Enter or Space to login.{/lexend}" align (0.5, 1.0) yoffset -40 size 24
 
-    vbox:
-        add "avatar" xalign 0.5
-        label _("[persistent.firstname] [persistent.lastname]")
-        text turnell_username()
+    else:
+        frame align (0.5, 0.5):
+            use login_details()
 
-        null height 40
+        hbox spacing 40:
+            align (0.5, 1.0) yoffset -40
+            use power_options()
 
-        use login_password()
+    if focused:
+        key [ "K_RETURN", "K_SPACE" ] action Return()
+    else:
+        key [ "K_RETURN", "K_SPACE" ] action SetScreenVariable("focused", True)
 
-style login_form_vbox is empty
-style login_form_text is empty
-
-style login_form_label is empty
-style login_form_label_text is empty
-
-style login_form_vbox:
-    xalign 0.5 yalign 0.5
-    yoffset -50
-
-style login_form_label:
-    xalign 0.5
-
-style login_form_label_text:
-    font "mod_assets/gui/font/Ubuntu/Ubuntu-Bold.ttf"
-    color "#fff"
-    size 48
-
-style login_form_text:
-    color "#D9D9D9"
-    xalign 0.5
-
-screen login_password():
-    # default password_input = MultipleInput(style="login_password_input", mask="*")
-    style_prefix "login_password"
-
-    hbox:
-        # frame:
-            # add password_input
-        #     input default "Joseph P. Blow, ESQ."
-
-        textbutton "▸" action Start()
-
-style login_password_hbox is empty
-style login_password_frame is empty
-style login_password_button is button
-style login_password_button_text is button_text
-
-style login_password_input is empty
-
-style login_password_hbox:
-    xalign 0.5
-    spacing 5
-
-# style login_password_frame:
-#     background RoundedFrame(Solid("#fff")).set_radius(5.0)
-#     xsize 250 ysize 35
-#     padding (10, 5)
-
-style login_password_button:
-    idle_background RoundedFrame(Solid("#fff")).set_radius(5.0)
-    hover_background RoundedFrame(Solid("#ddd")).set_radius(5.0)
-    xsize 35 ysize 35
-
-style login_password_button_text:
-    idle_color "#FF3D00"
-    hover_color "#d83200"
-    font "DejaVuSans.ttf"
-    xalign 0.5 yalign 0.5
-    yoffset -2
-
-# style login_password_input:
-#     color "#555"
-#     size 16
-#     yalign 0.5
-#     font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
-
-screen power_control():
-    style_prefix "power_control"
-
-    hbox:
-        textbutton _("{power} Shutdown"):
-            action Quit()
-            text_color "#FF3D00"
-
-        textbutton _("{reload} Restart"):
-            action Function(renpy.quit, True)
-            text_color "#2B8CFF"
-
-style power_control_hbox:
-    xalign 0.0 yalign 1.0
-    xoffset 30 yoffset -30
-    spacing 20
-
-style power_control_button:
-    padding (12, 8)
-    background RoundedFrame(Solid("#fff")).set_radius(5.0)
-
-style power_control_button_text:
-    size 18
-    font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
+style login_frame is empty
 

@@ -3,7 +3,7 @@ init python:
 
     class SelectionWheelControlled(renpy.Displayable, NoRollback):
 
-        duration_per_90 = 0.25
+        duration_per_90 = 0.3
         max_offset = 10.0
 
         def __init__(self, child, radius=100, time_warp=None, **kwargs):

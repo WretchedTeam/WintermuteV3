@@ -29,12 +29,7 @@ init python in _wm_clock_text:
     date_display = DynamicDisplayable(__get_text_displayable, __format_date, 36)
 
 screen wm_clock_text():
-    style_prefix "wm_clock_text"
-
     vbox:
         add _wm_clock_text.time_display xalign 1.0
         add _wm_clock_text.date_display
 
-style wm_clock_text_vbox:
-    xalign 1.0
-    offset (-50, 50)

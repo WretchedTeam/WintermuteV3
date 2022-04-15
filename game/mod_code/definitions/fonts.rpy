@@ -1,4 +1,4 @@
-init -10 python in _wm_fonts:
+init -100 python in _wm_fonts:
     from store import NoRollback
     from renpy.config import custom_text_tags
 
@@ -19,7 +19,7 @@ init -10 python in _wm_fonts:
 
     renpy.add_to_all_stores("register_font_tag", register_font_tag)
 
-init -10 python in _wm_font_feather:
+init -100 python in _wm_font_feather:
     from renpy.config import (
         font_replacement_map,
         custom_text_tags,
@@ -56,6 +56,10 @@ init -10 python in _wm_font_feather:
     self_closing_custom_text_tags["sliders"] = fi_icon("")
     self_closing_custom_text_tags["menu"] = fi_icon("")
     self_closing_custom_text_tags["power"] = fi_icon("")
+
+    register_feather_icon("user", "")
+    register_feather_icon("login", "")
+    register_feather_icon("restart", "")
 
 init -10 python in _wm_font_lexend:
     light = "mod_assets/gui/font/Lexend/Lexend-Light.ttf"

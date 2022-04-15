@@ -73,8 +73,8 @@ define config.has_voice = True
 
 ## Entering or exiting the game menu.
 
-define config.enter_transition = ZoomInFisheyeCurried(0.75, time_warp=_warper.ease_cubic)
-define config.exit_transition = ZoomInFisheyeCurried(0.75, time_warp=_warper.ease_cubic)
+define config.enter_transition = ZoomInFisheyeShaderCurried(0.75, time_warp=_warper.ease_cubic)
+define config.exit_transition = ZoomInFisheyeShaderCurried(0.75, time_warp=_warper.ease_cubic)
 
 
 ## Between screens of the game menu.

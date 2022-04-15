@@ -1,11 +1,11 @@
 screen pause_menu():
     tag menu
 
-    default selection_wheel = SelectionWheelControlled("pause_selector", 150.0, time_warp=_warper.easein_cubic)
+    default selection_wheel = SelectionWheelControlled("pause_selector", 250.0, time_warp=_warper.easein_cubic)
 
     add gui.game_menu_background
     add "pause_background"
-    add "mod_assets/gui/pause/4-divider.png" align (0.5, 0.5) zoom 0.25
+    add "mod_assets/gui/pause/4-divider.png" align (0.5, 0.5) zoom 0.25 * 1.5
 
     imagebutton action ShowMenu("history", ShowMenu("pause_menu")):
         xcenter 0.5 ycenter 0.15
@@ -38,22 +38,22 @@ screen pause_menu():
     add selection_wheel
 
 image pause_background:
-    Transform("mod_assets/gui/pause/2918043.jpeg", function=ParallaxMatrix(50.0))
+    Transform("desktop_background", function=ParallaxMatrix(50.0))
     align (0.5, 0.5) alpha 0.25
 
     zoom 1.0
-    ease_cubic 2.0 zoom 1.5
+    ease_cubic 2.0 zoom 1.25
 
 image pause_selector:
     "mod_assets/gui/pause/selection-arrow.png"
-    zoom 0.25
+    zoom 0.25 * 1.5
 
 init python:
     def pause_menu_button(icon, text, color):
         return VBox(
-            Text(icon, size=36, xalign=0.5, color=color),
-            Text(text, size=24, color=color, font="mod_assets/gui/font/Lexend/Lexend-Regular.ttf"),    
-            spacing=10
+            Text(icon, size=54, xalign=0.5, color=color),
+            Text(text, size=32, color=color, font=_wm_font_lexend.regular),    
+            spacing=20
         )
 
 image transcript idle = pause_menu_button("{book}", "Transcript", "#ccc")

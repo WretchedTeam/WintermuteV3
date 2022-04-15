@@ -1,7 +1,5 @@
-default -2 persistent.perf_blur = False
-
 python early:
-    renpy.register_shader("emr.gaussian_h", variables="""
+    renpy.register_shader("wm.gaussian_h", variables="""
         uniform sampler2D tex0;
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
@@ -31,7 +29,7 @@ python early:
         }
     """)
 
-    renpy.register_shader("emr.gaussian_v", variables="""
+    renpy.register_shader("wm.gaussian_v", variables="""
         uniform sampler2D tex0;
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
@@ -131,7 +129,7 @@ python early:
             sqr_sigma = pow(blur / 2.0, 2.0)
             norm_coeff = 1.0 / sqrt(2.0 * 3.14 * sqr_sigma)
 
-            for s in [ "emr.gaussian_h", "emr.gaussian_v" ]:
+            for s in [ "wm.gaussian_h", "wm.gaussian_v" ]:
                 render = apply_gaussian_blur(render, s, blur, sqr_sigma, norm_coeff)
 
             return render
@@ -151,10 +149,7 @@ python early:
         blur = (self.state.blur or None)
 
         if blur is not None:
-            if not persistent.perf_blur:
-                rv = gaussian_blur(rv, blur)
-            else:
-                rv = renpy_blur(rv, blur)
+            rv = gaussian_blur(rv, blur)
 
         return rv
 
