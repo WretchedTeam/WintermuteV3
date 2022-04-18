@@ -1,36 +1,18 @@
 init python in _wm_clock_analog:
     from datetime import datetime
-    from store._wm_displayables import SingleShaderDisplayable
+    from store._wm_displayables import DashedCircle
     from store import (
-        Text, 
         NoRollback,
-        Fixed,
-        Transform,
         Solid,
-        Color
+        Color,
+        Transform,
+        Fixed
     )
     import math
     from renpy.display.matrix import Matrix, Matrix2D
+    import pygame_sdl2
 
     TAU = 2 * math.pi
-
-    class DashedCircle(SingleShaderDisplayable):
-        def __init__(self, radius, color, segments, border, **kwargs):
-            uniforms = { 
-                "u_color": Color(color).rgba, 
-                "u_radius": radius,
-                "u_segments": segments, 
-                "u_center": (0.5, 0.5), 
-                "u_border": border 
-            }
-
-            super(DashedCircle, self).__init__("wm.circle_outline", uniforms)
-            self.radius = radius
-            self.border = border
-
-        def render(self, width, height, st, at):
-            dimen = self.radius * 2.0 + self.border
-            return super(DashedCircle, self).render(dimen, dimen, st, at)
 
     def point_on_circle(angle, radius):
         return (
@@ -56,11 +38,6 @@ init python in _wm_clock_analog:
                 DashedCircle(hour_radius, "#ffffff7f", 0, 4.0),
                 DashedCircle(minute_radius, "#ffffff7f", 0, 4.0),
                 DashedCircle(second_radius, "#ffffff", 60, 4.0),
-            ]
-
-            self.hands = [
-                ("#fff", (4, 70)),
-                ("#3ca1ff", (4, 100))
             ]
 
             self.center = DashedCircle(8, "#ffffff", 0, 0.0)
@@ -96,18 +73,6 @@ init python in _wm_clock_analog:
 
                     child.place(rv, adjusted_x, adjusted_y, width, height, surf)
 
-            def render_hands(hands):
-                canvas = rv.canvas()
-                center = (width / 2.0, height / 2.0)
-
-                for theta, (color, (linew, lineh)) in zip(thetas, hands):
-                    x, y = point_on_circle(theta, lineh)
-
-                    adjusted_x = x + center[0]
-                    adjusted_y = y + center[1]
-
-                    canvas.line(color, (center), (adjusted_x, adjusted_y), linew)
-
             now = datetime.now()
 
             hour_theta = ((now.hour % 12.0) / 12.0) * TAU - math.pi / 2.0
@@ -121,7 +86,6 @@ init python in _wm_clock_analog:
 
             render_background(self.bg_elements)
             render_dots(self.dots)
-            render_hands(self.hands)
             render_center(self.center)
 
             renpy.redraw(self, 0)

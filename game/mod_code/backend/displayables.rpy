@@ -1,5 +1,8 @@
 init python in _wm_displayables:
     from renpy.gl2.gl2mesh2 import Mesh2
+    from store import (
+        Color
+    )
 
     class SingleShaderDisplayable(renpy.Displayable):
         def __init__(self, shader, uniforms=None, properties=None, redraw_time=None, **kwargs):
@@ -40,10 +43,32 @@ init python in _wm_displayables:
                 rv.add_property(k, v)
 
             rv.add_property("gl_pixel_perfect", True)
-
             rv.add_uniform("res0", (width, height))
 
             if self.redraw_time is not None:
                 renpy.redraw(self, self.redraw_time)
 
             return rv
+
+        def get_placement(self):
+            xpos, ypos, xanchor, yanchor, xoffset, yoffset, subpixel = super(SingleShaderDisplayable, self).get_placement()
+            return (xpos, ypos, xanchor, yanchor, xoffset, yoffset, True)
+
+    class DashedCircle(SingleShaderDisplayable):
+        def __init__(self, radius, color, segments, border, **kwargs):
+            uniforms = { 
+                "u_color": Color(color).rgba, 
+                "u_radius": radius,
+                "u_segments": segments, 
+                "u_center": (0.5, 0.5), 
+                "u_border": border 
+            }
+
+            super(DashedCircle, self).__init__("wm.circle_outline", uniforms)
+            self.radius = radius
+            self.border = border
+
+        def render(self, width, height, st, at):
+            dimen = self.radius * 2.0 + self.border
+            return super(DashedCircle, self).render(dimen, dimen, st, at)
+
