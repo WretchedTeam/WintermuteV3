@@ -11,7 +11,10 @@ screen login():
         offset (-50, 50)
         use wm_clock_text()
 
-    showif not focused:
+    if not focused:
+        frame align (0.5, 0.5):
+            use wm_clock_analog()
+
         text "{lexend=regular}Press Enter or Space to login.{/lexend}" align (0.5, 1.0) yoffset -40 size 24
 
     else:
@@ -24,6 +27,7 @@ screen login():
 
     if focused:
         key [ "K_RETURN", "K_SPACE" ] action Return()
+        key [ "K_ESCAPE" ] action SetScreenVariable("focused", False)
     else:
         key [ "K_RETURN", "K_SPACE" ] action SetScreenVariable("focused", True)
 

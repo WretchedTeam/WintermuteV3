@@ -7,7 +7,6 @@ image wm_clock_colon:
 
 init python in _wm_clock_text:
     from store import (
-        NoRollback, 
         DynamicDisplayable,
         Text
     )

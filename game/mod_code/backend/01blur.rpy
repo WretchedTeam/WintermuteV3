@@ -42,18 +42,6 @@ python early:
 
             return render
 
-        def renpy_blur(render, blur):
-            cr = render
-
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
-
-            render.add_shader("emr.renpy_blur")
-            render.add_uniform("u_renpy_blur_log2", log(blur, 2))
-            return render
-
         blur = (self.state.blur or None)
 
         if blur is not None:
