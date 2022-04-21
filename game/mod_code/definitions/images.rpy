@@ -17,6 +17,10 @@ image email:
     "mod_assets/os/icons/email.png"
     zoom 0.5
 
+image icosahedron:
+    "mod_assets/os/icosahedron.png"
+    zoom 0.9
+
 image dev_bg_open:
     "mod_assets/animations/dev_texture_bg/dt_outline.png" with dissolve
     pause(0.5)

@@ -13,20 +13,17 @@ style power_options_button:
     xysize (120, 120)
 
 init python in _wm_power_button:
-    from store import (
-        VBox, 
-        Text
-    )
+    from store import Text, VBox
 
-    def button(icon, t):
+    def iconbutton(icon, t):
         return VBox(
             Text(icon, size=64, color="#fff", xalign=0.5, yalign=0.1), 
             Text(t, size=24, color="#fff", xalign=0.5, yalign=0.9), 
             xysize=(120, 120)
         )
 
-    shutdown = button("{power}", "{lexend=light}Shutdown{/lexend}")
-    restart = button("{restart}", "{lexend=light}Restart{/lexend}")
+    shutdown = iconbutton("{power}", "{lexend=light}Shutdown{/lexend}")
+    restart = iconbutton("{restart}", "{lexend=light}Restart{/lexend}")
 
 transform power_option_transform:
     alpha 0.6

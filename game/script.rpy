@@ -17,16 +17,16 @@ label main_menu:
 label start():
     $ quick_menu = False
 
+    python hide:
+        rbell_email_1.unlock()
+        josborne_email_1.unlock()
+
     if persistent.firstname and persistent.lastname:
         $ renpy.run(Play("sound", "mod_assets/audio/os/startupsound1.ogg"))
         call screen login()
 
     else:
         call screen register()
-
-    python hide:
-        rbell_email_1.unlock()
-        josborne_email_1.unlock()
 
     call wm_desktop
     return

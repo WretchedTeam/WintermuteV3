@@ -58,10 +58,19 @@ style scrollbar:
     base_bar Frame("gui/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
 
+# style vscrollbar:
+#     xsize gui.scrollbar_size
+#     base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+#     thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+
 style vscrollbar:
-    xsize gui.scrollbar_size
-    base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    xsize 6
+    base_bar RoundedFrame("#ccc").set_radius(3)
+    thumb RoundedFrame("#aaa").set_radius(3)
+    top_gutter 2
+    bottom_gutter 2
+    
+    thumb_offset 3
 
 style slider:
     ysize gui.slider_size

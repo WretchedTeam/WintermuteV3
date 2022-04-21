@@ -1,14 +1,24 @@
 init python in _wm_register:
     import string
     from store import persistent
+    from store._wm_email import sender_emails
 
     name_input_filter = string.ascii_lowercase + string.ascii_uppercase
 
-    def finish_register():
-        if persistent.firstname and persistent.lastname:
-            return True
+    def turnell_username():
+        return "%s.%s" % (persistent.firstname[0].lower(), persistent.lastname.lower())
 
-        return
+    def finish_register():
+        if not (persistent.firstname or persistent.lastname):
+            return
+
+        username = turnell_username()
+        if username in sender_emails:
+            username += "1"
+
+        persistent.username = username
+
+        return True
 
 screen register():
     style_prefix "register"

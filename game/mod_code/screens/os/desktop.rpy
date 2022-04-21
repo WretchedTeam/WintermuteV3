@@ -3,7 +3,7 @@ screen desktop():
 
     use icon_grid()
 
-    on "show" action Function(show_notifs)
+    # on "show" action Function(show_notifs)
 
     # mousearea:
     #     area (0, 0.9, 1.0, 1.0)
@@ -47,7 +47,8 @@ screen icon_grid():
 
         has draggroup
 
-        use desktop_app_icon("email", "Email", "wm_mail_client_program")
+        use desktop_app_icon("email", "Email", "mail_client")
+        # use desktop_app_icon("email", "Email", "wm_mail_image")
 
         if persistent.wm_received:
             use desktop_label_icon("wintermute", "Wintermute", "wm_start", (0, (100 + 10) * 2))

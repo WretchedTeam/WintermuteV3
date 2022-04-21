@@ -1,8 +1,6 @@
 init python in _wm_displayables:
+    from store import Color
     from renpy.gl2.gl2mesh2 import Mesh2
-    from store import (
-        Color
-    )
 
     class SingleShaderDisplayable(renpy.Displayable):
         def __init__(self, shader, uniforms=None, properties=None, redraw_time=None, **kwargs):

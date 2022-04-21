@@ -3,6 +3,7 @@ default current_test_label = None
 
 default persistent.firstname = ""
 default persistent.lastname = ""
+default persistent.username = ""
 
 default player = "[persistent.firstname!c]"
 
@@ -20,10 +21,6 @@ define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix
 define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc_position="fixed")
 
 default persistent.wm_received = False
-
-default persistent.unlocked_emails = [ ]
-default persistent.read_emails = [ ]
-default persistent.marked_emails = [ ]
 
 default persistent.new_email_count = 0
 

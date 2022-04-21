@@ -1,16 +1,11 @@
 init python in _wm_clock_analog:
-    from datetime import datetime
     from store._wm_displayables import DashedCircle
-    from store import (
-        NoRollback,
-        Solid,
-        Color,
-        Transform,
-        Fixed
-    )
-    import math
+    from store import NoRollback
     from renpy.display.matrix import Matrix, Matrix2D
+
     import pygame_sdl2
+    import math
+    from datetime import datetime
 
     TAU = 2 * math.pi
 

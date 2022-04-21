@@ -4,7 +4,7 @@ screen login_details():
     vbox:
         text "{user}" size 200 xalign 0.5
         null height 20
-        text turnell_username() xalign 0.5
+        text "[persistent.username]" xalign 0.5
         null height 40
         textbutton "{login} Login" action Return() xalign 0.5
 

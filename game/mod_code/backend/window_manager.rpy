@@ -1,4 +1,4 @@
-init -10:
+init -5:
 
     python in manager:
         zorders = [ ]
@@ -33,10 +33,10 @@ init -10:
         style_prefix "header"
 
         frame:
-            text title xalign 0.5
+            text "[title]" xalign 0.5
             imagebutton:
-                idle RoundedFrame(Solid("#FF3D00"), xysize=(16, 16)).set_radius(8.0)
-                hover RoundedFrame(Solid("#ff5926"), xysize=(16, 16)).set_radius(8.0)
+                idle RoundedFrame(Solid("#FF3D00"), xysize=(22, 22)).set_radius(11.0)
+                hover RoundedFrame(Solid("#ff5926"), xysize=(22, 22)).set_radius(11.0)
                 action close_action xalign 1.0 yalign 0.5 xoffset -10
 
     style header_text is empty
@@ -44,13 +44,24 @@ init -10:
     style header_image_button is button
 
     style header_text:
-        font "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"
-        size 14
+        font _wm_font_ubuntu.medium
+        size 20
         yalign 0.5
 
     style header_frame:
         background "#505050"
-        xfill True ysize 30
+        xfill True ysize 40
+
+    screen program_base(title, close_action=NullAction(), start_pos=(100, 100), **props):
+        drag pos start_pos:
+            at [ window_animation ]
+
+            vbox properties props:
+                # at RoundedCornersCurried(radius=10.0)
+                at RoundedCornersOutlineCurried(radius=10.0, outline_width=3.0, outline_color="#828282")
+                use program_header(title, close_action)
+
+                transclude
 
 ## Unused experimental code.
 ## Everthing below isn't used.

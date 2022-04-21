@@ -67,3 +67,11 @@ init -10 python in _wm_font_lexend:
     semibold = "mod_assets/gui/font/Lexend/Lexend-SemiBold.ttf"
 
     register_font_tag("lexend", { "light": light, "regular": regular, "semibold": semibold })
+
+init -10 python in _wm_font_ubuntu:
+    light = "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
+    regular = "mod_assets/gui/font/Ubuntu/Ubuntu-Regular.ttf"
+    medium = "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"
+
+    register_font_tag("ubuntu", { "light": light, "regular": regular, "medium": medium })
+
