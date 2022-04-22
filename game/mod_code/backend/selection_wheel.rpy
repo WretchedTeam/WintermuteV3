@@ -14,7 +14,7 @@ init python:
             self.radius = radius
             self.time_warp = time_warp
 
-            self.width, self.height = (0, 0)
+            self.width = self.height = 0
 
             self.rot = 0.0
             self.xoffset = 0.0

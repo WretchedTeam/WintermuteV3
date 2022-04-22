@@ -1,7 +1,7 @@
 init python in _wm_clock_analog:
     from store._wm_displayables import DashedCircle
     from store import NoRollback
-    from renpy.display.matrix import Matrix, Matrix2D
+    from renpy.display.matrix import Matrix2D
 
     import pygame_sdl2
     import math

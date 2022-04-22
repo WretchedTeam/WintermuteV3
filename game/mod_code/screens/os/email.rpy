@@ -1,3 +1,6 @@
+define mail_client_app = _wm_manager.Application("Turnell Mail Client", "mail_client")
+define mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_viewer")
+
 init python in _wm_email:
     from store._wm_email import emails
     from store import persistent
@@ -31,7 +34,7 @@ init python in _wm_email:
 screen mail_client():
     default mail_client = _wm_email.MailClient()
 
-    use program_base("Turnell Mail Client", Hide("mail_client"), xysize=(675, 630)):
+    use program_base(mail_client_app, xysize=(675, 630)):
         hbox:
             use mc_navpane(mail_client)
             use mc_emails(mail_client)
@@ -61,25 +64,32 @@ screen mc_emails(mail_client):
         padding (0, 0)
         xfill True yfill True
 
-        has vpgrid:
+        vpgrid id "mc_emails_vpg":
             cols 1
-            scrollbars "vertical"
             xfill True
 
-        $ emails = mail_client.get_emails()
+            $ emails = mail_client.get_emails()
 
-        for i, email in enumerate(emails):
-            $ frame_bg = ("#EBEDF4" if i % 2 == 1 else "#F0F2F9")
+            for i, email in enumerate(emails):
+                $ frame_bg = ("#EBEDF4" if i % 2 == 1 else "#F0F2F9")
 
-            frame background frame_bg padding (0, 0):
-                use mc_email_entry(email)
+                frame background frame_bg padding (0, 0):
+                    use mc_email_entry(email)
 
-style mc_emails_vscrollbar is vscrollbar
+        vbar value YScrollValue("mc_emails_vpg") xalign 1.0 xoffset -20
+
+style mc_emails_vscrollbar is vscrollbar:
+    unscrollable "hide"
 
 screen mc_email_entry(email):
     style_prefix "mc_email_entry"
 
-    button action Show("mail_viewer", email=email):
+    button:
+        action [ 
+            Function(mail_viewer_app.open, email=email),
+            Play("audio", gui.hover_sound)
+        ]
+
         padding (20, 20)
         hover_background "#0002"
         xfill True
@@ -111,7 +121,7 @@ style mc_email_entry_text:
 screen mail_viewer(email):
     style_prefix "mail_viewer"
 
-    use program_base("Turnell Mail Viewer", Hide("mail_viewer"), xysize=(675, 900)):
+    use program_base(mail_viewer_app, xysize=(675, 700)):
         frame background "#F0F2F9":
             padding (50, 50)
 
@@ -147,7 +157,7 @@ screen mail_viewer(email):
                 if email.attachments:
                     null height 40
                     add "black" ysize 1
-                    null height 40
+                    null height 20
 
                     label _("Attachments:")
 
