@@ -41,6 +41,7 @@ init python in _wm_displayables:
                 rv.add_property(k, v)
 
             rv.add_property("gl_pixel_perfect", True)
+            rv.add_property("gl_mipmap", False)
             rv.add_uniform("res0", (width, height))
 
             if self.redraw_time is not None:

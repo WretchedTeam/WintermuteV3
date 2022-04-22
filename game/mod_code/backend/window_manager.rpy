@@ -55,6 +55,8 @@ init -5 python in _wm_manager:
 
         def close(self):
             renpy.hide_screen(self.screen_id)
+            if self.screen_id in zorders:
+                zorders.remove(self.screen_id)
 
 screen program_header(title, close_action=NullAction()):
     style_prefix "header"

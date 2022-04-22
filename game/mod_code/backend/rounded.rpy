@@ -78,6 +78,7 @@ init python in _wm_rounded:
             rv.add_uniform("u_outline_width", self.outline_width or 0.0)
             rv.add_uniform("u_outline_color", self.outline_color.rgba)
             rv.add_uniform("u_resolution", adjusted_cr.get_size())
+            rv.add_property("texture_scaling", "nearest")
 
             return rv
 

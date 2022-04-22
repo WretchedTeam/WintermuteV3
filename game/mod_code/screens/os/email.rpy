@@ -98,7 +98,8 @@ screen mc_email_entry(email):
         hover_background "#0002"
         xfill True
 
-        fixed fit_first "height":
+        hbox spacing 20:
+            use mc_email_btns(email)
 
             vbox xsize 350 yfill True:
                 label _("{ubuntu=medium}[email.subject]{/ubuntu}"):
@@ -111,10 +112,6 @@ screen mc_email_entry(email):
                     text_size 18 text_color "#303030"
 
                 # null height 10
-
-            fixed fit_first True:
-                xalign 1.0
-                use mc_email_btns(email)
 
 style mc_email_entry_button is empty
 style mc_email_entry_label is empty
@@ -137,8 +134,10 @@ screen mc_email_btns(email):
         if not email.is_read():
             add RoundedFrame(Solid("#00aeff"), xysize=(10, 10)).set_radius(5.0)
 
-        textbutton _("{star}") action Function(email.toggle_starred):
+        textbutton _("{star}") action ToggleSetMembership(persistent.marked_emails, email.unique_id):
             text_hover_color "#aa6c39"
+            text_selected_idle_color "#aa6c39"
+            text_selected_hover_color "#c97f42"
 
         if email.attachments:
             text _("{paperclip}")

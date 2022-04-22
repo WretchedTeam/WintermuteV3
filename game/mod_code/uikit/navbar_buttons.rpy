@@ -5,7 +5,7 @@ init python in _wm_navbar_buttons:
             super(NavButtonText, self).__init__()
             properties.pop("size", None)
 
-            self.icon = Text(icon, style=style, size=22, **properties)
+            self.icon = Text(icon, style=style, size=24, **properties)
             self.title = Text(title, style=style, size=20, **properties)
             self.spacing = spacing
 
@@ -14,19 +14,28 @@ init python in _wm_navbar_buttons:
 
         def render(self, width, height, st, at):
             offsets = [ ]
-            renders = [ renpy.render(d, width, height, st, at) for d in self.children ]
-            sizes = [ surf.get_size() for surf in renders ]
+            renders = [ ]
+            sizes = [ ]
+
+            for d in self.children:
+                surf = renpy.render(d, width, height, st, at)
+                size = surf.get_size()
+
+                renders.append(surf)
+                sizes.append(size)
 
             x = 0
+            width = height = 0
 
-            width = sum([ w for (w, h) in sizes ]) + self.spacing * (len(sizes) - 1)
-            height = max([ h for (w, h) in sizes ])
+            for (w, h) in sizes:
+                width += w + self.spacing
+                height = max(height, h)
 
             rv = renpy.Render(width, height)
 
             for child, surf, (sw, sh) in zip(self.children, renders, sizes):
                 y = (height - sh) / 2.0
-                offset = child.place(rv, x, 0, sw, sh, surf)
+                offset = child.place(rv, x, y, sw, sh, surf)
                 offsets.append(offset)
 
                 x += sw + self.spacing

@@ -30,6 +30,7 @@ init -100 python:
         uniform vec2 u_model_size;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
+    """, fragment_functions="""
     """, fragment_200="""
         vec2 center = u_model_size.xy / 2.0;
         vec2 uv = v_tex_coord.xy * u_model_size.xy;
