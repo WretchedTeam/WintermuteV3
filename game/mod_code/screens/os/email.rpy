@@ -130,9 +130,9 @@ style mc_email_entry_text:
 screen mc_email_btns(email):
     style_prefix "mc_email_btns"
 
-    vbox spacing 10:
+    vbox spacing 15:
         if not email.is_read():
-            add RoundedFrame(Solid("#00aeff"), xysize=(10, 10)).set_radius(5.0)
+            add RoundedFrame(Solid("#00aeff"), xysize=(15, 15)).set_radius(7.5) xalign 0.5
 
         textbutton _("{star}") action ToggleSetMembership(persistent.marked_emails, email.unique_id):
             text_hover_color "#aa6c39"
@@ -232,7 +232,7 @@ screen mail_context_button (_action=NullAction(), _style_prefix="mail_context"):
 style attachment_frame is empty
 style attachment_hbox is empty
 
-style attachment_button is empty
+style attachment_button is button
 style attachment_button_text is empty
 
 style attachment_text is empty

@@ -51,7 +51,7 @@ init python in _wm_navbar_buttons:
 
         def __init__(self, num, time_warp, **kwargs):
             super(NavigationPiece, self).__init__(**kwargs)
-            self.line = RoundedFrame(Solid("#000"), xysize=(10, 40)).set_radius(5.0)
+            self.line = RoundedFrame(Solid("#000"), xysize=(10, 50)).set_radius(5.0)
             self.selected_button = 0
             self.total_buttons = num
             self.time_warp = time_warp
@@ -95,7 +95,7 @@ init python in _wm_navbar_buttons:
 
             cr = renpy.render(self.line, width, height, st, at)
             rv = renpy.Render(width, height)
-            rv.blit(cr, (-5, absolute(self.y - 2.5)))
+            rv.blit(cr, (-5, absolute(self.y - 7.5)))
 
             return rv
 
