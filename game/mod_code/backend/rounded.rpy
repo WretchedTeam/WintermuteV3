@@ -21,9 +21,10 @@ init python in _wm_rounded:
 
             if self.radius:
                 rv.mesh = True
-                rv.add_shader("shaders.rounded_corners")
+                rv.add_shader("wm.rounded_corners")
                 rv.add_property("gl_pixel_perfect", True)
                 rv.add_property("gl_mipmap", False)
+                rv.add_property("texture_scaling", "nearest")
 
                 if self.radius > 1.0:
                     rv.add_uniform("u_radius", self.radius)
@@ -41,7 +42,7 @@ init python in _wm_rounded:
 
             self.child = renpy.displayable(child)
             self.radius = radius
-            self.outline_width = outline_width
+            self.outline_width = outline_width or 0.0
             self.outline_color = Color(outline_color)
 
         def visit(self):
@@ -58,24 +59,22 @@ init python in _wm_rounded:
             cr = renpy.render(self.child, width, height, st, at)
             width, height = cr.get_size()
             adjusted_cr = renpy.Render(width + self.outline_width * 2, height + self.outline_width * 2)
+            adjusted_cr.fill(self.outline_color)
             adjusted_cr.blit(cr, (self.outline_width, self.outline_width))
 
             rv = renpy.Render(*adjusted_cr.get_size())
             rv.blit(adjusted_cr, (0, 0))
             rv.mesh = True
 
-            rv.add_shader("shaders.rounded_corners_outline")
+            rv.add_shader("wm.rounded_corners_outline")
 
             rv.add_property("gl_pixel_perfect", True)
             rv.add_property("gl_mipmap", False)
 
-            if self.radius > 1.0:
-                rv.add_uniform("u_radius", self.radius)
-            else:
-                factor = rv.width * (height / width)
-                rv.add_uniform("u_radius", factor * self.radius)
+            deno = min((width, height))
+            rv.add_uniform("u_radius", self.radius / deno)
 
-            rv.add_uniform("u_outline_width", self.outline_width or 0.0)
+            rv.add_uniform("u_outline_width", self.outline_width / deno)
             rv.add_uniform("u_outline_color", self.outline_color.rgba)
             rv.add_uniform("u_resolution", adjusted_cr.get_size())
             rv.add_property("texture_scaling", "nearest")

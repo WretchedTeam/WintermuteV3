@@ -1,5 +1,5 @@
 init -100 python:
-    renpy.register_shader("shaders.rounded_corners", variables="""
+    renpy.register_shader("wm.rounded_corners", variables="""
         uniform float u_radius;
         uniform sampler2D tex0;
         attribute vec2 a_tex_coord;
@@ -18,7 +18,7 @@ init -100 python:
         gl_FragColor = mix(texture2D(tex0, v_tex_coord), vec4(0.0), smoothstep(-1.0, 1.0, crop));
     """)
 
-    renpy.register_shader("shaders.rounded_corners_outline", variables="""
+    renpy.register_shader("wm.rounded_corners_outline", variables="""
         uniform float u_radius;
         uniform float u_outline_width;
         uniform vec4 u_outline_color;
@@ -32,8 +32,12 @@ init -100 python:
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
     """, fragment_200="""
-        vec2 center = u_model_size.xy / 2.0;
-        vec2 uv = v_tex_coord.xy * u_model_size.xy;
+        float aspect = u_resolution.x / u_resolution.y;
+        vec2 center = vec2(0.5);
+        vec2 uv = v_tex_coord.xy;
+
+        uv.x *= aspect;
+        center.x *= aspect;
 
         vec2 center_outline = center - u_outline_width;
 
@@ -45,8 +49,8 @@ init -100 python:
 
         vec4 color = texture2D(tex0, v_tex_coord);
 
-        float coeff1 = smoothstep(1.0, -1.0, crop1);
-        float coeff2 = smoothstep(1.0, -1.0, crop2);
+        float coeff1 = smoothstep(0.001, -0.001, crop1);
+        float coeff2 = smoothstep(0.001, -0.001, crop2);
 
         float outline_coeff = (coeff1 - coeff2);
         gl_FragColor = mix(vec4(0.0), mix(color, u_outline_color, outline_coeff), coeff1);

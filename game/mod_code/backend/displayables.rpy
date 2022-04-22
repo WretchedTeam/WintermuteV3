@@ -18,7 +18,6 @@ init python in _wm_displayables:
             )
 
             rv.opaque = False
-
             rv.add_shader(self.shader)
 
             def expand_dictionaries(d, *args, **kwargs):
@@ -70,4 +69,3 @@ init python in _wm_displayables:
         def render(self, width, height, st, at):
             dimen = self.radius * 2.0 + self.border
             return super(DashedCircle, self).render(dimen, dimen, st, at)
-

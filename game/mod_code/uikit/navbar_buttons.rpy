@@ -1,5 +1,6 @@
 init python in _wm_navbar_buttons:
-    from store import Text
+    from store import Text, Solid
+
     class NavButtonText(renpy.Container):
         def __init__(self, icon, title, spacing=0, style='default', **properties):
             super(NavButtonText, self).__init__()
@@ -44,20 +45,76 @@ init python in _wm_navbar_buttons:
 
             return rv
 
+    class NavigationPiece(renpy.Displayable):
+        button_height = 25
+        button_spacing = 38
+
+        def __init__(self, num, time_warp, **kwargs):
+            super(NavigationPiece, self).__init__(**kwargs)
+            self.line = RoundedFrame(Solid("#000"), xysize=(10, 40)).set_radius(5.0)
+            self.selected_button = 0
+            self.total_buttons = num
+            self.time_warp = time_warp
+
+            self.y = 0
+
+            self.target_at_delay = None
+            self.target_at = 0
+            self.at = 0
+
+        def change_selection(self, n):
+            delta = abs(self.selected_button - n)
+            self.selected_button = n
+            self.target_at_delay = 0.25 * delta
+            renpy.redraw(self, 0)
+
+        def update_y(self, at):
+            if self.target_at_delay:
+                self.target_at = at + self.target_at_delay
+                self.target_at_delay = None
+                renpy.redraw(self, 0)
+
+            elif at >= self.target_at:
+                self.y = (self.button_height + self.button_spacing) * self.selected_button
+
+            else:
+                done = (at - self.at) / (self.target_at - self.at)
+
+                if self.time_warp is not None:
+                    done = self.time_warp(done)
+
+                target_y = (self.button_height + self.button_spacing) * self.selected_button
+                self.y = absolute(self.y + done * (target_y - self.y))
+                renpy.redraw(self, 0)
+
+            self.at = at
+
+        def render(self, width, height, st, at):
+            height = self.total_buttons * self.button_height
+            self.update_y(at)
+
+            cr = renpy.render(self.line, width, height, st, at)
+            rv = renpy.Render(width, height)
+            rv.blit(cr, (-5, absolute(self.y - 2.5)))
+
+            return rv
+
 screen navbar_buttons(options):
     style_prefix "navbar_buttons"
+    default nav_piece = _wm_navbar_buttons.NavigationPiece(len(options), _warper.easein_cubic)
 
     frame:
         padding (30, 30)
-        has vbox:
-            spacing 38
 
-        for _icon, _text, _action in options:
-            # textbutton _("[_text]") action _action
-            button action _action:
-                add _wm_navbar_buttons.NavButtonText(
-                    _icon, _text, 15, "navbar_buttons_button_text"
-                )
+        vbox spacing 38:
+            for i, (_icon, _text, _action) in enumerate(options):
+                # textbutton _("[_text]") action _action
+                button action [ _action, Function(nav_piece.change_selection, i) ]:
+                    add _wm_navbar_buttons.NavButtonText(
+                        _icon, _text, 15, "navbar_buttons_button_text"
+                    )
+
+        add nav_piece xalign 0.0 xoffset -35 yoffset -5
 
 style navbar_buttons_frame is empty
 style navbar_buttons_button is empty

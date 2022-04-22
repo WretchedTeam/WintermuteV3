@@ -71,7 +71,7 @@ init -10 python:
 
             rv = renpy.Render(*render.get_size())
             rv.mesh = True
-            rv.add_shader("shaders.rounded_corners")
+            rv.add_shader("wm.rounded_corners")
             rv.add_property("gl_pixel_perfect", True)
             rv.add_uniform("u_radius", 10.0)
 
