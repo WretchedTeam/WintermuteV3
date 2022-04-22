@@ -31,6 +31,12 @@ init python in _wm_email:
         def is_read(self):
             return self.unique_id in persistent.read_emails
 
+        def toggle_starred(self):
+            if self.unique_id in persistent.marked_emails:
+                persistent.marked_emails.remove(self.unique_id)
+            else:
+                persistent.marked_emails.append(self.unique_id)
+
         def mark_read(self):
             if self.is_read():
                 return

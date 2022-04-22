@@ -8,6 +8,7 @@ init python in _wm_email:
     register_feather_icon("inbox", "")
     register_feather_icon("spam", "")
     register_feather_icon("star", "")
+    register_feather_icon("paperclip", "")
 
     class MailClient(object):
         INBOX   = 0
@@ -19,6 +20,9 @@ init python in _wm_email:
             self.current_mail = None
 
         def get_emails(self):
+            if self.mailbox == self.STARRED:
+                return [ emails[id_] for id_ in persistent.marked_emails if id_ in emails ]
+
             rv = [ emails[id_] for id_ in persistent.unlocked_emails if id_ in emails ]
 
             if self.mailbox == self.INBOX:
@@ -28,8 +32,7 @@ init python in _wm_email:
                 return [ email for email in rv if email.is_spam ]
 
             else:
-                return rv
-
+                return tuple()
 
 screen mail_client():
     default mail_client = _wm_email.MailClient()
@@ -85,6 +88,7 @@ screen mc_email_entry(email):
     style_prefix "mc_email_entry"
 
     button:
+        ysize 132
         action [ 
             Function(mail_viewer_app.open, email=email),
             Play("audio", gui.hover_sound)
@@ -94,15 +98,23 @@ screen mc_email_entry(email):
         hover_background "#0002"
         xfill True
 
-        fixed fit_first True:
-            vbox:
+        fixed fit_first "height":
+
+            vbox xsize 350 yfill True:
                 label _("{ubuntu=medium}[email.subject]{/ubuntu}"):
                     text_size 24
 
-                null height 5
+                # null height 5
 
                 label _("{ubuntu=regular}by [email.sender.name]{/ubuntu}"):
+                    yalign 1.0
                     text_size 18 text_color "#303030"
+
+                # null height 10
+
+            fixed fit_first True:
+                xalign 1.0
+                use mc_email_btns(email)
 
 style mc_email_entry_button is empty
 style mc_email_entry_label is empty
@@ -117,6 +129,31 @@ style mc_email_entry_label_text:
 
 style mc_email_entry_text:
     color "#303030" size 16
+
+screen mc_email_btns(email):
+    style_prefix "mc_email_btns"
+
+    vbox spacing 10:
+        if not email.is_read():
+            add RoundedFrame(Solid("#00aeff"), xysize=(10, 10)).set_radius(5.0)
+
+        textbutton _("{star}") action Function(email.toggle_starred):
+            text_hover_color "#aa6c39"
+
+        if email.attachments:
+            text _("{paperclip}")
+
+style mc_email_btns_button is empty
+style mc_email_btns_button_text is empty
+style mc_email_btns_text is empty
+
+style mc_email_btns_button_text:
+    size 24
+    idle_color "#000" 
+    hover_color "#303030"
+
+style mc_email_btns_text is mc_email_btns_button_text:
+    color "#000"
 
 screen mail_viewer(email):
     style_prefix "mail_viewer"
