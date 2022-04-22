@@ -42,6 +42,11 @@ screen mail_client():
             use mc_navpane(mail_client)
             use mc_emails(mail_client)
 
+    on "show" action [ 
+        SetField(persistent, "new_email_count", 0), 
+        Hide("mail_notification") 
+    ]
+
 screen mc_navpane(mail_client):
     frame background "#fff":
         xsize 240 yfill True
@@ -88,7 +93,7 @@ screen mc_email_entry(email):
     style_prefix "mc_email_entry"
 
     button:
-        ysize 132
+        # ysize 132
         action [ 
             Function(mail_viewer_app.open, email=email),
             Play("audio", gui.hover_sound)
@@ -99,11 +104,18 @@ screen mc_email_entry(email):
         xfill True
 
         hbox spacing 20:
-            use mc_email_btns(email)
+            if email.is_read():
+                null width 15
+            else:
+                add RoundedFrame(Solid("#00aeff"), xysize=(15, 15)).set_radius(7.5) xalign 0.5 yalign 0.5
 
-            vbox xsize 350 yfill True:
-                label _("{ubuntu=medium}[email.subject]{/ubuntu}"):
-                    text_size 24
+            vbox xsize 320:
+                if not email.is_read():
+                    label _("{ubuntu=medium}[email.subject]{/ubuntu}"):
+                        text_size 24
+                else:
+                    label _("{ubuntu=regular}[email.subject]{/ubuntu}"):
+                        text_size 24
 
                 # null height 5
 
@@ -112,6 +124,8 @@ screen mc_email_entry(email):
                     text_size 18 text_color "#303030"
 
                 # null height 10
+
+            use mc_email_btns(email)
 
 style mc_email_entry_button is empty
 style mc_email_entry_label is empty
@@ -131,9 +145,6 @@ screen mc_email_btns(email):
     style_prefix "mc_email_btns"
 
     vbox spacing 15:
-        if not email.is_read():
-            add RoundedFrame(Solid("#00aeff"), xysize=(15, 15)).set_radius(7.5) xalign 0.5
-
         textbutton _("{star}") action ToggleSetMembership(persistent.marked_emails, email.unique_id):
             text_hover_color "#aa6c39"
             text_selected_idle_color "#aa6c39"
@@ -259,3 +270,22 @@ screen attachment_button(attachment):
             add attachment.icon size (32, 32) yalign 0.5
             null width 18
             text attachment.title style "attachment_button_text"
+
+screen mail_notification():
+    style_prefix "mail_notification"
+
+    button xysize (300, 100):
+        action Function(mail_client_app.open)
+        padding (20, 20)
+
+        has hbox:
+            spacing 20
+
+        add "email" fit "contain"
+        text _("You have [persistent.new_email_count] new emails.") yalign 0.5
+
+style mail_notification_button is frame
+
+style mail_notification_button:
+    align (1.0, 0.0)
+    offset (-25, 25)

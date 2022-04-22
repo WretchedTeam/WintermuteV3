@@ -3,7 +3,7 @@ screen desktop():
 
     use icon_grid()
 
-    # on "show" action Function(show_notifs)
+    on "show" action Function(_wm_email.show_notifs)
 
     # mousearea:
     #     area (0, 0.9, 1.0, 1.0)

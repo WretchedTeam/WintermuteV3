@@ -8,10 +8,14 @@ init python in _wm_email:
     emails = { }
     sender_emails = [ ]
 
+    def show_notifs():
+        if persistent.new_email_count > 0:
+            renpy.show_screen(Email.notification_screen_name)
+
     @renpy.pure
     class Email(NoRollback):
         mail_client_screen_name = "mail_client"
-        notification_screen_name = None
+        notification_screen_name = "mail_notification"
 
         def __init__(self, unique_id, subject, contents, sender, is_spam, attachments=None):
             self.unique_id = unique_id
@@ -49,11 +53,8 @@ init python in _wm_email:
 
             persistent.unlocked_emails.insert(0, self.unique_id)
 
-            if not renpy.get_screen(self.mail_client_screen_name):
+            if renpy.has_screen(self.mail_client_screen_name):
                 persistent.new_email_count += 1
-
-                if self.notification_screen_name:
-                    renpy.show_screen(self.notification_screen_name)
 
     @renpy.pure
     class EmailSender(NoRollback):
