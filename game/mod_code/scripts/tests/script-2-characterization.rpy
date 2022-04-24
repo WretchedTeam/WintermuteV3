@@ -1,3 +1,16 @@
+init python:
+    characterization_test = _wm_test.WintermuteTest(
+        "Characterization",
+        description="Lorem Ipsum",
+        email="igreen_email_1",
+        assigner="Iwan Green",
+        monika="characterization_monika",
+        sayori="characterization_sayori",
+        yuri="characterization_yuri",
+        natsuki="characterization_natsuki",
+        on_advance="characterization_finished"
+    )
+
 default characterization_monika_open_minded = False
 
 label characterization_qa(doki):
@@ -596,5 +609,4 @@ label characterization_yuri():
     return True
 
 label characterization_finished():
-    $ josborne_email_2.unlock()
     return

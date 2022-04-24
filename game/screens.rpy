@@ -65,8 +65,8 @@ style scrollbar:
 
 style vscrollbar:
     xsize 6
-    base_bar RoundedFrame("#ccc").set_radius(3)
-    thumb RoundedFrame("#aaa").set_radius(3)
+    base_bar RoundedFrame("#ccc", radius=3.0)
+    thumb RoundedFrame("#aaa", radius=3.0)
     top_gutter 2
     bottom_gutter 2
     

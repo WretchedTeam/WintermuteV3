@@ -40,7 +40,7 @@ screen register_form_input_field(input_val, default_text, filter):
 style register_form_input_field_button is empty
 
 style register_form_input_field_button:
-    background RoundedFrame("#ffffff2f").set_radius(10.0)
+    background RoundedFrame("#ffffff2f", radius=10.0)
     xsize 493 ysize 70
     padding (20, 20)
 

@@ -39,7 +39,7 @@ transform window_animation():
 style dock_frame:
     xalign 0.5 yalign 0.99
     ysize 75
-    background RoundedFrame(Solid("#fff5")).set_radius(10.0)
+    background RoundedFrame(Solid("#fff5"), radius=10.0)
 
 screen icon_grid():
     frame style "empty":
@@ -51,5 +51,5 @@ screen icon_grid():
         # use desktop_app_icon("email", "Email", "wm_mail_image")
 
         if persistent.wm_received:
-            use desktop_label_icon("wintermute", "Wintermute", "wm_start", (0, (100 + 10) * 2))
+            use desktop_app_icon("wintermute", "Wintermute", "dashboard", (0, (100 + 10) * 2))
  

@@ -34,9 +34,18 @@ init -5 python in _wm_manager:
         return new_pos
 
     class Application(object):
-        def __init__(self, name, screen_id):
+        _instances = [ ]
+
+        @classmethod
+        def close_all_apps(cls):
+            for i in cls._instances:
+                i.close()
+
+        def __init__(self, name, screen_id, userdata=None):
             self.name = name
             self.screen_id = screen_id
+            self.userdata = userdata
+            self._instances.append(self)
 
         def raise_window(self, *args, **kwargs):
             if self.screen_id in zorders:
@@ -64,8 +73,8 @@ screen program_header(title, close_action=NullAction()):
     frame:
         text "[title]" xalign 0.5
         imagebutton:
-            idle RoundedFrame(Solid("#FF3D00"), xysize=(22, 22)).set_radius(11.0)
-            hover RoundedFrame(Solid("#ff5926"), xysize=(22, 22)).set_radius(11.0)
+            idle RoundedFrame(Solid("#FF3D00"), xysize=(22, 22), radius=11.0)
+            hover RoundedFrame(Solid("#ff5926"), xysize=(22, 22), radius=11.0)
             action close_action xalign 1.0 yalign 0.5 xoffset -10
 
 style header_text is empty

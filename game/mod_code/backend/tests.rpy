@@ -1,51 +1,62 @@
-default persistent.current_test_no = 0
-define wintermute_tests = [ ]
+default 10 persistent.current_test_no = 0
+define 10 wintermute_tests = [ 
+    intro_test,
+    characterization_test
+]
 
 init python in _wm_test:
-    # Can't think of a usage for this and the below function now.
+    from store import debug
 
-    __tests_store = { }
+    def get_current_test():
+        from store import wintermute_tests, persistent
 
-    def get_test(test_name):
-        return __tests_store.get(test_name, None)
+        if persistent.current_test_no < len(wintermute_tests):
+            return wintermute_tests[persistent.current_test_no]
 
-    def get_current(): get_test(persistent.current_test)
+        return None
 
-    def default_test_is_finished(vals):
-        return all(vals.values())
+    def has_label_and_unseen(label_name):
+        return renpy.has_label(label_name) and not renpy.seen_label(label_name)
 
     class WintermuteTest(object):
         """
         Class representative of the scripted AI Tests.
         """
 
-        __slot__ = "test_name", "display_name", "label_prefix", "is_finished"
+        def __init__(self, test_name, description, email, assigner, monika,
+                sayori, yuri, natsuki, on_advance, is_finished=all):
 
-        suffixes = [ "monika", "natsuki", "sayori", "yuri" ]
-
-        def __init__(self, test_name, display_name, label_prefix, is_finished=default_test_is_finished):
             self.test_name = test_name
-            self.display_name = display_name
-            self.label_prefix = label_prefix
+            self.description =description
+
+            # Labels for each Dokis.
+            self.monika_label = monika
+            self.sayori_label = sayori
+            self.yuri_label = yuri
+            self.natsuki_label = natsuki
+
+            # Callback on finishing the test.
+            # Can be a label or a function.
+            self.on_advance = on_advance
 
             self.is_finished = is_finished
+            self.email = email
+            self.assigner = assigner
 
-            global __tests_store
-            __tests_store[self.test_name] = self
-
-        def __seen_label(self, suf): return renpy.seen_label(self.format_label_name(suf))
-        def __has_label(self, suf): return renpy.has_label(self.format_label_name(suf))
-
-        def format_label_name(self, suffix):
-            return "%s_%s" % (self.label_prefix, suffix)
-
-        def completed_label(self, suffix):
-            return self.__seen_label(suf) or (not self.__has_label(suf))
-
-        def get_label_info(self, suffix): # -> Completed flag, label name
-            return self.completed_label(suffix), self.format_label_name(suffix)
+        @debug
+        def mark_all_labels_unread(self):
+            labels = [ self.monika_label, self.sayori_label, self.yuri_label, self.natsuki_label ]
+            for label in labels:
+                renpy.mark_label_unseen(label)
 
         def can_advance(self):
-            return self.is_finished(
-                { suf: self.completed_label(suf) for suf in self.suffixes }
-            )
+            labels = [ self.monika_label, self.sayori_label, self.yuri_label, self.natsuki_label ]
+            flags = [ ]
+
+            for label in labels:
+                if not renpy.has_label(label):
+                    flags.append(True)
+                else:
+                    flags.append(renpy.seen_label(label))
+
+            return self.is_finished(flags)

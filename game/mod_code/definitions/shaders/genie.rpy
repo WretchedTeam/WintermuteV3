@@ -13,10 +13,8 @@ init python:
 
         vec4 color(sampler2D tex0, vec2 uv)
         {
-            if (IN_BOUNDS(uv.x, 0.0, 1.0) && IN_BOUNDS(uv.y, 0.0, 1.0))
-                return texture2D(tex0, uv);
-
-            return vec4(0.0);
+            float coeff = float(IN_BOUNDS(uv.x, 0.0, 1.0) && IN_BOUNDS(uv.y, 0.0, 1.0));
+            return mix(texture2D(tex0, uv), vec4(0.0), coeff);
         }
     """, fragment_200="""
         vec2 uv2 = v_tex_coord + normalize(v_tex_coord - u_pos) * (u_complete * 1.5);

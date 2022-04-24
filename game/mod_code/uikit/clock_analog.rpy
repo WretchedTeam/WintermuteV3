@@ -30,9 +30,9 @@ init python in _wm_clock_analog:
             ]
 
             self.bg_elements = [ 
-                DashedCircle(hour_radius, "#ffffff7f", 0, 4.0),
-                DashedCircle(minute_radius, "#ffffff7f", 0, 4.0),
-                DashedCircle(second_radius, "#ffffff", 60, 4.0),
+                DashedCircle(hour_radius + 2.0, "#ffffff7f", 0, 4.0),
+                DashedCircle(minute_radius + 2.0, "#ffffff7f", 0, 4.0),
+                DashedCircle(second_radius + 2.0, "#ffffff", 60, 4.0),
             ]
 
             self.center = DashedCircle(8, "#ffffff", 0, 0.0)

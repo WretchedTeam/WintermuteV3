@@ -22,7 +22,7 @@ def resize_mpt_component(filename):
     if image.size[0] != 960 and image.size[1] != 960:
         return
 
-    new_image = factor_resize(image, required_factor, resample=Image.Resampling.BICUBIC)
+    new_image = image.resize((1440, 1440), resample=Image.Resampling.HAMMING)
     new_image.save(filename, quality=100)
     logging.info(f"{filename} done.")
 

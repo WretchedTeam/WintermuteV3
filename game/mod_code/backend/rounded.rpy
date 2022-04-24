@@ -1,36 +1,42 @@
 init python in _wm_rounded:
+    use_normalized_shader = False
+
     from store import Frame, Color
 
     class RoundedFrame(Frame):
         """
         Takes all the arguments as a Frame object.
         """
-        def __init__(self, *args, **kwargs):
-            super(RoundedFrame, self).__init__(*args, **kwargs)
-            self.radius = 0.0
-
-        def set_radius(self, radius):
-            if isinstance(radius, (float, int)):
-                self.radius = radius
-            else:
-                renpy.error("Expected float or int, got %s" % type(radius))
-            return self
+        def __init__(self, image, left=None, top=None, right=None, bottom=None,
+                xborder=0, yborder=0, bilinear=True, tile=False,
+                tile_ratio=0.5, radius=0.0, outline_width=0.0, outline_color="#000", **properties):
+            super(RoundedFrame, self).__init__(image, left, top, right, bottom, xborder, yborder, bilinear, tile, tile_ratio, **properties)
+            self.radius = radius
+            self.outline_width = outline_width
+            self.outline_color = Color(outline_color)
 
         def render(self, width, height, st, at):
             rv = super(RoundedFrame, self).render(width, height, st, at)
 
-            if self.radius:
+            if self.radius or self.outline_width:
                 rv.mesh = True
-                rv.add_shader("wm.rounded_corners")
+
                 rv.add_property("gl_pixel_perfect", True)
                 rv.add_property("gl_mipmap", False)
-                rv.add_property("texture_scaling", "nearest")
 
-                if self.radius > 1.0:
-                    rv.add_uniform("u_radius", self.radius)
+                if use_normalized_shader:
+                    rv.add_shader("wm.rounded_corners_normalized")
+                    deno = max((width, height))
                 else:
-                    factor = rv.width * (height / width)
-                    rv.add_uniform("u_radius", factor * self.radius)
+                    rv.add_shader("wm.rounded_corners")
+                    deno = 1.0
+
+                rv.add_uniform("u_radius", self.radius / deno)
+
+                rv.add_uniform("u_outline_width", self.outline_width / deno)
+                rv.add_uniform("u_outline_color", self.outline_color.rgba)
+                rv.add_uniform("u_resolution", rv.get_size())
+                rv.add_property("texture_scaling", "nearest")
 
             return rv
 
@@ -66,12 +72,16 @@ init python in _wm_rounded:
             rv.blit(adjusted_cr, (0, 0))
             rv.mesh = True
 
-            rv.add_shader("wm.rounded_corners_outline")
-
             rv.add_property("gl_pixel_perfect", True)
             rv.add_property("gl_mipmap", False)
 
-            deno = min((width, height))
+            if use_normalized_shader:
+                rv.add_shader("wm.rounded_corners_normalized")
+                deno = max((width, height))
+            else:
+                rv.add_shader("wm.rounded_corners")
+                deno = 1.0
+
             rv.add_uniform("u_radius", self.radius / deno)
 
             rv.add_uniform("u_outline_width", self.outline_width / deno)

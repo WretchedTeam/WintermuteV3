@@ -7,7 +7,7 @@ init python in _wm_navbar_buttons:
             properties.pop("size", None)
 
             self.icon = Text(icon, style=style, size=24, **properties)
-            self.title = Text(title, style=style, size=20, **properties)
+            self.title = Text(title, style=style, size=18, **properties)
             self.spacing = spacing
 
             self.add(self.icon)
@@ -51,8 +51,9 @@ init python in _wm_navbar_buttons:
 
         def __init__(self, num, time_warp, **kwargs):
             super(NavigationPiece, self).__init__(**kwargs)
-            self.line = RoundedFrame(Solid("#000"), xysize=(10, 50)).set_radius(5.0)
-            self.selected_button = 0
+            self.height = 45
+            self.line = RoundedFrame(Solid("#000"), xysize=(10, self.height), radius=5.0)
+            self.selected_button = None
             self.total_buttons = num
             self.time_warp = time_warp
 
@@ -89,13 +90,19 @@ init python in _wm_navbar_buttons:
 
             self.at = at
 
+        def visit(self): return [ self.line ]
+
         def render(self, width, height, st, at):
+            if self.selected_button is None:
+                return renpy.Render((0, 0))
+
             height = self.total_buttons * self.button_height
             self.update_y(at)
 
             cr = renpy.render(self.line, width, height, st, at)
             rv = renpy.Render(width, height)
-            rv.blit(cr, (-5, absolute(self.y - 7.5)))
+            yoffset = abs(self.height - self.button_height)
+            rv.blit(cr, (-5, absolute(self.y - yoffset / 2.0)))
 
             return rv
 
@@ -114,7 +121,11 @@ screen navbar_buttons(options):
                         _icon, _text, 15, "navbar_buttons_button_text"
                     )
 
-        add nav_piece xalign 0.0 xoffset -35 yoffset -5
+                python:
+                    if renpy.is_selected(_action):
+                        nav_piece.selected_button = i
+
+        add nav_piece xalign 0.0 xoffset -30
 
 style navbar_buttons_frame is empty
 style navbar_buttons_button is empty

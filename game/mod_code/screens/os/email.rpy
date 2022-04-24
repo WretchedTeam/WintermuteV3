@@ -1,7 +1,7 @@
-define mail_client_app = _wm_manager.Application("Turnell Mail Client", "mail_client")
-define mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_viewer")
+define 2 mail_client_app = _wm_manager.Application("Turnell Mail Client", "mail_client", _wm_email_app.MailClient())
+define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_viewer")
 
-init python in _wm_email:
+init python in _wm_email_app:
     from store._wm_email import emails
     from store import persistent
 
@@ -35,35 +35,22 @@ init python in _wm_email:
                 return tuple()
 
 screen mail_client():
-    default mail_client = _wm_email.MailClient()
+    default mail_client = mail_client_app.userdata
 
     use program_base(mail_client_app, xysize=(675, 630)):
         hbox:
-            use mc_navpane(mail_client)
+            use navigation_pane([
+                ("{inbox}", "Input", SetField(mail_client, "mailbox", mail_client.INBOX)),
+                ("{spam}", "Spam", SetField(mail_client, "mailbox", mail_client.SPAM)),
+                ("{star}", "Starred", SetField(mail_client, "mailbox", mail_client.STARRED)),
+            ], 240)
+
             use mc_emails(mail_client)
 
     on "show" action [ 
         SetField(persistent, "new_email_count", 0), 
         Hide("mail_notification") 
     ]
-
-screen mc_navpane(mail_client):
-    frame background "#fff":
-        xsize 240 yfill True
-
-        vbox xfill True:
-            add "icosahedron" xalign 0.5
-
-            use navbar_buttons([
-                ("{inbox}", "Input", SetField(mail_client, "mailbox", mail_client.INBOX)),
-                ("{spam}", "Spam", SetField(mail_client, "mailbox", mail_client.SPAM)),
-                ("{star}", "Starred", SetField(mail_client, "mailbox", mail_client.STARRED)),
-            ])
-
-        frame style "empty":
-            align (0.0, 1.0)
-            padding (30, 30)
-            use username_display()
 
 screen mc_emails(mail_client):
     style_prefix "mc_emails"
@@ -72,19 +59,19 @@ screen mc_emails(mail_client):
         padding (0, 0)
         xfill True yfill True
 
-        vpgrid id "mc_emails_vpg":
-            cols 1
+        viewport id "mc_emails_vp":
             xfill True
 
-            $ emails = mail_client.get_emails()
+            has vbox
 
+            $ emails = mail_client.get_emails()
             for i, email in enumerate(emails):
-                $ frame_bg = ("#EBEDF4" if i % 2 == 1 else "#F0F2F9")
+                $ frame_bg = ("#e6e8ef" if i % 2 == 1 else "#F0F2F9")
 
                 frame background frame_bg padding (0, 0):
                     use mc_email_entry(email)
 
-        vbar value YScrollValue("mc_emails_vpg") xalign 1.0 xoffset -20
+        vbar value YScrollValue("mc_emails_vp") xalign 1.0 xoffset -20
 
 style mc_emails_vscrollbar is vscrollbar:
     unscrollable "hide"
@@ -107,7 +94,8 @@ screen mc_email_entry(email):
             if email.is_read():
                 null width 15
             else:
-                add RoundedFrame(Solid("#00aeff"), xysize=(15, 15)).set_radius(7.5) xalign 0.5 yalign 0.5
+                add RoundedFrame(Solid("#00aeff"), xysize=(15, 15), radius=7.5):
+                    xalign 0.5 yalign 0.5
 
             vbox xsize 320:
                 if not email.is_read():
@@ -144,7 +132,7 @@ style mc_email_entry_text:
 screen mc_email_btns(email):
     style_prefix "mc_email_btns"
 
-    vbox spacing 15:
+    vbox spacing 10:
         textbutton _("{star}") action ToggleSetMembership(persistent.marked_emails, email.unique_id):
             text_hover_color "#aa6c39"
             text_selected_idle_color "#aa6c39"
@@ -196,22 +184,36 @@ screen mail_viewer(email):
                         text "{ubuntu=light}(" + persistent.username + "@turnell.co.uk){/ubuntu}" size 16
 
                 null height 40
-                add "black" ysize 1
+                add "#828282" ysize 2
                 null height 40
 
                 text ("{ubuntu=light}" + email.contents + "{/ubuntu}")
 
                 if email.attachments:
                     null height 40
-                    add "black" ysize 1
+                    add "#828282" ysize 2
                     null height 20
 
                     label _("Attachments:")
 
                     null height 30
 
-                    for attachment in email.attachments:
-                        use attachment_button(attachment)
+                    vbox spacing 15:
+                        for attachment in email.attachments:
+                            use attachment_button(attachment)
+
+                if email.quick_replies:
+                    null height 40
+                    add "#828282" ysize 2
+                    null height 20
+
+                    label _("Quick Replies:")
+
+                    null height 30
+
+                    vbox spacing 15:
+                        for quick_reply in email.quick_replies:
+                            use quick_reply_button(quick_reply, email.unique_id)
 
             vbar value YScrollValue("mail_viewer_vp") xalign 1.0 xoffset 30
 
@@ -231,7 +233,7 @@ style mail_viewer_text:
 
 style mail_viewer_vscrollbar is vscrollbar
 
-screen mail_context_button (_action=NullAction(), _style_prefix="mail_context"):
+screen mail_context_button(_action=NullAction(), _style_prefix="mail_context"):
     style_prefix _style_prefix
 
     button:
@@ -240,23 +242,29 @@ screen mail_context_button (_action=NullAction(), _style_prefix="mail_context"):
         frame:
             transclude
 
-style attachment_frame is empty
-style attachment_hbox is empty
+screen quick_reply_button(quick_reply, unique_id):
+    style_prefix "quick_reply"
 
-style attachment_button is button
-style attachment_button_text is empty
+    use mail_context_button(quick_reply.action, "quick_reply"):
+        text quick_reply.reply style "quick_reply_button_text"
 
-style attachment_text is empty
+style quick_reply_frame is empty
+style quick_reply_hbox is empty
 
-style attachment_hbox:
+style quick_reply_button is button
+style quick_reply_button_text is empty
+
+style quick_reply_text is empty
+
+style quick_reply_hbox:
     yalign 0.5
 
-style attachment_button:
+style quick_reply_button:
     padding (15, 10)
-    idle_background RoundedFrame("#fff").set_radius(10)
-    hover_background RoundedFrame("#d5d5d5").set_radius(10)
+    idle_background RoundedFrame("#fff", radius=10.0)
+    hover_background RoundedFrame("#d5d5d5", radius=10.0)
 
-style attachment_button_text:
+style quick_reply_button_text:
     font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
     color "#000"
     size 24
@@ -271,10 +279,32 @@ screen attachment_button(attachment):
             null width 18
             text attachment.title style "attachment_button_text"
 
+style attachment_frame is empty
+style attachment_hbox is empty
+
+style attachment_button is button
+style attachment_button_text is empty
+
+style attachment_text is empty
+
+style attachment_hbox:
+    yalign 0.5
+
+style attachment_button:
+    padding (15, 10)
+    idle_background RoundedFrame("#fff", radius=10.0)
+    hover_background RoundedFrame("#d5d5d5", radius=10.0)
+
+style attachment_button_text:
+    font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
+    color "#000"
+    size 24
+    yalign 0.5
+
 screen mail_notification():
     style_prefix "mail_notification"
 
-    button xysize (300, 100):
+    button xysize (400, 120):
         action Function(mail_client_app.open)
         padding (20, 20)
 
@@ -282,10 +312,19 @@ screen mail_notification():
             spacing 20
 
         add "email" fit "contain"
-        text _("You have [persistent.new_email_count] new emails.") yalign 0.5
+        vbox yalign 0.5:
+            label _("{lexend=regular}Emails{/lexend}") text_color "#fff"
+            text _("You have [persistent.new_email_count] new emails.") style_suffix "button_text"
 
 style mail_notification_button is frame
+style mail_notification_button_text is empty
 
 style mail_notification_button:
+    background RoundedFrame("#303030", radius=10.0)
     align (1.0, 0.0)
     offset (-25, 25)
+
+style mail_notification_button_text:
+    font _wm_font_lexend.light
+    size 20
+    color "#bcbcbc"

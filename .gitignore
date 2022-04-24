@@ -39,3 +39,7 @@ firstrun
 ###########################
 .DS_Store
 desktop.ini
+
+# Workplace Configs #
+#####################
+.vscode/

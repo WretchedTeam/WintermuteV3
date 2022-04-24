@@ -38,21 +38,13 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
         vec2 fisheye(vec2 p, float val) {
-            float prop = 1.0;
-            vec2 m = vec2(0.5, 0.5 / prop);
+            vec2 m = vec2(0.5, 0.5);
             vec2 d = p - m;
-            float r = sqrt(dot(d, d));
-
-            float power = ( 2.0 * 3.141592 / (2.0 * sqrt(dot(m, m))) ) * val;
-
-            float bind;
-            if (prop < 1.0) bind = m.x; 
-            else bind = m.y;
-
-            vec2 uv;
-            if (power > 0.0) uv = m + normalize(d) * atan(r * -power * 10.0) * bind / atan(-power * bind * 10.0);
-            else uv = p;
-            return uv;
+            float r = length(d);
+            float power = (2.0 * 3.141592) / (2.0 * length(m)) * val;
+            float bind = 0.5;
+            vec2 uv = m + normalize(d) * atan(r * -power * 10.0) * bind / atan(-power * bind * 10.0);
+            return power > 0.0 ? uv : p;
         }
 
         vec2 zoom(vec2 uv, float zoom) {

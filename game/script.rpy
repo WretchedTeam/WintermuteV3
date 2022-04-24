@@ -28,7 +28,8 @@ label start():
     else:
         call screen register()
 
-    call wm_desktop
+    while True:
+        call wm_desktop
     return
 
 label wm_desktop():

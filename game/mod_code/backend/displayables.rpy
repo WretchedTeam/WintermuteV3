@@ -53,19 +53,25 @@ init python in _wm_displayables:
             return (xpos, ypos, xanchor, yanchor, xoffset, yoffset, True)
 
     class DashedCircle(SingleShaderDisplayable):
+        use_normalized_shader = True
+
         def __init__(self, radius, color, segments, border, **kwargs):
             uniforms = { 
                 "u_color": Color(color).rgba, 
                 "u_radius": radius,
                 "u_segments": segments, 
-                "u_center": (0.5, 0.5), 
                 "u_border": border 
             }
 
-            super(DashedCircle, self).__init__("wm.circle_outline", uniforms)
+            if self.use_normalized_shader:
+                shader_name = "wm.circle_outline_normalized"
+            else:
+                shader_name = "wm.circle_outline"
+
+            super(DashedCircle, self).__init__(shader_name, uniforms)
             self.radius = radius
             self.border = border
+            self.dimen = self.radius * 2.0
 
         def render(self, width, height, st, at):
-            dimen = self.radius * 2.0 + self.border
-            return super(DashedCircle, self).render(dimen, dimen, st, at)
+            return super(DashedCircle, self).render(self.dimen, self.dimen, st, at)

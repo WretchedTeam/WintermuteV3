@@ -22,6 +22,8 @@ image icosahedron:
     zoom 0.5
 
 image dev_bg_open:
+    xysize (1920, 1080)
+
     "mod_assets/animations/dev_texture_bg/dt_outline.png" with dissolve
     pause(0.5)
     "mod_assets/animations/dev_texture_bg/dt1.png"
@@ -58,6 +60,8 @@ image dev_bg_open:
     pause(0.2)
 
 image dev_bg_close:
+    xysize (1920, 1080)
+
     "mod_assets/animations/dev_texture_bg/dt16.png"
     pause(0.05)
     "mod_assets/animations/dev_texture_bg/dt15.png"
@@ -98,3 +102,8 @@ image dev_bg_close:
 
 image wintermute_os_mark:
     Text("{lexend=light}wintermute{/lexend} {lexend=semibold}OS{/lexend}", size=40)
+
+image monika_thumb = "mod_assets/os/icons/dashboard/monika_thumb.png"
+image sayori_thumb = "mod_assets/os/icons/dashboard/sayori_thumb.png"
+image natsuki_thumb = "mod_assets/os/icons/dashboard/natsuki_thumb.png"
+image yuri_thumb = "mod_assets/os/icons/dashboard/yuri_thumb.png"

@@ -160,14 +160,3 @@ init python:
             return rv
 
     ZoomInFisheyeShaderCurried = renpy.curry(ZoomInFisheyeShader)
-
-label wm_start:
-    $ quick_menu = True
-    show desktop_background
-
-    show expression "mod_assets/animations/dev_texture_bg/dt16.png":
-        zoom 1.5 align (0.5, 0.5)
-    with ZoomInFisheyeShaderCurried(0.75)
-
-    "Test."
-    $ quick_menu = False

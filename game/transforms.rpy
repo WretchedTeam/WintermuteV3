@@ -2,6 +2,8 @@
 
 # This defines the placements and animations in DDLC
 
+init offset = -10
+
 init python:
     def calculate_position(n, i, margin=80):
         assert n >= i

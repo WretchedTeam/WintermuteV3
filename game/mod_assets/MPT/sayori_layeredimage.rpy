@@ -2,7 +2,7 @@
 
 
 layeredimage sayori turned: #turned definitions.
-    
+    at Flatten
     always "mod_assets/MPT/sayori/sayori_turned_facebase.png" #Always need this face.
     
     group outfit: #These attributes are here only to determine which set of "body" sprites to use later.  "null" is what lets us just use these attributes as logic and nothing else.
@@ -325,7 +325,7 @@ layeredimage sayori turned: #turned definitions.
 
 
 layeredimage sayori tap: #tapping definitions.
-    
+    at Flatten
     group outfit:
         attribute uniform default:
             "mod_assets/MPT/sayori/sayori_tapping_uniform_bodybase.png"

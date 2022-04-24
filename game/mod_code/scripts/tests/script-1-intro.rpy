@@ -1,3 +1,16 @@
+init python:
+    intro_test = _wm_test.WintermuteTest(
+        "Formal Introduction",
+        description="Lorem Ipsum",
+        email="rbell_email_1",
+        assigner="Robert Bell",
+        monika="formal_intro_monika",
+        sayori="formal_intro_sayori",
+        yuri="formal_intro_yuri",
+        natsuki="formal_intro_natsuki",
+        on_advance="formal_intro_finished"
+    )
+
 label formal_intro_monika():
     show monika forward e1a b1a mb rhip at t11 
     m "Hello! I’m Monika, your local Literature Club president, ahaha~."
@@ -95,5 +108,13 @@ label formal_intro_natsuki():
 
 label formal_intro_finished():
     $ rbell_email_2.unlock()
-    $ persistent.current_test = "characterization"
+    return
+
+label formal_intro_post_finish():
+    $ renpy.transition(Fade(0.5, 1, 0.5))
+    $ _wm_manager.Application.close_all_apps()
+    scene black
+    pause 5.0
+    $ igreen_email_1.unlock()
+    $ persistent.current_test_no += 1
     return

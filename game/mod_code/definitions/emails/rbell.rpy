@@ -52,5 +52,10 @@ Robert Bell
 Quality Assurance Lead
 """,
         sender=rbell_sender,
-        is_spam=False
+        is_spam=False,
+        quick_replies=[ 
+            EmailReply("Thanks!", Call("formal_intro_post_finish")), 
+            EmailReply("See you soon!", Call("formal_intro_post_finish")), 
+            EmailReply("Bye!", Call("formal_intro_post_finish")) 
+        ]
     )

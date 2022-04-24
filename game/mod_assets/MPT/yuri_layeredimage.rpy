@@ -2,7 +2,7 @@
 
 
 layeredimage yuri turned:
-    
+    at Flatten
     always "mod_assets/MPT/yuri/yuri_turned_facebase.png"
     
     
@@ -381,7 +381,7 @@ layeredimage yuri turned:
 
 
 layeredimage yuri shy:
-    
+    at Flatten
     always "mod_assets/MPT/yuri/yuri_shy_facebase.png"
     
     
