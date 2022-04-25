@@ -19,7 +19,7 @@ screen marquee(width=100, t=2.0, do_scroll=True):
         xsize width
 
         fixed fit_first True:
-            if do_scroll:
-                at marquee_move(t)
+            # if do_scroll:
+            #     at marquee_move(t)
 
             transclude
