@@ -4,16 +4,25 @@ Upon interaction with the WINTERMUTE program, the girls introduced themselves an
 """
     intro_test = _wm_test.WintermuteTest(
         "Formal Introduction",
-        description="Lorem Ipsum",
-        report=intro_test_report,
-        email="rbell_email_1",
-        assigner="Robert Bell",
-        monika="formal_intro_monika",
-        sayori="formal_intro_sayori",
-        yuri="formal_intro_yuri",
-        natsuki="formal_intro_natsuki",
-        on_advance="formal_intro_finished"
+        "Lorem Ipsum",
+        intro_test_report,
+        "rbell_email_1",
+        "Robert Bell",
+        "formal_intro_monika",
+        "formal_intro_sayori",
+        "formal_intro_yuri",
+        "formal_intro_natsuki",
+        "formal_intro_on_start",
+        "formal_intro_finished"
     )
+
+label formal_intro_on_start():
+    python hide:
+        rbell_email_1.unlock()
+        josborne_email_1.unlock()
+        igreen_email_1.unlock()
+
+    return
 
 label formal_intro_monika():
     show monika forward e1a b1a mb rhip at t11 

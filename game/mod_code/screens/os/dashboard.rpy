@@ -55,14 +55,14 @@ screen dashboard_test_details():
     default current_test = _wm_test.get_current_test()
 
     if current_test is not None:
-        if current_test.can_advance():
+        if current_test.is_completed():
             fixed:
                 text _("No tests are currently assigned to you now.") style "dashboard_no_tests":
                     align (0.5, 0.5)
 
         else:
             vbox:
-                label current_test.test_name
+                label current_test.name
                 null height 30
                 text current_test.description
 
@@ -72,10 +72,10 @@ screen dashboard_test_details():
                 text _("{ubuntu=light}Assigned by{/ubuntu} {ubuntu=medium}[current_test.assigner]{/ubuntu}") color "#000" size 24
 
                 hbox xfill True:
-                    $ has_email = current_test.email is not None
+                    $ has_email = current_test.main_email is not None
 
                     if has_email:
-                        use padded_button(_("Open Email"), Function(mail_viewer_app.open, _wm_email.get_email(current_test.email)), xysize=(225, 52))
+                        use padded_button(_("Open Email"), Function(mail_viewer_app.open, current_test.main_email), xysize=(225, 52))
 
                     use padded_button(_("Begin Test"), Jump("wm_start"), xysize=(225, 52), xalign=(1.0 if has_email else 0.0))
 
@@ -179,7 +179,7 @@ style dashboard_subject_entry_label_text:
 screen dashboard_completed_tests():
     style_prefix "dashboard_completed_tests"
     
-    $ finished_tests = [ test for test in wintermute_tests if test.can_advance() ]
+    $ finished_tests = [ test for test in wintermute_tests if test.is_completed() ]
 
     if not finished_tests:
         text _("No tests are completed.") align (0.5, 0.5):
@@ -216,7 +216,7 @@ screen dashboard_test_entry(test):
             has hbox:
                 yalign 0.5
 
-            label _("[test.test_name]") xsize 550 yalign 0.5
+            label test.name xsize 550 yalign 0.5
             text _("Completed") yalign 0.5 color "#009378"
 
         null height 18

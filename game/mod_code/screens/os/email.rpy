@@ -121,7 +121,7 @@ screen mc_email_entry(email):
 
                 # null height 10
 
-            # use mc_email_btns(email)
+            use mc_email_btns(email)
 
 style mc_email_entry_button is empty
 style mc_email_entry_label is empty
@@ -140,7 +140,7 @@ style mc_email_entry_text:
 screen mc_email_btns(email):
     style_prefix "mc_email_btns"
 
-    vbox spacing 10:
+    vbox spacing 5:
         textbutton _("{star}") action ToggleSetMembership(persistent.marked_emails, email.unique_id):
             text_hover_color "#aa6c39"
             text_selected_idle_color "#aa6c39"
@@ -210,7 +210,7 @@ screen mail_viewer(email):
                         for attachment in email.attachments:
                             use attachment_button(attachment)
 
-                if email.quick_replies:
+                if email.quick_replies and (email.unique_id not in persistent.replied_emails):
                     null height 40
                     add "#828282" ysize 2
                     null height 20
@@ -239,7 +239,8 @@ style mail_viewer_label_text:
 style mail_viewer_text:
     color "#000"
 
-style mail_viewer_vscrollbar is vscrollbar
+style mail_viewer_vscrollbar is vscrollbar:
+    unscrollable "hide"
 
 screen mail_context_button(_action=NullAction(), _style_prefix="mail_context"):
     style_prefix _style_prefix
@@ -253,7 +254,7 @@ screen mail_context_button(_action=NullAction(), _style_prefix="mail_context"):
 screen quick_reply_button(quick_reply, unique_id):
     style_prefix "quick_reply"
 
-    use mail_context_button(quick_reply.action, "quick_reply"):
+    use mail_context_button([ AddToSet(persistent.replied_emails, unique_id), quick_reply.action ], "quick_reply"):
         text quick_reply.reply style "quick_reply_button_text"
 
 style quick_reply_frame is empty

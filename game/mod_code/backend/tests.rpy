@@ -6,6 +6,7 @@ define 10 wintermute_tests = [
 
 init python in _wm_test:
     from store import debug
+    from store._wm_email import get_email
 
     def get_current_test():
         from store import wintermute_tests, persistent
@@ -23,41 +24,44 @@ init python in _wm_test:
         Class representative of the scripted AI Tests.
         """
 
-        def __init__(self, test_name, description, report, email, assigner, monika,
-                sayori, yuri, natsuki, on_advance, is_finished=all):
+        __slots__ = "name", "description", "final_report", "main_email", "assigner", "on_start", "labels", "on_advance", "is_finished"
 
-            self.test_name = test_name
+        def __init__(self, name, description, final_report, main_email, 
+                assigner, monika_label, sayori_label, yuri_label, 
+                natsuki_label, on_start, on_complete, single=False):
+
+            self.name = name
             self.description = description
-            self.report = report
+            self.final_report = final_report
+            self.main_email = get_email(main_email)
 
-            # Labels for each Dokis.
-            self.monika_label = monika
-            self.sayori_label = sayori
-            self.yuri_label = yuri
-            self.natsuki_label = natsuki
+            if assigner is None:
+                assigner = self.main_email.sender.name
 
-            # Callback on finishing the test.
-            # Can be a label or a function.
-            self.on_advance = on_advance
-
-            self.is_finished = is_finished
-            self.email = email
             self.assigner = assigner
 
-        @debug
-        def mark_all_labels_unread(self):
-            labels = [ self.monika_label, self.sayori_label, self.yuri_label, self.natsuki_label ]
-            for label in labels:
-                renpy.mark_label_unseen(label)
+            self.monika_label = monika_label
+            self.sayori_label = sayori_label
+            self.yuri_label = yuri_label
+            self.natsuki_label = natsuki_label
 
-        def can_advance(self):
-            labels = [ self.monika_label, self.sayori_label, self.yuri_label, self.natsuki_label ]
-            flags = [ ]
+            self.labels = [ monika_label, sayori_label, yuri_label, natsuki_label ]
 
-            for label in labels:
-                if not renpy.has_label(label):
-                    flags.append(True)
-                else:
-                    flags.append(renpy.seen_label(label))
+            self.on_start = on_start
+            self.on_complete = on_complete
+            self.single = single
 
-            return self.is_finished(flags)
+        def is_completed(self):
+            existing_labels = filter(renpy.has_label, self.labels)
+
+            if self.single:
+                return any(map(renpy.seen_label, existing_labels))
+            else:
+                return all(map(renpy.seen_label, existing_labels))
+
+        @staticmethod
+        def __call_cb(cb):
+            if has_label_and_unseen(cb): renpy.call(cb)
+
+        def run_start(self): return self.__call_cb(self.on_start)
+        def run_complete(self): return self.__call_cb(self.on_complete)

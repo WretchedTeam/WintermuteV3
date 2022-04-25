@@ -1,3 +1,6 @@
+# From RenpyTom's patreon post.
+# https://patreon.renpy.org/dev-2021-11.html
+
 transform marquee_move(t):
     subpixel True
     nearest True

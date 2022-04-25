@@ -20,7 +20,7 @@ label wm_start():
     return
 
 label wm_character_choice(test):
-    while not test.can_advance():
+    while not test.is_completed():
         menu:
             "Monika" if _wm_test.has_label_and_unseen(test.monika_label):
                 call expression test.monika_label
@@ -34,10 +34,5 @@ label wm_character_choice(test):
             "Natsuki" if _wm_test.has_label_and_unseen(test.natsuki_label):
                 call expression test.natsuki_label
 
-    if test.on_advance is not None:
-        if renpy.has_label(test.on_advance):
-            call expression test.on_advance
-        else:
-            $ test.on_advance()
-
+    $ test.run_complete()
     return 

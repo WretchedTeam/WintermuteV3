@@ -17,11 +17,6 @@ label main_menu:
 label start():
     $ quick_menu = False
 
-    python hide:
-        rbell_email_1.unlock()
-        josborne_email_1.unlock()
-        igreen_email_1.unlock()
-
     if persistent.firstname and persistent.lastname:
         $ renpy.run(Play("sound", "mod_assets/audio/os/startupsound1.ogg"))
         call screen login()
@@ -30,6 +25,10 @@ label start():
         call screen register()
 
     while True:
+        python hide:
+            test = _wm_test.get_current_test()
+            if test is not None: test.run_start()
+
         call wm_desktop
     return
 

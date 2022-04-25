@@ -1,6 +1,7 @@
 default persistent.unlocked_emails = [ ]
 default persistent.read_emails = [ ]
 default persistent.marked_emails = [ ]
+default persistent.replied_emails = [ ]
 
 init python in _wm_email:
     from store import NoRollback, NullAction, persistent

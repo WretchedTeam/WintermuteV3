@@ -1,15 +1,16 @@
 init python:
     characterization_test = _wm_test.WintermuteTest(
         "Characterization",
-        description="Lorem Ipsum",
-        report="",
-        email="igreen_email_2",
-        assigner="Iwan Green",
-        monika="characterization_monika",
-        sayori="characterization_sayori",
-        yuri="characterization_yuri",
-        natsuki="characterization_natsuki",
-        on_advance="characterization_finished"
+        "Lorem Ipsum",
+        "",
+        "igreen_email_2",
+        "Iwan Green",
+        "characterization_monika",
+        "characterization_sayori",
+        "characterization_yuri",
+        "characterization_natsuki",
+        None,
+        "characterization_finished"
     )
 
 default characterization_monika_open_minded = False
