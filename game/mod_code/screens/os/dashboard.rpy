@@ -38,11 +38,16 @@ screen dashboard():
             ], 240)
 
             frame background "#F0F2F9":
+                xfill True yfill True
+
                 padding (30, 30)
+
                 if dashboard.display == dashboard.DETAILS:
                     use dashboard_test_details()
                 elif dashboard.display == dashboard.SUBJECTS:
                     use dashboard_ai_subjects()
+                elif dashboard.display == dashboard.COMPLETED:
+                    use dashboard_completed_tests()
 
 screen dashboard_test_details():
     style_prefix "dashboard_test_details"
@@ -137,7 +142,7 @@ style dashboard_details_bar_label_text is empty
 
 style dashboard_details_bar_label_text:
     font _wm_font_ubuntu.light
-    color "#000"
+    color "#464646"
     size 24
 
 screen dashboard_subject_entry(subject):
@@ -170,3 +175,55 @@ style dashboard_subject_entry_text:
 
 style dashboard_subject_entry_label_text:
     font _wm_font_ubuntu.light
+
+screen dashboard_completed_tests():
+    style_prefix "dashboard_completed_tests"
+    
+    vbox:
+        label _("Completed Tests")
+        null height 30
+
+        hbox:
+            style_prefix "dashboard_details_bar"
+            label _("Test") xsize 550
+            label _("Result")
+
+        null height 10
+
+        add Solid("#B44343") ysize 2
+
+        null height 30
+
+        vpgrid cols 1:
+            for i in range(persistent.current_test_no):
+                use dashboard_test_entry(wintermute_tests[i])
+
+style dashboard_completed_tests_label is dashboard_ai_subjects_label
+style dashboard_completed_tests_label_text is dashboard_ai_subjects_label_text
+
+screen dashboard_test_entry(test):
+    style_prefix "dashboard_test_entry"
+
+    vbox:
+        button:
+            has hbox:
+                yalign 0.5
+
+            label _("[test.test_name]") xsize 550 yalign 0.5
+            text _("Completed") yalign 0.5 color "#009378"
+
+        null height 18
+        add Solid("#C4C4C4") ysize 1
+        null height 18
+
+style dashboard_test_entry_button is empty
+style dashboard_test_entry_text is empty
+style dashboard_test_entry_label is empty
+style dashboard_test_entry_label_text is dashboard_test_entry_text
+
+style dashboard_test_entry_text:
+    font _wm_font_ubuntu.light size 22
+    color "#000"
+
+style dashboard_test_entry_label_text:
+    font _wm_font_ubuntu.regular
