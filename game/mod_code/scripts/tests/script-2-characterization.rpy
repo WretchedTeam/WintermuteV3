@@ -2,7 +2,8 @@ init python:
     characterization_test = _wm_test.WintermuteTest(
         "Characterization",
         description="Lorem Ipsum",
-        email="igreen_email_1",
+        report="",
+        email="igreen_email_2",
         assigner="Iwan Green",
         monika="characterization_monika",
         sayori="characterization_sayori",

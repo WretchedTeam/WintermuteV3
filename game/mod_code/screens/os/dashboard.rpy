@@ -57,7 +57,7 @@ screen dashboard_test_details():
     if current_test is not None:
         if current_test.can_advance():
             fixed:
-                text _("No tests are currently assigned to you now.") style_suffix "no_tests":
+                text _("No tests are currently assigned to you now.") style "dashboard_no_tests":
                     align (0.5, 0.5)
 
         else:
@@ -98,7 +98,7 @@ style dashboard_test_details_text:
     size 18
     color "#515151"
 
-style dashboard_test_details_no_tests:
+style dashboard_no_tests:
     font _wm_font_ubuntu.regular
     size 28
     color "#000"
@@ -179,24 +179,31 @@ style dashboard_subject_entry_label_text:
 screen dashboard_completed_tests():
     style_prefix "dashboard_completed_tests"
     
-    vbox:
-        label _("Completed Tests")
-        null height 30
+    $ finished_tests = [ test for test in wintermute_tests if test.can_advance() ]
 
-        hbox:
-            style_prefix "dashboard_details_bar"
-            label _("Test") xsize 550
-            label _("Result")
+    if not finished_tests:
+        text _("No tests are completed.") align (0.5, 0.5):
+            style "dashboard_no_tests"
 
-        null height 10
+    else:
+        vbox:
+            label _("Completed Tests")
+            null height 30
 
-        add Solid("#B44343") ysize 2
+            hbox:
+                style_prefix "dashboard_details_bar"
+                label _("Test") xsize 550
+                label _("Result")
 
-        null height 30
+            null height 10
 
-        vpgrid cols 1:
-            for i in range(persistent.current_test_no):
-                use dashboard_test_entry(wintermute_tests[i])
+            add Solid("#B44343") ysize 2
+
+            null height 30
+
+            vpgrid cols 1:
+                for i in finished_tests:
+                    use dashboard_test_entry(i)
 
 style dashboard_completed_tests_label is dashboard_ai_subjects_label
 style dashboard_completed_tests_label_text is dashboard_ai_subjects_label_text

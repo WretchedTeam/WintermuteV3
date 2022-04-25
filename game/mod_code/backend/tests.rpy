@@ -23,11 +23,12 @@ init python in _wm_test:
         Class representative of the scripted AI Tests.
         """
 
-        def __init__(self, test_name, description, email, assigner, monika,
+        def __init__(self, test_name, description, report, email, assigner, monika,
                 sayori, yuri, natsuki, on_advance, is_finished=all):
 
             self.test_name = test_name
-            self.description =description
+            self.description = description
+            self.report = report
 
             # Labels for each Dokis.
             self.monika_label = monika

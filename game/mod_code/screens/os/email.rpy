@@ -79,8 +79,13 @@ style mc_emails_vscrollbar is vscrollbar:
 screen mc_email_entry(email):
     style_prefix "mc_email_entry"
 
+    default do_scroll = False
+
     button:
         # ysize 132
+        hovered SetLocalVariable("do_scroll", True)
+        unhovered SetLocalVariable("do_scroll", False)
+
         action [ 
             Function(mail_viewer_app.open, email=email),
             Play("audio", gui.hover_sound)
@@ -98,12 +103,15 @@ screen mc_email_entry(email):
                     xalign 0.5 yalign 0.5
 
             vbox xsize 320:
-                if not email.is_read():
-                    label _("{ubuntu=medium}[email.subject]{/ubuntu}"):
-                        text_size 24
-                else:
-                    label _("{ubuntu=regular}[email.subject]{/ubuntu}"):
-                        text_size 24
+                use marquee(320, do_scroll=do_scroll):
+                    if not email.is_read():
+                        label _("{ubuntu=medium}[email.subject]{/ubuntu}"):
+                            text_size 24
+                            text_layout "nobreak"
+                    else:
+                        label _("{ubuntu=regular}[email.subject]{/ubuntu}"):
+                            text_size 24
+                            text_layout "nobreak"
 
                 # null height 5
 
@@ -113,7 +121,7 @@ screen mc_email_entry(email):
 
                 # null height 10
 
-            use mc_email_btns(email)
+            # use mc_email_btns(email)
 
 style mc_email_entry_button is empty
 style mc_email_entry_label is empty

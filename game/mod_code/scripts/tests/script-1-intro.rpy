@@ -1,7 +1,11 @@
 init python:
+    intro_test_report = """
+Upon interaction with the WINTERMUTE program, the girls introduced themselves and their stated purpose to me in a concise and helpful manner. From my brief interaction with them, I would conclude that their mannerisms, facial expressions and patterns of speech were accurate to their established characters.
+"""
     intro_test = _wm_test.WintermuteTest(
         "Formal Introduction",
         description="Lorem Ipsum",
+        report=intro_test_report,
         email="rbell_email_1",
         assigner="Robert Bell",
         monika="formal_intro_monika",
@@ -113,8 +117,11 @@ label formal_intro_finished():
 label formal_intro_post_finish():
     $ renpy.transition(Fade(0.5, 1, 0.5))
     $ _wm_manager.Application.close_all_apps()
+    pause 0.75
+
     scene black
     pause 5.0
-    $ igreen_email_1.unlock()
+    $ igreen_email_2.unlock()
+    $ board_email_1.unlock()
     $ persistent.current_test_no += 1
     return
