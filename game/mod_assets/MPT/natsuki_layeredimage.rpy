@@ -180,7 +180,7 @@ image nat_fs_b3:
 
 
 layeredimage natsuki turned:
-    at Flatten
+    at [ Flatten, _wm_breathing.BreathingCurried() ]
     
     
     group outfit:
@@ -686,7 +686,7 @@ layeredimage natsuki turned:
 
 
 layeredimage natsuki cross:
-    at Flatten
+    at [ Flatten, _wm_breathing.BreathingCurried() ]
     
     
     group outfit:

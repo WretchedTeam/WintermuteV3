@@ -7,12 +7,12 @@ init -100 python in _wm_breathing:
         return random.randint(1,6) * 0.1 + random.randint(1,20) * 0.005 + 2.0
 
     class Breathing(renpy.Container):
-        limits = (0.997, 1.003)
+        limits = (0.998, 1.002)
 
         def __init__(self, child, **kwargs):
             super(Breathing, self).__init__(**kwargs)
             self.step_dur = random_step()
-            self.child = Transform(child, subpixel=True)
+            self.add(Transform(child, subpixel=True))
 
         def calculate_zoom(self, st):
             l0, l1 = self.limits
@@ -27,9 +27,10 @@ init -100 python in _wm_breathing:
             self.offsets = [ (0, 0) ]
             return renpy.display.render.render(self.child, width, height, st, at)
 
-
         def get_placement(self):
             return self.child.get_placement()
+
+    BreathingCurried = renpy.curry(Breathing)
 
 # From Chronos, don't forget to credit
 transform wm_tbreathing(multiplier=0.80):

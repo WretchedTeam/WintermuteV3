@@ -61,10 +61,13 @@ init python in _wm_test:
             renpy.mark_label_unseen(self.on_start)
             renpy.mark_label_unseen(self.on_complete)
             renpy.mark_label_unseen(self.main_label)
+            self.mark_incomplete()
 
+        @debug
         def mark_complete(self):
             persistent.completed_tests.append(self.key)
 
+        @debug
         def mark_incomplete(self):
             try: persistent.completed_tests.remove(self.key)
             except Exception: pass

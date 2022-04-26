@@ -59,24 +59,24 @@ screen mc_emails(mail_client):
         padding (0, 0)
         xfill True yfill True
 
-        viewport id "mc_emails_vp":
-            scrollbars None
-            mousewheel True
-            xfill True
+        hbox:
+            viewport id "mc_emails_vp":
+                scrollbars None
+                mousewheel True
+                xfill True
 
-            has vbox
+                has vbox
 
-            $ emails = mail_client.get_emails()
-            for i, email in enumerate(emails):
-                $ frame_bg = ("#e6e8ef" if i % 2 == 1 else "#F0F2F9")
+                $ emails = mail_client.get_emails()
+                for i, email in enumerate(emails):
+                    $ frame_bg = ("#e6e8ef" if i % 2 == 1 else "#F0F2F9")
 
-                frame background frame_bg padding (0, 0):
-                    use mc_email_entry(email)
+                    frame background frame_bg padding (0, 0):
+                        use mc_email_entry(email)
 
-        frame style "empty":
-            xalign 1.0
-            padding (0, 10)
-            vbar value YScrollValue("mc_emails_vp") xoffset -10
+            frame style "empty":
+                padding (0, 8)
+                vbar value YScrollValue("mc_emails_vp") xoffset -15
 
 style mc_emails_vscrollbar is vscrollbar:
     unscrollable "hide"
@@ -179,7 +179,7 @@ screen mail_viewer(email):
 
                 has vbox
 
-                side "l r bl br":
+                side "tl tr l r bl br":
                     spacing 30
 
                     label _("{ubuntu=medium}From:{/ubuntu}")
@@ -193,6 +193,9 @@ screen mail_viewer(email):
                     vbox:
                         text "[persistent.firstname] [persistent.lastname]" size 24
                         text "{ubuntu=light}(" + persistent.username + "@turnell.co.uk){/ubuntu}" size 16
+
+                    label _("{ubuntu=medium}Subject:{/ubuntu}")
+                    text "{ubuntu=regular}" + email.subject + "{/ubuntu}" size 28 yalign 0.5
 
                 null height 40
                 add "#828282" ysize 2

@@ -64,9 +64,10 @@ style scrollbar:
 #     thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
 
 style vscrollbar:
-    xsize 6
-    base_bar RoundedFrame("#ccc", radius=3.0)
-    thumb RoundedFrame("#aaa", radius=3.0)
+    xsize 8
+    base_bar RoundedFrame("#ccc", radius=4.0)
+    idle_thumb RoundedFrame("#aaa", radius=4.0)
+    hover_thumb RoundedFrame("#888", radius=4.0)
     top_gutter 2
     bottom_gutter 2
     

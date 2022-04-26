@@ -1,4 +1,4 @@
-init python in _wm_shadow:
+init -100 python in _wm_shadow:
     from store import (
         TintMatrix,
         BrightnessMatrix,
