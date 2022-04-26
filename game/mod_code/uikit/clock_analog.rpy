@@ -24,9 +24,9 @@ init python in _wm_clock_analog:
             self.second_radius = second_radius
 
             self.dots = [
-                DashedCircle(8, "#ffffff", 0, 0.0),
-                DashedCircle(8, "#3ca1ff", 0, 0.0),
-                DashedCircle(8, "#88C0D0", 0, 0.0)
+                RoundedFrame("#ffffff", xysize=(16, 16), radius=8),
+                RoundedFrame("#3ca1ff", xysize=(16, 16), radius=8),
+                RoundedFrame("#88C0D0", xysize=(16, 16), radius=8),
             ]
 
             self.bg_elements = [ 
@@ -35,7 +35,7 @@ init python in _wm_clock_analog:
                 DashedCircle(second_radius + 2.0, "#ffffff", 60, 4.0),
             ]
 
-            self.center = DashedCircle(8, "#ffffff", 0, 0.0)
+            self.center = RoundedFrame("#ffffff", xysize=(16, 16), radius=8)
             self.max_radius = max((hour_radius, minute_radius, second_radius))
 
         def render(self, width, height, st, at):
