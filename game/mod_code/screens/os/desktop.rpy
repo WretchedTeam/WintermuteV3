@@ -47,9 +47,8 @@ screen icon_grid():
 
         has draggroup
 
-        use desktop_app_icon("email", "Email", "mail_client")
-        # use desktop_app_icon("email", "Email", "wm_mail_image")
+        use desktop_app_icon("email", "Email", mail_client_app)
 
         if persistent.wm_received:
-            use desktop_app_icon("wintermute", "Wintermute", "dashboard", (0, (100 + 10) * 2))
+            use desktop_app_icon("wintermute", "Wintermute", dashboard_app, (0, (100 + 10) * 2))
  

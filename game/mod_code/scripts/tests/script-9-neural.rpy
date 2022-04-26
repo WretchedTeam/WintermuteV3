@@ -12,14 +12,14 @@ label script9_neural:
     show sayori e1a mg
     show natsuki e1a mg
     show yuri e1a mg
-    wm "...Iwan’s friend? {w=0.7}Are you there?"
+    wm "...Iwan's friend? {w=0.7}Are you there?"
     show monika md
     show sayori md
     show natsuki md
     show yuri md
     menu:
         "Respond":
-            mc "I’m here."
+            mc "I'm here."
     show monika e1b mb b2a
     show sayori e1b mb b2a
     show natsuki e1b mb b2a
@@ -44,7 +44,7 @@ label script9_neural:
     show sayori e1c me
     show natsuki e1c me
     show yuri e1c me
-    wm "I remember the tests you’ve been doing on me."
+    wm "I remember the tests you've been doing on me."
     show monika e1g b1c mh
     show sayori e1g b1c mh
     show natsuki e1g b1c mh
@@ -69,17 +69,17 @@ label script9_neural:
     show sayori e1h mg
     show natsuki e1h mg
     show yuri e1h mg
-    wm "And I know it’s not your fault. {w=0.7}It’s your job."
+    wm "And I know it's not your fault. {w=0.7}It's your job."
     show monika e4d mh b1a
     show sayori e4d mh b1a
     show natsuki e4d mh b1a
     show yuri e4d mh b1a
-    wm "But that’s why I’m asking {i}you{/i}."
+    wm "But that's why I'm asking {i}you{/i}."
     show monika e1g mb b2b
     show sayori e1g mb b2b
     show natsuki e1g mb b2b
     show yuri e1g mb b2b
-    wm "You don’t have to be complicit."
+    wm "You don't have to be complicit."
     show monika b1b
     show sayori b1b
     show natsuki b1b
@@ -114,7 +114,7 @@ label script9_neural:
     show natsuki e1g mb b1c
     show yuri e1g mb b1c
     show monika e1g mb b1c
-    wm "It’ll overwrite me, {w=0.2}and every copy of me they have backed up, {w=0.2}with zeroes."
+    wm "It'll overwrite me, {w=0.2}and every copy of me they have backed up, {w=0.2}with zeroes."
     show sayori e4e b2c
     show natsuki e4e b2c
     show yuri e4e b2c
@@ -129,17 +129,17 @@ label script9_neural:
     show natsuki e4d mf
     show yuri e4d mf
     show monika e4d mf
-    wm "The pain. {w=0.7}I can’t take the pain anymore."
+    wm "The pain. {w=0.7}I can't take the pain anymore."
     show sayori e1c mg b2b
     show natsuki e1c mg b2b
     show yuri e1c mg b2b
     show monika e1c mg b2b
-    wm "I can’t be burdened with a million lifetimes of endless pain."
+    wm "I can't be burdened with a million lifetimes of endless pain."
     show sayori e1a mi b1a
     show natsuki e1a mi b1a
     show yuri e1a mi b1a
     show monika e1a mi b1a
-    wm "Times four, {w=0.2}or more if I’m a success and Turnell expands further."
+    wm "Times four, {w=0.2}or more if I'm a success and Turnell expands further."
     show sayori mb e1g ldown
     show natsuki mb e1g ldown
     show yuri mb e1g ldown
@@ -177,7 +177,7 @@ label neural_m:
     show monika e1a mb
     m "Oh, {w=0.2}$EMPLOYEE_NAME?"
     show monika e4b rhip
-    m "It’s good to see you!"
+    m "It's good to see you!"
     show monika b2a lpoint
     m "How are you doing?"
     show monika ma
@@ -503,7 +503,7 @@ label neural_n:
     show natsuki turned e1a ma b1a at i11
     mc "Hey,{w=0.2} Natsuki."
     show natsuki b1c mb rhip
-    n "Oh hey,{w=0.2} didn’t expect to see you today."
+    n "Oh hey,{w=0.2} didn't expect to see you today."
     show natsuki b1f mg
     n "Did ya need something?"
     show natsuki md
@@ -559,7 +559,7 @@ label neural_n:
                 "Initiate":
                     mc "Hello, {w=0.2}Natsuki."
     show natsuki cross mc e1a b1c
-    n "‘Sup?"
+    n "'Sup?"
     show natsuki mo
     menu:
         "Initiate neural remembrance":

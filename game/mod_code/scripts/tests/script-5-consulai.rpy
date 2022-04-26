@@ -456,17 +456,17 @@ label consulai_n:
     show natsuki turned e1a b1a ma at t11 zorder 1
     mc "Hello, Natsuki."
     n mg "Oh, hey $EMPLOYEE_NAME."
-    n b1c mb "‘Sup?"
+    n b1c mb "'Sup?"
     show natsuki ma
     menu:
         "Initialize ConsulAI":
             pass
     show natsuki b1b mj
-    mc "I’m not feeling too well."
+    mc "I'm not feeling too well."
     #show some faux code on the side, ai is immediately looking for problems
     n rhip mh n2 "Oh, shit."
-    n e1b "Uhhh...okay, I’m not a doctor, but I do have a pretty big library of dots I can connect."
-    n b2a e1a mg "So, if you wanna try and paint a picture for me, I’ll see what I can do."
+    n e1b "Uhhh...okay, I'm not a doctor, but I do have a pretty big library of dots I can connect."
+    n b2a e1a mg "So, if you wanna try and paint a picture for me, I'll see what I can do."
     show natsuki md
     menu:
         "Accept":
@@ -474,9 +474,9 @@ label consulai_n:
     mc "Please do."
     n mg "Well, alright then."
     n mf e1c "FYI, before I start..."
-    n ldown rdown e1a mh b1c "I’m obligated to tell you that nothing I say here should be taken as medical advice."
-    n mg b2a "I’m not a qualified doctor, I’m just trying to give you guesses that you can take to someone who is."
-    n mh b2b "And if you’re in an immediate emergency, you should definitely call the emergency services."
+    n ldown rdown e1a mh b1c "I'm obligated to tell you that nothing I say here should be taken as medical advice."
+    n mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
+    n mh b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
     n b2c "And I can always do that for you, should you need it."
     n mg rhip "You cool with that?"
     show natsuki me
@@ -492,15 +492,15 @@ label consulai_n:
     menu:
         "Respond":
             pass
-    mc "Actually, no. It’s nothing like that."
+    mc "Actually, no. It's nothing like that."
     show natsuki e1c b2b
-    mc "I’ve been feeling pretty down lately, is all."
+    mc "I've been feeling pretty down lately, is all."
     show natsuki mg
     n "Oh, sorry about that."
     show natsuki mh e1a
     n "I got a little ahead of myself there."
     show natsuki turned b2a rhip lhip
-    n "Right...what’s up?"
+    n "Right...what's up?"
     show natsuki md
 
     ##OPEN-ENDED CHOICE:
@@ -529,29 +529,29 @@ label consulai_n:
     show natsuki e1b mg
     n "I know the world is a tiny bit awful right now..."
     show natsuki b2a e1a mh
-    n "But I always try to soften the blows of life with ‘well, it could be worse’."
+    n "But I always try to soften the blows of life with 'well, it could be worse'."
     show natsuki b1c
     n "Because hey, it {i}could{/i} be way worse."
     show natsuki e1b mi b1a
     n "Like if there were killer aliens coming to get us, or the government went all {i}1984{/i} on us."
     show natsuki turned rhip n3 mf e2c
-    n "...or maybe I’ve been reading too much manga."
+    n "...or maybe I've been reading too much manga."
     show natsuki e4a mh
     n "Point is, things could be a whole, whole lot more awful."
     show natsuki b2a mh n1 e1a lhip
-    n "That’s what helps me, anyway."
+    n "That's what helps me, anyway."
     show natsuki b1c
-    n "But if that’s not your jam, there’s always plenty of good news too."
+    n "But if that's not your jam, there's always plenty of good news too."
     show natsuki mb
-    n "Feel-good stuff, y’know?"
+    n "Feel-good stuff, y'know?"
     show natsuki e1b rdown
     n "Like that Paralympian gold medalist who outpaced her Olympian counterparts in a marathon."
     show natsuki b1d e1d mc
     n "Or...{i}maybe you heard a little something about a certain company donating an outrageous amount of money to people in need...{/i}"
     show natsuki b1b mh e1a ldown
-    n "And if I’m being brutally honest with you, you can't care for everybody on the planet."
+    n "And if I'm being brutally honest with you, you can't care for everybody on the planet."
     show natsuki mg b2a
-    n "I get you feeling bad and all, but if you just beat yourself up you’ll never be able to be the change you wanna see."
+    n "I get you feeling bad and all, but if you just beat yourself up you'll never be able to be the change you wanna see."
     show natsuki b2b mh
     n "So just...try turning {i}off{/i} the 24/7 spew of negative news sometime, eh?"
     show natsuki rhip b1c
@@ -562,7 +562,7 @@ label consulai_n:
             pass
     mc "Thanks, Natsuki."
     #If not last pick
-    mc "But there’s still other things bothering me..."
+    mc "But there's still other things bothering me..."
 
     ################################################################
     "# DISILLUSIONMENT WITH JOB" ###################################
@@ -570,19 +570,19 @@ label consulai_n:
 
 
     show natsuki turned md
-    mc "I feel like I’m stagnating at work."
+    mc "I feel like I'm stagnating at work."
     show natsuki rdown b1b
-    mc "I’ve been putting so much effort in - more than anyone else on my level - and yet I’m seeing no recognition for it."
+    mc "I've been putting so much effort in - more than anyone else on my level - and yet I'm seeing no recognition for it."
     show natsuki mj b1d
-    mc "No promotion, no payrise, not even a ‘well done’ from the higher-ups."
+    mc "No promotion, no payrise, not even a 'well done' from the higher-ups."
     show natsuki b2b ldown
     mc "It makes me feel powerless to improve myself."
     show natsuki mh
     n "That sounds pretty rough."
     show natsuki b1a rhip
-    n "While I {i}obviously{/i} don’t have a job, I’ve picked up a thing or two about this kind of stuff."
+    n "While I {i}obviously{/i} don't have a job, I've picked up a thing or two about this kind of stuff."
     show natsuki b1b mg e4a
-    n "I know this isn’t what you want to hear, but I think some tough love is needed here."
+    n "I know this isn't what you want to hear, but I think some tough love is needed here."
     show natsuki cross e1a mi b1c
     n "Because $EMPLOYEE_NAME, {i}everyone{/i} feels that way about their job."
     show natsuki me e1b b1a
@@ -592,23 +592,23 @@ label consulai_n:
     show natsuki turned mh lhip rhip
     n "The key is how to deal with it."
     show natsuki mg
-    n "Of course, it’s gonna be necessary wherever you go, so better to do the best you can and get it out of the way."
+    n "Of course, it's gonna be necessary wherever you go, so better to do the best you can and get it out of the way."
     show natsuki mb b2a
     n "Make time for things that are more fulfilling outside of work, so you can balance the good and the bad."
     show natsuki e1c mh
-    n "But hey, if that doesn’t work for you, you could always just focus on what you get out of it."
+    n "But hey, if that doesn't work for you, you could always just focus on what you get out of it."
     show natsuki e1a ldown
     n "Look to your benefits - a lotta holiday days, a hefty pension contribution, and obviously money."
     show natsuki mb
-    n "Plus, you never know. With enough work, maybe you’ll break through the ceiling and land that high-paying step up in the company!"
+    n "Plus, you never know. With enough work, maybe you'll break through the ceiling and land that high-paying step up in the company!"
     show natsuki cross e4a mi b1d
     n "If you put your head down and work for that stuff, then the recognition will come."
     show natsuki e1a mg b1a
-    n "I’ve been with you since you started, I know you’re a hard worker."
+    n "I've been with you since you started, I know you're a hard worker."
     show natsuki e1a b1c mh
-    n "Hell, I’ve seen your qualifications. I don’t doubt you could climb the ladder with an MSc like that."
+    n "Hell, I've seen your qualifications. I don't doubt you could climb the ladder with an MSc like that."
     show natsuki mb
-    n "Hey, if it were my company you’d already be promoted to number two!"
+    n "Hey, if it were my company you'd already be promoted to number two!"
     show natsuki e4b mc b3b
     n "Just below me, obviously."
     show natsuki turned rhip b1a mb e1a
@@ -619,45 +619,45 @@ label consulai_n:
             pass
     mc "I appreciate that."
     #If not last pick
-    mc "There’s just..."
+    mc "There's just..."
 
     ################################################################
     "# DISILLUSIONMENT WITH LIFE" ##################################
     ################################################################
 
     show natsuki turned md
-    mc "I’m starting to hate the way my life is turning out."
+    mc "I'm starting to hate the way my life is turning out."
     show natsuki rdown b2b
     mc "All I do is work, sleep, play video games and eat."
-    mc "Every day is exactly the same, and I’m too worn down to change it."
+    mc "Every day is exactly the same, and I'm too worn down to change it."
     show natsuki cross e4a me
-    mc "I’ve been drifting away from all my friends, I haven’t even spoken to my parents in months, and I don’t think there’s anything I can do about it."
+    mc "I've been drifting away from all my friends, I haven't even spoken to my parents in months, and I don't think there's anything I can do about it."
     show natsuki e1a mg b2a
-    n "Well...y’know, there’s less fixable problems than that out there."
+    n "Well...y'know, there's less fixable problems than that out there."
     show natsuki e1b n3 b2b mf
     n "Sorry, that came out wrong."
     show natsuki e1a b2a mh
-    n "What I mean is that you aren’t quite at rock bottom yet, so why not use that as motivation?"
+    n "What I mean is that you aren't quite at rock bottom yet, so why not use that as motivation?"
     show natsuki b1a n1
     n "If tomorrow could always be worse, make sure today ends on a good note."
     show natsuki turned lhip mg
     n "Make some calls to friends, talk to your parents."
     show natsuki b1c mi
-    n "As long as you do {i}something{/i}, you’re doing more than nothing. And that’s still progress."
+    n "As long as you do {i}something{/i}, you're doing more than nothing. And that's still progress."
     show natsuki mg
     n "Hell, you could even just {i}go out and meet people{/i}."
     show natsuki rhip mc
-    n "When you put the events of DDLC under this lens, that’s what I did!"
+    n "When you put the events of DDLC under this lens, that's what I did!"
     show natsuki e1c mh
-    n "And yeah, it can suck at times, and maybe you’ll feel like an absolute moron from time to time."
+    n "And yeah, it can suck at times, and maybe you'll feel like an absolute moron from time to time."
     show natsuki b1d mb e1d
     n "But man, does it pay off."
     show natsuki e4a b2a
-    n "I wouldn’t change Monika, Sayori, you - or even Yuri - for the world."
+    n "I wouldn't change Monika, Sayori, you - or even Yuri - for the world."
     show natsuki ldown e1a b2b mh
-    n "Just...make sure you don’t meet just {i}anyone{/i}."
+    n "Just...make sure you don't meet just {i}anyone{/i}."
     show natsuki cross mi b1a
-    n "There’s plenty of weirdos out there."
+    n "There's plenty of weirdos out there."
     show natsuki e1b me
     n "Actually...lemme just..."
     show natsuki md
@@ -670,11 +670,11 @@ label consulai_n:
     show natsuki mh b1c e1a
     n "You should message them. Go have a chat, get coffee."
     show natsuki e1b
-    n "But if that doesn’t work, I’m always here."
+    n "But if that doesn't work, I'm always here."
     show natsuki e1d b1d mb
     n "You might be a stupid ass, but you're still {i}my{/i} stupid ass."
     show natsuki mc
-    n "And there’s no escaping that, got it?"
+    n "And there's no escaping that, got it?"
     show natsuki ma
     menu:
         "Respond":
@@ -689,13 +689,13 @@ label consulai_n:
     ################################################################
 
     show natsuki turned b1f me
-    mc "This is gonna be heavy on you, so please don’t take offense."
+    mc "This is gonna be heavy on you, so please don't take offense."
     show natsuki b2b e1c rdown ldown
-    mc "It’s not your fault, but I feel like I’m relying on you too much."
+    mc "It's not your fault, but I feel like I'm relying on you too much."
     show natsuki e4a mj n4
     mc "I should be forging real relationships with real people...and yet I spend all my time talking to you."
     show natsuki e1a mg
-    n "$EMPLOYEE_NAME...you’re serious..?"
+    n "$EMPLOYEE_NAME...you're serious..?"
     show natsuki mk
     n "Dude...but..."
     show natsuki e1b rhip b1b mg
@@ -705,11 +705,11 @@ label consulai_n:
     show natsuki cross mi
     n "Do you know how insulting that is?"
     show natsuki fs b3 e2 m3
-    n "I know I’m not {i}human{/i}, but does that make me less real to you?"
+    n "I know I'm not {i}human{/i}, but does that make me less real to you?"
     show natsuki e4 b2
     n "Actually...if I was, you would never have even bothered with me in the first place."
     show natsuki ff e2a b1d mh
-    n "I don’t want to be brash, but that’s bullshit and you know it."
+    n "I don't want to be brash, but that's bullshit and you know it."
     show natsuki me
     pause(1.0)
     show natsuki turned mj e2b b2b
@@ -717,9 +717,9 @@ label consulai_n:
     show natsuki e4a mf
     n "Listen..."
     show natsuki e1a b1b mh
-    n "I know you’re hurting, and I know you’re angry."
+    n "I know you're hurting, and I know you're angry."
     show natsuki mi rhip
-    n "But you don’t need to take it out on me with this \"real people\" crap."
+    n "But you don't need to take it out on me with this \"real people\" crap."
     show natsuki b1a mh
     n "I just wanna put this behind us so we can go back to normal."
     show natsuki mg b1b
@@ -729,7 +729,7 @@ label consulai_n:
         "Respond":
             pass
     show natsuki b1c
-    mc "I’m sorry. I was wrong to take out my problems on you."
+    mc "I'm sorry. I was wrong to take out my problems on you."
     show natsuki ma n1 rdown
     mc "I trust you. We can do this together."
     #If not last pick
@@ -739,19 +739,19 @@ label consulai_n:
     show natsuki mg b2b
     n "Okay..."
     show natsuki b2a mh rhip
-    n "Well, if nothing else, I’m glad you’re opening up to me."
+    n "Well, if nothing else, I'm glad you're opening up to me."
     show natsuki md
     menu:
         "Respond":
             pass
     show natsuki ma
-    mc "I’m glad you were there to talk to me. Thank you, Natsuki."
+    mc "I'm glad you were there to talk to me. Thank you, Natsuki."
     show natsuki mh
-    n "It’s nothing."
+    n "It's nothing."
     show natsuki cross n2 b1a e1c mg
     n "Well, not actually nothing, but–--oh, you know what I mean."
     show natsuki mb e1a
-    n "And I’m glad to see the dumb smile back on your face."
+    n "And I'm glad to see the dumb smile back on your face."
     show natsuki e4a mg
     n "Now...if you wanna do something fun..."
     show natsuki b1c mc e1a

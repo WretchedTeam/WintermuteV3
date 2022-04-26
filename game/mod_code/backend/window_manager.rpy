@@ -1,7 +1,6 @@
 init -5 python in _wm_manager:
     zorders = [ ]
     positions = { }
-    position_serial = 100
 
     def get_zorder(screen_id):
         if screen_id in zorders:
@@ -21,14 +20,12 @@ init -5 python in _wm_manager:
         renpy.restart_interaction()
 
     def get_position(screen_id):
-        global position_serial
-
         if screen_id in positions:
             return positions[screen_id]
 
-        new_pos = (position_serial, position_serial)
+        p = 100 + len(zorders) * 50
 
-        position_serial += 100
+        new_pos = (p, p)
         positions[screen_id] = new_pos
 
         return new_pos

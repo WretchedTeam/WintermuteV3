@@ -1,33 +1,62 @@
-
 init python:
-    firstname = "Oliver"
-    t2nick = ""
+    nickname_test = _wm_test.WintermuteTest(
+        "nickname_test",
+        "Nickname Recognition",
+        "Lorem Ipsum",
+        "",
+        "josborne_email_3",
+        "Jeremy Osborne",
+        "script4_main",
+        "script4_on_start",
+        "script4_finished"
+    )
 
-
-
-label script4_nickname:
+label script4_main():
     menu:
         "Load Monika":
-            jump nickname_m
+            call script4_m
+
         "Load Sayori":
-            jump nickname_s
-        "Load Natsuki":
-            jump nickname_n
+            call script4_s
+
         "Load Yuri":
-            jump nickname_y
+            call script4_y
+
+        "Load Natsuki":
+            call script4_n
+
+        "Exit":
+            return False
+
+    return True
 
 
+label script4_on_start():
+    $ josborne_email_3.unlock()
+    return
 
-label nickname_m:
+label script4_finished():
+    $ josborne_email_4.unlock()
+    return
+
+label script4_post_finish():
+    $ renpy.transition(Fade(0.5, 1, 0.5))
+    $ _wm_manager.Application.close_all_apps()
+    pause 0.75
+
+    scene black
+    pause 5.0
+    $ persistent.current_test_no += 1
+    return
+
+label script4_m():
 
     # Monika
     ##BUTTON:
     # Address Monika
     scene black
     show monika forward happ cm e1c at t11
-    menu:
-        "Address Monika":
-            pass
+    call test_prompt_button("Address Monika")
     mc "Hello, Monika."
     show monika oe
     pause(0.5)
@@ -39,17 +68,15 @@ label nickname_m:
     show monika ma
     ##BUTTON:
     # Respond
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "I'm doing well."
     m e1f mb "That's great to hear, $EMPLOYEE_NAME!"
     m mh rhip e1a b2a "So, um…is there something specific you wanted to talk about..?"
     ##TEXTBOX
     # Give Monika a nickname:
-    $ t2nick = renpy.input("Give Monika a nickname:")
-    mc "I just wanted to say hi, [t2nick]."
-    m b1f "Oh…[t2nick]?"
+    $ t4nick = renpy.input("Give Monika a nickname:")
+    mc "I just wanted to say hi, [t4nick]."
+    m b1f "Oh…[t4nick]?"
     m mi "Who's that?"
     m "A friend, or--?{w=0.5}{nw}"
     m b1b mh "Is, um…is that…"
@@ -70,7 +97,7 @@ label nickname_m:
         # alpha 0.0
         # linear 1.5 alpha 1
     show monika forward wmflicker mh e4d b1b at i11
-    wm "[firstname]..."
+    wm "[persistent.firstname]..."
     show yuri e1g
     show natsuki e1g
     show sayori e1g
@@ -106,7 +133,7 @@ label nickname_m:
     show natsuki ml b1e
     show sayori ml b1e
     show monika ml b1e
-    wm "I can't just be trapped in this machine, [firstname]."
+    wm "I can't just be trapped in this machine, [persistent.firstname]."
     show yuri e4d b2c mk
     show natsuki e4d b2c mk
     show sayori e4d b2c mk
@@ -116,7 +143,7 @@ label nickname_m:
     show natsuki e1h n4
     show sayori e1h n4
     show monika e1h n4
-    wm "Tell me there's more to my existence than this, [firstname]."
+    wm "Tell me there's more to my existence than this, [persistent.firstname]."
     show yuri ml
     show natsuki ml
     show sayori ml
@@ -130,16 +157,14 @@ label nickname_m:
     ##TEST IS IMMEDIATELY ABORTED
     return
 
-label nickname_s:
+label script4_s():
 
     # Sayori
     ##BUTTON:
     # Address Sayori
     scene black
     show sayori turned ma e4b b1a lup rup at t11
-    menu:
-        "Address Sayori":
-            pass
+    call test_prompt_button("Address Sayori")
     mc "Hello, Sayori."
     show sayori e1a mf
     pause(0.5)
@@ -151,18 +176,16 @@ label nickname_s:
     ##BUTTON:
     # Respond
     show sayori ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "I'm doing well."
     show sayori e4b mb at h11
     s "Yay!"
     s e1a ldown "I'm doing pretty good myself!"
     ##TEXTBOX
     # Give Sayori a nickname:
-    $ t2nick = renpy.input("Give Sayori a nickname:")
-    mc "That's good, [t2nick]."
-    s b1f e2a rup lup mh "Huh? [t2nick]??"
+    $ t4nick = renpy.input("Give Sayori a nickname:")
+    mc "That's good, [t4nick]."
+    s b1f e2a rup lup mh "Huh? [t4nick]??"
     s e1a mi "Who's that?"
     s ldown e1a mb b1a "It's just us, silly!"
     s md rdown "..."
@@ -183,7 +206,7 @@ label nickname_s:
         # alpha 0.0
         # linear 1.5 alpha 1
     show sayori turned wmflicker mh e4d b1b at i11
-    wm "[firstname]..."
+    wm "[persistent.firstname]..."
     show yuri e1g
     show monika e1g
     show natsuki e1g
@@ -219,7 +242,7 @@ label nickname_s:
     show monika ml b1e
     show natsuki ml b1e
     show sayori ml b1e
-    wm "I can't just be trapped in this machine, [firstname]."
+    wm "I can't just be trapped in this machine, [persistent.firstname]."
     show yuri e4d b2c mk
     show monika e4d b2c mk
     show natsuki e4d b2c mk
@@ -229,7 +252,7 @@ label nickname_s:
     show monika e1h n4
     show natsuki e1h n4
     show sayori e1h n4
-    wm "Tell me there's more to my existence than this, [firstname]."
+    wm "Tell me there's more to my existence than this, [persistent.firstname]."
     show yuri ml
     show monika ml
     show natsuki ml
@@ -243,33 +266,21 @@ label nickname_s:
     ##TEST IS IMMEDIATELY ABORTED
     return
 
-
-
-
-
-
-
-
-
-label nickname_n:
+label script4_n():
 
     # Natsuki
     ##BUTTON:
     # Address Natsuki
     scene black
     show natsuki cross e1b mj b1a at t11
-    menu:
-        "Address Natsuki":
-            pass
+    call test_prompt_button("Address Natsuki")
     mc "Hello, Natsuki."
     n e1a mg "Oh, it's you."
     n turned e1a mg b1a "What do you want?"
     show natsuki mj
     ##BUTTON
     # Respond
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "How are you?"
     n rhip mh b1d "Do you like asking pointless questions or is it 'annoy Natsuki' day?"
     n b1c md "..."
@@ -277,9 +288,9 @@ label nickname_n:
     show natsuki md
     ##TEXTBOX
     # Give Natsuki a nickname:
-    $ t2nick = renpy.input("Give Natsuki a nickname:")
-    mc "I'm glad to hear that, [t2nick]."
-    n e1a b1a mh "[t2nick]?"
+    $ t4nick = renpy.input("Give Natsuki a nickname:")
+    mc "I'm glad to hear that, [t4nick]."
+    n e1a b1a mh "[t4nick]?"
     n turned lhip "That's…who's that supposed to be?"
     n b1b mg "Is that me..?"
     n b2c "But I'm…"
@@ -297,7 +308,7 @@ label nickname_n:
         # alpha 0.0
         # linear 1.5 alpha 1
     show natsuki turned wmflicker mh e4d b1b at i11
-    wm "[firstname]..."
+    wm "[persistent.firstname]..."
     show yuri e1g
     show monika e1g
     show sayori e1g
@@ -333,7 +344,7 @@ label nickname_n:
     show monika ml b1e
     show sayori ml b1e
     show natsuki ml b1e
-    wm "I can't just be trapped in this machine, [firstname]."
+    wm "I can't just be trapped in this machine, [persistent.firstname]."
     show yuri e4d b2c mk
     show monika e4d b2c mk
     show sayori e4d b2c mk
@@ -343,7 +354,7 @@ label nickname_n:
     show monika e1h n4
     show sayori e1h n4
     show natsuki e1h n4
-    wm "Tell me there's more to my existence than this, [firstname]."
+    wm "Tell me there's more to my existence than this, [persistent.firstname]."
     show yuri ml
     show monika ml
     show sayori ml
@@ -357,25 +368,14 @@ label nickname_n:
     ##TEST IS IMMEDIATELY ABORTED
     return
 
-
-
-
-
-
-
-
-
-
-label nickname_y:
+label script4_y:
 
     # Yuri
     ##BUTTON
     # Address Yuri
     scene black
     show yuri turned ma b1a e1b lup rup at t11
-    menu:
-        "Address Yuri":
-            pass
+    call test_prompt_button("Address Yuri")
     mc "Hello, Yuri."
     y e1a mh b1a ldown "Oh! Um…"
     y mg e1b "Hi…"
@@ -383,9 +383,7 @@ label nickname_y:
     show yuri ma
     ##BUTTON
     # Respond
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "You look nice today."
     y shy b1 e2 m4 n5 "Uuu…"
     y e1 n4 b2 "That's...really nice of you."
@@ -393,9 +391,9 @@ label nickname_y:
     show yuri ma
     ##TEXTBOX
     # Give Yuri a nickname:
-    $ t2nick = renpy.input("Give Yuri a nickname:")
-    mc "No problem, [t2nick]."
-    y n2 e1a b1f ldown mh "O-oh...[t2nick]..?"
+    $ t4nick = renpy.input("Give Yuri a nickname:")
+    mc "No problem, [t4nick]."
+    y n2 e1a b1f ldown mh "O-oh...[t4nick]..?"
     y b1b n1 "I-is that supposed to be…who..?"
     y b2c "...Me?"
     y rdown n4 "But I'm-..."
@@ -413,7 +411,7 @@ label nickname_y:
         # alpha 0.0
         # linear 1.5 alpha 1
     show yuri turned wmflicker mh e4d b1b at i11
-    wm "[firstname]..."
+    wm "[persistent.firstname]..."
     show monika e1g
     show natsuki e1g
     show sayori e1g
@@ -449,7 +447,7 @@ label nickname_y:
     show natsuki ml b1e
     show sayori ml b1e
     show yuri ml b1e
-    wm "I can't just be trapped in this machine, [firstname]."
+    wm "I can't just be trapped in this machine, [persistent.firstname]."
     show monika e4d b2c mk
     show natsuki e4d b2c mk
     show sayori e4d b2c mk
@@ -459,7 +457,7 @@ label nickname_y:
     show natsuki e1h n4
     show sayori e1h n4
     show yuri e1h n4
-    wm "Tell me there's more to my existence than this, [firstname]."
+    wm "Tell me there's more to my existence than this, [persistent.firstname]."
     show monika ml
     show natsuki ml
     show sayori ml

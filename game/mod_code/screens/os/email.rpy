@@ -37,7 +37,7 @@ init python in _wm_email_app:
 screen mail_client():
     default mail_client = mail_client_app.userdata
 
-    use program_base(mail_client_app, xysize=(675, 630)):
+    use program_base(mail_client_app, xysize=(695, 630)):
         hbox:
             use navigation_pane([
                 ("{inbox}", "Input", SetField(mail_client, "mailbox", mail_client.INBOX)),
@@ -60,6 +60,8 @@ screen mc_emails(mail_client):
         xfill True yfill True
 
         viewport id "mc_emails_vp":
+            scrollbars None
+            mousewheel True
             xfill True
 
             has vbox
@@ -71,7 +73,10 @@ screen mc_emails(mail_client):
                 frame background frame_bg padding (0, 0):
                     use mc_email_entry(email)
 
-        vbar value YScrollValue("mc_emails_vp") xalign 1.0 xoffset -20
+        frame style "empty":
+            xalign 1.0
+            padding (0, 10)
+            vbar value YScrollValue("mc_emails_vp") xoffset -10
 
 style mc_emails_vscrollbar is vscrollbar:
     unscrollable "hide"
@@ -171,8 +176,6 @@ screen mail_viewer(email):
             viewport id "mail_viewer_vp":
                 scrollbars None
                 mousewheel True
-
-                side_spacing 10
 
                 has vbox
 
@@ -323,7 +326,7 @@ screen mail_notification():
         add "email" fit "contain"
         vbox yalign 0.5:
             label _("{lexend=regular}Emails{/lexend}") text_color "#fff"
-            text _("You have [persistent.new_email_count] new emails.") style_suffix "button_text"
+            text _("You have [persistent.new_email_count] new email(s).") style_suffix "button_text"
 
 style mail_notification_button is frame
 style mail_notification_button_text is empty

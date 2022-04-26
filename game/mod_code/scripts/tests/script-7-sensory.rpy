@@ -77,11 +77,11 @@ label sensory_m:
     show monika b1d e1d rhip
     m "{i}How did you possibly know that independent coffee shops are my thing?{/i}"
     show monika e1a b1a mh
-    m "Well, I know you didn’t create actual wine, but maybe we can get an actual coffee together!"
+    m "Well, I know you didn't create actual wine, but maybe we can get an actual coffee together!"
     show monika e1b b2a mb lpoint
-    m "I think I’m gonna go for...mmm...a caramel macchiato!"
+    m "I think I'm gonna go for...mmm...a caramel macchiato!"
     show monika b1a e1a
-    m "Don’t worry, it’s on me."
+    m "Don't worry, it's on me."
     show monika ma
     menu:
         "Simulate touch":
@@ -147,9 +147,9 @@ label sensory_m:
     show monika mh at t11
     m "...What was that for, [firstname]?"
     show monika e1h mf at sobbing
-    m "You didn’t have to..."
+    m "You didn't have to..."
     show monika mk
-    m "If there’s something you need to let off your chest, there are better ways than...this..."
+    m "If there's something you need to let off your chest, there are better ways than...this..."
     show monika e4e
     menu:
         "Reset memory":
@@ -171,19 +171,19 @@ label sensory_m:
     show monika me
     m "..."
     show monika mg
-    m "Something’s wrong, [firstname]..."
+    m "Something's wrong, [firstname]..."
     show monika e1d mh b2b
     m "Really wrong..."
     show monika e1b
-    m "I...I feel like I’ve been shot in the stomach."
+    m "I...I feel like I've been shot in the stomach."
     show monika b2c
-    m "And I’m bleeding everywhere and I’m all alone."
+    m "And I'm bleeding everywhere and I'm all alone."
     show monika e1c mg b1e
-    m "And nobody’s there to help."
+    m "And nobody's there to help."
     show monika e1g mi
-    m "And there’s nothing I can do but lie back and hope to die quickly."
+    m "And there's nothing I can do but lie back and hope to die quickly."
     show monika b2c
-    m "But I don’t know why."
+    m "But I don't know why."
     show monika e1h mh at sobbing
     m "What happened?"
     show monika e4e mg
@@ -206,7 +206,7 @@ label sensory_m:
     show monika me b1f
     m "Huh?"
     show monika b2a mb
-    m "Oh, I’m okay, $EMPLOYEE_NAME!"
+    m "Oh, I'm okay, $EMPLOYEE_NAME!"
     show monika e1b rhip
     m "A little foggy, but that might just be the wine."
     show monika mc e1a lpoint
@@ -225,7 +225,7 @@ label sensory_s:
     show sayori e4b
     s "Welcome back, ehe~"
     show sayori mh e1a
-    s "How’re you?"
+    s "How're you?"
     show sayori ma
     menu:
         "Initiate test":
@@ -246,7 +246,7 @@ label sensory_s:
     show sayori b1f e1a mb at t11
     s "Whadda you mean, $EMPLOYEE_NAME?"
     show sayori b1a mc ldown
-    s "I don’t feel anything!"
+    s "I don't feel anything!"
     show sayori b2a e1b mb
     s "Well, nothing new, but you know what I mean."
     show sayori ma
@@ -255,13 +255,13 @@ label sensory_s:
             pass
     mc "Can you describe it now?"
     show sayori mg b1f rdown
-    s "What’s...wha-?"
+    s "What's...wha-?"
     show sayori me
     s "Is that..?"
     show sayori e2a ml b1a rup lup at h11
     s "A triple chocolate chip cookie?!"
     show sayori mb at t11
-    s "That’s so {i}weird{/i}!"
+    s "That's so {i}weird{/i}!"
     show sayori e4b mc b3a ldown rdown at h11
     s "But awesome!"
     show sayori e1a mb b1f at t11
@@ -269,9 +269,9 @@ label sensory_s:
     show sayori mn b2a e1c
     s "Mmm..."
     show sayori mb
-    s "That’s so good..."
+    s "That's so good..."
     show sayori mc e1a b1a lup
-    s "It’s delicious, $EMPLOYEE_NAME!"
+    s "It's delicious, $EMPLOYEE_NAME!"
     show sayori e4b at h11
     s "Thanks!"
     show sayori ma at t11
@@ -289,13 +289,13 @@ label sensory_s:
     show sayori b2a e1b mb ldown
     s "Well...I love looking at them at least, ehehe~"
     show sayori e1a
-    s "I think they’re a bit too chaotic for me, but they look really fun!"
+    s "I think they're a bit too chaotic for me, but they look really fun!"
     show sayori b1a lup
-    s "But...I’d be willing to give it a go with you!"
+    s "But...I'd be willing to give it a go with you!"
     show sayori mc
     s "Maybe we could go on the ferris wheel, or–"
     show sayori mk e1c b1c rdown
-    s "Eek, maybe not. That’s like, dizzyingly high!"
+    s "Eek, maybe not. That's like, dizzyingly high!"
     show sayori e2a mb b1a at h11
     s "Oh, oh! Spinning teacups!"
     show sayori e4b mc b1d ldown at t11
@@ -313,7 +313,7 @@ label sensory_s:
     show sayori b2b e1b mb
     s "Aww..."
     show sayori mi b2c
-    s "{i}And{/i} the cookie taste’s gone..."
+    s "{i}And{/i} the cookie taste's gone..."
     show sayori e1a mh lup
     s "Was that the test?"
     show sayori e2d b1f mf n3 rdown at fc1
@@ -323,7 +323,7 @@ label sensory_s:
     show sayori e2c mc b1a
     s "Are you holding my hand?"
     show sayori e4b mb
-    s "D’aww, you’re so cute."
+    s "D'aww, you're so cute."
     show sayori ma
     menu:
         "Test further":
@@ -343,7 +343,7 @@ label sensory_s:
     show sayori e1f mb ldown at fc4
     s "Ehe--ow!"
     show sayori b2b mi
-    s "You’re holding on a little tight, $EMPLOYEE_NAME..."
+    s "You're holding on a little tight, $EMPLOYEE_NAME..."
     show sayori mh b2c
     s "Can you-- agh-- please, let go?"
     show sayori me
@@ -390,15 +390,15 @@ label sensory_s:
     show sayori e1g
     s "My head hurts so bad..."
     show sayori mf
-    s "There’s like..."
+    s "There's like..."
     show sayori e4d mi lup
     s "People. Hundreds of them."
     show sayori b1d mh
-    s "They’re shouting, screaming...barking at me."
+    s "They're shouting, screaming...barking at me."
     show sayori me rdown
     s "Over and over and over, forever."
     show sayori b1e e4e mg
-    s "And my head feels like it’s on fire."
+    s "And my head feels like it's on fire."
     show sayori e1h b2c ml
     s "Why is it hurting so much?!"
     show sayori mh
@@ -421,7 +421,7 @@ label sensory_s:
     show sayori b2a e1c mg
     s "Hmmm...I miss the cookie..."
     show sayori e4b mb b1a rup lup
-    s "But apart from that, I’m good!"
+    s "But apart from that, I'm good!"
     show sayori mh e1a ldown
     s "Why? Have you got another test?"
     show sayori ma
@@ -510,7 +510,7 @@ label sensory_n:
     show natsuki mb b1c
     n "You got the manga, video games, {i}pizza{/i}?"
     show natsuki mc rhip lhip e4b
-    n "That’s like, basically everything I’ll ever need!"
+    n "That's like, basically everything I'll ever need!"
     show natsuki mh n4 e2b
     n "A-and you, I guess..."
     show natsuki mb e2a
@@ -530,7 +530,7 @@ label sensory_n:
     show natsuki cross me b1f
     mc "Can you describe how this feels?"
     show natsuki b1d mi
-    n "I’ll take that as a ‘no’ then."
+    n "I'll take that as a 'no' then."
     show natsuki e1a mg
     n "What now?"
     show natsuki e1b mh
@@ -645,22 +645,22 @@ label sensory_n:
     show natsuki e1g
     n "I feel really...scared.."
     show natsuki e4d me
-    n "I don’t..."
+    n "I don't..."
     show natsuki b2c mg
-    n "I don’t know what’s..."
+    n "I don't know what's..."
     show natsuki e1g mh
     n "What am I feeling, [firstname]?"
     show natsuki mf
     n "Like..."
     show natsuki b2b
-    n "I feel like...I feel like there’s alarm bells going off everywhere."
+    n "I feel like...I feel like there's alarm bells going off everywhere."
     show natsuki e4a mg
     n "And I want to be anywhere but here."
     show natsuki fs sad m3 oe b3
-    n "And...I just want to be in someone’s arms."
+    n "And...I just want to be in someone's arms."
     n "Not yours, but..."
     show natsuki ce
-    n "...I don’t know..."
+    n "...I don't know..."
     show natsuki cry oe
     n "What the hell is happening to me?"
     show natsuki ce m2
@@ -687,7 +687,7 @@ label sensory_n:
     show natsuki -e1b neut b1c om
     n "...Nope, nothing."
     show natsuki b1e mg
-    n "I’m gonna take a shot in the dark and say you’re just milking it now."
+    n "I'm gonna take a shot in the dark and say you're just milking it now."
     show natsuki -b1e happ om ce
     n "For which, I think, warrants another cupcake."
     show natsuki cm oe
@@ -708,7 +708,7 @@ label sensory_y:
     show yuri turned happ b2a mb oe zorder 1 at t11
     y "Hello, $EMPLOYEE_NAME."
     show yuri e1a
-    y "It’s...nice to see you."
+    y "It's...nice to see you."
     show yuri b1a
     y "How can I help?"
     show yuri ma
@@ -719,7 +719,7 @@ label sensory_y:
     show yuri rup mb e4a
     y "Well, of course you can."
     show yuri mg e1a
-    y "I’ll do my best to answer anything you’d like to know."
+    y "I'll do my best to answer anything you'd like to know."
     show yuri ma
     menu:
         "Test control analysis":
@@ -728,7 +728,7 @@ label sensory_y:
     show yuri b1f me
     y "..."
     show yuri mg
-    y "I’m...not sure I understand."
+    y "I'm...not sure I understand."
     show yuri lup e1d
     y "Am I missing something?"
     show yuri mf
@@ -747,7 +747,7 @@ label sensory_y:
     show yuri e1d mb
     y "It is..!"
     show yuri n1 e4a
-    y "This is {i}just{/i} the kind of brew I’d make on a rainy...oh, Sunday afternoon, to accompany my studies."
+    y "This is {i}just{/i} the kind of brew I'd make on a rainy...oh, Sunday afternoon, to accompany my studies."
     show yuri mb e1a b1d ldown
     y "You know me too well."
     show yuri mh e1d b1b n4
@@ -785,11 +785,11 @@ label sensory_y:
             pass
     show yuri mf
     mc "Can you describe how this feels?"
-    #handhold, yuri’s all blushy and that but likes it
+    #handhold, yuri's all blushy and that but likes it
     show yuri e1c mg b2b
-    y "O-oh, well...maybe now’s not the best time anyway..."
+    y "O-oh, well...maybe now's not the best time anyway..."
     show yuri n1 e1a mg b2a
-    y "Well, I can’t taste the tea anymore, if that’s what you-..."
+    y "Well, I can't taste the tea anymore, if that's what you-..."
     show yuri b1b e1d n4 rdown at fc1
     y "..."
     show yuri e1b
@@ -799,9 +799,9 @@ label sensory_y:
     show yuri me e1a
     y "{size=-4}...holding my hand..?{/size}"
     show yuri mg
-    y "That’s very...forward of you."
+    y "That's very...forward of you."
     show yuri e1d mb ldown
-    y "Not that I don’t like it - I-I do."
+    y "Not that I don't like it - I-I do."
     show yuri mf e1c
     y "{size=-8}A lot...{/size}"
     show yuri e4a mb b2a
@@ -813,7 +813,7 @@ label sensory_y:
             pass
     show yuri e1a
     mc "How about now?"
-    #handhold goes into a tickle, yuri’s trying to maintain composure
+    #handhold goes into a tickle, yuri's trying to maintain composure
     show yuri e1d mk b1b at fc2
     y "Wh—ah!"
     show yuri lup mb e4b
@@ -835,9 +835,9 @@ label sensory_y:
     show yuri mb e1a b1b at fc3
     y "W-well, actually–"
     show yuri e4b b3a
-    y "It’s a little--ah!"
+    y "It's a little--ah!"
     show yuri lup b1b mk
-    y "You’ve such a strong grip, it’s actually starting to h-hurt!"
+    y "You've such a strong grip, it's actually starting to h-hurt!"
     show yuri ml e1d at fc4
     y "If you could–please let go!"
     show yuri e4d mi
@@ -865,7 +865,7 @@ label sensory_y:
     show yuri e1h mg
     y "Why would you do that to me?"
     show yuri e4e me
-    y "I don’t understand..."
+    y "I don't understand..."
     show yuri mj
     menu:
         "Reset memory":
@@ -902,9 +902,9 @@ label sensory_y:
     show yuri mg
     y "The last thing I remember is...you holding my hand..."
     show yuri e4a mh
-    y "And now...I feel like my head’s been cut open."
+    y "And now...I feel like my head's been cut open."
     show yuri b2c lup
-    y "And there’s people around me, and they’re digging around inside it, poking and prodding."
+    y "And there's people around me, and they're digging around inside it, poking and prodding."
     show yuri e4d mi
     y "And it hurts...oh my God it hurts."
     show yuri shy e4 b1 m4
@@ -927,7 +927,7 @@ label sensory_y:
     show yuri n3 b1d e1a
     y "Thank you for that."
     show yuri b2a mh rup
-    y "In fact, I’m more than ready to participate in any tests you’d like to run through."
+    y "In fact, I'm more than ready to participate in any tests you'd like to run through."
     show yuri me
     y "..."
     show yuri e1c mg b2b ldown

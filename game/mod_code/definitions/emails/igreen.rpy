@@ -5,9 +5,9 @@ init python:
         unique_id="igreen_email_1",
         subject="Welcome to Turnell",
         contents="""
-Hey [persistent.firstname], I take it you’re the new kid on the block. I’m Iwan, one of the main developers here and probably the one everyone shittalks in the breakroom.
+Hey [persistent.firstname], I take it you're the new kid on the block. I'm Iwan, one of the main developers here and probably the one everyone shittalks in the breakroom.
 
-I just wanted to email you to get our introductions out of the way. You’ll be hearing a lot from me in the near future, as I and Jeremy will be giving you your tasks. I hope you’re good at your job, because I do not suffer fools (which this department is full of).
+I just wanted to email you to get our introductions out of the way. You'll be hearing a lot from me in the near future, as I and Jeremy will be giving you your tasks. I hope you're good at your job, because I do not suffer fools (which this department is full of).
 
 Nice talking with you.
 
@@ -47,4 +47,40 @@ Got it? Good. Happy testing.
 """,
         sender=igreen_sender,
         is_spam=False
+    )
+
+    igreen_email_3 = Email(
+        unique_id="igreen_email_3",
+        subject="Alexa",
+        contents="""
+Hey, it's Iwan. I'll cut to the point here, so…the test.
+
+Long & short of it is, we're in the process of testing the "home assistant" features of the program. Just strike up a search query like you would with Alexa or Cortana or Alice or whatever (bonus points if it's related to DDLC. I know for a fact that every sad old neckbeard from here to Aberdeen will think it very funny to try it).
+
+Record the results as usual, and you should be done for the day. Any complications or unusual activity goes in the report.
+
+- IG
+""",
+        sender=igreen_sender,
+        is_spam=False
+    )
+
+    igreen_email_4 = Email(
+        unique_id="igreen_email_4",
+        subject="Sayori response",
+        contents="""
+Thanks for letting me know about Sayori's response. It seems there was a loose end left untied there.
+
+In case you're wondering what was happening, we have very specific instructions in regards to how the program is supposed to react impartially to announcing news reports aloud. That seems to have been mixed up with how it reacts to hearing bad news from the user, so she treated the news as if you'd told her.
+
+I'm making a note of this for Monday so I can take a crack at fixing it then. In the meantime, I'm clocking out. If you need me, I'll be waiting for my taxi out front.
+
+- IG
+""",
+        sender=igreen_sender,
+        is_spam=False,
+        quick_replies=[
+            EmailReply("Be there now!", Call("script3_post_finish")),
+            EmailReply("Goodnight.", Call("script3_post_finish"))
+        ]
     )

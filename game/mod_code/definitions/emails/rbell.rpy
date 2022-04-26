@@ -44,7 +44,7 @@ Speaking of, this is also a reminder to check your email often! Well, the upper 
 
 News and updates come fast here at Turnell, thanks to our lead devs Jeremy and Iwan. You'll rarely interact with them, but feel free to introduce yourself! Jez will at least respond, but don't be intimidated if Iwan gives you the cold shoulder, haha. He's a nice guy, just a wee bit crabby.
 
-Alright, I’ve cut into enough of your valuable testing time now, haha. Once you're done with this next test, Iwan will likely have an update ready. You can take a coffee break if you'd like? Let me know and I'll show you around the recreational facilities. Heck, we even have a gym.
+Alright, I've cut into enough of your valuable testing time now, haha. Once you're done with this next test, Iwan will likely have an update ready. You can take a coffee break if you'd like? Let me know and I'll show you around the recreational facilities. Heck, we even have a gym.
 
 See you in a few. 
 
@@ -54,8 +54,27 @@ Quality Assurance Lead
         sender=rbell_sender,
         is_spam=False,
         quick_replies=[ 
-            EmailReply("Thanks!", Call("formal_intro_post_finish")), 
-            EmailReply("See you soon!", Call("formal_intro_post_finish")), 
-            EmailReply("Bye!", Call("formal_intro_post_finish")) 
+            EmailReply("Thanks!", Call("script1_post_finish")), 
+            EmailReply("See you soon!", Call("script1_post_finish")), 
+            EmailReply("Bye!", Call("script1_post_finish")) 
         ]
+    )
+
+    rbell_email_3 = Email(
+        unique_id="rbell_email_3",
+        subject="Email bug URGENT",
+        contents="""
+Just so everyone's aware, Greg reported a bug within the application's email system today. Rarely, some emails are being sent to incorrect recipients, but only showing up in the application install directories (so not within the application itself). This is only affecting the Quality Assurance division as of right now, the developer group hasn't reported this.
+
+He's pushing out a fix as we speak, but it's a temporary patch until he can get the full thing working. Currently we don't know what's causing it, but for right now, if you find any emails that don't include your name or a group you've been assigned to as the recipient, please DO NOT open them and instead forward them to me in an email. There shouldn't be anything in there that your level of security clearance isn't supposed to see, but better safe than sorry.
+
+If you do read them and we find out, that's an instant termination. I don't want any of you to be fired because of a dumb glitch, so let's stay true to our Turnell Trust, yeah? I know I can count on you guys to keep this quiet.
+
+Thanks,
+
+Robert Bell
+Quality Assurance Lead
+""",
+        sender=rbell_sender,
+        is_spam=False
     )
