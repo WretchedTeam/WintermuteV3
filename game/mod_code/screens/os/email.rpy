@@ -319,7 +319,7 @@ style attachment_button_text:
 screen mail_notification():
     style_prefix "mail_notification"
 
-    button xysize (400, 120):
+    button xysize (400, 120) at window_animation:
         action Function(mail_client_app.open)
         padding (20, 20)
 

@@ -12,7 +12,7 @@ python early:
     """)
 
     from renpy.display.accelerator import transform_render
-    from math import pow, sqrt, log
+    from math import sqrt
 
     def new_transform_render(self, width, height, st, at):
         rv = transform_render(self, width, height, st, at)
@@ -30,14 +30,17 @@ python early:
                 render.add_shader(s)
                 render.add_uniform("u_radius", blur)
                 render.add_uniform("u_sqr_sigma", sqr_sigma)
+                
                 render.add_uniform("u_norm_coeff", norm_coeff)
 
                 return render
 
-            sqr_sigma = pow(blur / 2.0, 2.0)
+            sigma = blur / 2.0
+            sqr_sigma = sigma ** 2
             norm_coeff = 1.0 / sqrt(2.0 * 3.14 * sqr_sigma)
 
-            for s in [ "wm.gaussian_h", "wm.gaussian_v" ]:
+            shaders = [ "wm.gaussian_h", "wm.gaussian_v" ]
+            for s in shaders:
                 render = apply_gaussian_blur(render, s, blur, sqr_sigma, norm_coeff)
 
             return render

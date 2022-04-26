@@ -35,8 +35,8 @@ init python in _wm_test:
 
             self.key = key
             self.name = name
-            self.description = description
-            self.final_report = final_report
+            self.description = description.strip()
+            self.final_report = final_report.strip()
             self.main_email = get_email(main_email)
 
             if assigner is None:
@@ -63,7 +63,6 @@ init python in _wm_test:
             renpy.mark_label_unseen(self.main_label)
             self.mark_incomplete()
 
-        @debug
         def mark_complete(self):
             persistent.completed_tests.append(self.key)
 

@@ -12,6 +12,7 @@ init python in _wm_dashboard_app:
 
         def __init__(self):
             self.display = self.DETAILS
+            self.selected_test = None
 
     class AIEntry(object):
         def __init__(self, thumbnail, wm_id, name, age):
@@ -178,12 +179,16 @@ style dashboard_subject_entry_label_text:
 
 screen dashboard_completed_tests():
     style_prefix "dashboard_completed_tests"
-    
+
+    $ dashboard = dashboard_app.userdata    
     $ finished_tests = [ test for test in wintermute_tests if test.is_completed() ]
 
     if not finished_tests:
         text _("No tests are completed.") align (0.5, 0.5):
             style "dashboard_no_tests"
+
+    elif dashboard.selected_test is not None:
+        use dashboard_test_report()
 
     else:
         vbox:
@@ -199,7 +204,7 @@ screen dashboard_completed_tests():
 
             add Solid("#B44343") ysize 2
 
-            null height 30
+            null height 15
 
             vpgrid cols 1:
                 for i in finished_tests:
@@ -211,22 +216,27 @@ style dashboard_completed_tests_label_text is dashboard_ai_subjects_label_text
 screen dashboard_test_entry(test):
     style_prefix "dashboard_test_entry"
 
+    $ dashboard = dashboard_app.userdata
+
     vbox:
-        button:
+        button action SetField(dashboard, "selected_test", test):
             has hbox:
                 yalign 0.5
 
             label test.name xsize 550 yalign 0.5
             text _("Completed") yalign 0.5 color "#009378"
 
-        null height 18
         add Solid("#C4C4C4") ysize 1
-        null height 18
 
-style dashboard_test_entry_button is empty
+style dashboard_test_entry_button is button
 style dashboard_test_entry_text is empty
 style dashboard_test_entry_label is empty
 style dashboard_test_entry_label_text is dashboard_test_entry_text
+
+style dashboard_test_entry_button:
+    padding (0, 18)
+    xfill True
+    hover_background "#0001"
 
 style dashboard_test_entry_text:
     font _wm_font_ubuntu.light size 22
@@ -234,3 +244,36 @@ style dashboard_test_entry_text:
 
 style dashboard_test_entry_label_text:
     font _wm_font_ubuntu.regular
+
+screen dashboard_test_report():
+    style_prefix "dashboard_test_report"
+
+    $ dashboard = dashboard_app.userdata
+    $ test = dashboard.selected_test
+
+    vbox:
+        label test.name
+        null height 10
+        label "{color=#009378}Test Complete{/color}" text_size 24
+        null height 30
+        text _("{ubuntu=light}Assigned by{/ubuntu} {ubuntu=medium}[test.assigner]{/ubuntu}") color "#000" size 22
+        null height 30
+
+        label _("{ubuntu=medium}Final Report:{/ubuntu}") text_size 24
+
+        null height 20
+
+        side "l r":
+            spacing 10
+
+            viewport id "dashboard_test_report_vp" ysize 250:
+                mousewheel True
+                text test.final_report color "#000"
+
+            vbar value YScrollValue("dashboard_test_report_vp")
+
+    use padded_button(_("Return"), SetField(dashboard, "selected_test", None), xysize=(225, 52), align=(0.0, 1.0))
+
+style dashboard_test_report_label is dashboard_ai_subjects_label
+style dashboard_test_report_label_text is dashboard_ai_subjects_label_text
+

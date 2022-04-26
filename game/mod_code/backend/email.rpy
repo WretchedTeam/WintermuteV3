@@ -4,7 +4,7 @@ default persistent.marked_emails = [ ]
 default persistent.replied_emails = [ ]
 
 init python in _wm_email:
-    from store import NoRollback, NullAction, persistent
+    from store import NoRollback, NullAction, persistent, debug
 
     emails = { }
     sender_emails = [ ]
@@ -36,6 +36,20 @@ init python in _wm_email:
 
         def is_read(self):
             return self.unique_id in persistent.read_emails
+
+        @debug
+        def mark_locked(self):
+            if not self.is_unlocked():
+                return
+
+            persistent.unlocked_emails.remove(self.unique_id)
+
+        @debug
+        def mark_unread(self):
+            if not self.is_read():
+                return 
+
+            persistent.read_emails.remove(self.unique_id)
 
         def toggle_starred(self):
             if self.unique_id in persistent.marked_emails:
