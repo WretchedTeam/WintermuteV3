@@ -1,6 +1,7 @@
 init -5 python in _wm_manager:
     zorders = [ ]
     positions = { }
+    open_apps = [ ]
 
     def get_zorder(screen_id):
         if screen_id in zorders:
@@ -23,7 +24,7 @@ init -5 python in _wm_manager:
         if screen_id in positions:
             return positions[screen_id]
 
-        p = 100 + len(zorders) * 50
+        p = 100 + len(open_apps) * 50
 
         new_pos = (p, p)
         positions[screen_id] = new_pos
@@ -38,8 +39,9 @@ init -5 python in _wm_manager:
             for i in cls._instances:
                 i.close()
 
-        def __init__(self, name, screen_id, userdata=None):
+        def __init__(self, name, icon, screen_id, userdata=None):
             self.name = name
+            self.icon = icon
             self.screen_id = screen_id
             self.userdata = userdata
             self._instances.append(self)
@@ -58,11 +60,26 @@ init -5 python in _wm_manager:
 
         def open(self, *args, **kwargs):
             renpy.show_screen(self.screen_id, _zorder=get_zorder(self.screen_id), *args, **kwargs)
+            open_apps.append(self)
 
         def close(self):
             renpy.hide_screen(self.screen_id)
             if self.screen_id in zorders:
                 zorders.remove(self.screen_id)
+
+            if self in open_apps:
+                open_apps.remove(self)
+
+transform window_animation():
+    crop_relative True
+
+    on show:
+        alpha 0.0 zoom 0.5
+        easein 0.1 alpha 1.0 zoom 1.0
+
+    on hide:
+        alpha 1.0 zoom 1.0
+        easein 0.1 alpha 0.0 zoom 0.5
 
 screen program_header(title, close_action=NullAction()):
     style_prefix "header"

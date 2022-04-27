@@ -1,5 +1,5 @@
-define 2 mail_client_app = _wm_manager.Application("Turnell Mail Client", "mail_client", _wm_email_app.MailClient())
-define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_viewer")
+define 2 mail_client_app = _wm_manager.Application("Turnell Mail Client", "email", "mail_client", _wm_email_app.MailClient())
+define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "email", "mail_viewer")
 
 init python in _wm_email_app:
     from store._wm_email import emails

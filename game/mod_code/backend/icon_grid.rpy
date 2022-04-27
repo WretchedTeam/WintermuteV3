@@ -44,13 +44,13 @@ init -10 python:
 
             drags[0].snap(x, y, 0.1)
 
-screen desktop_app_icon(icon, title, app, _pos=(0, 0)):
+screen desktop_app_icon(title, app, _pos=(0, 0)):
     drag:
         dragged GridSnap((16, 10))
         pos _pos
         draggable True
-        idle_child desktop_icon_image(icon, title)
-        hover_child desktop_icon_image(icon, title, "#0003")
+        idle_child desktop_icon_image(app.icon, title)
+        hover_child desktop_icon_image(app.icon, title, "#0003")
 
         clicked [ Play("audio", gui.activate_sound), Function(app.open) ]
         activated desktop_icon_activated

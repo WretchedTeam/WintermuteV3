@@ -1,4 +1,5 @@
 init -10 python:
+    import datetime
     def debug(method):
         def inner(*args, **kwargs):
             if config.developer:

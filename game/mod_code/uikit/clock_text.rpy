@@ -9,16 +9,17 @@ init python in _wm_clock_text:
     from datetime import datetime
     from store import (
         DynamicDisplayable,
-        Text
+        Text,
+        wm_game_time
     )
 
     def __format_time():
-        now = datetime.now()
+        now = wm_game_time.now()
         fmt_time = now.strftime("{lexend=regular}%I{image=wm_clock_colon}%M{/lexend}")
         return fmt_time + " " + now.strftime("{lexend=light}%p{/lexend}").lower()
 
     def __format_date():
-        now = datetime.now()
+        now = wm_game_time.now()
         return now.strftime("{lexend=regular}%A{/lexend}{lexend=light}, %d %B, %Y{/lexend}")
 
     def __get_text_displayable(st, at, func, size):
@@ -32,3 +33,7 @@ screen wm_clock_text():
         add _wm_clock_text.time_display xalign 1.0
         add _wm_clock_text.date_display
 
+screen wm_clock_text_centered():
+    vbox:
+        add _wm_clock_text.time_display xalign 0.5
+        add _wm_clock_text.date_display xalign 0.5

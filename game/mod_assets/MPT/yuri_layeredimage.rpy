@@ -1,8 +1,8 @@
 
-
+define yuri_transforms = [ Flatten ]
 
 layeredimage yuri turned:
-    at [ Flatten, _wm_breathing.BreathingCurried() ]
+    at yuri_transforms
     always "mod_assets/MPT/yuri/yuri_turned_facebase.png"
     
     
@@ -381,7 +381,7 @@ layeredimage yuri turned:
 
 
 layeredimage yuri shy:
-    at [ Flatten, _wm_breathing.BreathingCurried() ]
+    at yuri_transforms
     always "mod_assets/MPT/yuri/yuri_shy_facebase.png"
     
     

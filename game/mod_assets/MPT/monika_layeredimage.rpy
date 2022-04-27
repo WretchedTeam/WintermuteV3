@@ -1,5 +1,7 @@
+define monika_transforms = [ Flatten ]
+
 layeredimage monika forward: #All definitions are for her facing forward.
-    at [ Flatten, _wm_breathing.BreathingCurried() ]
+    at monika_transforms
     always "mod_assets/MPT/monika/monika_forward_facebase.png" #We always use the basic face.
     
     group outfit:
@@ -321,7 +323,7 @@ layeredimage monika forward: #All definitions are for her facing forward.
 
 
 layeredimage monika lean:
-    at [ Flatten, _wm_breathing.BreathingCurried() ]
+    at monika_transforms
     
     group outfit: #These attributes are here only to determine which set of "body" sprites to use later.  "null" is what lets us just use these attributes as logic and nothing else.
         

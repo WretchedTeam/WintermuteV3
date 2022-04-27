@@ -1,11 +1,11 @@
 init python in _wm_clock_analog:
     from store._wm_displayables import DashedCircle
-    from store import NoRollback
+    from store import NoRollback, wm_game_time
     from renpy.display.matrix import Matrix2D
 
     import pygame_sdl2
     import math
-    from datetime import datetime
+    # from datetime import datetime
 
     TAU = 2 * math.pi
 
@@ -68,7 +68,7 @@ init python in _wm_clock_analog:
 
                     child.place(rv, adjusted_x, adjusted_y, width, height, surf)
 
-            now = datetime.now()
+            now = wm_game_time.now()
 
             hour_theta = ((now.hour % 12.0) / 12.0) * TAU - math.pi / 2.0
             minute_theta = (now.minute / 60.0) * TAU - math.pi / 2.0

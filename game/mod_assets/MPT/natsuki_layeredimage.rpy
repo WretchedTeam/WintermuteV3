@@ -178,9 +178,10 @@ image nat_fs_b2:
 image nat_fs_b3:
     "mod_assets/MPT/natsuki/natsuki_fs_eyebrows_b3.png"
 
+define natsuki_transforms = [ Flatten ]
 
 layeredimage natsuki turned:
-    at [ Flatten, _wm_breathing.BreathingCurried() ]
+    at natsuki_transforms
     
     
     group outfit:
@@ -686,7 +687,7 @@ layeredimage natsuki turned:
 
 
 layeredimage natsuki cross:
-    at [ Flatten, _wm_breathing.BreathingCurried() ]
+    at natsuki_transforms
     
     
     group outfit:
@@ -736,8 +737,8 @@ layeredimage natsuki cross:
     group head: #This needs to render below her body for her "cross" pose.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         attribute ff default:
             "mod_assets/MPT/natsuki/natsuki_face_forward.png"
@@ -765,8 +766,8 @@ layeredimage natsuki cross:
     group nose if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         ###Default nose/blush
         attribute nose default if_any(["nobl"]):
@@ -796,8 +797,8 @@ layeredimage natsuki cross:
     group mouth if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         ###Default Closed Mouths:
         attribute cm default if_any(["happ","sedu","nerv"]):
@@ -877,8 +878,8 @@ layeredimage natsuki cross:
     group eyes if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         ###Default Opened eyes:
         attribute oe default if_any(["neut","happ","laug","pout","curi"]):
@@ -956,8 +957,8 @@ layeredimage natsuki cross:
     group eyebrows if_all(["ff"]) if_not(["fta","fs"]): #eyebrows.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         #Default Eyebrows:
         attribute brow default if_any(["neut","dist","sedu"]):
@@ -979,8 +980,8 @@ layeredimage natsuki cross:
     group eyebrows:#In case you're wondering why there's no if_all or if_not logic on this group line, it's because the attributes below explicitly use the same logic - and if you have a group and an attribute both using the same logic tag, the attribute one will COMPLETELY overwrite and ignore the group logic.  It took me way too long to figure this out.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         attribute brow default if_any(["vang"]) if_all(["ff","oe"]) if_not(["fta","fs","ce"]):
             "nat_ff_b1d"
@@ -1004,8 +1005,8 @@ layeredimage natsuki cross:
     group eyebrows if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         ###All eyebrows - truncated tags:
         attribute b1a:
@@ -1039,8 +1040,8 @@ layeredimage natsuki cross:
     group special if_all(["ff"]) if_not(["fta","fs"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         attribute s_scream:
             "mod_assets/MPT/natsuki/natsuki_face_special_scream.png"
@@ -1054,8 +1055,8 @@ layeredimage natsuki cross:
     group nose if_all(["fs"]) if_not(["ff","fta"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):
@@ -1088,8 +1089,8 @@ layeredimage natsuki cross:
     group mouth if_all(["fs"]) if_not(["ff","fta"]):
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         #Closed mouths
         attribute cm default if_any(["neut"]):
@@ -1117,8 +1118,8 @@ layeredimage natsuki cross:
     group eyes if_all(["fs"]) if_not(["ff","fta","n5","bful"]): #Cannot show if full-face blush is present.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         #Open eyes
         attribute oe default if_any(["neut"]):
@@ -1156,8 +1157,8 @@ layeredimage natsuki cross:
     group eyebrows if_all(["fs"]) if_not(["ff","fta","n5","bful"]): #Cannot show if full-face blush is present.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         #default brows
         attribute brow default if_any(["neut"]):
@@ -1170,8 +1171,8 @@ layeredimage natsuki cross:
     group eyebrows:#Required separate group definition because of additional logic for showing these particular eyebrows.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         attribute brow default if_any(["cry"]) if_all(["fs","oe"]) if_not(["ff","fta","n5","bful","ce"]):
             "nat_fs_b3"
@@ -1183,8 +1184,8 @@ layeredimage natsuki cross:
     group eyebrows if_all(["fs"]) if_not(["ff","fta","n5","bful"]): #Cannot show if full-face blush is present.
         
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
         
         #All eyebrows - truncated tags:
         attribute b1:

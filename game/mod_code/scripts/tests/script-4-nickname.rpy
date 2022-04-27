@@ -42,6 +42,8 @@ label script4_finished():
 label script4_post_finish():
     $ renpy.transition(Fade(0.5, 1, 0.5))
     $ _wm_manager.Application.close_all_apps()
+    $ wm_game_time.advance_time(datetime.timedelta(days=7))
+
     pause 0.75
 
     scene black
