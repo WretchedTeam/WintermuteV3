@@ -1,5 +1,5 @@
 
-define sayori_transforms = [ Flatten ]
+define sayori_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("sayori") ]
 
 layeredimage sayori turned: #turned definitions.
     at sayori_transforms

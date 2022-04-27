@@ -178,7 +178,7 @@ image nat_fs_b2:
 image nat_fs_b3:
     "mod_assets/MPT/natsuki/natsuki_fs_eyebrows_b3.png"
 
-define natsuki_transforms = [ Flatten ]
+define natsuki_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("natsuki") ]
 
 layeredimage natsuki turned:
     at natsuki_transforms

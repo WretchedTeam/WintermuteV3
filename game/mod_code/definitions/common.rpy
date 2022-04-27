@@ -1,4 +1,4 @@
-init -10 python:
+init -1400 python:
     import datetime
     def debug(method):
         def inner(*args, **kwargs):
@@ -8,6 +8,31 @@ init -10 python:
                 raise Exception("Not in dev mode.")
 
         return inner
+
+    class Interpolator(object):
+        def __init__(self, duration):
+            self.init_time = time.time()
+            self.duration = duration
+
+        def reset(self):
+            self.init_time = time.time()
+
+        def is_finished(self):
+            return self.elapsed_time > self.duration
+
+        @property
+        def elapsed_time(self):
+            return (time.time() - self.init_time) * renpy.display.core.time_mult
+
+        @property
+        def current_interpolation(self):
+            interpolation = self.elapsed_time / self.duration
+
+            # Clamp it between 0.0 and 1.0
+            interpolation = max(interpolation, 0.0)
+            interpolation = min(interpolation, 1.0)
+
+            return interpolation
 
 label test_prompt_button(t):
     menu:

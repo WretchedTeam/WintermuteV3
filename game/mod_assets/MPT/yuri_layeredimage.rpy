@@ -1,5 +1,5 @@
 
-define yuri_transforms = [ Flatten ]
+define yuri_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("yuri") ]
 
 layeredimage yuri turned:
     at yuri_transforms
