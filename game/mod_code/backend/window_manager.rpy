@@ -60,7 +60,8 @@ init -5 python in _wm_manager:
 
         def open(self, *args, **kwargs):
             renpy.show_screen(self.screen_id, _zorder=get_zorder(self.screen_id), *args, **kwargs)
-            open_apps.append(self)
+            if self not in open_apps:
+                open_apps.append(self)
 
         def close(self):
             renpy.hide_screen(self.screen_id)

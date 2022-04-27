@@ -10,17 +10,17 @@ screen dock():
                         add app.icon fit "contain"
 
 transform dock_animation:
-    yoffset 10
+    yoffset 15
     ypos 1.0
 
     on show:
-        ease_cubic 0.5 yoffset -10 yanchor 1.0
+        ease_cubic 0.5 yoffset -15 yanchor 1.0
 
     on hide:
-        ease_cubic 0.5 yoffset 10 yanchor 0.0 
+        ease_cubic 0.5 yoffset 15 yanchor 0.0 
 
 style dock_frame:
     xalign 0.5 yalign 0.99
     ysize 110
-    background RoundedFrame(Solid("#fff5"), radius=10.0)
+    background RoundedFrame(Solid("#fff5"), radius=10.0, outline_width=1.0, outline_color="#fff8")
     padding (10, 10)

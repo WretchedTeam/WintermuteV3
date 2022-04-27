@@ -20,6 +20,7 @@ init python in _wm_rounded:
 
             if self.radius or self.outline_width:
                 rv.mesh = True
+                rv.opaque = False
 
                 rv.add_property("gl_pixel_perfect", True)
                 rv.add_property("gl_mipmap", False)
@@ -34,7 +35,15 @@ init python in _wm_rounded:
                 rv.add_uniform("u_radius", self.radius / deno)
 
                 rv.add_uniform("u_outline_width", self.outline_width / deno)
-                rv.add_uniform("u_outline_color", self.outline_color.rgba)
+
+                def normalize_color(col):
+                    a = col[3] / 255.0
+                    r = a * col[0] / 255.0
+                    g = a * col[1] / 255.0
+                    b = a * col[2] / 255.0
+                    return (r, g, b, a)
+
+                rv.add_uniform("u_outline_color", normalize_color(self.outline_color))
                 rv.add_uniform("u_resolution", rv.get_size())
                 rv.add_property("texture_scaling", "nearest")
 
