@@ -1,4 +1,4 @@
-screen power_options():
+screen power_options(return_action=None):
     style_prefix "power_options"
 
     button action Quit(confirm=False):
@@ -8,6 +8,11 @@ screen power_options():
     button action Function(renpy.quit, True):
         at power_option_transform
         add _wm_power_button.restart
+
+    if return_action is not None:
+        button action return_action:
+            at power_option_transform
+            add _wm_power_button.arrow_left
 
 style power_options_button is button
 
@@ -28,6 +33,7 @@ init python in _wm_power_button:
 
     shutdown = iconbutton("{power}", "{lexend=light}Shutdown{/lexend}")
     restart = iconbutton("{restart}", "{lexend=light}Restart{/lexend}")
+    arrow_left = iconbutton("{arrow_left}", "{lexend=light}Return{/lexend}")
 
 transform power_option_transform:
     alpha 0.6

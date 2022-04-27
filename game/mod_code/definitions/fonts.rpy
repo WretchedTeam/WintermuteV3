@@ -60,6 +60,7 @@ init -100 python in _wm_font_feather:
     register_feather_icon("user", "")
     register_feather_icon("login", "")
     register_feather_icon("restart", "")
+    register_feather_icon("arrow_left", "")
 
 init -10 python in _wm_font_lexend:
     light = "mod_assets/gui/font/Lexend/Lexend-Light.ttf"

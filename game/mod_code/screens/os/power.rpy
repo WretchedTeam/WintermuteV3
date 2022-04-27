@@ -4,9 +4,10 @@ init python:
     renpy.add_layer("power_off", "screens")
 
 screen power_off_prompt():
+    default hide_action = Hide("power_off_prompt", _layer="power_off")
     style_prefix "power_off_prompt"
 
-    button action Hide("power_off_prompt", _layer="power_off"):
+    button action hide_action:
         style "empty"
         xfill True yfill True
 
@@ -14,9 +15,9 @@ screen power_off_prompt():
         has hbox:
             spacing 10
 
-        use power_options()
+        use power_options(hide_action)
 
-    key "game_menu" action Hide("power_off_prompt", _layer="power_off")
+    key "game_menu" action hide_action
 
     on "show" action [ 
         Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], "master"),
