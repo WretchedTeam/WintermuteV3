@@ -19,7 +19,7 @@ python early:
 
         def gaussian_blur(render, blur):
 
-            def apply_gaussian_blur(render, s, blur, sqr_sigma, norm_coeff):
+            def apply_gaussian_blur(render, s, blur, sigma, sqr_sigma):
                 cr = render
 
                 render = renpy.Render(*cr.get_size())
@@ -29,19 +29,18 @@ python early:
 
                 render.add_shader(s)
                 render.add_uniform("u_radius", blur)
+                render.add_uniform("u_sigma", sigma)
                 render.add_uniform("u_sqr_sigma", sqr_sigma)
                 
-                render.add_uniform("u_norm_coeff", norm_coeff)
-
                 return render
 
             sigma = blur / 2.0
             sqr_sigma = sigma ** 2
-            norm_coeff = 1.0 / sqrt(2.0 * 3.14 * sqr_sigma)
 
             shaders = [ "wm.gaussian_h", "wm.gaussian_v" ]
+            # shaders = [ "wm.gaussian_incre_h", "wm.gaussian_incre_v" ]
             for s in shaders:
-                render = apply_gaussian_blur(render, s, blur, sqr_sigma, norm_coeff)
+                render = apply_gaussian_blur(render, s, blur, sigma, sqr_sigma)
 
             return render
 

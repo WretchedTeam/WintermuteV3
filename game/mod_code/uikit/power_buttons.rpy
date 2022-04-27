@@ -1,7 +1,7 @@
 screen power_options():
     style_prefix "power_options"
 
-    button action Quit():
+    button action Quit(confirm=False):
         at power_option_transform
         add _wm_power_button.shutdown
 
@@ -9,8 +9,12 @@ screen power_options():
         at power_option_transform
         add _wm_power_button.restart
 
+style power_options_button is button
+
 style power_options_button:
-    xysize (120, 120)
+    padding (20, 20)
+    size_group "power_options_button"
+    hover_background RoundedFrame("#fff4", radius=10.0)
 
 init python in _wm_power_button:
     from store import Text, VBox
