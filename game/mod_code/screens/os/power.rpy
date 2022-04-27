@@ -18,8 +18,15 @@ screen power_off_prompt():
 
     key "game_menu" action Hide("power_off_prompt", _layer="power_off")
 
-    on "show" action Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], "screens")
-    on "hide" action Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], "screens")
+    on "show" action [ 
+        Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], "master"),
+        Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], "screens")
+    ]
+
+    on "hide" action [
+        Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], "master"),
+        Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], "screens")
+    ]
 
 style power_off_prompt_frame:
     align (0.5, 0.5)

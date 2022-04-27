@@ -24,7 +24,7 @@ init -5 python in _wm_manager:
         if screen_id in positions:
             return positions[screen_id]
 
-        p = 100 + len(open_apps) * 50
+        p = 50 + len(open_apps) * 50
 
         new_pos = (p, p)
         positions[screen_id] = new_pos
