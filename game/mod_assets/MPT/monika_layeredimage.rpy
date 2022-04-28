@@ -1,4 +1,4 @@
-define monika_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("monika") ]
+define monika_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("monika"), _wm_breathing.BreathingCurried("monika") ]
 
 layeredimage monika forward: #All definitions are for her facing forward.
     at monika_transforms
