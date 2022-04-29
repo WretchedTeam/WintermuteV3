@@ -1,21 +1,24 @@
-image desktop_background:
-    "mod_assets/os/background.png"
+image desktop_background = "mod_assets/os/background.png"
 
 image avatar:
     "mod_assets/os/avatar.png"
     zoom 0.5
 
-image wintermute:
+image wintermute icon:
     "mod_assets/os/icons/wintermute.png"
-    zoom 0.5
+    zoom 0.25
 
-image terminal:
+image terminal icon:
     "mod_assets/os/icons/terminal.png"
     zoom 0.5
 
-image email:
-    "mod_assets/os/icons/email.png"
-    zoom 0.5
+image mail_client icon:
+    "mod_assets/os/icons/mail_client.png"
+    zoom 0.25
+
+image mail_viewer icon:
+    "mod_assets/os/icons/mail_viewer.png"
+    zoom 0.25
 
 image icosahedron:
     "mod_assets/os/icosahedron.png"

@@ -1,5 +1,5 @@
-define 2 mail_client_app = _wm_manager.Application("Turnell Mail Client", "email", "mail_client", _wm_email_app.MailClient())
-define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "email", "mail_viewer")
+define 2 mail_client_app = _wm_manager.Application("Turnell Mail Client", "mail_client icon", "mail_client", _wm_email_app.MailClient())
+define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_viewer icon", "mail_viewer")
 
 init python in _wm_email_app:
     from store._wm_email import emails
@@ -56,14 +56,13 @@ screen mc_emails(mail_client):
     style_prefix "mc_emails"
 
     frame background "#F0F2F9":
-        padding (0, 0)
+        padding (0, 0, 20, 0)
         xfill True yfill True
 
         hbox:
             viewport id "mc_emails_vp":
                 scrollbars None
                 mousewheel True
-                xfill True
 
                 has vbox
 
@@ -75,8 +74,9 @@ screen mc_emails(mail_client):
                         use mc_email_entry(email)
 
             frame style "empty":
+                background "#fff"
                 padding (0, 8)
-                vbar value YScrollValue("mc_emails_vp") xoffset -15
+                vbar value YScrollValue("mc_emails_vp") xoffset 6
 
 style mc_emails_vscrollbar is vscrollbar:
     unscrollable "hide"

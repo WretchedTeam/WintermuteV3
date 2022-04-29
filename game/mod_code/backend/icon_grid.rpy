@@ -4,8 +4,8 @@ init -10 python:
         return Fixed(
             Solid(background),
             Transform(icon, xalign=0.5, yalign=0.2),
-            Text(title, size=14, xalign=0.5, yalign=0.9),
-            xysize=(100, 100)
+            Text(title, size=18, xalign=0.5, yalign=0.9, font=_wm_font_lexend.light),
+            xysize=(130, 130)
         )
 
     def desktop_icon_activated(drags):

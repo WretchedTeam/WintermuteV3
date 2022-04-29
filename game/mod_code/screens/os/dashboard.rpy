@@ -1,4 +1,4 @@
-define 2 dashboard_app = _wm_manager.Application("Wintermute Dashboard", "wintermute", "dashboard", _wm_dashboard_app.Dashboard())
+define 2 dashboard_app = _wm_manager.Application("Wintermute Dashboard", "wintermute icon", "dashboard", _wm_dashboard_app.Dashboard())
 
 init python in _wm_dashboard_app:
     register_feather_icon("clipboard", "")
