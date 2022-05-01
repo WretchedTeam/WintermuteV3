@@ -60,7 +60,7 @@ If I package this up as an update you wanna give it a shot so i can get him off 
 Jez :)
 """,
         sender=josborne_sender,
-        is_spam=False
+        is_important=True
     )
 
     josborne_email_4 = Email(

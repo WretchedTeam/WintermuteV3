@@ -1,4 +1,4 @@
-define wm_game_time = _wm_time.WintermuteTime()
+define -10 wm_game_time = _wm_time.WintermuteTime()
 
 init -150 python in _wm_time:
     from store import NoRollback, persistent, config

@@ -2,13 +2,16 @@ default persistent.unlocked_emails = [ ]
 default persistent.read_emails = [ ]
 default persistent.replied_emails = [ ]
 
+default persistent.email_dates = { }
+
 init python in _wm_email:
     from store import (
         NoRollback, 
         NullAction, 
         persistent, 
         debug, 
-        execute_callbacks
+        execute_callbacks,
+        wm_game_time
     )
     from store._wm_manager import desktop_open_callbacks
 
@@ -29,8 +32,8 @@ init python in _wm_email:
         mail_client_screen_name = "mail_client"
         notification_screen_name = "mail_notification"
 
-        def __init__(self, unique_id, subject, contents, sender, is_spam, attachments=None, 
-                quick_replies=None, open_callbacks=None, unlock_callbacks=None):
+        def __init__(self, unique_id, subject, contents, sender, is_spam=False, is_important=False,
+                attachments=None, quick_replies=None, open_callbacks=None, unlock_callbacks=None):
 
             self.unique_id = unique_id
 
@@ -38,6 +41,7 @@ init python in _wm_email:
             self.contents = contents.strip()
             self.sender = sender
             self.is_spam = is_spam
+            self.is_important = is_important
             self.attachments = attachments
             self.quick_replies = quick_replies
 
@@ -59,6 +63,7 @@ init python in _wm_email:
                 return
 
             persistent.unlocked_emails.remove(self.unique_id)
+            persistent.email_dates.pop(self.unique_id)
 
         @debug
         def mark_unread(self):
@@ -83,6 +88,7 @@ init python in _wm_email:
                 return
 
             persistent.unlocked_emails.insert(0, self.unique_id)
+            persistent.email_dates[self.unique_id] = wm_game_time.today()
 
             if self.unlock_callbacks is not None:
                 execute_callbacks(self.unlock_callbacks, self)

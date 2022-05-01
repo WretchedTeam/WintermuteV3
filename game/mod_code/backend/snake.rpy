@@ -103,12 +103,7 @@ init python in _wm_snake:
 
         for i in range(4):
             y = ycenter + i
-            rv.append(Block(
-                xcenter,
-                y,
-                0,
-                color
-            ))
+            rv.append(Block(xcenter, y, 0, color))
 
         return rv
 

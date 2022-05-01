@@ -5,44 +5,71 @@ define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_
 
 init python in _wm_email_app:
     from store._wm_email import emails
-    from store import persistent
+    from store import (
+        persistent,
+        wm_game_time
+    )
 
     register_feather_icon("inbox", "")
     register_feather_icon("spam", "")
     register_feather_icon("star", "")
     register_feather_icon("paperclip", "")
 
+    def format_date(date):
+        today = wm_game_time.today()
+        delta = today - date
+
+        if delta.days == 0:
+            return _("Today")
+
+        elif delta.days == 1:
+            return _("Yesterday")
+
+        elif delta.days >= 7:
+            return _("on ") + date.strftime("%d %B %Y")
+
+        return _("on ") + date.strftime("%A")
+
     class MailClient(object):
-        INBOX   = 0
-        SPAM    = 1
-        STARRED = 2
+        INBOX     = 0
+        SPAM      = 1
+        IMPORTANT = 2
 
         def __init__(self):
             self.mailbox = self.INBOX
             self.current_mail = None
+            self._unlocked_emails = None
+
+        @property
+        def unlocked_emails(self):
+            if self._unlocked_emails is None:
+                self._unlocked_emails = [ emails[id_] for id_ in persistent.unlocked_emails if id_ in emails ]
+
+            return self._unlocked_emails
+
+        def update_mails(self):
+            self._unlocked_emails = None
 
         def get_emails(self):
+            if self.mailbox == self.SPAM:
+                return [ email for email in self.unlocked_emails if email.is_spam ]
 
-            rv = [ emails[id_] for id_ in persistent.unlocked_emails if id_ in emails ]
+            elif self.mailbox == self.IMPORTANT:
+                return [ email for email in self.unlocked_emails if email.is_important ]
 
-            if self.mailbox == self.INBOX:
-                return rv
-
-            elif self.mailbox == self.SPAM:
-                return [ email for email in rv if email.is_spam ]
-
-            else:
-                return tuple()
+            return self.unlocked_emails
 
 screen mail_client():
     default mail_client = mail_client_app.userdata
+    python:
+        mail_client.update_mails()
 
     use program_base(mail_client_app, xysize=(695, 630)):
         hbox:
             use navigation_pane([
                 ("{inbox}", "Input", SetField(mail_client, "mailbox", mail_client.INBOX)),
                 ("{spam}", "Spam", SetField(mail_client, "mailbox", mail_client.SPAM)),
-                ("{star}", "Starred", SetField(mail_client, "mailbox", mail_client.STARRED)),
+                ("{star}", "Important", SetField(mail_client, "mailbox", mail_client.IMPORTANT)),
             ], 240)
 
             use mc_emails(mail_client)
@@ -58,24 +85,36 @@ screen mc_emails(mail_client):
     frame background "#F0F2F9":
         xfill True yfill True
 
-        hbox xfill True:
-            viewport id "mc_emails_vp":
-                scrollbars "vertical"
-                mousewheel True
+        $ emails = mail_client.get_emails()
 
-                side_spacing 4
+        if emails:
+            hbox xfill True:
+                viewport id "mc_emails_vp":
+                    scrollbars "vertical"
+                    mousewheel True
 
-                has vbox
+                    side_spacing 4
 
-                $ emails = mail_client.get_emails()
-                for i, email in enumerate(emails):
-                    frame background email_entry_backgrounds[i % 2] padding (0, 0):
-                        use mc_email_entry(email)
+                    has vbox
 
-            # vbar value YScrollValue("mc_emails_vp") xalign 0.5
+                    for i, email in enumerate(emails):
+                        frame background email_entry_backgrounds[i % 2] padding (0, 0):
+                            use mc_email_entry(email)
+
+                # vbar value YScrollValue("mc_emails_vp") xalign 0.5
+        else:
+            label _("No Mails.")
+
+style mc_emails_frame is empty
 
 style mc_emails_vscrollbar is vscrollbar:
     unscrollable "hide"
+
+style mc_emails_label is empty
+style mc_emails_label_text is mc_email_entry_label_text
+
+style mc_emails_label:
+    align (0.5, 0.5)
 
 screen mc_email_entry(email):
     style_prefix "mc_email_entry"
@@ -121,6 +160,14 @@ screen mc_email_entry(email):
                     text_size 18 text_color "#303030"
 
                 # null height 10
+
+                $ date_received = persistent.email_dates.get(email.unique_id)
+
+                if date_received is not None:
+                    $ date_frmt = _wm_email_app.format_date(date_received)
+                    label _("{ubuntu=regular}Received [date_frmt]{/ubuntu}"):
+                        yalign 1.0
+                        text_size 18 text_color "#303030"
 
             use mc_email_btns(email)
 
@@ -172,6 +219,8 @@ screen mail_viewer(email):
 
                 has vbox
 
+                null height 10
+
                 side "tl tr l r bl br":
                     spacing 30
 
@@ -193,6 +242,13 @@ screen mail_viewer(email):
                 null height 40
                 add "#828282" ysize 2
                 null height 40
+
+                $ date_received = persistent.email_dates.get(email.unique_id)
+
+                if date_received is not None:
+                    $ date_frmt = _wm_email_app.format_date(date_received)
+                    text _("{ubuntu=regular}Received [date_frmt]{/ubuntu}")
+                    null height 20
 
                 text ("{ubuntu=light}" + email.contents + "{/ubuntu}")
 
@@ -222,6 +278,8 @@ screen mail_viewer(email):
                         for quick_reply in email.quick_replies:
                             use quick_reply_button(quick_reply, email.unique_id)
 
+                null height 20
+
             vbar value YScrollValue("mail_viewer_vp") xalign 1.0 xoffset 30
 
     on "show" action Function(email.mark_read)
@@ -234,6 +292,7 @@ style mail_viewer_vscrollbar is empty
 
 style mail_viewer_label_text:
     color "#000" size 32
+    layout "greedy"
 
 style mail_viewer_text:
     color "#000"

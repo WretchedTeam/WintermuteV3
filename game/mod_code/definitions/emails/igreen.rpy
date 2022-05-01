@@ -14,7 +14,6 @@ Nice talking with you.
 - IG
 """,
         sender=igreen_sender,
-        is_spam=False
     )
 
     igreen_email_2 = Email(
@@ -46,7 +45,7 @@ Got it? Good. Happy testing.
 - IG
 """,
         sender=igreen_sender,
-        is_spam=False
+        is_important=True
     )
 
     igreen_email_3 = Email(
@@ -62,7 +61,7 @@ Record the results as usual, and you should be done for the day. Any complicatio
 - IG
 """,
         sender=igreen_sender,
-        is_spam=False
+        is_important=True
     )
 
     igreen_email_4 = Email(

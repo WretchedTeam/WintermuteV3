@@ -27,7 +27,7 @@ Quality Assurance Lead
 P.S. I know you already got brief to hell on this, but HR says I need to mention it: everything here is confidential. Any divulging of classified information on this project will lead to termination and legal action. We encourage you to keep your Turnell Trust!
 """,
         sender=rbell_sender,
-        is_spam=False 
+        is_important=True 
     )
 
     rbell_email_2 = Email(
