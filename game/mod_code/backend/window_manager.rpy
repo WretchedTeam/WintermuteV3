@@ -6,6 +6,7 @@ init -1000 python in _wm_manager:
     open_apps = [ ]
 
     desktop_open_callbacks = [ ]
+    desktop_hide_callbacks = [ ]
 
     def get_zorder(screen_id):
         if screen_id in zorders:
@@ -28,6 +29,7 @@ init -1000 python in _wm_manager:
         if screen_id in positions:
             return positions[screen_id]
 
+        p = 100
         for i in range(1, len(open_apps) + 1):
             p = i * 100
 

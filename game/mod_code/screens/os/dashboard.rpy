@@ -1,3 +1,4 @@
+define -2 dashboard_background = "#e8edf9"
 define 2 dashboard_app = _wm_manager.Application("Wintermute Dashboard", "wintermute icon", "dashboard", _wm_dashboard_app.Dashboard())
 
 init python in _wm_dashboard_app:
@@ -38,7 +39,7 @@ screen dashboard():
                 ("{archive}", "Completed Tests", SetField(dashboard, "display", dashboard.COMPLETED)),
             ], 240)
 
-            frame background "#F0F2F9":
+            frame background dashboard_background:
                 xfill True yfill True
 
                 padding (30, 30)
@@ -80,7 +81,7 @@ screen dashboard_test_details():
                     if has_email:
                         use padded_button(_("Open Email"), Function(mail_viewer_app.open, current_test.main_email), xysize=(225, 52))
 
-                    use padded_button(_("Begin Test"), Jump("wm_start"), xysize=(225, 52), xalign=(1.0 if has_email else 0.0))
+                    use padded_button(_("Begin Test"), Call("wm_start"), xysize=(225, 52), xalign=(1.0 if has_email else 0.0))
 
     else:
         fixed:
@@ -279,3 +280,7 @@ screen dashboard_test_report():
 style dashboard_test_report_label is dashboard_ai_subjects_label
 style dashboard_test_report_label_text is dashboard_ai_subjects_label_text
 
+style dashboard_test_report_vscrollbar is vscrollbar
+
+style dashboard_test_report_vscrollbar:
+    unscrollable "hide"

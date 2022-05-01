@@ -3,9 +3,7 @@ init python in _wm_clock_analog:
     from store import NoRollback, wm_game_time
     from renpy.display.matrix import Matrix2D
 
-    import pygame_sdl2
     import math
-    # from datetime import datetime
 
     TAU = 2 * math.pi
 

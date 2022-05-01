@@ -37,13 +37,13 @@ init python in _wm_penny_dialogues:
     ]
 
     click_response_pre_sensory = [
-        "Hey [persistent.firstname], that tickles!!"
-        "Awww…thanks, [persistent.firstname]."
-        "Heeeyyyyy, stop it, ehe~! Get back to work already!"
-        "Aha~ you’re so silly, [persistent.firstname]."
-        "Hey, stoppp! … Aww, I can’t stay mad at you, partner."
-        "Hey buddy, look where you’re poking!"
-        "Are you petting me?! … That’s nice of you, [persistent.firstname]."
+        "Hey [persistent.firstname], that tickles!!",
+        "Awww…thanks, [persistent.firstname].",
+        "Heeeyyyyy, stop it, ehe~! Get back to work already!",
+        "Aha~ you’re so silly, [persistent.firstname].",
+        "Hey, stoppp! … Aww, I can’t stay mad at you, partner.",
+        "Hey buddy, look where you’re poking!",
+        "Are you petting me?! … That’s nice of you, [persistent.firstname].",
     ]
 
     click_response_post_sensory = [

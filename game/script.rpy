@@ -7,8 +7,6 @@ init python:
     import singleton
     me = singleton.SingleInstance()
 
-define e = Character("Eileen")
-
 label main_menu:
     return
 

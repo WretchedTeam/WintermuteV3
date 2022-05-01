@@ -4,6 +4,7 @@ screen desktop():
     use icon_grid()
 
     on "show" action Function(execute_callbacks, _wm_manager.desktop_open_callbacks)
+    on "hide" action Function(execute_callbacks, _wm_manager.desktop_hide_callbacks)
 
     mousearea:
         area (0, 0.9, 1.0, 1.0)
@@ -19,7 +20,7 @@ screen icon_grid():
         use desktop_app_icon("Email", mail_client_app)
 
         if persistent.wm_received:
-            use desktop_app_icon("Wintermute", dashboard_app, (0, (100 + 10) * 2))
+            use desktop_app_icon("Wintermute", dashboard_app, (0, 1))
 
-        use desktop_app_icon("Snake", snake_app, (0, (100 + 10) * 4))
+        use desktop_app_icon("Snake", snake_app, (0, 2))
  

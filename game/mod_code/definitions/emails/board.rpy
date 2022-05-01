@@ -1,5 +1,5 @@
 init python:
-    board_sender = EmailSender("Board", "board")
+    board_sender = EmailSender("{color=#3366BB}@Board{/color}", "board")
 
     board_email_1 = Email(
         unique_id="board_email_1",

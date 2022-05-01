@@ -1,5 +1,26 @@
 define config.quit_action = Show("power_off_prompt", _layer="power_off")
 
+init python in _wm_power_service:
+    from store import (
+        Function,
+        power_off_prompt_easein_blur,
+        power_off_prompt_easeout_blur
+    )
+
+    blur_layers = [ "master", "screens", "penny" ]
+
+    def BlurEaseIn():
+        return [
+            Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], layer)
+            for layer in blur_layers
+        ]
+
+    def BlurEaseOut():
+        return [
+            Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], layer)
+            for layer in blur_layers
+        ]
+
 init python:
     renpy.add_layer("power_off", "screens")
 
@@ -19,15 +40,8 @@ screen power_off_prompt():
 
     key "game_menu" action hide_action
 
-    on "show" action [ 
-        Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], "master"),
-        Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], "screens")
-    ]
-
-    on "hide" action [
-        Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], "master"),
-        Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], "screens")
-    ]
+    on "show" action _wm_power_service.BlurEaseIn()
+    on "hide" action _wm_power_service.BlurEaseOut()
 
 style power_off_prompt_frame:
     align (0.5, 0.5)
@@ -45,10 +59,10 @@ transform power_off_prompt_animation():
         alpha 1.0 yoffset 0
         ease_cubic 0.5 alpha 0.0 yoffset 15
 
-transform power_off_prompt_easein_blur():
+transform -10 power_off_prompt_easein_blur():
     blur 0.0
     easein_quad 0.5 blur 16.0
 
-transform power_off_prompt_easeout_blur():
+transform -10 power_off_prompt_easeout_blur():
     blur 16.0
     easein_quad 0.5 blur 0.0

@@ -6,7 +6,6 @@ image wm_clock_colon:
     repeat
 
 init python in _wm_clock_text:
-    from datetime import datetime
     from store import (
         DynamicDisplayable,
         Text,

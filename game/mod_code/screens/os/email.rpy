@@ -1,3 +1,5 @@
+define -2 email_entry_backgrounds = [ "#ebf4fb", "#ddecf4" ]
+
 define 2 mail_client_app = _wm_manager.Application("Turnell Mail Client", "mail_client icon", "mail_client", _wm_email_app.MailClient())
 define 2 mail_viewer_app = _wm_manager.Application("Turnell Mail Viewer", "mail_viewer icon", "mail_viewer")
 
@@ -67,9 +69,7 @@ screen mc_emails(mail_client):
 
                 $ emails = mail_client.get_emails()
                 for i, email in enumerate(emails):
-                    $ frame_bg = ("#e6e8ef" if i % 2 == 1 else "#F0F2F9")
-
-                    frame background frame_bg padding (0, 0):
+                    frame background email_entry_backgrounds[i % 2] padding (0, 0):
                         use mc_email_entry(email)
 
             # vbar value YScrollValue("mc_emails_vp") xalign 0.5

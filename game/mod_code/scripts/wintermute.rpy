@@ -3,6 +3,8 @@ label wm_start():
     $ _wm_manager.Application.close_all_apps()
     pause 0.75
 
+    scene black
+
     $ quick_menu = True
 
     scene dev_bg_open
