@@ -1195,5 +1195,5 @@ layeredimage natsuki cross:
         attribute b3:
             "nat_fs_b3"
 
-
-
+image natsuki turned wmflicker = LayeredImageProxy("natsuki turned", wintermute_flicker)
+image natsuki cross wmflicker = LayeredImageProxy("natsuki cross", wintermute_flicker)

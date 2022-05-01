@@ -474,5 +474,5 @@ layeredimage monika lean:
         attribute b3:
             "mod_assets/MPT/monika/monika_lean_eyebrows_b3.png"
 
-
-
+image monika forward wmflicker = LayeredImageProxy("monika forward", wintermute_flicker)
+image monika lean wmflicker = LayeredImageProxy("monika lean", wintermute_flicker)

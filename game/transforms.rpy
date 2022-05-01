@@ -409,47 +409,6 @@ define wipeleft_scene = MultipleTransition([
 
 define tpause = Pause(0.25)
 
-# White noises and effects
-image noise:
-    truecenter
-    "images/bg/noise1.jpg"
-    pause 0.1
-    "images/bg/noise2.jpg"
-    pause 0.1
-    "images/bg/noise3.jpg"
-    pause 0.1
-    "images/bg/noise4.jpg"
-    pause 0.1
-    xzoom -1
-    "images/bg/noise1.jpg"
-    pause 0.1
-    "images/bg/noise2.jpg"
-    pause 0.1
-    "images/bg/noise3.jpg"
-    pause 0.1
-    "images/bg/noise4.jpg"
-    pause 0.1
-    yzoom -1
-    "images/bg/noise1.jpg"
-    pause 0.1
-    "images/bg/noise2.jpg"
-    pause 0.1
-    "images/bg/noise3.jpg"
-    pause 0.1
-    "images/bg/noise4.jpg"
-    pause 0.1
-    xzoom 1
-    "images/bg/noise1.jpg"
-    pause 0.1
-    "images/bg/noise2.jpg"
-    pause 0.1
-    "images/bg/noise3.jpg"
-    pause 0.1
-    "images/bg/noise4.jpg"
-    pause 0.1
-    yzoom 1
-    repeat
-
 # Makes a noise overlay transparent
 transform noise_alpha:
     alpha 0.25
@@ -459,11 +418,6 @@ transform noisefade(t=0):
     alpha 0.0
     t
     linear 5.0 alpha 0.40
-
-# Vignette around the edge of the screen
-image vignette:
-    truecenter
-    "images/bg/vignette.png"
 
 # Have the vignette fade in
 transform vignettefade(t=0):
@@ -536,17 +490,24 @@ transform heartbeat2(m):
         easeout_bounce 0.3 xalign 0.5 - 0.02 * m
         repeat
 
-# Motion for Yuri's Eyes
-transform yuripupils_move:
-    function yuripupils_function
-
-init python:
-    def yuripupils_function(trans, st, at):
-        trans.xoffset = -1 + random.random() * 9 - 4
-        trans.yoffset = 3 + random.random() * 6 - 3
-        return random.random() * 1.2 + 0.3
-
-# Have a character pop in instantly with a given transparency
-transform malpha(a=1.00):
-    i11
-    alpha a
+transform wintermute_flicker:
+    choice:
+        alpha 0.15
+    choice:
+        alpha 0.2
+    choice:
+        alpha 0.25
+    choice:
+        alpha 0.3
+    choice:
+        alpha 0.35
+    choice:
+        alpha 0.4
+    choice:
+        alpha 0.45
+    choice:
+        alpha 0.5
+    choice:
+        alpha 0.6
+    pause 0.05
+    repeat

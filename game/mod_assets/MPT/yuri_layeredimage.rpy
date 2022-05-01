@@ -532,5 +532,5 @@ layeredimage yuri shy:
         attribute b3:
             "mod_assets/MPT/yuri/yuri_shy_eyebrows_b3.png"
 
-
-
+image yuri turned wmflicker = LayeredImageProxy("yuri turned", wintermute_flicker)
+image yuri shy wmflicker = LayeredImageProxy("yuri shy", wintermute_flicker)

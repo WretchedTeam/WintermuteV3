@@ -462,5 +462,5 @@ layeredimage sayori tap: #tapping definitions.
         attribute b3:
             "mod_assets/MPT/sayori/sayori_tapping_eyebrows_b3.png"
 
-
-
+image sayori turned wmflicker = LayeredImageProxy("sayori turned", wintermute_flicker)
+image sayori tap wmflicker = LayeredImageProxy("sayori tap", wintermute_flicker)
