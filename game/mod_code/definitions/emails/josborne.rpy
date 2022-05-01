@@ -15,7 +15,7 @@ Jez :)
 """,
         sender=josborne_sender,
         is_spam=False,
-        attachments=[ EmailAttachment("wintermute", "Wintermute.txc", SetField(persistent, "wm_received", True)) ]
+        attachments=[ EmailAttachment("wintermute icon", "Wintermute.txc", SetField(persistent, "wm_received", True)) ]
     )
 
     josborne_email_2 = Email(

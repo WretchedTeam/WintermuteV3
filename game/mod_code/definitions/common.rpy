@@ -39,6 +39,13 @@ init -1400 python:
     def lerp(start, end, coeff, warper):
         return start + (end - start) * warper(coeff)
 
+    def execute_callbacks(callbacks, *args, **kwargs):
+        if not isinstance(callbacks, list):
+            callbacks = [ callbacks ]
+
+        for i in callbacks:
+            i(*args, **kwargs)
+
 label test_prompt_button(t):
     menu:
         "[t]":

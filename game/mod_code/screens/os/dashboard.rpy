@@ -50,6 +50,8 @@ screen dashboard():
                 elif dashboard.display == dashboard.COMPLETED:
                     use dashboard_completed_tests()
 
+    on "show" action Function(_wm_penny.wm_open)
+
 screen dashboard_test_details():
     style_prefix "dashboard_test_details"
 

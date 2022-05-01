@@ -20,8 +20,6 @@ init python in _wm_email_app:
             self.current_mail = None
 
         def get_emails(self):
-            if self.mailbox == self.STARRED:
-                return [ emails[id_] for id_ in persistent.marked_emails if id_ in emails ]
 
             rv = [ emails[id_] for id_ in persistent.unlocked_emails if id_ in emails ]
 
@@ -56,13 +54,14 @@ screen mc_emails(mail_client):
     style_prefix "mc_emails"
 
     frame background "#F0F2F9":
-        padding (0, 0, 20, 0)
         xfill True yfill True
 
-        hbox:
+        hbox xfill True:
             viewport id "mc_emails_vp":
-                scrollbars None
+                scrollbars "vertical"
                 mousewheel True
+
+                side_spacing 4
 
                 has vbox
 
@@ -73,10 +72,7 @@ screen mc_emails(mail_client):
                     frame background frame_bg padding (0, 0):
                         use mc_email_entry(email)
 
-            frame style "empty":
-                background "#fff"
-                padding (0, 8)
-                vbar value YScrollValue("mc_emails_vp") xoffset 6
+            # vbar value YScrollValue("mc_emails_vp") xalign 0.5
 
 style mc_emails_vscrollbar is vscrollbar:
     unscrollable "hide"
@@ -146,13 +142,10 @@ screen mc_email_btns(email):
     style_prefix "mc_email_btns"
 
     vbox spacing 5:
-        textbutton _("{star}") action ToggleSetMembership(persistent.marked_emails, email.unique_id):
-            text_hover_color "#aa6c39"
-            text_selected_idle_color "#aa6c39"
-            text_selected_hover_color "#c97f42"
-
         if email.attachments:
             text _("{paperclip}")
+        if email.quick_replies:
+            text _("{send}")
 
 style mc_email_btns_button is empty
 style mc_email_btns_button_text is empty
@@ -326,10 +319,12 @@ screen mail_notification():
         has hbox:
             spacing 20
 
-        add "email" fit "contain"
+        add "mail_client icon" fit "contain"
         vbox yalign 0.5:
             label _("{lexend=regular}Emails{/lexend}") text_color "#fff"
             text _("You have [persistent.new_email_count] new email(s).") style_suffix "button_text"
+
+    on "show" action Function(execute_callbacks, _wm_email.notif_show_callbacks)
 
 style mail_notification_button is frame
 style mail_notification_button_text is empty

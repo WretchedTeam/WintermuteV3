@@ -20,6 +20,10 @@ image mail_viewer icon:
     "mod_assets/os/icons/mail_viewer.png"
     zoom 0.25
 
+image snake icon:
+    "mod_assets/os/icons/snek.png"
+    zoom 0.25
+
 image icosahedron:
     "mod_assets/os/icosahedron.png"
     zoom 0.5

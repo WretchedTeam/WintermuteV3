@@ -1,7 +1,11 @@
-init -5 python in _wm_manager:
+init -1000 python in _wm_manager:
+    from store import execute_callbacks
+
     zorders = [ ]
     positions = { }
     open_apps = [ ]
+
+    desktop_open_callbacks = [ ]
 
     def get_zorder(screen_id):
         if screen_id in zorders:
@@ -24,11 +28,13 @@ init -5 python in _wm_manager:
         if screen_id in positions:
             return positions[screen_id]
 
-        p = 50 + len(open_apps) * 50
+        for i in range(1, len(open_apps) + 1):
+            p = i * 100
 
-        new_pos = (p, p)
-        positions[screen_id] = new_pos
+            if not any([ (p, p) == v for v in positions.values()]):
+                break
 
+        new_pos = positions[screen_id] = (p, p)
         return new_pos
 
     class Application(object):

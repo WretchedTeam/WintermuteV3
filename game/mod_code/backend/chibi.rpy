@@ -8,13 +8,13 @@ init python in _wm_chibi:
     elasticity = 0.55
     gravity = (0.0, 0.2)
 
+    def random_jump_delay():
+        return renpy.random.random() * 4 + 4
+
     class Chibi(renpy.Displayable):
         """
         Chibi with barebones physics.
         """
-
-        def random_jump_delay(self):
-            return renpy.random.random() * 4 + 4
 
         def __init__(self, idle, hover, x, y, **kwargs):
             super(Chibi, self).__init__(**kwargs)
@@ -32,13 +32,13 @@ init python in _wm_chibi:
             self.start_x = self.start_y = 0
             self.grab_x = self.grab_y = 0
 
-            self.jump_delay = self.random_jump_delay()
+            self.jump_delay = random_jump_delay()
             self.face_direction = 1.0 # 1.0: Left, -1.0: Right
             self.jump_move = 0
 
         def jump_interact(self, st):
             if self.is_focused() or (not self.on_ground()):
-                self.jump_delay = st + self.random_jump_delay()
+                self.jump_delay = st + random_jump_delay()
 
             if self.jump_delay < st:
                 if self.jump_move > 0:
@@ -53,7 +53,7 @@ init python in _wm_chibi:
                 self.speed_x = 1.0 * self.jump_move
                 self.speed_y = -4.0
 
-                self.jump_delay = st + self.random_jump_delay()
+                self.jump_delay = st + random_jump_delay()
 
         def current_image(self):
             if self.is_focused(): return self.hover

@@ -1,14 +1,25 @@
 default persistent.unlocked_emails = [ ]
 default persistent.read_emails = [ ]
-default persistent.marked_emails = [ ]
 default persistent.replied_emails = [ ]
 
 init python in _wm_email:
-    from store import NoRollback, NullAction, persistent, debug
+    from store import (
+        NoRollback, 
+        NullAction, 
+        persistent, 
+        debug, 
+        execute_callbacks
+    )
+    from store._wm_manager import desktop_open_callbacks
 
     emails = { }
     sender_emails = [ ]
 
+    email_open_callbacks = [ ]
+    email_unlock_callbacks = [ ]
+    notif_show_callbacks = [ ]
+
+    @desktop_open_callbacks.append
     def show_notifs():
         if persistent.new_email_count > 0:
             renpy.show_screen(Email.notification_screen_name)
@@ -18,7 +29,9 @@ init python in _wm_email:
         mail_client_screen_name = "mail_client"
         notification_screen_name = "mail_notification"
 
-        def __init__(self, unique_id, subject, contents, sender, is_spam, attachments=None, quick_replies=None):
+        def __init__(self, unique_id, subject, contents, sender, is_spam, attachments=None, 
+                quick_replies=None, open_callbacks=None, unlock_callbacks=None):
+
             self.unique_id = unique_id
 
             self.subject = subject
@@ -27,6 +40,9 @@ init python in _wm_email:
             self.is_spam = is_spam
             self.attachments = attachments
             self.quick_replies = quick_replies
+
+            self.open_callbacks = open_callbacks
+            self.unlock_callbacks = unlock_callbacks
 
             global emails
             if unique_id not in emails: emails[unique_id]  = self
@@ -51,23 +67,27 @@ init python in _wm_email:
 
             persistent.read_emails.remove(self.unique_id)
 
-        def toggle_starred(self):
-            if self.unique_id in persistent.marked_emails:
-                persistent.marked_emails.remove(self.unique_id)
-            else:
-                persistent.marked_emails.append(self.unique_id)
-
         def mark_read(self):
             if self.is_read():
                 return
 
             persistent.read_emails.append(self.unique_id)
 
+            if self.open_callbacks is not None:
+                execute_callbacks(self.open_callbacks, self)
+
+            execute_callbacks(email_open_callbacks, self)
+
         def unlock(self):
             if self.is_unlocked():
                 return
 
             persistent.unlocked_emails.insert(0, self.unique_id)
+
+            if self.unlock_callbacks is not None:
+                execute_callbacks(self.unlock_callbacks, self)
+
+            execute_callbacks(email_unlock_callbacks, self)
 
             if not renpy.get_screen(self.mail_client_screen_name):
                 persistent.new_email_count += 1
