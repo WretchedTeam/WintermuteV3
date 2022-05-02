@@ -15,6 +15,7 @@ Upon interaction with the WINTERMUTE program, the girls introduced themselves an
         "Lorem Ipsum",
         intro_test_report,
         "rbell_email_1",
+        datetime.date(year=2029, month=7, day=13),
         "Robert Bell",
         "script1_main",
         "script1_on_start",

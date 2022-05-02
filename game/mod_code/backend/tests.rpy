@@ -29,9 +29,12 @@ init python in _wm_test:
         Class representative of the scripted AI Tests.
         """
 
-        __slots__ = "key", "name", "description", "final_report", "main_email", "assigner", "on_start", "labels", "on_advance", "is_finished"
+        __slots__ = (
+            "key", "name", "description", "final_report", "main_email", "assigned_on", 
+            "assigner", "on_start", "labels", "on_advance", "is_finished"
+        )
 
-        def __init__(self, key, name, description, final_report, main_email, assigner=None, 
+        def __init__(self, key, name, description, final_report, main_email, assigned_on, assigner=None, 
                 main_label="start", on_start=None, on_complete=None, single=False):
 
             self.key = key
@@ -39,6 +42,8 @@ init python in _wm_test:
             self.description = description.strip()
             self.final_report = final_report.strip()
             self.main_email = get_email(main_email)
+
+            self.assigned_on = assigned_on
 
             if assigner is None:
                 assigner = self.main_email.sender.name

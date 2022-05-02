@@ -12,6 +12,7 @@ init python:
         "Lorem Ipsum",
         "",
         "igreen_email_3",
+        datetime.date(year=2029, month=7, day=27),
         "Iwan Green",
         "script3_main",
         "script3_on_start",

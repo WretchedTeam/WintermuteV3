@@ -260,6 +260,10 @@ screen dashboard_test_report():
         label "{color=#009378}Test Complete{/color}" text_size 24
         null height 30
         text _("{ubuntu=light}Assigned by{/ubuntu} {ubuntu=medium}[test.assigner]{/ubuntu}") color "#000" size 22
+        null height 5
+        $ date_frmt = test.assigned_on.strftime("%d %B %Y")
+        text _("Received Assignment on {ubuntu=medium}[date_frmt]{/ubuntu}") color "#000"
+
         null height 30
 
         label _("{ubuntu=medium}Final Report:{/ubuntu}") text_size 24

@@ -13,6 +13,7 @@ However, when faced with the prospect of a customer leaving them, their attitude
         "Lorem Ipsum",
         consulai_test_report,
         "igreen_email_5",
+        datetime.date(year=2029, month=8, day=10),
         "Iwan Green",
         "script5_main",
         "script5_on_start",

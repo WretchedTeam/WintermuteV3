@@ -5,6 +5,7 @@ init python:
         "Lorem Ipsum",
         "",
         "josborne_email_3",
+        datetime.date(year=2029, month=8, day=3),
         "Jeremy Osborne",
         "script4_main",
         "script4_on_start",

@@ -21,6 +21,7 @@ As with the last test, the range of emotions [persistent.t2doki] can show is alm
         "Lorem Ipsum",
         characterization_test_report,
         "igreen_email_2",
+        datetime.date(year=2029, month=7, day=20),
         "Iwan Green",
         "script2_main",
         "script2_on_start",
