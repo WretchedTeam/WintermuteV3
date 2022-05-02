@@ -52,7 +52,6 @@ Robert Bell
 Quality Assurance Lead
 """,
         sender=rbell_sender,
-        is_spam=False,
         quick_replies=[ 
             EmailReply("Thanks!", Call("script1_post_finish")), 
             EmailReply("See you soon!", Call("script1_post_finish")), 
@@ -75,6 +74,37 @@ Thanks,
 Robert Bell
 Quality Assurance Lead
 """,
+        sender=rbell_sender
+    )
+
+    rbell_email_4 = Email(
+        unique_id="rbell_email_4",
+        subject="Mental Health",
+        contents="""
+Hey all, I know we're still reeling from hearing about James' passing. I only just came back from leave, as I was hit hard by this. Those who knew him were fortunate to meet such a smart and focused guy. Even though he was let go, he's still part of the Turnell family for me. We'll miss him a lot. We have a card in the break room for us to sign for his family, and I'll personally deliver it after lunch today.
+
+Given that James was struggling with mental health issues relating to the WM project, we feel it's necessary to perform a mental wellness evaluation on our employees. We'll have an official HR meeting about it next week. It's required attendance, so be there. But just to be quick about things: depression is a very real and valid problem that can affect anyone invisibly, and historically IT work correlates with depression and a feeling of isolation. Depression can manifest itself in many ways:
+
+- Feeling worthless, like a failure, that the world would be better off without you
+- A desire to hurt yourself or end your own life
+- Inappropriate emotional bonds towards inanimate objects or software
+- Constant paranoia and feeling of being watched
+- Having little to no interest in work, hobbies, or activities
+- Assigning significant attachment and meaning to meaningless statements
+- Trouble falling or staying asleep
+- Over-attachment to a personality, such as a celebrity or streamer
+
+If you're feeling any of these symptoms, please reach out to our Mental Health Helpline: mentalhealth@turnelltech.co.uk. They can schedule you a meeting with one of our licensed therapists, who are happy to help. It's anonymous, so feel free to reach out.
+
+Have a great start to your day!
+
+-Robert Bell
+Quality Assurance Lead
+""",
         sender=rbell_sender,
-        is_spam=False
+        quick_replies=[
+            EmailReply("Thank you.", Jump("script5_post_finish")),
+            EmailReply("I'm sorry.", Jump("script5_post_finish")),
+            EmailReply("RIP.", Jump("script5_post_finish")),
+        ]
     )

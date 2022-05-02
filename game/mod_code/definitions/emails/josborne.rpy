@@ -14,7 +14,6 @@ Anyways, Bellboy asked (ordered) me to send you a copy of the Wintermute program
 Jez :)
 """,
         sender=josborne_sender,
-        is_spam=False,
         attachments=[ EmailAttachment("wintermute icon", "Wintermute.txc", SetField(persistent, "wm_received", True)) ]
     )
 
@@ -39,8 +38,7 @@ Jez
             EmailReply("Sure!", Call("script2_post_finish")),
             EmailReply("Maybe.", Call("script2_post_finish")),
             EmailReply("No Thanks.", Call("script2_post_finish")),
-        ],
-        is_spam=False
+        ]
     )
 
     josborne_email_3 = Email(
@@ -78,7 +76,6 @@ Go get yourself some food or a smoke mate, take a sec to decompress after that a
 Jez
 """,
         sender=josborne_sender,
-        is_spam=False,
         quick_replies=[
             EmailReply("Good luck.", Call("script4_post_finish")),
             EmailReply("Thanks.", Call("script4_post_finish")),

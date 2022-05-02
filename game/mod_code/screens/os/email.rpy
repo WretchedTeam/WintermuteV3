@@ -385,7 +385,7 @@ screen mail_notification():
 
     on "show" action Function(execute_callbacks, _wm_email.notif_show_callbacks)
 
-style mail_notification_button is frame
+style mail_notification_button is button
 style mail_notification_button_text is empty
 
 style mail_notification_button:

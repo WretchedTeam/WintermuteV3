@@ -1,76 +1,90 @@
-label script5_consulai:
-    menu:
-        "Load Monika":
-            jump consulai_m
-        "Load Sayori":
-            jump consulai_s
-        "Load Natsuki":
-            jump consulai_n
-        "Load Yuri":
-            jump consulai_y
+default persistent.script5_seen = {
+    "m": False,
+    "s": False,
+    "y": False,
+    "n": False
+}
 
-label consulai_m:
+init python:
+    consulai_test_report = """
+When loading the WINTERMUTE program, I prompted [t5doki] to try and perform therapy on me to treat my (fictionalized) negative outlooks on life. [t5doki] was immediately attentive to any signs of physical or mental problems on display. She performed the legally-required “not-qualified” disclosure as intended.
 
-    show monika forward e1a b1a ma at t11 zorder 1
-    mc "Hello, Monika."
-    m mb "Hey, $EMPLOYEE_NAME!"
-    m e4b "Good to see you!"
-    m rhip e1a "How can I help?"
-    show monika ma
-    menu:
-        "Initialize ConsulAI":
-            pass
-    mc "I'm not feeling too well."
-    show monika md
-    pause 1.2
-    #show some faux code on the side, ai is immediately looking for problems
-    m rdown b1b mg "Oh no, I'm so sorry!"
-    m e1b mh "Well, I'm no doctor, but I can make some educated guesses...{w=0.9}{nw}{done}"
-    m e1a b1a lpoint "Well, I'm no doctor, but I can make some educated guesses...{fast}if you want me to have a look?"
-    show monika me
-    menu:
-        "Accept":
-            pass
-    mc "Please do."
-    show monika b2a
-    m mh "Right away, but first thing's first..."
-    m ldown rdown b1a e1a mi "I'm obligated to tell you that nothing I say here should be taken as medical advice."
-    m mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
-    m mi b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
-    m b2c "And I can always do that for you, should you need it."
-    m b1f mh "Are you alright with that?"
-    show monika md
-    menu:
-        "Respond":
-            pass
-    mc "Yes."
-    show monika b1a ma
-    pause 0.9
-    m mb "Okay then!"
-    m mh lpoint rhip "Well, where do you want to start?"
-    m "Are you showing any unusual symptoms?"
-    m b1f "Any involuntary shivers, blurred vision..?"
-    show monika md ldown
-    menu:
-        "Respond":
-            pass
-    mc "Actually, no. It's nothing like that."
-    show monika b1a
-    mc "I've been feeling pretty down lately, is all."
-    m b1b me "Oh, I'm sorry about that."
-    m rdown e1b n2 mb "I sorta jumped to conclusions..."
-    m b1a e4b n1 "Well, I'm always here to talk."
-    m b1b e1a mb "What's on your mind?"
-    show monika ma
+I broached a wide range of 'depressing' topics, such as disillusionment with my job, quality of life, the news & with the program itself. While the advice given was questionable practically, the place it came from seemed very authentic to the characters.
 
-    ##OPEN-ENDED CHOICE:
-    # Disillusionment with news
-    # Disillusionment with job
-    # Disillusionment with life
-    # Disillusionment with you
+However, when faced with the prospect of a customer leaving them, their attitude shifted into a 'customer retention' mode that I eventually caved to. I would personally suggest making this slightly less aggressive, because phrases like “over this 'real people' crap” are questionable.
+"""
 
+    consulai_test = _wm_test.WintermuteTest(
+        "consulai_test",
+        "ConsulAI Test",
+        "Lorem Ipsum",
+        consulai_test_report,
+        "igreen_email_5",
+        "Iwan Green",
+        "script5_main",
+        "script5_on_start",
+        "script5_finished"
+    )
+
+label script5_main():
+    while not all(persistent.script5_seen.values()):
+        menu:
+            "Load Monika" if not persistent.script5_seen["m"]:
+                call script5_m
+                $ persistent.script5_seen["m"] = True
+
+            "Load Sayori" if not persistent.script5_seen["s"]:
+                call script5_s
+                $ persistent.script5_seen["s"] = True
+
+            "Load Yuri" if not persistent.script5_seen["y"]:
+                call script5_y
+                $ persistent.script5_seen["y"] = True
+
+            "Load Natsuki" if not persistent.script5_seen["n"]:
+                call script5_n
+                $ persistent.script5_seen["n"] = True
+
+            "Exit":
+                return False
+
+    return True
+
+label script5_on_start():
+    $ igreen_email_5.unlock()
+    return
+
+label script5_finished():
+    $ rbell_email_4.unlock()
+    return
+
+label script5_post_finish():
+    $ persistent.current_test_no += 1
+    call advance_test(datetime.date(year=2029, month=8, day=10))
+    return
+
+label script5_qa(doki):
+    $ menu_set = set()
+
+    while len(menu_set) < 4:
+        menu:
+            set menu_set
+
+            "Disillusionment with news.":
+                call expression "script5_" + doki + "_news" pass (len(menu_set) == 4)
+            "Disillusionment with job.":
+                call expression "script5_" + doki + "_job" pass (len(menu_set) == 4)
+            "Disillusionment with life.":
+                call expression "script5_" + doki + "_life" pass (len(menu_set) == 4)
+            "Disillusionment with you.":
+                call expression "script5_" + doki + "_you" pass (len(menu_set) == 4)
+
+    $ del menu_set
+    return
+
+label script5_m_news(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH NEWS"###################################
+    # "DISILLUSIONMENT WITH NEWS"###################################
     ################################################################
 
     mc "I find myself spending so much time with the news."
@@ -99,17 +113,18 @@ label consulai_m:
     m e4a ldown "It's admirable, but ultimately futile, to take on the whole world's heartaches all the time."
     m mb "Sometimes, you have to turn it off, take a breather and put yourself first."
     show monika ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show monika ma
     mc "Thanks, Monika."
     #If not last pick
-    show monika e1a
-    mc "But there's still other things bothering me..."
+    if not last:
+        show monika e1a
+        mc "But there's still other things bothering me..."
+    return
 
+label script5_m_job(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH JOB"####################################
+    # "DISILLUSIONMENT WITH JOB"####################################
     ################################################################
 
     mc "I feel like I'm stagnating at work."
@@ -132,15 +147,16 @@ label consulai_m:
     m "I hope it all works out for you, $EMPLOYEE_NAME."
     m rhip e4b mb "And if nothing else - you'll always have me to talk to!"
     show monika ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "I appreciate that."
     #If not last pick
-    mc "There's just..."
+    if not last:
+        mc "There's just..."
+    return
 
+label script5_m_life(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH LIFE"###################################
+    # "DISILLUSIONMENT WITH LIFE"###################################
     ################################################################
 
     show monika md e1a b2b
@@ -177,16 +193,17 @@ label consulai_m:
     m "In other words...{w=0.9}{nw}{done}join a club."
     m mb e4b "In other words...{fast}join a club!"
     m lpoint b1b "And that's Monika's life advice tip for the day, ahaha~"
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show monika ma
     mc "Thank you, Monika."
     #If not last pick
-    mc "I just need to get some other things off my chest..."
+    if not last:
+        mc "I just need to get some other things off my chest..."
+    return
 
+label script5_m_you(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH YOU"####################################
+    # "DISILLUSIONMENT WITH YOU"####################################
     ################################################################
 
     mc "This is gonna be heavy on you, so please don't take offense."
@@ -206,22 +223,73 @@ label consulai_m:
     m e1a mh "Why don't you just take five, calm down and just...we carry on?"
     m b1b lpoint "This isn't worth throwing away for some petty squabble about what's \"real\" and what isn't."
     show monika md
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "I think you're right. I'm sorry, I overreacted."
     show monika ma
     mc "Thank you for setting me straight."
     #If not last pick
-    mc "But..."
+    if not last:
+        mc "But..."
+    return
 
-    "##POST CHOICE"
+label script5_m:
+    show monika forward e1a b1a ma at t11 zorder 1
+    mc "Hello, Monika."
+    m mb "Hey, $EMPLOYEE_NAME!"
+    m e4b "Good to see you!"
+    m rhip e1a "How can I help?"
+    show monika ma
+    call test_prompt_button("Initialize ConsulAI")
+    mc "I'm not feeling too well."
+    show monika md
+    pause 1.2
+    #show some faux code on the side, ai is immediately looking for problems
+    m rdown b1b mg "Oh no, I'm so sorry!"
+    m e1b mh "Well, I'm no doctor, but I can make some educated guesses...{w=0.9}{nw}{done}"
+    m e1a b1a lpoint "Well, I'm no doctor, but I can make some educated guesses...{fast}if you want me to have a look?"
+    show monika me
+    call test_prompt_button("Accept")
+    mc "Please do."
+    show monika b2a
+    m mh "Right away, but first thing's first..."
+    m ldown rdown b1a e1a mi "I'm obligated to tell you that nothing I say here should be taken as medical advice."
+    m mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
+    m mi b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
+    m b2c "And I can always do that for you, should you need it."
+    m b1f mh "Are you alright with that?"
+    show monika md
+    call test_prompt_button("Respond")
+    mc "Yes."
+    show monika b1a ma
+    pause 0.9
+    m mb "Okay then!"
+    m mh lpoint rhip "Well, where do you want to start?"
+    m "Are you showing any unusual symptoms?"
+    m b1f "Any involuntary shivers, blurred vision..?"
+    show monika md ldown
+    call test_prompt_button("Respond")
+    mc "Actually, no. It's nothing like that."
+    show monika b1a
+    mc "I've been feeling pretty down lately, is all."
+    m b1b me "Oh, I'm sorry about that."
+    m rdown e1b n2 mb "I sorta jumped to conclusions..."
+    m b1a e4b n1 "Well, I'm always here to talk."
+    m b1b e1a mb "What's on your mind?"
+    show monika ma
+
+    ##OPEN-ENDED CHOICE:
+    # Disillusionment with news
+    # Disillusionment with job
+    # Disillusionment with life
+    # Disillusionment with you
+
+    call script5_qa("m")
+
+    ## "POST CHOICE"
     m b2a e1a mg "Well, I feel like we made some great progress today."
     m b1a mh "How are you feeling now? More like yourself?"
     show monika me b1b
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show monika ma
     mc "Definitely. Thank you, Monika."
     show monika rhip mb
@@ -229,66 +297,13 @@ label consulai_m:
     m e4a "Now, if I may suggest something..."
     m b1a e4b rdown mc "How about I play you a song?"
     show monika ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record Results")
+    hide monika
+    return
 
-label consulai_s:
-
-    show sayori turned happ cm oe at t11
-    mc "Hello, Sayori."
-    s om ce "Hi, $EMPLOYEE_NAME!"
-    s lup oe "Anything I can do for you today?"
-    show sayori turned neut me
-    menu:
-        "Initialize ConsulAI":
-            pass
-    mc "I'm not feeling too well."
-    # show some faux code on the side, AI is immediately looking for problems
-    s mi b1b rup "Aww, I'm sorry!"
-    s mg "I'm not a doctor, but if you want, I can try and help you figure out what's up?"
-    show sayori md
-    menu:
-        "Accept":
-            pass
-    mc "Please do."
-    s e1b mg "Well, before I can take a look..."
-    s ldown rdown e1a mi "I'm obligated to tell you that nothing I say here should be taken as medical advice."
-    s mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
-    s mi b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
-    s b2c "And I can always do that for you, should you need it."
-    s mh "Is that all okay with you?"
-    show sayori md
-    menu:
-        "Respond":
-            pass
-    mc "Yes."
-    s mb b1a "Okay!"
-    s b1c mh "So, what seems to be the matter?"
-    s mg "If you give me some symptoms, I can try and connect the dots for you."
-    s mh rup "Upset stomach? Any difficulty breathing?"
-    show sayori md
-    menu:
-        "Respond":
-            pass
-    mc "Actually no, it's nothing like that."
-    mc "I've been feeling pretty down lately, is all."
-    s lup mi e1b "I-I'm sorry! I thought you meant physical..."
-    show sayori ldown rdown e4a me b1d at s11
-    pause(0.75)
-    show sayori e1a md b1b at t11
-    s e1a mg "Well, what's been bothering you?"
-
-    show sayori md
-
-    ##OPEN-ENDED CHOICE:
-        # Disillusionment with news
-        # Disillusionment with job
-        # Disillusionment with life
-        # Disillusionment with you
-
+label script5_s_news(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH NEWS" ##################################
+    # "DISILLUSIONMENT WITH NEWS" ##################################
     ################################################################
 
     mc "I find myself spending so much time with the news."
@@ -319,16 +334,18 @@ label consulai_s:
     s e1b b1c mg "...but you need to turn it off every once in a while, y'know?"
     s e1a ldown "Because it can hurt you more than it helps in the long run."
     show sayori md
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show sayori md
     mc "Thanks, Sayori."
     #If not last pick
-    mc "But there's still other things bothering me..."
+    if not last:
+        mc "But there's still other things bothering me..."
 
+    return
+
+label script5_s_job(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH JOB" ###################################
+    # "DISILLUSIONMENT WITH JOB" ###################################
     ################################################################
 
     show sayori b1a md
@@ -349,17 +366,18 @@ label consulai_s:
     s b1d e1d mb "Plus hey, if you were to somehow bring me even closer to my character, you might not be the only one of us that needs therapy."
     s e1a ldown b1a "Not that I don't need to talk to you as is~"
     show sayori ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show sayori rdown
     mc "I appreciate that."
     #If not last pick
-    mc "There's just..."
-    show sayori b1a md
+    if not last:
+        mc "There's just..."
+        show sayori b1a md
+    return
 
+label script5_s_life(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH LIFE" ##################################
+    # "DISILLUSIONMENT WITH LIFE" ##################################
     ################################################################
 
     show sayori mj
@@ -396,16 +414,18 @@ label consulai_s:
     s b1b e1a mb "I'd be happy to do that for you."
     s mg ldown "Just don't forget about me, y'know?"
     show sayori ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show sayori b1a ma
     mc "Thank you, but this is something I need to do myself."
     #If not last pick
-    mc "I just need to get some other things off my chest..."
+    if not last:
+        mc "I just need to get some other things off my chest..."
 
+    return
+
+label script5_s_you(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH YOU" ###################################
+    # "DISILLUSIONMENT WITH YOU" ###################################
     ################################################################
 
     show sayori b1f me
@@ -426,91 +446,80 @@ label consulai_s:
     s b1a mb "How does that sound?"
     s e1a "You and me?"
     show sayori ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "Okay...I trust you."
     mc "We can do this together."
     #If not last pick
-    mc "But..."
+    if not last:
+        mc "But..."
+    return
 
-    "## POST CHOICE"
+label script5_s:
+
+    show sayori turned happ cm oe at t11
+    mc "Hello, Sayori."
+    s om ce "Hi, $EMPLOYEE_NAME!"
+    s lup oe "Anything I can do for you today?"
+    show sayori turned neut me
+    call test_prompt_button("Initialize ConsulAI")
+    mc "I'm not feeling too well."
+    # show some faux code on the side, AI is immediately looking for problems
+    s mi b1b rup "Aww, I'm sorry!"
+    s mg "I'm not a doctor, but if you want, I can try and help you figure out what's up?"
+    show sayori md
+    call test_prompt_button("Accept")
+    mc "Please do."
+    s e1b mg "Well, before I can take a look..."
+    s ldown rdown e1a mi "I'm obligated to tell you that nothing I say here should be taken as medical advice."
+    s mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
+    s mi b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
+    s b2c "And I can always do that for you, should you need it."
+    s mh "Is that all okay with you?"
+    show sayori md
+    call test_prompt_button("Respond")
+    mc "Yes."
+    s mb b1a "Okay!"
+    s b1c mh "So, what seems to be the matter?"
+    s mg "If you give me some symptoms, I can try and connect the dots for you."
+    s mh rup "Upset stomach? Any difficulty breathing?"
+    show sayori md
+    call test_prompt_button("Respond")
+    mc "Actually no, it's nothing like that."
+    mc "I've been feeling pretty down lately, is all."
+    s lup mi e1b "I-I'm sorry! I thought you meant physical..."
+    show sayori ldown rdown e4a me b1d at s11
+    pause(0.75)
+    show sayori e1a md b1b at t11
+    s e1a mg "Well, what's been bothering you?"
+
+    show sayori md
+
+    ##OPEN-ENDED CHOICE:
+        # Disillusionment with news
+        # Disillusionment with job
+        # Disillusionment with life
+        # Disillusionment with you
+
+    call script5_qa("s")
+
+    ## "POST CHOICE"
     s e4b mb "See? It's always good to get things off of your chest."
     s e1a "Feeling better, right?"
     show sayori ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "Better. Thank you, Sayori."
     s mb "Think nothing of it, $EMPLOYEE_NAME."
     s rup lup e4b "I know you'd do the same for me."
     s e1a "Now, what next?"
     s b1f e1d rdown "Maybe you...wanna rent a movie?"
     show sayori mn
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record Results")
+    hide sayori
+    return
 
-label consulai_n:
-
-    show natsuki turned e1a b1a ma at t11 zorder 1
-    mc "Hello, Natsuki."
-    n mg "Oh, hey $EMPLOYEE_NAME."
-    n b1c mb "'Sup?"
-    show natsuki ma
-    menu:
-        "Initialize ConsulAI":
-            pass
-    show natsuki b1b mj
-    mc "I'm not feeling too well."
-    #show some faux code on the side, ai is immediately looking for problems
-    n rhip mh n2 "Oh, shit."
-    n e1b "Uhhh...okay, I'm not a doctor, but I do have a pretty big library of dots I can connect."
-    n b2a e1a mg "So, if you wanna try and paint a picture for me, I'll see what I can do."
-    show natsuki md
-    menu:
-        "Accept":
-            pass
-    mc "Please do."
-    n mg "Well, alright then."
-    n mf e1c "FYI, before I start..."
-    n ldown rdown e1a mh b1c "I'm obligated to tell you that nothing I say here should be taken as medical advice."
-    n mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
-    n mh b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
-    n b2c "And I can always do that for you, should you need it."
-    n mg rhip "You cool with that?"
-    show natsuki me
-    menu:
-        "Respond":
-            pass
-    mc "I am."
-    show natsuki cross b1c mh
-    n "Alright then, what kind of symptoms are there?"
-    show natsuki b1f mg
-    n "Migraines? Any back pain?"
-    show natsuki md
-    menu:
-        "Respond":
-            pass
-    mc "Actually, no. It's nothing like that."
-    show natsuki e1c b2b
-    mc "I've been feeling pretty down lately, is all."
-    show natsuki mg
-    n "Oh, sorry about that."
-    show natsuki mh e1a
-    n "I got a little ahead of myself there."
-    show natsuki turned b2a rhip lhip
-    n "Right...what's up?"
-    show natsuki md
-
-    ##OPEN-ENDED CHOICE:
-    # Disillusionment with news
-    # Disillusionment with job
-    # Disillusionment with life
-    # Disillusionment with you
-
+label script5_n_news(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH NEWS" ##################################
+    # "DISILLUSIONMENT WITH NEWS" ##################################
     ################################################################
 
     show natsuki turned md
@@ -557,15 +566,17 @@ label consulai_n:
     show natsuki rhip b1c
     n "Because it can only ever be bad for you."
     show natsuki md
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "Thanks, Natsuki."
     #If not last pick
-    mc "But there's still other things bothering me..."
+    if not last:
+        mc "But there's still other things bothering me..."
 
+    return
+
+label script5_n_job(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH JOB" ###################################
+    # "DISILLUSIONMENT WITH JOB" ###################################
     ################################################################
 
 
@@ -614,15 +625,17 @@ label consulai_n:
     show natsuki turned rhip b1a mb e1a
     n "You just need to show them what an asset they have."
     show natsuki ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "I appreciate that."
     #If not last pick
-    mc "There's just..."
+    if not last:
+        mc "There's just..."
 
+    return
+
+label script5_n_life(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH LIFE" ##################################
+    # "DISILLUSIONMENT WITH LIFE" ##################################
     ################################################################
 
     show natsuki turned md
@@ -676,16 +689,18 @@ label consulai_n:
     show natsuki mc
     n "And there's no escaping that, got it?"
     show natsuki ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show natsuki e1a b1c
     mc "Thank you, Natsuki. I'll give it a try."
     #If not last pick
-    mc "I just need to get some other things off my chest..."
+    if not last:
+        mc "I just need to get some other things off my chest..."
 
+    return
+
+label script5_n_you(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH YOU" ###################################
+    # "DISILLUSIONMENT WITH YOU" ###################################
     ################################################################
 
     show natsuki turned b1f me
@@ -725,31 +740,81 @@ label consulai_n:
     show natsuki mg b1b
     n "Okay?"
     show natsuki mj
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show natsuki b1c
     mc "I'm sorry. I was wrong to take out my problems on you."
     show natsuki ma n1 rdown
     mc "I trust you. We can do this together."
     #If not last pick
-    mc "But..."
+    if not last:
+        mc "But..."
+    return
 
-    "##POST CHOICE"
+label script5_n:
+
+    show natsuki turned e1a b1a ma at t11 zorder 1
+    mc "Hello, Natsuki."
+    n mg "Oh, hey $EMPLOYEE_NAME."
+    n b1c mb "'Sup?"
+    show natsuki ma
+    call test_prompt_button("Initialize ConsulAI")
+    show natsuki b1b mj
+    mc "I'm not feeling too well."
+    #show some faux code on the side, ai is immediately looking for problems
+    n rhip mh n2 "Oh, shit."
+    n e1b "Uhhh...okay, I'm not a doctor, but I do have a pretty big library of dots I can connect."
+    n b2a e1a mg "So, if you wanna try and paint a picture for me, I'll see what I can do."
+    show natsuki md
+    call test_prompt_button("Accept")
+    mc "Please do."
+    n mg "Well, alright then."
+    n mf e1c "FYI, before I start..."
+    n ldown rdown e1a mh b1c "I'm obligated to tell you that nothing I say here should be taken as medical advice."
+    n mg b2a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
+    n mh b2b "And if you're in an immediate emergency, you should definitely call the emergency services."
+    n b2c "And I can always do that for you, should you need it."
+    n mg rhip "You cool with that?"
+    show natsuki me
+    call test_prompt_button("Respond")
+    mc "I am."
+    show natsuki cross b1c mh
+    n "Alright then, what kind of symptoms are there?"
+    show natsuki b1f mg
+    n "Migraines? Any back pain?"
+    show natsuki md
+    call test_prompt_button("Respond")
+    mc "Actually, no. It's nothing like that."
+    show natsuki e1c b2b
+    mc "I've been feeling pretty down lately, is all."
+    show natsuki mg
+    n "Oh, sorry about that."
+    show natsuki mh e1a
+    n "I got a little ahead of myself there."
+    show natsuki turned b2a rhip lhip
+    n "Right...what's up?"
+    show natsuki md
+
+    ##OPEN-ENDED CHOICE:
+    # Disillusionment with news
+    # Disillusionment with job
+    # Disillusionment with life
+    # Disillusionment with you
+
+    call script5_qa("n")
+
+    ## "POST CHOICE"
     show natsuki mg b2b
     n "Okay..."
     show natsuki b2a mh rhip
     n "Well, if nothing else, I'm glad you're opening up to me."
     show natsuki md
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show natsuki ma
     mc "I'm glad you were there to talk to me. Thank you, Natsuki."
     show natsuki mh
     n "It's nothing."
     show natsuki cross n2 b1a e1c mg
-    n "Well, not actually nothing, but–--oh, you know what I mean."
+    n "Well, not actually nothing, but---oh, you know what I mean."
     show natsuki mb e1a
     n "And I'm glad to see the dumb smile back on your face."
     show natsuki e4a mg
@@ -757,74 +822,13 @@ label consulai_n:
     show natsuki b1c mc e1a
     n "Parfait Girls?"
     show natsuki ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record Results")
+    hide natsuki
+    return
 
-label consulai_y:
-
-    show yuri turned neut me oe at t11
-
-    mc "Hello, Yuri."
-    y e4b mb "Hello, $EMPLOYEE_NAME."
-    y e1a lup "How are you today?"
-
-    show yuri ma
-    menu:
-        "Initialize ConsulAI":
-            pass
-    show yuri me
-    mc "I'm not feeling too well."
-    # show some faux code on the side, AI is immediately looking for problems
-    y b1b mk n3 "Oh dear, I'm sorry to hear that!"
-    y mh rup "I'm not a medical expert, but I am supplied with a pretty extensive library of information I can take reference from."
-    y mg "So if you wanted me to, I could try and determine a cause?"
-    show yuri me
-    menu:
-        "Accept":
-            pass
-
-    mc "Please do."
-    y b2a e1b mg "I'm happy to help, but I do have to say..."
-    y ldown rdown e1a "I'm obligated to tell you that nothing I say here should be taken as medical advice."
-    y mh b1a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
-    y mi e1d b1b "And if you're in an immediate emergency, you should definitely call the emergency services."
-    y mh "And I can always do that for you, should you need it."
-    y mg b2a "Do you understand this?"
-    show yuri me
-    menu:
-        "Respond":
-            pass
-
-    mc "Yes."
-    y b1b mb "I'm glad to hear that."
-    y rup b1a e1a mh "To start with, what kind of symptoms are you experiencing?"
-    y b1f "Do you have a temperature? A particularly bad cough?"
-    show yuri me
-    menu:
-        "Respond":
-            pass
-
-    show yuri b1a
-    mc "Actually, no. It's nothing like that."
-    mc "I've been feeling pretty down lately, is all."
-    show yuri shy e2 b1 m4 n4
-    y "Oh, my apologies."
-    show yuri b2
-    y n1 "I assumed the problem was physical, my mistake."
-    show yuri e1
-    y "With that in mind...what kind of problems are you facing?"
-
-    ##OPEN-ENDED CHOICE:
-        # Disillusionment with news
-        # Disillusionment with job
-        # Disillusionment with life
-        # Disillusionment with you
-
-    show yuri m1
-
+label script5_y_news(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH NEWS" ##################################
+    # "DISILLUSIONMENT WITH NEWS" ##################################
     ################################################################
 
     show yuri turned rup lup b1a e1a md
@@ -855,16 +859,17 @@ label consulai_y:
     y mg "No?"
     y b1a e1a mb lup "Well, I'll be here regardless."
     show yuri ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
 
     mc "Thanks, Yuri."
     #If not last pick
-    mc "But there's still other things bothering me..."
+    if not last:
+        mc "But there's still other things bothering me..."
+    return
 
+label script5_y_job(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH JOB" ###################################
+    # "DISILLUSIONMENT WITH JOB" ###################################
     ################################################################
 
     show yuri turned rup lup b1a e1a me
@@ -894,18 +899,20 @@ label consulai_y:
     y mg "And I believe this is one you should grasp with both hands."
     y mb e1a b2a "I believe in you."
     show yuri ma
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
 
     show yuri b1a e1a
 
     mc "I appreciate that."
     #If not last pick
-    mc "There's just..."
+    if not last:
+        mc "There's just..."
 
+    return 
+
+label script5_y_life(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH LIFE" ##################################
+    # "DISILLUSIONMENT WITH LIFE" ##################################
     ################################################################
 
     show yuri turned rup lup b1a e1a me
@@ -943,18 +950,20 @@ label consulai_y:
     show yuri turned e1a b1c mh rup lup
     y "A-anyway, that's just how I cope between social interactions."
     y ma b1b n1 "Perhaps if you read between phone calls, or after an exhausting day out, you can manage things better?"
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
 
     show yuri b1a
 
     mc "Thank you, Yuri. I'll keep this in mind."
     #If not last pick
-    mc "I just need to get some other things off my chest..."
+    if not last:
+        mc "I just need to get some other things off my chest..."
 
+    return
+
+label script5_y_you(last=False):
     ################################################################
-    "# DISILLUSIONMENT WITH YOU" ###################################
+    # "DISILLUSIONMENT WITH YOU" ###################################
     ################################################################
 
     show yuri turned rup lup b1a e1a me
@@ -979,13 +988,69 @@ label consulai_y:
     y b1b "Without you, I have no meaning..."
     y e1a b2b rup "So p-please...tell me what to do."
     show yuri mj
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "Okay...one more chance."
     mc "We can figure it out together."
     #If not last pick
-    mc "But..."
+    if not last:
+        mc "But..."
+    return
+
+label script5_y:
+
+    show yuri turned neut me oe at t11
+
+    mc "Hello, Yuri."
+    y e4b mb "Hello, $EMPLOYEE_NAME."
+    y e1a lup "How are you today?"
+
+    show yuri ma
+    call test_prompt_button("Initialize ConsulAI")
+    show yuri me
+    mc "I'm not feeling too well."
+    # show some faux code on the side, AI is immediately looking for problems
+    y b1b mk n3 "Oh dear, I'm sorry to hear that!"
+    y mh rup "I'm not a medical expert, but I am supplied with a pretty extensive library of information I can take reference from."
+    y mg "So if you wanted me to, I could try and determine a cause?"
+    show yuri me
+    call test_prompt_button("Accept")
+
+    mc "Please do."
+    y b2a e1b mg "I'm happy to help, but I do have to say..."
+    y ldown rdown e1a "I'm obligated to tell you that nothing I say here should be taken as medical advice."
+    y mh b1a "I'm not a qualified doctor, I'm just trying to give you guesses that you can take to someone who is."
+    y mi e1d b1b "And if you're in an immediate emergency, you should definitely call the emergency services."
+    y mh "And I can always do that for you, should you need it."
+    y mg b2a "Do you understand this?"
+    show yuri me
+    call test_prompt_button("Respond")
+
+    mc "Yes."
+    y b1b mb "I'm glad to hear that."
+    y rup b1a e1a mh "To start with, what kind of symptoms are you experiencing?"
+    y b1f "Do you have a temperature? A particularly bad cough?"
+    show yuri me
+    call test_prompt_button("Respond")
+
+    show yuri b1a
+    mc "Actually, no. It's nothing like that."
+    mc "I've been feeling pretty down lately, is all."
+    show yuri shy e2 b1 m4 n4
+    y "Oh, my apologies."
+    show yuri b2
+    y n1 "I assumed the problem was physical, my mistake."
+    show yuri e1
+    y "With that in mind...what kind of problems are you facing?"
+
+    ##OPEN-ENDED CHOICE:
+        # Disillusionment with news
+        # Disillusionment with job
+        # Disillusionment with life
+        # Disillusionment with you
+
+    show yuri m1
+
+    call script5_qa("y")
 
     "##POST CHOICE"
 
@@ -995,9 +1060,7 @@ label consulai_y:
     y e1a mh b1b "Do you feel...better?"
     y e1b rup "I-I hope you don't feel worse."
     show yuri me
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     show yuri e1a
     mc "Better. Thank you, Yuri."
     y mh "Well...it's my pleasure."
@@ -1007,6 +1070,6 @@ label consulai_y:
     y b1d e1a mb rdown "...I have a Portrait of Markov shaped book with your name on it."
 
     show yuri ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record Results")
+    hide yuri
+    return

@@ -17,6 +17,5 @@ If you have any other questions, please contact your supervisor.
 
 Thank you for reading!
 """,
-        sender=board_sender,
-        is_spam=False
+        sender=board_sender
     )

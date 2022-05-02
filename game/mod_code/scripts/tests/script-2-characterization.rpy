@@ -61,15 +61,8 @@ label script2_finished():
     return
 
 label script2_post_finish():
-    $ renpy.transition(Fade(0.5, 1, 0.5))
-    $ _wm_manager.Application.close_all_apps()
-    $ wm_game_time.persistent_date = datetime.date(year=2029, month=7, day=27)
-    pause 0.75
-
-    scene black
-    pause 5.0
     $ persistent.current_test_no += 1
-    jump start
+    call advance_test(datetime.date(year=2029, month=7, day=27))
     return
 
 label script2_qa(doki):

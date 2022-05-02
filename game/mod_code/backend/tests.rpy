@@ -3,7 +3,8 @@ define 10 wintermute_tests = [
     intro_test,
     characterization_test,
     search_test,
-    nickname_test
+    nickname_test,
+    consulai_test
 ]
 
 default 10 persistent.completed_tests = [ ]
@@ -80,3 +81,13 @@ init python in _wm_test:
 
         def run_start(self): return self.__call_cb(self.on_start)
         def run_complete(self): return self.__call_cb(self.on_complete)
+
+label advance_test(date):
+    $ renpy.transition(Fade(0.5, 1, 0.5))
+    $ _wm_manager.Application.close_all_apps()
+    $ wm_game_time.persistent_date = date
+    pause 0.75
+
+    scene black
+    pause 5.0
+    jump start
