@@ -90,7 +90,7 @@ label script3_s():
     s lup "What's up?"
     show sayori ma
     call test_prompt_button("Ask Sayori a search query")
-    mc "Can you look up recent breaking stories from UKN News?"
+    mc "Can you look up recent breaking stories from BBC News?"
     s e4b lup mb "Sure thing!"
     s b1a e1a ldown "Just give me a second,{w=0.2} okay?"
     show sayori e4b b1a ma
@@ -163,7 +163,7 @@ label script3_y():
     y e4b "I'll be but a moment."
     show yuri b1d e4a md
     pause 1.0
-    y b1a mh e1a "{i}\"New York attacks: Turnell Technologies surpasses £100m in donations to relief effort\"{/i},{w=0.2} from UKN News."
+    y b1a mh e1a "{i}\"New York attacks: Turnell Technologies surpasses £100m in donations to relief effort\"{/i},{w=0.2} from BBC News."
     y "Would you like me to read more?"
     show yuri md
     call test_prompt_button("Record results")
