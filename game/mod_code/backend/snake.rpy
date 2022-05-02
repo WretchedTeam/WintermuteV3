@@ -37,7 +37,7 @@ init python in _wm_snake:
 
     def draw_cell(canvas, x, y, color, padding=(0, 0)):
         if isinstance(padding, (float, int)):
-            xpadding = ypadding = padding
+            xpadding = ypadding = int(padding)
         else:
             xpadding, ypadding = padding
 
@@ -93,7 +93,7 @@ init python in _wm_snake:
     def create_fruit(color):
         x = randrange(1, xcells - 1)
         y = randrange(1, ycells - 1)
-        return Block(x, y, 5, color)
+        return Block(x, y, 4, color)
 
     def default_snake_body(color):
         xcenter = xcells // 2
@@ -112,61 +112,60 @@ init python in _wm_snake:
 
         def __init__(self, snake_color, fruit_color, start_delay=2.0, **kwargs):
             super(Snake, self).__init__(**kwargs)
+
             self.snake_color = Color(snake_color)
             self.fruit_color = Color(fruit_color)
-            self.start_delay = start_delay
 
+            self.start_delay = start_delay
             self.reset()
 
-        def pause(self):
-            self.paused = True
-
-        def unpause(self):
-            self.paused = False
-            self.done_start_delay = False
-
         def reset(self):
-            self.done_start_delay = False
-            self.paused = True
-            self.game_over = False
-            self.game_over_st = None
-            self.fruit = create_fruit(self.fruit_color)
+            self.score = 0
+
+            self.done_start_delay = False # Are we done with the startup delay?
+            self.in_start_delay = True # Are we currently in the delay?
+
+            self.paused = False # Is the minigame in a paused state?
+            self.game_over = False # Is the snake dead?
+            self.game_over_st = None # Time of death.
+
+            # The fruit block to chase.
+            # Its positions are random and padding is applied.
+            self.fruit = create_fruit(self.fruit_color) 
+
+            # List of blocks which comprises the snake's body.
             self.snake_body = default_snake_body(Color(self.snake_color))
+
+            # Position of the snake's head and the direction it's facing.
             self.current_position = [ self.snake_body[0].x, self.snake_body[0].y ]
             self.current_direction = Direction.Up
 
-        def render(self, width, height, st, at):
-            if self.paused and not self.done_start_delay:
-                if st > self.start_delay:
-                    self.paused = False                    
-                    self.done_start_delay = True
+        def movement_step(self):
+            self.current_position[0] += self.current_direction[0]
+            self.current_position[1] += self.current_direction[1]
 
-                renpy.redraw(self, 0.0)
-            elif self.game_over:
-                renpy.redraw(self, 0.0)
+            self.current_position[0] %= xcells
+            self.current_position[1] %= ycells
+
+            x, y = self.current_position[0], self.current_position[1]
+            new_block = Block(x, y, 0, self.snake_color)
+
+            self.snake_body.insert(0, new_block)
+
+            if x == self.fruit.x and y == self.fruit.y:
+                self.fruit = create_fruit(self.fruit_color)
+                self.score += 10
             else:
-                renpy.redraw(self, 1.0 / target_fps)
+                self.snake_body.pop()
 
-            if not (self.paused or self.game_over):
-                self.current_position[0] += self.current_direction[0]
-                self.current_position[1] += self.current_direction[1]
+            for b in self.snake_body[1:]:
+                if x == b.x and y == b.y:
+                    self.game_over = True
+                    renpy.restart_interaction()
 
-                self.current_position[0] %= xcells
-                self.current_position[1] %= ycells
-
-                x, y = self.current_position[0], self.current_position[1]
-                new_block = Block(x, y, 0, self.snake_color)
-
-                self.snake_body.insert(0, new_block)
-
-                if x == self.fruit.x and y == self.fruit.y:
-                    self.fruit = create_fruit(self.fruit_color)
-                else:
-                    self.snake_body.pop()
-
-                for b in self.snake_body[1:]:
-                    if x == b.x and y == b.y:
-                        self.game_over = True
+        def render(self, width, height, st, at):
+            if not (self.paused or self.game_over or not self.done_start_delay):
+                self.movement_step()
 
             rv = renpy.Render(width, height)
 
@@ -177,38 +176,67 @@ init python in _wm_snake:
 
             self.fruit.render(canvas)
 
-            if self.game_over:
-                if self.game_over_st is None:
-                    self.game_over_st = self.game_over_st or st
+            if self.game_over: self.game_over_blink(rv)
 
-                else:
-                    delta = st - self.game_over_st
-                    alpha = (1.0 + math.cos(math.pi * delta / (0.5 * self.duration))) * 0.5
-
-                    rv.alpha = alpha
-                    
-                    rv.add_shader("renpy.alpha")
-                    rv.add_uniform("u_renpy_alpha", alpha)
-                    rv.add_uniform("u_renpy_over", 1.0)
+            self.handle_redraws()
 
             return rv
+
+        def game_over_blink(self, rv):
+            """
+            Blinks the snake and fruit timed with a sine wave.
+            """
+            st = renpy.display.render.render_st
+
+            if self.game_over_st is None:
+                self.game_over_st = self.game_over_st or st
+
+            else:
+                delta = st - self.game_over_st
+                alpha = (1.0 + math.cos(math.pi * delta / (0.5 * self.duration))) * 0.5
+
+                rv.alpha = alpha
+                
+                rv.add_shader("renpy.alpha")
+                rv.add_uniform("u_renpy_alpha", alpha)
+                rv.add_uniform("u_renpy_over", 1.0)
+
+        def handle_redraws(self):
+            if not self.done_start_delay:
+                if self.in_start_delay:
+                    renpy.redraw(self, self.start_delay)
+                    self.in_start_delay = False
+                    renpy.restart_interaction()
+
+                else:
+                    self.done_start_delay = True
+                    renpy.restart_interaction()
+                    renpy.redraw(self, 0.0)
+
+            elif self.paused:
+                pass
+
+            elif self.game_over:
+                renpy.redraw(self, 0.0)
+
+            else:
+                renpy.redraw(self, 1.0 / target_fps)
 
         def event(self, ev, x, y, st):
             ignore_event = False
 
-            if self.paused:
+            if self.paused or self.game_over or not self.done_start_delay:
                 return None
 
-            if not self.game_over:
-                direction_change_to = self.current_direction
+            direction_change_to = self.current_direction
 
-                if ev.type == pygame.KEYDOWN:
-                    if ev.key in direction_keys:
-                        direction_change_to = direction_keys[ev.key]
-                        ignore_event = True
+            if ev.type == pygame.KEYDOWN:
+                if ev.key in direction_keys:
+                    direction_change_to = direction_keys[ev.key]
+                    ignore_event = True
 
-                if opposites[self.current_direction] != direction_change_to:
-                    self.current_direction = direction_change_to
+            if opposites[self.current_direction] != direction_change_to:
+                self.current_direction = direction_change_to
 
             if ignore_event:
                 raise renpy.IgnoreEvent()
@@ -239,11 +267,46 @@ init python in _wm_snake:
             rv.fill(self.background)
             rv.blit(lgr, (0, 0))
             rv.blit(cr, (0, 0))
+            rv.add_focus(self, None, 0, 0, width, height)
 
             return rv
 
+        def is_gameover(self):
+            return self.snake.game_over
+
+        def start_delay(self):
+            return self.snake.start_delay
+
+        def has_done_start_delay(self):
+            return self.snake.done_start_delay
+
+        def is_paused(self):
+            return self.snake.paused
+
+        def get_score(self):
+            return self.snake.score
+
         def event(self, ev, x, y, st):
+            snake = self.snake
+            clicked = renpy.map_event(ev, "mousedown_1")
+            focused = self.is_focused()
+
+            if self.is_gameover():
+                if clicked and focused:
+                    snake.reset()
+                    renpy.redraw(snake, 0.0)
+                    return None
+
+            if clicked and snake.done_start_delay:
+                if focused:
+                    snake.paused = not snake.paused
+                else:
+                    snake.paused = True
+
+                renpy.redraw(snake, 0.0)
+                renpy.restart_interaction()
+
             return self.snake.event(ev, x, y, st)
 
         def visit(self):
-            return [ self.snake ]
+            return [ self.line_grid, self.snake ]
