@@ -1,10 +1,3 @@
-default persistent.script5_seen = {
-    "m": False,
-    "s": False,
-    "y": False,
-    "n": False
-}
-
 init python:
     consulai_test_report = """
 When loading the WINTERMUTE program, I prompted [t5doki] to try and perform therapy on me to treat my (fictionalized) negative outlooks on life. [t5doki] was immediately attentive to any signs of physical or mental problems on display. She performed the legally-required “not-qualified” disclosure as intended.
@@ -27,26 +20,21 @@ However, when faced with the prospect of a customer leaving them, their attitude
     )
 
 label script5_main():
-    while not all(persistent.script5_seen.values()):
-        menu:
-            "Load Monika" if not persistent.script5_seen["m"]:
-                call script5_m
-                $ persistent.script5_seen["m"] = True
+    menu:
+        "Load Monika":
+            call script5_m
 
-            "Load Sayori" if not persistent.script5_seen["s"]:
-                call script5_s
-                $ persistent.script5_seen["s"] = True
+        "Load Sayori":
+            call script5_s
 
-            "Load Yuri" if not persistent.script5_seen["y"]:
-                call script5_y
-                $ persistent.script5_seen["y"] = True
+        "Load Yuri":
+            call script5_y
 
-            "Load Natsuki" if not persistent.script5_seen["n"]:
-                call script5_n
-                $ persistent.script5_seen["n"] = True
+        "Load Natsuki":
+            call script5_n
 
-            "Exit":
-                return False
+        "Exit":
+            return False
 
     return True
 
