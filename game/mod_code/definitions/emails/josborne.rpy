@@ -3,13 +3,15 @@ init python:
 
     josborne_email_1 = Email(
         unique_id="josborne_email_1",
-        subject="Wintermute Quality Assurance Application",
+        subject="Da app",
         contents="""
-Hey hey, Jez here!
+Hey hey its me Jez, the one whose lighter you nicked lol
 
-Look who finally got through all that hiring rigamarole. I won't lie, the dev team has been keeping tabs on your application for quite a while. Quite a relief to {i}finally{/i} have someone on the QA team who has any clue what they're doing.
+Well well well very nice to see you actually got the job bro. Seems all that time i spent on my knees BEGGING worked lmao ;)
 
-Anyways, Bellboy asked (ordered) me to send you a copy of the Wintermute program. It should be attached. If you have any issues, send me an email or drop by the offices on the 5th floor (and whatever anyone tells you, it's {i}not{/i} inside the disabled loo. Just past it.)
+Anyway rob asked (ordered) me to send you a copy of the wintermute program sooo it should be attached
+
+If you have problems send an email or drop by the dev block on the 5th floor (and no matter what anyone tells you it's not inside the disabled loo!!! just past it)
 
 Jez :)
 """,
@@ -21,7 +23,8 @@ Jez :)
         unique_id="josborne_email_2",
         subject="Pub?",
         contents="""
-Hey hey its me Jez, the one whose lighter you still havent given back lol
+
+Hello mate been hearing a lot about you over in the dev room:)
 
 Iwan was chatting my ear off about you, said youre the only person in qa with a "functioning brain stem" and i have to say thats high praise coming from him lmao. He really liked your initiative with simulating our 3d environments to match the scene
 
