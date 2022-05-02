@@ -108,15 +108,14 @@ init python in _wm_snake:
         return rv
 
     class Snake(renpy.Displayable):
-        duration = 2.0
+        start_delay = 2.0
 
-        def __init__(self, snake_color, fruit_color, start_delay=2.0, **kwargs):
+        def __init__(self, snake_color, fruit_color, **kwargs):
             super(Snake, self).__init__(**kwargs)
 
             self.snake_color = Color(snake_color)
             self.fruit_color = Color(fruit_color)
 
-            self.start_delay = start_delay
             self.reset()
 
         def reset(self):
@@ -139,8 +138,10 @@ init python in _wm_snake:
             # Position of the snake's head and the direction it's facing.
             self.current_position = [ self.snake_body[0].x, self.snake_body[0].y ]
             self.current_direction = Direction.Up
+            self.new_direction = self.current_direction
 
         def movement_step(self):
+            self.current_direction = self.new_direction
             self.current_position[0] += self.current_direction[0]
             self.current_position[1] += self.current_direction[1]
 
@@ -193,7 +194,7 @@ init python in _wm_snake:
 
             else:
                 delta = st - self.game_over_st
-                alpha = (1.0 + math.cos(math.pi * delta / (0.5 * self.duration))) * 0.5
+                alpha = 0.2 + 0.8 * ((1.0 + math.cos(math.pi * delta)) * 0.5)
 
                 rv.alpha = alpha
                 
@@ -228,7 +229,7 @@ init python in _wm_snake:
             if self.paused or self.game_over or not self.done_start_delay:
                 return None
 
-            direction_change_to = self.current_direction
+            direction_change_to = self.new_direction
 
             if ev.type == pygame.KEYDOWN:
                 if ev.key in direction_keys:
@@ -236,7 +237,7 @@ init python in _wm_snake:
                     ignore_event = True
 
             if opposites[self.current_direction] != direction_change_to:
-                self.current_direction = direction_change_to
+                self.new_direction = direction_change_to
 
             if ignore_event:
                 raise renpy.IgnoreEvent()
@@ -268,7 +269,6 @@ init python in _wm_snake:
             rv.blit(lgr, (0, 0))
             rv.blit(cr, (0, 0))
             rv.add_focus(self, None, 0, 0, width, height)
-
             return rv
 
         def is_gameover(self):
