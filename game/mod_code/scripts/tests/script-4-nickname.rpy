@@ -1,9 +1,24 @@
+default persistent.t4doki = ""
+default persistent.t4nick = ""
+
+default t4nick = ""
+
 init python:
+    nickname_test_report = """
+When loading the WINTERMUTE program, I greeted [persistent.t4doki], and proceeded to give them the nickname "[persistent.t4nick]". Upon hearing this, [persistent.t4doki] initially seemed unable to make the association that the nickname I’d given them was to refer to them.
+
+I’m not sure exactly what happened behind the scenes, but as best I can describe it…
+
+This seemed to lead to [persistent.t4doki] (and by extension, the wider WINTERMUTE program itself) recognizing what it really is, and suffering some kind of mental breakdown as a result. I’m very concerned about the implications this has regarding the true intelligence of the program.
+
+Almost immediately, Jeremy externally shut down my testing application in order to reset the changes made to the program that caused this outburst. This was a very disconcerting experience for me personally.
+"""
+
     nickname_test = _wm_test.WintermuteTest(
         "nickname_test",
         "Nickname Recognition",
         "Lorem Ipsum",
-        "",
+        nickname_test_report,
         "josborne_email_3",
         datetime.date(year=2029, month=8, day=3),
         "Jeremy Osborne",
@@ -15,15 +30,19 @@ init python:
 label script4_main():
     menu:
         "Load Monika":
+            $ persistent.t4doki = "Monika"
             call script4_m
 
         "Load Sayori":
+            $ persistent.t4doki = "Sayori"
             call script4_s
 
         "Load Yuri":
+            $ persistent.t4doki = "Yuri"
             call script4_y
 
         "Load Natsuki":
+            $ persistent.t4doki = "Natsuki"
             call script4_n
 
         "Exit":
@@ -37,6 +56,7 @@ label script4_on_start():
     return
 
 label script4_finished():
+    $ persistent.t4nick = t4nick
     $ josborne_email_4.unlock()
     return
 

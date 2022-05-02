@@ -273,7 +273,7 @@ screen dashboard_test_report():
         side "l r":
             spacing 10
 
-            viewport id "dashboard_test_report_vp" ysize 250:
+            viewport id "dashboard_test_report_vp" ysize 220:
                 mousewheel True
                 text test.final_report color "#000"
 
