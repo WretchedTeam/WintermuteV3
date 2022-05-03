@@ -219,11 +219,23 @@ style input:
 
 transform choice_appear(i):
     alpha 0.0 yoffset -10
-    pause i * 0.5
-    linear 0.25 alpha 1.0 yoffset 0
+    pause i * 0.075
+    easein_quad 0.25 alpha 1.0 yoffset 0
+
+image choice_black_background:
+    alpha 0.0
+
+    "#0006"
+
+    on show:
+        easein 0.5 alpha 1.0
+    on hide:
+        easeout 0.5 alpha 0.0
 
 screen choice(items):
     style_prefix "choice"
+
+    add "choice_black_background"
 
     vbox:
         for idx, i in enumerate(items):
@@ -240,13 +252,16 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 270
+    ypos 400
     yanchor 0.5
 
     spacing gui.choice_spacing
 
 style choice_button is button:
     properties gui.button_properties("choice_button")
+    size_group "choice_button"
+    idle_background Frame("mod_assets/gui/button/choice_idle_background.png", gui.choice_button_borders, tile=gui.choice_button_tile)
+    hover_background Frame("mod_assets/gui/button/choice_hover_background.png", gui.choice_button_borders, tile=gui.choice_button_tile)
 
 style choice_button_text is button_text:
     properties gui.button_text_properties("choice_button")

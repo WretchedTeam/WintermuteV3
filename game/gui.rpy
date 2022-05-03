@@ -55,13 +55,13 @@ define gui.interface_text_color = u'#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
+define gui.text_font = _wm_font_lexend.light
 
 ## The font used for character names.
-define gui.name_text_font = "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"
+define gui.name_text_font = _wm_font_lexend.semibold
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "mod_assets/gui/font/Ubuntu/Ubuntu-Regular.ttf"
+define gui.interface_text_font = _wm_font_lexend.regular
 
 ## The size of normal dialogue text.
 define gui.text_size = 22
@@ -211,15 +211,16 @@ define gui.navigation_button_text_selected_color = "#b489eb"
 ##
 ## Choice buttons are used in the in-game menus.
 
-define gui.choice_button_width = 790
-define gui.choice_button_height = None
+define gui.choice_button_width = 500
+define gui.choice_button_height = 60
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(100, 5, 100, 5)
-define gui.choice_button_text_font = gui.text_font
+define gui.choice_button_borders = Borders(5, 5, 5, 5)
+define gui.choice_button_text_font = gui.interface_text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = "#cccccc"
-define gui.choice_button_text_hover_color = "#ffffff"
+define gui.choice_button_text_yalign = 0.5
+define gui.choice_button_text_idle_color = "#fff"
+define gui.choice_button_text_hover_color = "#000"
 define gui.choice_button_text_insensitive_color = "#444444"
 
 

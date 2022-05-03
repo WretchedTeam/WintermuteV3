@@ -24,24 +24,24 @@ Upon interaction with the WINTERMUTE program, the girls introduced themselves an
 
 label script1_main():
     while not all(persistent.script1_seen.values()):
-        menu:
-            "Load Monika" if not persistent.script1_seen["m"]:
+        menu (screen="load_doki_choice"):
+            "Monika" if not persistent.script1_seen["m"]:
                 call script1_m
                 $ persistent.script1_seen["m"] = True
 
-            "Load Sayori" if not persistent.script1_seen["s"]:
+            "Sayori" if not persistent.script1_seen["s"]:
                 call script1_s
                 $ persistent.script1_seen["s"] = True
 
-            "Load Yuri" if not persistent.script1_seen["y"]:
+            "Yuri" if not persistent.script1_seen["y"]:
                 call script1_y
                 $ persistent.script1_seen["y"] = True
 
-            "Load Natsuki" if not persistent.script1_seen["n"]:
+            "Natsuki" if not persistent.script1_seen["n"]:
                 call script1_n
                 $ persistent.script1_seen["n"] = True
 
-            "Exit":
+            "Exit" (prepend_load=False):
                 return False
 
     return True
