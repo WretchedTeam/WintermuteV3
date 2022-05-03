@@ -157,6 +157,7 @@ init python:
         if quick_menu: renpy.call_in_new_context('_game_menu')
 
     config.game_menu_action = game_menu_check
+    config.search_prefixes.append("mod_assets/")
 
 ## Build configuration #########################################################
 ##

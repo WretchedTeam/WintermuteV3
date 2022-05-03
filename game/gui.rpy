@@ -211,7 +211,8 @@ define gui.navigation_button_text_selected_color = "#b489eb"
 ##
 ## Choice buttons are used in the in-game menus.
 
-define gui.choice_button_width = 500
+define gui.choice_button_width = None
+define gui.choice_button_xminimum = 500
 define gui.choice_button_height = 60
 define gui.choice_button_tile = False
 define gui.choice_button_borders = Borders(5, 5, 5, 5)

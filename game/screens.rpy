@@ -259,6 +259,7 @@ style choice_vbox:
 
 style choice_button is button:
     properties gui.button_properties("choice_button")
+    xminimum gui.choice_button_xminimum
     size_group "choice_button"
     idle_background Frame("mod_assets/gui/button/choice_idle_background.png", gui.choice_button_borders, tile=gui.choice_button_tile)
     hover_background Frame("mod_assets/gui/button/choice_hover_background.png", gui.choice_button_borders, tile=gui.choice_button_tile)

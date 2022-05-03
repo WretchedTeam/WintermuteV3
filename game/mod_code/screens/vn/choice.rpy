@@ -1,3 +1,16 @@
+define gui.load_doki_choice_button_width = gui.choice_button_width
+define gui.load_doki_choice_button_xminimum = gui.choice_button_xminimum
+define gui.load_doki_choice_button_height = gui.choice_button_height
+define gui.load_doki_choice_button_tile = gui.choice_button_tile
+define gui.load_doki_choice_button_borders = Borders(35, 5, 35, 5)
+define gui.load_doki_choice_button_text_font = gui.choice_button_text_font
+define gui.load_doki_choice_button_text_size = gui.choice_button_text_size
+define gui.load_doki_choice_button_text_xalign = gui.choice_button_text_xalign
+define gui.load_doki_choice_button_text_yalign = gui.choice_button_text_yalign
+define gui.load_doki_choice_button_text_idle_color = gui.choice_button_text_idle_color
+define gui.load_doki_choice_button_text_hover_color = gui.choice_button_text_hover_color
+define gui.load_doki_choice_button_text_insensitive_color = gui.choice_button_text_insensitive_color
+
 transform load_doki_choice_text_fade():
     alpha 0.0 yoffset 100
 
@@ -38,18 +51,25 @@ screen load_doki_choice(items):
 
                 at choice_appear(idx)
 
-style load_doki_choice_vbox is choice_vbox
-style load_doki_choice_button is choice_button
-style load_doki_choice_button_text is choice_button_text
+style load_doki_choice_vbox is vbox
+style load_doki_choice_button is button
+style load_doki_choice_button_text is button_text
 style load_doki_choice_caption_display is empty 
 
+style load_doki_choice_vbox:
+    xalign 0.5
+    ypos 400
+    yanchor 0.5
+
+    spacing gui.choice_spacing
+
 style load_doki_choice_button:
-    xysize (500, 60)
-    idle_background Image("mod_assets/gui/button/load_doki_choice_idle_background.png", align=(0.5, 0.5))
-    hover_background Image("mod_assets/gui/button/load_doki_choice_hover_background.png", align=(0.5, 0.5))
+    properties gui.button_properties("load_doki_choice_button")
+    xminimum gui.load_doki_choice_button_xminimum
+    size_group "load_doki_choice_button"
 
 style load_doki_choice_button_text:
-    yoffset -5
+    properties gui.button_text_properties("load_doki_choice_button")
 
 style load_doki_choice_caption_display:
     font _wm_font_lexend.semibold size 120
