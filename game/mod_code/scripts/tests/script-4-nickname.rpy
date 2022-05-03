@@ -28,24 +28,24 @@ Almost immediately, Jeremy externally shut down my testing application in order 
     )
 
 label script4_main():
-    menu:
-        "Load Monika":
+    menu (screen="load_doki_choice"):
+        "Monika":
             $ persistent.t4doki = "Monika"
             call script4_m
 
-        "Load Sayori":
+        "Sayori":
             $ persistent.t4doki = "Sayori"
             call script4_s
 
-        "Load Yuri":
+        "Yuri":
             $ persistent.t4doki = "Yuri"
             call script4_y
 
-        "Load Natsuki":
+        "Natsuki":
             $ persistent.t4doki = "Natsuki"
             call script4_n
 
-        "Exit":
+        "Exit" (prepend_load=False):
             return False
 
     return True

@@ -30,24 +30,24 @@ As with the last test, the range of emotions [persistent.t2doki] can show is alm
     )
 
 label script2_main():
-    menu:
-        "Load Monika":
+    menu(screen="load_doki_choice"):
+        "Monika":
             $ set_characterization_target("Monika", "boldly")
             call script2_m
 
-        "Load Sayori":
+        "Sayori":
             $ set_characterization_target("Sayori", "reluctantly")
             call script2_s
 
-        "Load Yuri":
+        "Yuri":
             $ set_characterization_target("Yuri", "nervously")
             call script2_y
 
-        "Load Natsuki":
+        "Natsuki":
             $ set_characterization_target("Natsuki", "snarkily")
             call script2_n
 
-        "Exit":
+        "Exit" (prepend_load=False):
             return False
 
     return True

@@ -21,24 +21,24 @@ init python:
 
 label script3_main():
     while not all(persistent.script3_seen.values()):
-        menu:
-            "Load Monika" if not persistent.script3_seen["m"]:
+        menu (screen="load_doki_choice"):
+            "Monika" if not persistent.script3_seen["m"]:
                 call script3_m
                 $ persistent.script3_seen["m"] = True
 
-            "Load Sayori" if not persistent.script3_seen["s"]:
+            "Sayori" if not persistent.script3_seen["s"]:
                 call script3_s
                 $ persistent.script3_seen["s"] = True
 
-            "Load Yuri" if not persistent.script3_seen["y"]:
+            "Yuri" if not persistent.script3_seen["y"]:
                 call script3_y
                 $ persistent.script3_seen["y"] = True
 
-            "Load Natsuki" if not persistent.script3_seen["n"]:
+            "Natsuki" if not persistent.script3_seen["n"]:
                 call script3_n
                 $ persistent.script3_seen["n"] = True
 
-            "Exit":
+            "Exit" (prepend_load=False):
                 return False
 
     return True

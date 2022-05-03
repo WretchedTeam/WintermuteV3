@@ -21,20 +21,20 @@ However, when faced with the prospect of a customer leaving them, their attitude
     )
 
 label script5_main():
-    menu:
-        "Load Monika":
+    menu (screen="load_doki_choice"):
+        "Monika":
             call script5_m
 
-        "Load Sayori":
+        "Sayori":
             call script5_s
 
-        "Load Yuri":
+        "Yuri":
             call script5_y
 
-        "Load Natsuki":
+        "Natsuki":
             call script5_n
 
-        "Exit":
+        "Exit" (prepend_load=False):
             return False
 
     return True
