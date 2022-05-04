@@ -9,6 +9,7 @@ init python:
     intro_test_report = """
 Upon interaction with the WINTERMUTE program, the girls introduced themselves and their stated purpose to me in a concise and helpful manner. From my brief interaction with them, I would conclude that their mannerisms, facial expressions and patterns of speech were accurate to their established characters.
 """
+
     intro_test = _wm_test.WintermuteTest(
         "intro_test",
         "Formal Introduction",
@@ -17,6 +18,7 @@ Upon interaction with the WINTERMUTE program, the girls introduced themselves an
         "rbell_email_1",
         datetime.date(year=2029, month=7, day=13),
         "Robert Bell",
+        [ intro_test_headline_1, intro_test_headline_2, intro_test_headline_3, intro_test_headline_4 ],
         "script1_main",
         "script1_on_start",
         "script1_finished"

@@ -23,6 +23,7 @@ As with the last test, the range of emotions [persistent.t2doki] can show is alm
         "igreen_email_2",
         datetime.date(year=2029, month=7, day=20),
         "Iwan Green",
+        [ characterization_test_headline_1, characterization_test_headline_2, characterization_test_headline_3, characterization_test_headline_4 ],
         "script2_main",
         "script2_on_start",
         "script2_finished",

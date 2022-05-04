@@ -31,11 +31,11 @@ init python in _wm_test:
 
         __slots__ = (
             "key", "name", "description", "final_report", "main_email", "assigned_on", 
-            "assigner", "on_start", "labels", "on_advance", "is_finished"
+            "assigner", "headlines", "on_start", "labels", "on_advance", "is_finished"
         )
 
         def __init__(self, key, name, description, final_report, main_email, assigned_on, assigner=None, 
-                main_label="start", on_start=None, on_complete=None, single=False):
+                headlines=None, main_label="start", on_start=None, on_complete=None, single=False):
 
             self.key = key
             self.name = name
@@ -45,15 +45,23 @@ init python in _wm_test:
 
             self.assigned_on = assigned_on
 
+            self.main_label = main_label
+            self.on_start = on_start
+            self.on_complete = on_complete
+            self.single = single
+
             if assigner is None:
                 assigner = self.main_email.sender.name
 
             self.assigner = assigner
 
-            self.main_label = main_label
-            self.on_start = on_start
-            self.on_complete = on_complete
-            self.single = single
+            if headlines is None:
+                headlines = [ ]
+
+            elif not isinstance(headlines, (list, tuple)):
+                headlines = [ headlines ]
+
+            self.headlines = headlines
 
         @debug
         def rewind(self):

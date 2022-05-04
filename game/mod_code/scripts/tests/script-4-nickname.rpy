@@ -22,6 +22,7 @@ Almost immediately, Jeremy externally shut down my testing application in order 
         "josborne_email_3",
         datetime.date(year=2029, month=8, day=3),
         "Jeremy Osborne",
+        [ nickname_test_headline_1, nickname_test_headline_2, nickname_test_headline_3, nickname_test_headline_4 ],
         "script4_main",
         "script4_on_start",
         "script4_finished"

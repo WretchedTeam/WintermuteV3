@@ -14,6 +14,7 @@ init python:
         "igreen_email_3",
         datetime.date(year=2029, month=7, day=27),
         "Iwan Green",
+        [ search_test_headline_1, search_test_headline_2, search_test_headline_3, search_test_headline_4 ],
         "script3_main",
         "script3_on_start",
         "script3_finished"

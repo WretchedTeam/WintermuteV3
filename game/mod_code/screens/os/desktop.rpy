@@ -23,4 +23,5 @@ screen icon_grid():
             use desktop_app_icon("Wintermute", dashboard_app, (0, 1))
 
         use desktop_app_icon("Snake", snake_app, (0, 2))
+        use desktop_app_icon("News", news_client_app, (0, 3))
  

@@ -15,6 +15,7 @@ However, when faced with the prospect of a customer leaving them, their attitude
         "igreen_email_5",
         datetime.date(year=2029, month=8, day=10),
         "Iwan Green",
+        [ consulai_test_headline_1, consulai_test_headline_2, consulai_test_headline_3, consulai_test_headline_4 ],
         "script5_main",
         "script5_on_start",
         "script5_finished"
