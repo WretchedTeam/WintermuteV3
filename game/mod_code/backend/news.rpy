@@ -5,7 +5,7 @@ init python in _wm_news:
     P_NS = "New Scientist"
     P_YT = "YouTube"
     P_BBC = "Big Black Cock News" if random.randint(0, 1000000) == 0 else "BBC News"
-    P_I = "iNews"
+    P_I = "i News"
     P_TG = "The Guardian"
     P_DS = "Daily Star"
     P_TS = "The Sun"
@@ -34,4 +34,3 @@ init python in _wm_news:
             self.thumbnail = prefix_if_needed(thumbnail)
             self.publisher = publisher
             self.author = author
-
