@@ -29,7 +29,8 @@ init -10 python in _wm_music_player:
         SelectedIf,
         Function,
         ToggleSetMembership,
-        ToggleField
+        ToggleField,
+        BarValue
     )
 
     music_folder_path = os.path.join(basedir, "music")
@@ -217,6 +218,7 @@ init -10 python in _wm_music_player:
             self.playlist_key = "all"
 
             self.shuffled = None
+            self.last_playing = None
 
             self.st = -1
 
@@ -232,16 +234,23 @@ init -10 python in _wm_music_player:
             if self.st == st:
                 return
             elif st < self.st:
-                self.last_played = None  
+                self.last_playing = None  
 
             self.st = st
 
-            if renpy.music.is_playing(self.channel):
-                track = Track.get(strip_filename(renpy.music.get_playing(self.channel)))
+            current_playing = renpy.music.get_playing(self.channel) or ""
+            current_playing = strip_filename(current_playing)
+
+            if current_playing:
+                track = Track.get(strip_filename(current_playing))
 
                 self.position = renpy.music.get_pos(self.channel) or 0.0
                 self.duration = max(renpy.music.get_duration(self.channel) or 1.0, track._duration or 1.0)
 
+            if self.last_playing != current_playing:
+                self.last_playing = current_playing
+                renpy.restart_interaction()
+                
 
         def play(self, filename=None, offset=0, pos=0):
             playlist = self.playlists.get(self.playlist_key, None)
@@ -264,7 +273,8 @@ init -10 python in _wm_music_player:
 
             if filename is None:
                 filename = renpy.music.get_playing(channel=self.channel)
-                filename = strip_filename(filename)
+                if filename is not None:
+                    filename = strip_filename(filename)
 
             try:
                 idx = playlist.index(filename)
@@ -295,6 +305,18 @@ init -10 python in _wm_music_player:
         def previous(self):
             return self.play(None, -1)
 
+        def forward(self):
+            if self.position + 5 < self.duration:
+                return self.play(None, 0, self.position + 5)
+
+            return self.next()
+
+        def rewind(self):
+            if self.position < 2:
+                return self.previous()
+
+            return self.play(None, 0, max(self.position - 5, 0))
+
         def Next(self):
             return Function(self.next)
 
@@ -305,10 +327,10 @@ init -10 python in _wm_music_player:
             return __MusicPlay(self, filename)
 
         def Forward(self):
-            return self.Next()
+            return Function(self.forward)
 
         def Rewind(self):
-            return self.Previous()
+            return Function(self.rewind)
 
         def TogglePause(self):
             return __MusicTogglePause(self)

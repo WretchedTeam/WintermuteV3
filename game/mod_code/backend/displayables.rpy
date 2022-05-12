@@ -75,3 +75,15 @@ init python in _wm_displayables:
 
         def render(self, width, height, st, at):
             return super(DashedCircle, self).render(self.dimen, self.dimen, st, at)
+
+    class Gradient(SingleShaderDisplayable):
+        def __init__(self, start_color, end_color, theta=0.0, start_pos=0.0, end_pos=1.0, **kwargs):
+            uniforms = { 
+                "u_start_pos": start_pos,
+                "u_end_pos": end_pos,
+                "u_start_color": Color(start_color).rgba,
+                "u_end_color": Color(end_color).rgba,
+                "u_theta": theta 
+            }
+
+            super(Gradient, self).__init__("wm.gradient", uniforms)

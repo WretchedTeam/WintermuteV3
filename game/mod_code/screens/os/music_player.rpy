@@ -38,6 +38,7 @@ init python in _wm_music_player_app:
     register_feather_icon("pause_circle", "")
 
     register_feather_icon("play", "")
+    register_feather_icon("pause", "")
 
     register_feather_icon("headphone", "")
     register_feather_icon("heart", "")
@@ -48,9 +49,10 @@ init python in _wm_music_player_app:
     register_feather_icon("shuffle", "")
 
     register_feather_icon("cross", "")
+    register_feather_icon("volume", "")
 
     from store._wm_music_player import MusicPlayer, format_time, strip_filename, Track
-    from store import Text, Null
+    from store import Text, Null, AudioPositionValue
 
     category_playlist_key = {
         1: "favorite",
@@ -74,6 +76,7 @@ init python in _wm_music_player_app:
         def __init__(self):
             self.mp = MusicPlayer("music_player")
             self.category = self.CURRENT
+            self.bar_value = AudioPositionValue(self.mp.channel)
             self.yadj = ui.adjustment()
 
         def get_current_track(self):
@@ -89,30 +92,31 @@ init python in _wm_music_player_app:
 
         def position_text(self, *args):
             if not self.is_mp_active():
-                return Null(), None
+                return Text("--:--", color="#000"), None
 
             return Text(format_time(self.mp.position), color="#000"), 0.01
 
         def duration_text(self, *args):
             if not self.is_mp_active():
-                return Null(), None
+                return Text("--:--", color="#000"), None
 
             return Text(format_time(self.mp.duration), color="#000"), 0.01
 
         def on_close(self):
+            renpy.music.set_pause(True, self.mp.channel)
             self.mp.position = 0.0
             self.mp.duration = 1.0
 
 screen music_player():
     default mpp = music_player_app.userdata
 
-    use program_base(music_player_app, xysize=(1000, 750)):
+    use program_base(music_player_app, xysize=(1200, 900)):
         frame background "#F0F2F9":
             padding (0, 0)
             xfill True yfill True
 
             frame background None padding (0, 0):
-                ysize 555
+                ysize 700
 
                 if mpp.category == mpp.CURRENT:
                     use player_current(mpp)
@@ -123,76 +127,94 @@ screen music_player():
                         _wm_music_player_app.category_playlist_key[mpp.category]
                     )
 
+                use player_category_entries(mpp)
+
             use player_controls(mpp)
-            use player_category_entries(mpp)
-            use player_volume(mpp)
+            # use player_volume(mpp)
 
     on "hide" action mpp.on_close
-
-screen player_volume(mpp):
-    style_prefix "player_volume"
-
-    hbox spacing 15:
-        xalign 0.0 yalign 0.885
-        xoffset 35
-
-        text _("Volume:")
-        bar value MixerValue(mpp.mp.channel) yalign 0.5
-
-style player_volume_slider is player_controls_bar
-
-style player_volume_text:
-    color "#000"
-
-style player_volume_slider:
-    xsize 150
 
 screen player_controls(mpp):
     style_prefix "player_controls"
 
-    frame background None:
+    frame:
+        background "#fff"
+        padding (30, 20)
+
+        xfill True ysize 160
         yalign 1.0
 
-        has fixed:
-            fit_first True
+        has vbox:
+            spacing 30
 
-        add "music_player control background"
+        frame xfill True ysize 60:
+            $ track = mpp.get_current_track()
 
-        vbox xfill True yfill True:
-            hbox xalign 0.5:
-                ysize 86 spacing 36
+            if track is not None:
+                python:
+                    title = track.tags["title"]
+                    artist = track.tags["artist"]
+
+                fixed align (0.0, 0.5):
+                    xsize 300
+
+                    at Transform(crop_relative=True, crop=(0.0, 0.0, 1.0, 1.0))
+
+                    hbox spacing 20:
+                        if track.cover_art is not None:
+                            add track.cover_art fit "contain"
+
+                        vbox yalign 0.5:
+                            text _("[title]") font _wm_font_lexend.regular
+                            text _("[artist]")  font _wm_font_lexend.light
+
+                    add _wm_displayables.Gradient("#000", "#fff", 0.0, 0.8, 1.0):
+                        at transform:
+                            blend "add"
+
+            hbox align (0.5, 0.5):
+                spacing 36
 
                 textbutton _("{rewind}") action mpp.mp.Rewind()
 
                 if renpy.music.get_pause(mpp.mp.channel):
-                    textbutton _("{play_circle}") style_suffix "play_button":
+                    textbutton _("{play}") style_suffix "play_button":
                         action mpp.mp.TogglePause()
                 else:
-                    textbutton _("{pause_circle}") style_suffix "play_button":
+                    textbutton _("{pause}") style_suffix "play_button":
                         action mpp.mp.TogglePause()
 
                 textbutton _("{forward}") action mpp.mp.Forward()
 
-            frame padding (35, 0):
-                if mpp.is_mp_active() is not None:
-                    side "l c r" yalign 0.5:
-                        spacing 30
-                        frame xsize 60:
-                            add DynamicDisplayable(mpp.position_text)
+            hbox align (1.0, 0.5):
+                spacing 15
 
-                        null
+                text _("{volume}") size 36
+                bar value MixerValue(mpp.mp.channel) yalign 0.5
 
-                        frame xsize 60:
-                            add DynamicDisplayable(mpp.duration_text)
+        side "l c r" xalign 0.5 yalign 1.0:
+            spacing 30
+            frame xsize 40:
+                add DynamicDisplayable(mpp.position_text)
+
+            bar value mpp.bar_value:
+                yalign 0.5 yoffset 2
+
+            frame xsize 40:
+                add DynamicDisplayable(mpp.duration_text) xalign 1.0
+
 
 style player_controls_frame is empty
 style player_controls_button is empty
 style player_controls_button_text is empty
 
+style player_controls_text is empty
+
 style player_controls_play_button is player_controls_button
 style player_controls_play_button_text is player_controls_button_text
 
 style player_controls_bar is empty
+style player_controls_slider is player_controls_bar
 
 style player_controls_button:
     yalign 0.5
@@ -201,6 +223,11 @@ style player_controls_button_text:
     color "#000"
     align (0.5, 0.5)
     size 36
+
+style player_controls_text:
+    font _wm_font_lexend.regular
+    color "#000"
+    layout "nobreak"
 
 style player_controls_play_button_text:
     size 54
@@ -211,6 +238,9 @@ style player_controls_bar:
     left_bar "music_player bar_left"
     right_bar "music_player bar_right"
     thumb "music_player bar_thumb"
+
+style player_controls_slider:
+    xsize 150
 
 screen player_category_button(_i, _action, **properties):
     style_prefix "player_category"
@@ -234,8 +264,15 @@ style player_category_button:
     xysize (54, 54)
 
 screen player_category_entries(mpp):
-    hbox spacing 18:
-        xalign 0.92 yalign 0.885
+    default show_btns = False
+
+    # mousearea:
+    #     area (1050, 350 - 160, 150, 320)
+    #     hovered SetLocalVariable("show_btns", True)
+    #     unhovered SetLocalVariable("show_btns", False)
+
+    vbox spacing 18:
+        xalign 0.975 yalign 0.5
 
         use player_category_button("{headphone}", SetField(mpp, "category", mpp.CURRENT))
         use player_category_button("{heart}", SetField(mpp, "category", mpp.FAVORITES))
@@ -249,53 +286,57 @@ screen player_current(mpp):
 
     if track is None:
         label _("Nothing is playing."):
+            text_color "#000"
             xfill True yfill True
             text_style "player_current_album"
             text_xalign 0.5 text_yalign 0.5
 
     else:
-        frame:
-            has hbox
+        frame at Transform(crop_relative=True, crop=(0.0, 0.0, 1.0, 1.0)):
+            xfill True yfill True
 
-            fixed:
-                xysize (355, 355)
+            $ metadata_text_color = "#fff" if track.cover_art is not None else "#000"
 
-                if track.cover_art is not None:
-                    add track.cover_art fit "contain"
-                else:
-                    add "music_player sample cover_art" fit "contain"
-
-            null width 71
+            if track.cover_art is not None:
+                add track.cover_art fit "contain" align (0.5, 0.5)
+                add _wm_displayables.Gradient("#0008", "#0000", 90.0, 0.0, 1.0)
 
             python:
                 title = track.tags["title"]
                 album = track.tags["album"]
                 artist = track.tags["artist"]
 
-            vbox:
-                use marquee(400, len(title) ** 0.5):
-                    text _("[title]") style_suffix "title" layout "nobreak"
+            frame padding (95, 50):
+                yalign 1.0
 
-                text _("[album]") style_suffix "album"
-                text _("[artist]") style_suffix "artist"
+                vbox:
+                    text _("[title]") style_suffix "title":
+                        color metadata_text_color
 
-                null height 50
+                    text _("[album]") style_suffix "album":
+                        color metadata_text_color
 
-                hbox:
-                    spacing 25
+                    text _("[artist]") style_suffix "artist":
+                        color metadata_text_color
 
-                    textbutton _("{heart}") action mpp.mp.ToggleFavorite(track.fn):
-                        text_selected_color "#ff4c4c"
+                    null height 10
 
-                    textbutton _("{repeat}") action mpp.mp.ToggleSingleTrack():
-                        text_selected_color "#4cccff"
-                    textbutton _("{shuffle}") action mpp.mp.ToggleShuffle():
-                        text_selected_color "#2fd832"
+                    hbox:
+                        spacing 25
+
+                        textbutton _("{heart}") action mpp.mp.ToggleFavorite(track.fn):
+                            text_idle_color metadata_text_color
+                            text_selected_color "#ff4c4c"
+
+                        textbutton _("{repeat}") action mpp.mp.ToggleSingleTrack():
+                            text_idle_color metadata_text_color
+                            text_selected_color "#4cccff"
+
+                        textbutton _("{shuffle}") action mpp.mp.ToggleShuffle():
+                            text_idle_color metadata_text_color
+                            text_selected_color "#2fd832"
 
 style player_current_frame is empty
-
-style player_current_frame:
-    padding (95, 140)
 
 style player_current_button_text:
     size 36
@@ -303,25 +344,25 @@ style player_current_button_text:
 
 style player_current_title:
     font _wm_font_lexend.semibold
-    size 64
-    color "#000"
+    size 32
+    color "#fff"
 
 style player_current_album:
     font _wm_font_lexend.regular
-    size 36
-    color "#747474"
+    size 24
+    color "#fff"
 
 style player_current_artist:
     font _wm_font_lexend.light
-    size 28
-    color "#525252"
+    size 24
+    color "#fff"
 
 screen player_track_entry(mpp, i, pk):
     style_prefix "player_track_entry"
 
     $ track = _wm_music_player.Track.get(i)
 
-    button xysize (800, 60):
+    button xysize (925, 60):
         style_suffix "main_button"
 
         action [ SensitiveIf(track.is_valid_file), mpp.mp.SetPlaylist(pk), mpp.mp.Play(i) ]
@@ -393,7 +434,7 @@ screen player_list(header, mpp, l):
         $ playlist = mpp.mp.playlists.get(l)
 
         if playlist:
-            frame padding (0, 0):
+            frame padding (0, 0, 75, 0):
                 viewport id "player_list":
                     yadjustment mpp.yadj
                     mousewheel True
