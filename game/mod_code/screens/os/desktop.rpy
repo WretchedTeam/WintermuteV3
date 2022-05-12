@@ -24,4 +24,4 @@ screen icon_grid():
 
         use desktop_app_icon("Snake", snake_app, (0, 2))
         use desktop_app_icon("News", news_client_app, (0, 3))
- 
+        use desktop_app_icon("Music Player", music_player_app, (0, 4))

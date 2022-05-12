@@ -8,10 +8,6 @@ image wintermute icon:
     "mod_assets/os/icons/wintermute.png"
     zoom 0.25
 
-image terminal icon:
-    "mod_assets/os/icons/terminal.png"
-    zoom 0.5
-
 image mail_client icon:
     "mod_assets/os/icons/mail_client.png"
     zoom 0.25

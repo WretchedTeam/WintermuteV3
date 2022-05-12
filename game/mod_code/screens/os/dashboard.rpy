@@ -99,7 +99,7 @@ style dashboard_test_details_label_text:
 
 style dashboard_test_details_text:
     font _wm_font_ubuntu.regular
-    size 18
+    size 24
     color "#515151"
 
 style dashboard_no_tests:
@@ -146,7 +146,7 @@ style dashboard_details_bar_label_text is empty
 
 style dashboard_details_bar_label_text:
     font _wm_font_ubuntu.light
-    color "#464646"
+    color "#222"
     size 24
 
 screen dashboard_subject_entry(subject):

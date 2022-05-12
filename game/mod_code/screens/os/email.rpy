@@ -247,10 +247,10 @@ screen mail_viewer(email):
 
                 if date_received is not None:
                     $ date_frmt = _wm_email_app.format_date(date_received)
-                    text _("{ubuntu=regular}Received [date_frmt]{/ubuntu}")
+                    text _("{ubuntu=medium}Received [date_frmt]{/ubuntu}") size 28
                     null height 20
 
-                text ("{ubuntu=light}" + email.contents + "{/ubuntu}")
+                text ("{ubuntu=regular}" + email.contents + "{/ubuntu}")
 
                 if email.attachments:
                     null height 40

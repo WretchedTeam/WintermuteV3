@@ -121,7 +121,7 @@ label script3_n():
     n mh e1b "Hang on."
     show natsuki e4a md b1d
     pause 1.0
-    n b1a mc e1a "{a=https://sallysbakingaddiction.com/black-forest-cake/}{i}Black Forest gâteau,{w=0.2} or Black Forest cake,{w=0.2} is a chocolate sponge cake with a rich cherry filling based on the German dessert Schwarzwälder Kirschtorte.{/a}{/i}"
+    n b1a mc e1a "{a=https://sallysbakingaddiction.com/black-forest-cake/}{i}Black Forest gâteau,{w=0.2} or Black Forest cake,{w=0.2} is a chocolate sponge cake with a rich cherry filling based on the German dessert Schwarzwälder Kirschtorte.{/i}{/a}"
     show natsuki md b1c
     pause 0.9
     n mh "Well,{w=0.2} that was a mouthful."

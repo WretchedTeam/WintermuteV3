@@ -150,7 +150,7 @@ define config.save_directory = "WintermuteV3-1636109150"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "mod_assets/os/penny/Penny.png"
 
 init python:
     def game_menu_check():
@@ -158,6 +158,9 @@ init python:
 
     config.game_menu_action = game_menu_check
     config.search_prefixes.append("mod_assets/")
+    config.search_prefixes.append("../music/")
+
+    renpy.music.register_channel("music_player", "music_player")
 
 ## Build configuration #########################################################
 ##

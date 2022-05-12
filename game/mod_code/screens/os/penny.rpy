@@ -7,7 +7,10 @@ screen penny_idle():
     tag penny
 
     button:
-        action Show("penny", t=[ renpy.random.choice(_wm_penny_dialogues.click_response_pre_sensory) ])
+        action [ 
+            Show("penny", t=[ renpy.random.choice(_wm_penny_dialogues.click_response_pre_sensory) ]), 
+            Play("sound", gui.activate_sound)
+        ]
         align (1.0, 1.0) offset (-10, -10)
         add "penny neutral" zoom 0.8
 
@@ -20,11 +23,11 @@ screen penny(t, i=0):
         button:
             keysym "K_SPACE"
 
-            action If(
+            action [ If(
                 i + 1 < len(t), 
                 [ Show("penny", t=t, i=i+1) ], 
                 Show("penny_idle")
-            )
+            ), Play("sound", gui.activate_sound) ]
 
             align (1.0, 1.0) offset (-10, -10)
 
@@ -43,6 +46,8 @@ screen penny(t, i=0):
                     text penny_txt
 
                 add penny_img zoom 0.8
+
+style penny_button is empty
 
 style penny_frame is empty
 style penny_text is empty

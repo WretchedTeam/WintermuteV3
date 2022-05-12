@@ -14,7 +14,7 @@ transform marquee_move(t):
         repeat
 
 init python in _wm_marquee:
-    from store import Null
+    from store import Null, At, marquee_move
 
     class MarqueeDecider(Null):
         def __init__(self, bound_width):
@@ -37,23 +37,23 @@ init python in _wm_marquee:
 
             return self.content_width > self.bound_width
 
-        def get_content_width(self, d):
+        def get_content_width(self, d, do_scroll, t):
             width = renpy.config.screen_width
             height = renpy.config.screen_height
             self.content_width = renpy.display.render.render_for_size(d, width, height, self.start_time, self.anim_time).width
+            if do_scroll and self.should_move():
+                return At(d, marquee_move(t))
             return d
 
 screen marquee(width=100, t=2.0, do_scroll=True):
     default marquee_decider = _wm_marquee.MarqueeDecider(width)
+
     fixed at Transform(crop=(0, 0, 1.0, 1.0), crop_relative=True):
         yfit True
         xsize width
 
         fixed fit_first True:
-            if do_scroll and marquee_decider.should_move():
-                at marquee_move(t)
-            else:
-                at marquee_decider.get_content_width
+            at renpy.partial(marquee_decider.get_content_width, do_scroll=do_scroll, t=t)
 
             transclude
 
