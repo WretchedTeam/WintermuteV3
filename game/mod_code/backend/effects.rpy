@@ -23,43 +23,80 @@ init python:
             renpy.redraw(self, 0.0)
             return rv
 
-    class ParticleBurst(object):
-        def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 3, particleYSpeed = 5):
-            self.sm = SpriteManager(update=self.update)
+    import math
+    import random
+    import pygame_sdl2
 
-            # A list of (sprite, starting-x, speed).
-            self.stars = [ ]
-            self.displayable = theDisplayable
-            self.explodeTime = explodeTime
-            self.numParticles = numParticles
-            self.particleTime = particleTime
-            self.particleXSpeed = particleXSpeed
-            self.particleYSpeed = particleYSpeed
-            self.gravity = 240
-            self.timePassed = 0
-            
-            for i in range(self.numParticles):
-                self.add(self.displayable, 1)
-        
-        def add(self, d, speed):
-            s = self.sm.create(d)
-            speed = random.random()
-            angle = random.random() * 3.14159 * 2
-            xSpeed = speed * math.cos(angle) * self.particleXSpeed
-            ySpeed = speed * math.sin(angle) * self.particleYSpeed - 1
-            s.x = xSpeed * 24
-            s.y = ySpeed * 24
-            pTime = self.particleTime
-            self.stars.append((s, ySpeed, xSpeed, pTime))
-        
-        def update(self, st):
-            sindex=0
-            for s, ySpeed, xSpeed, particleTime in self.stars:
-                if (st < particleTime):
-                    s.x = xSpeed * 120 * (st + .20)
-                    s.y = (ySpeed * 120 * (st + .20) + (self.gravity * st * st))
-                else:
-                    s.destroy()
-                    self.stars.pop(sindex)
-                sindex += 1
-            return 0
+    class ParticleBurstOnClick(renpy.Displayable):
+        damping = 0.99
+        gravity = 0.5
+
+        def __init__(self, debug=False, **kwargs):
+            super(ParticleBurstOnClick, self).__init__(**kwargs)
+            self.particles = [ ]
+            self.debug = debug
+
+        def visit(self):
+            return list(set(i[0] for i in self.particles))
+
+        def add(self, d, x, y):
+            theta = random.random() * 2.0 * 3.14
+            dir_x = math.cos(theta) * 6.0
+            dir_y = math.sin(theta) * 4.0
+
+            if d._duplicatable:
+                d = d._duplicate(None)
+                d._unique()
+
+            self.particles.append([ d, x, y, dir_x, dir_y, 1.0 ])
+
+        def spawn_at(self, d, x, y, n):
+            for _ in range(n):
+                self.add(d, x, y)
+
+            renpy.redraw(self, 0)
+
+        def update(self):
+            self.particles = [ i for i in self.particles if i[5] > 0.0 ]
+
+            for p in self.particles:
+                p[1] += p[3]
+                p[2] += p[4]
+
+                p[4] += self.gravity
+
+                p[3] *= self.damping
+                p[4] *= self.damping
+
+                p[5] -= 0.05
+
+        def render(self, width, height, st, at):
+            self.update()
+
+            if self.particles:
+                renpy.redraw(self, 0.0)
+
+            rv = renpy.Render(width, height)
+
+            for i in self.particles:
+                cr = renpy.render(i[0], width, height, st, at)
+                cw, ch = cr.get_size()
+
+                ccr = cr.subsurface((0, 0, cw, ch))
+                ccr.zoom(i[5], i[5])
+                ccw, cch = ccr.get_size()
+
+                rv.subpixel_blit(ccr, (i[1] - ccw / 2.0, i[2] - cch / 2.0))
+
+            return rv
+
+        def event(self, ev, x, y, st):
+            if not self.debug:
+                return
+
+            if ev.type == pygame_sdl2.MOUSEBUTTONDOWN:
+                self.spawn_at(Text("{heart}", size=48, color="#ff4c4c"), x, y, 5)
+            elif ev.type == pygame_sdl2.MOUSEBUTTONUP:
+                self.spawn_at(Text("{heart}", size=48, color="#4ce1ff"), x, y, 5)
+
+image test_particles = ParticleBurstOnClick(True)

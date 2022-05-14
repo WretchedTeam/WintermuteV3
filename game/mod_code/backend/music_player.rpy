@@ -55,6 +55,18 @@ init -10 python in _wm_music_player:
     def filter_valid_files(x):
         return Track.get(x)._is_valid_file
 
+    def is_favorite(i):
+        if isinstance(i, Track):
+            i = track.fn
+
+        return i in persistent.music_favorite
+
+    def is_in_playlist(i):
+        if isinstance(i, Track):
+            i = track.fn
+
+        return i in persistent.music_playlist
+
     tracks = { }
 
     class Track(object):

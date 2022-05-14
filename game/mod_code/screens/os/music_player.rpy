@@ -52,7 +52,7 @@ init python in _wm_music_player_app:
     register_feather_icon("volume", "")
 
     from store._wm_music_player import MusicPlayer, format_time, strip_filename, Track
-    from store import Text, Null, AudioPositionValue
+    from store import Text, Null, AudioPositionValue, ParticleBurstOnClick, SetField, Function
 
     category_playlist_key = {
         1: "favorite",
@@ -66,6 +66,16 @@ init python in _wm_music_player_app:
         3: "Music Folder",
     }
 
+    class _TrackMouse(Null):
+        def __init__(self, **kwargs):
+            super(_TrackMouse, self).__init__(**kwargs)
+            self.x = 0
+            self.y = 0
+
+        def event(self, ev, x, y, st):
+            self.x = x
+            self.y = y
+
     class MusicPlayerProxy(object):
         CURRENT = 0 
 
@@ -78,6 +88,16 @@ init python in _wm_music_player_app:
             self.category = self.CURRENT
             self.bar_value = AudioPositionValue(self.mp.channel)
             self.yadj = ui.adjustment()
+            self.particle_burst = ParticleBurstOnClick()
+            self.particle = Text("{heart}", size=48, color="#ff4c4c")
+
+            self.track_mouse = _TrackMouse()
+
+            self.particle_burst.gravity = -0.4
+            self.damping = 0.9
+
+        def SetCategory(self, value):
+            return SetField(self, "category", value),
 
         def get_current_track(self):
             fn = renpy.music.get_playing(self.mp.channel)
@@ -86,6 +106,9 @@ init python in _wm_music_player_app:
 
             fn = strip_filename(fn)
             return Track.get(fn)
+
+        def spawn_hearts(self):
+            self.particle_burst.spawn_at(self.particle, self.track_mouse.x, self.track_mouse.y, 5)
 
         def is_mp_active(self):
             return renpy.music.is_playing(self.mp.channel)
@@ -130,7 +153,9 @@ screen music_player():
                 use player_category_entries(mpp)
 
             use player_controls(mpp)
-            # use player_volume(mpp)
+
+    add mpp.track_mouse
+    add mpp.particle_burst
 
     on "hide" action mpp.on_close
 
@@ -274,10 +299,10 @@ screen player_category_entries(mpp):
     vbox spacing 18:
         xalign 0.975 yalign 0.5
 
-        use player_category_button("{headphone}", SetField(mpp, "category", mpp.CURRENT))
-        use player_category_button("{heart}", SetField(mpp, "category", mpp.FAVORITES))
-        use player_category_button("{list}", SetField(mpp, "category", mpp.PLAYLIST))
-        use player_category_button("{folder}", SetField(mpp, "category", mpp.FOLDER))
+        use player_category_button("{headphone}", mpp.SetCategory(mpp.CURRENT), text_selected_color="#009378")
+        use player_category_button("{heart}", mpp.SetCategory(mpp.FAVORITES), text_selected_color="#ff4c4c")
+        use player_category_button("{list}", mpp.SetCategory(mpp.PLAYLIST), text_selected_color="#4ca8ff")
+        use player_category_button("{folder}", mpp.SetCategory(mpp.FOLDER), text_selected_color="#cdc00d")
 
 screen player_current(mpp):
     style_prefix 'player_current'
@@ -324,7 +349,7 @@ screen player_current(mpp):
                     hbox:
                         spacing 25
 
-                        textbutton _("{heart}") action mpp.mp.ToggleFavorite(track.fn):
+                        textbutton _("{heart}") action [ mpp.mp.ToggleFavorite(track.fn), If(track.fn not in persistent.music_favorite, mpp.spawn_hearts) ]:
                             text_idle_color metadata_text_color
                             text_selected_color "#ff4c4c"
 
@@ -389,7 +414,7 @@ screen player_track_entry(mpp, i, pk):
         hbox align (1.0, 0.5):
             spacing 10
 
-            textbutton _("{heart}") style_suffix "heart" action mpp.mp.ToggleFavorite(i)
+            textbutton _("{heart}") style_suffix "heart" action [ mpp.mp.ToggleFavorite(i), If(track.fn not in persistent.music_favorite, mpp.spawn_hearts) ]
             textbutton _("{list}") style_suffix "list" action mpp.mp.TogglePlaylist(i)
 
     add Solid("#555", ysize=2)
