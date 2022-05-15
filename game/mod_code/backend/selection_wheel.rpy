@@ -32,7 +32,7 @@ init python:
 
             self.shown = False
 
-            self.hide_update_delay = 0
+            self.hide_update_delay = None
             self.hide_update = 0
 
             self.keep_visible = False
@@ -84,7 +84,7 @@ init python:
                 self.target_at_delay = abs(self.rot - self.target_rot) * (self.duration_per_90 / 90.0)
                 renpy.redraw(self, 0)
 
-            self.hide_update_delay = 0.5
+            self.hide_update_delay = 0.75
             self.keep_visible = True
 
         def nearest_angle(self, angle):
@@ -109,7 +109,7 @@ init python:
         def update_transform(self, at):
             # Logic for hiding the wheel
             if not self.keep_visible:
-                if self.hide_update_delay:
+                if self.hide_update_delay is not None:
                     self.hide_update = at + self.hide_update_delay
                     self.hide_update_delay = 0
 

@@ -14,10 +14,10 @@ screen pause_menu():
         hovered Function(selection_wheel.set_rotation, 180.0)
         unhovered Function(selection_wheel.unhover)
 
-    imagebutton action Quit():
+    imagebutton action Return():
         xcenter 0.5 ycenter 0.85
-        idle "shutdown idle" 
-        hover "shutdown hover"
+        idle "back idle" 
+        hover "back hover"
         hovered Function(selection_wheel.set_rotation, 0.0)
         unhovered Function(selection_wheel.unhover)
 
@@ -59,8 +59,8 @@ init python:
 image transcript idle = pause_menu_button("{book}", "Transcript", "#ccc")
 image transcript hover = pause_menu_button("{book}", "Transcript", "#fff")
 
-image shutdown idle = pause_menu_button("{power}", "Shut Down", "#ccc")
-image shutdown hover = pause_menu_button("{power}", "Shut Down", "#fff")
+image back idle = pause_menu_button("{return}", "Return", "#ccc")
+image back hover = pause_menu_button("{return}", "Return", "#fff")
 
 image preferences idle = pause_menu_button("{sliders}", "Preferences", "#ccc")
 image preferences hover = pause_menu_button("{sliders}", "Preferences", "#fff")

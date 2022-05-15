@@ -53,7 +53,7 @@ init -10 python in _wm_music_player:
         return [ i for i in os.listdir(music_folder_path) if i.endswith(supported_extensions) ]
 
     def filter_valid_files(x):
-        return Track.get(x)._is_valid_file
+        return Track.get(x).is_valid_file
 
     def is_favorite(i):
         if isinstance(i, Track):
@@ -256,37 +256,47 @@ init -10 python in _wm_music_player:
             if current_playing:
                 track = Track.get(strip_filename(current_playing))
 
-                self.position = renpy.music.get_pos(self.channel) or 0.0
-                self.duration = max(renpy.music.get_duration(self.channel) or 1.0, track._duration or 1.0)
+                self.position = renpy.music.get_pos(self.channel) or self.position
 
-            if self.last_playing != current_playing:
-                self.last_playing = current_playing
-                renpy.restart_interaction()
-                
+                renpy_duration = renpy.music.get_duration(self.channel) or self.duration
+                ttag_duration = track._duration or self.duration
 
-        def play(self, filename=None, offset=0, pos=0):
+                self.duration = max(renpy_duration, ttag_duration)
+
+            else:
+                if self.last_playing is not None:
+                    if self.single_track:
+                        self.play(self.last_playing, 0)
+                    else:
+                        self.play(self.last_playing, 1)
+
+                    renpy.restart_interaction()
+
+        def get_valid_playlist(self):
             playlist = self.playlists.get(self.playlist_key, None)
-
             if not playlist:
                 return
 
-            playlist = filter(filter_valid_files, playlist)
+            return filter(filter_valid_files, playlist)
 
-            if self.shuffle:
-                if self.shuffled is None or (filename and self.shuffled[0] != filename):
-                    self.shuffled = playlist.copy()
-                    renpy.random.shuffle(self.shuffled)
+        def play(self, filename=None, offset=0, pos=0):
+            playlist = self.get_valid_playlist()
 
-                    if filename in self.shuffled:
-                        self.shuffled.remove(filename)
-                        self.shuffled.insert(0, filename)
-            else:
-                self.shuffled = None
+            if not playlist:
+                return
 
             if filename is None:
                 filename = renpy.music.get_playing(channel=self.channel)
                 if filename is not None:
                     filename = strip_filename(filename)
+
+            if self.shuffle:
+                if self.shuffled is None:
+                    self.shuffled = playlist[:]
+                    renpy.random.shuffle(self.shuffled)
+                playlist = self.shuffled
+            else:
+                self.shuffled = None
 
             try:
                 idx = playlist.index(filename)
@@ -294,18 +304,14 @@ init -10 python in _wm_music_player:
                 idx = 0
 
             idx = (idx + offset) % len(playlist)
+            filename = playlist[idx]
+            self.last_playing = filename
 
-            if self.single_track:
-                playlist = [ playlist[idx] ]
-            elif self.loop:
-                playlist = playlist[idx:] + playlist[:idx]
-            else:
-                playlist = playlist[idx:]
+            if pos:
+                filename = construct_audio_string(pos, filename)
+                self.position = pos
 
-            if pos and playlist:
-                playlist[0] = construct_audio_string(pos, playlist[0])
-
-            renpy.music.play(playlist, channel=self.channel, loop=self.loop)
+            renpy.music.play(filename, channel=self.channel, loop=False)
 
         def next(self):
             filename = renpy.music.get_playing(channel=self.channel)

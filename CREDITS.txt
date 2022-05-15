@@ -1,0 +1,50 @@
+Wintermute Credits
+------------------
+
+Team
+----
+
+Writing
+-------
+
+Sven Weisserfuchs
+Oliver Norton
+jiaodaidev
+Rosalyn Crothers
+LonesomeDev
+
+Coding
+------
+
+Q™
+Oliver Norton
+ItsZekrom
+Pseurae
+
+Assets
+------
+
+** Incomplete. **
+
+3rd Party Tools / Libraries
+---------------------------
+
+MPT
+---
+Creators: Chronos, Terra, Yagamirai, DiabloGraves
+Link: https://github.com/chronoshag/DDLCMPT
+
+TinyTag
+-------
+Creator: devsnd
+Link: https://github.com/devsnd/tinytag
+
+Singleton
+---------
+Creator: PyContribs
+Link: https://github.com/pycontribs/tendo/blob/master/tendo/singleton.py
+
+Discord RPC
+-----------
+Creator: somberdemise
+Link: https://gitlab.com/somberdemise/discord-rpc.py

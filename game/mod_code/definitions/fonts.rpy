@@ -50,6 +50,7 @@ init -100 python in _wm_font_feather:
 
     self_closing_custom_text_tags["unread"] = fi_icon("")
     self_closing_custom_text_tags["power"] = fi_icon("")
+    self_closing_custom_text_tags["return"] = fi_icon("")
     self_closing_custom_text_tags["reload"] = fi_icon("")
     self_closing_custom_text_tags["user_tick"] = fi_icon("")
     self_closing_custom_text_tags["book"] = fi_icon("")

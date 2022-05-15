@@ -34,6 +34,9 @@ init python in _wm_music_player_app:
     register_feather_icon("forward", "")
     register_feather_icon("rewind", "")
 
+    register_feather_icon("next", "")
+    register_feather_icon("previous", "")
+
     register_feather_icon("play_circle", "")
     register_feather_icon("pause_circle", "")
 
@@ -51,8 +54,35 @@ init python in _wm_music_player_app:
     register_feather_icon("cross", "")
     register_feather_icon("volume", "")
 
-    from store._wm_music_player import MusicPlayer, format_time, strip_filename, Track
-    from store import Text, Null, AudioPositionValue, ParticleBurstOnClick, SetField, Function
+    from store._wm_music_player import (
+        MusicPlayer, 
+        format_time, 
+        strip_filename, 
+        Track
+    )
+
+    from store import (
+        Text, 
+        Null, 
+        AudioPositionValue, 
+        ParticleBurstOnClick, 
+        SetField, 
+        Function,
+        _default_keymap,
+        ToggleScreen,
+        Dissolve,
+        _warper,
+        BarValue,
+        DictEquality
+    )
+
+    def open_music_player():
+        if not renpy.store.quick_menu:
+            return
+
+        renpy.run(ToggleScreen("music_player_overlay", Dissolve(0.25, time_warp=_warper.ease_cubic)))
+
+    _default_keymap.keymap["shift_K_m"] = open_music_player
 
     category_playlist_key = {
         1: "favorite",
@@ -66,6 +96,36 @@ init python in _wm_music_player_app:
         3: "Music Folder",
     }
 
+    @renpy.pure
+    class AdjustableAudioPositionValue(BarValue, DictEquality):
+        def __init__(self, mp, update_interval=0.1):
+            self.mp = mp
+            self.update_interval = update_interval
+
+            self.adjustment = None
+
+        def get_pos_duration(self):
+            return self.mp.position, self.mp.duration
+
+        def set_pos(self, value):
+            if not renpy.music.is_playing(self.mp.channel):
+                return
+
+            self.mp.play(None, 0, value)
+
+        def get_adjustment(self):
+            pos, duration = self.get_pos_duration()
+            self.adjustment = ui.adjustment(value=pos, range=duration, changed=self.set_pos, adjustable=True)
+            return self.adjustment
+
+        def periodic(self, st):
+
+            pos, duration = self.get_pos_duration()
+            self.adjustment.set_range(duration)
+            self.adjustment._value = pos
+
+            return self.update_interval
+
     class _TrackMouse(Null):
         def __init__(self, **kwargs):
             super(_TrackMouse, self).__init__(**kwargs)
@@ -77,8 +137,9 @@ init python in _wm_music_player_app:
             self.y = y
 
     class MusicPlayerProxy(object):
-        CURRENT = 0 
 
+        # Page Category Indices
+        CURRENT = 0
         FAVORITES = 1
         PLAYLIST = 2
         FOLDER = 3
@@ -86,15 +147,15 @@ init python in _wm_music_player_app:
         def __init__(self):
             self.mp = MusicPlayer("music_player")
             self.category = self.CURRENT
-            self.bar_value = AudioPositionValue(self.mp.channel)
+            self.bar_value = AdjustableAudioPositionValue(self.mp)
             self.yadj = ui.adjustment()
+
             self.particle_burst = ParticleBurstOnClick()
+            self.particle_burst.gravity = -0.4
+            self.particle_burst.damping = 0.9
             self.particle = Text("{heart}", size=48, color="#ff4c4c")
 
             self.track_mouse = _TrackMouse()
-
-            self.particle_burst.gravity = -0.4
-            self.damping = 0.9
 
         def SetCategory(self, value):
             return SetField(self, "category", value),
@@ -111,7 +172,7 @@ init python in _wm_music_player_app:
             self.particle_burst.spawn_at(self.particle, self.track_mouse.x, self.track_mouse.y, 5)
 
         def is_mp_active(self):
-            return renpy.music.is_playing(self.mp.channel)
+            return self.mp.last_playing is not None
 
         def position_text(self, *args):
             if not self.is_mp_active():
@@ -126,38 +187,49 @@ init python in _wm_music_player_app:
             return Text(format_time(self.mp.duration), color="#000"), 0.01
 
         def on_close(self):
-            renpy.music.set_pause(True, self.mp.channel)
-            self.mp.position = 0.0
-            self.mp.duration = 1.0
+            print("Test")
+            self.category = self.CURRENT
 
 screen music_player():
     default mpp = music_player_app.userdata
 
     use program_base(music_player_app, xysize=(1200, 900)):
-        frame background "#F0F2F9":
-            padding (0, 0)
-            xfill True yfill True
+        use player_base(mpp)
 
-            frame background None padding (0, 0):
-                ysize 700
+    on "hide" action Function(mpp.on_close)
 
-                if mpp.category == mpp.CURRENT:
-                    use player_current(mpp)
-                else:
-                    use player_list(
-                        _wm_music_player_app.category_headers[mpp.category],
-                        mpp,
-                        _wm_music_player_app.category_playlist_key[mpp.category]
-                    )
+screen music_player_overlay():
+    zorder 999
+    modal True
 
-                use player_category_entries(mpp)
+    vbox xysize (1200, 860) align (0.5, 0.5):
+        use player_base(music_player_app.userdata)
 
-            use player_controls(mpp)
+    on "hide" action Function(mpp.on_close)
+
+screen player_base(mpp):
+    frame background "#F0F2F9":
+        padding (0, 0)
+        xfill True yfill True
+
+        frame background None padding (0, 0):
+            ysize 700
+
+            if mpp.category == mpp.CURRENT:
+                use player_current(mpp)
+            else:
+                use player_list(
+                    _wm_music_player_app.category_headers[mpp.category],
+                    mpp,
+                    _wm_music_player_app.category_playlist_key[mpp.category]
+                )
+
+            use player_category_entries(mpp)
+
+        use player_controls(mpp)
 
     add mpp.track_mouse
     add mpp.particle_burst
-
-    on "hide" action mpp.on_close
 
 screen player_controls(mpp):
     style_prefix "player_controls"
@@ -200,6 +272,7 @@ screen player_controls(mpp):
             hbox align (0.5, 0.5):
                 spacing 36
 
+                textbutton _("{previous}") action mpp.mp.Previous()
                 textbutton _("{rewind}") action mpp.mp.Rewind()
 
                 if renpy.music.get_pause(mpp.mp.channel):
@@ -210,6 +283,7 @@ screen player_controls(mpp):
                         action mpp.mp.TogglePause()
 
                 textbutton _("{forward}") action mpp.mp.Forward()
+                textbutton _("{next}") action mpp.mp.Next()
 
             hbox align (1.0, 0.5):
                 spacing 15
@@ -260,6 +334,7 @@ style player_controls_play_button_text:
 style player_controls_bar:
     ysize 20
 
+    thumb_offset 2
     left_bar "music_player bar_left"
     right_bar "music_player bar_right"
     thumb "music_player bar_thumb"
@@ -290,11 +365,6 @@ style player_category_button:
 
 screen player_category_entries(mpp):
     default show_btns = False
-
-    # mousearea:
-    #     area (1050, 350 - 160, 150, 320)
-    #     hovered SetLocalVariable("show_btns", True)
-    #     unhovered SetLocalVariable("show_btns", False)
 
     vbox spacing 18:
         xalign 0.975 yalign 0.5
@@ -331,7 +401,7 @@ screen player_current(mpp):
                 album = track.tags["album"]
                 artist = track.tags["artist"]
 
-            frame padding (95, 50):
+            frame padding (50, 50):
                 yalign 1.0
 
                 vbox:

@@ -9,19 +9,14 @@ init python:
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
-        #define IN_BOUNDS(v, mi, mx) ((v < mx && v > mi))
-
-        vec4 color(sampler2D tex0, vec2 uv)
-        {
-            float coeff = float(IN_BOUNDS(uv.x, 0.0, 1.0) && IN_BOUNDS(uv.y, 0.0, 1.0));
-            return mix(texture2D(tex0, uv), vec4(0.0), coeff);
-        }
     """, fragment_200="""
         vec2 uv2 = v_tex_coord + normalize(v_tex_coord - u_pos) * (u_complete * 1.5);
-        gl_FragColor = color(tex0, uv2);
+        gl_FragColor = texture2D(tex0, uv2);
     """)
 
 transform genie_shader_test():
+    # GL_CLAMP_TO_BORDER is 33069 (0x812D)
+    gl_texture_wrap (33069, 33069)
     mesh True shader "wm.genie"
 
     u_pos (0.0, 1.0)

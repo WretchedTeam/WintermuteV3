@@ -16,7 +16,7 @@ screen navigation():
         textbutton _("{book} Transcript") action ShowMenu("history")
         textbutton _("{sliders} Preferences") action ShowMenu("preferences")
         textbutton _("{menu} Main Menu") action MainMenu()
-        textbutton _("{power} Shut Down") action Quit(confirm=not main_menu)
+        textbutton _("{power} Shut Down") action Return()
 
 # screen navigation():
 

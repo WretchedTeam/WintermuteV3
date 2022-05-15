@@ -90,7 +90,8 @@ init python in _wm_navbar_buttons:
 
             self.at = at
 
-        def visit(self): return [ self.line ]
+        def visit(self): 
+            return [ self.line ]
 
         def render(self, width, height, st, at):
             if self.selected_button is None:
