@@ -205,7 +205,7 @@ screen music_player_overlay():
     vbox xysize (1200, 860) align (0.5, 0.5):
         use player_base(music_player_app.userdata)
 
-    on "hide" action Function(mpp.on_close)
+    on "hide" action Function(music_player_app.userdata.on_close)
 
 screen player_base(mpp):
     frame background "#F0F2F9":
