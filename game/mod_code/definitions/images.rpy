@@ -1,9 +1,5 @@
 image desktop_background = "mod_assets/os/background.png"
 
-image avatar:
-    "mod_assets/os/avatar.png"
-    zoom 0.5
-
 image wintermute icon:
     "mod_assets/os/icons/wintermute.png"
     zoom 0.25

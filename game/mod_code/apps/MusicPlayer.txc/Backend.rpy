@@ -1,7 +1,3 @@
-# Store filenames
-default -100 persistent.music_playlist = [ ]
-default -100 persistent.music_favorite = [ ]
-
 init -10 python in _wm_music_player:
     # TinyTag needs a new ID3 parser, holy shit
 

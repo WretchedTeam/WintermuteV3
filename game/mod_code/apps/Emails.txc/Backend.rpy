@@ -1,10 +1,4 @@
-default persistent.unlocked_emails = [ ]
-default persistent.read_emails = [ ]
-default persistent.replied_emails = [ ]
-
-default persistent.email_dates = { }
-
-init python in _wm_email:
+init -10 python in _wm_email:
     from store import (
         NoRollback, 
         NullAction, 

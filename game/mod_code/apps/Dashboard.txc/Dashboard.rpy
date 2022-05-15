@@ -1,11 +1,11 @@
-define -2 dashboard_background = "#e8edf9"
-define 2 dashboard_app = _wm_manager.Application("Wintermute Dashboard", "wintermute icon", "dashboard", _wm_dashboard_app.Dashboard())
+define 2 dashboard_app = _wm_manager.Application(
+    "Wintermute Dashboard", 
+    "wintermute icon", 
+    "dashboard", 
+    _wm_dashboard_app.Dashboard()
+)
 
 init python in _wm_dashboard_app:
-    register_feather_icon("clipboard", "")
-    register_feather_icon("personnel", "")
-    register_feather_icon("archive", "")
-
     class Dashboard(object):
         DETAILS = 0
         SUBJECTS = 1
@@ -29,6 +29,8 @@ init python in _wm_dashboard_app:
     yuri = AIEntry("yuri_thumb", "WM194140255", "Yuri", 18)
 
 screen dashboard():
+    style_prefix "dashboard"
+
     default dashboard = dashboard_app.userdata
 
     use program_base(dashboard_app, xysize=(1080, 630)):
@@ -39,11 +41,7 @@ screen dashboard():
                 ("{archive}", "Completed Tests", SetField(dashboard, "display", dashboard.COMPLETED)),
             ], 240)
 
-            frame background dashboard_background:
-                xfill True yfill True
-
-                padding (30, 30)
-
+            frame:
                 if dashboard.display == dashboard.DETAILS:
                     use dashboard_test_details()
                 elif dashboard.display == dashboard.SUBJECTS:
@@ -53,6 +51,11 @@ screen dashboard():
 
     on "show" action Function(_wm_penny.wm_open)
 
+style dashboard_frame:
+    background dashboard_background
+    xfill True yfill True
+    padding (30, 30)
+
 screen dashboard_test_details():
     style_prefix "dashboard_test_details"
 
@@ -60,22 +63,17 @@ screen dashboard_test_details():
 
     if current_test is not None:
         if current_test.is_completed():
-            fixed:
-                text _("No tests are currently assigned to you now.") style "dashboard_no_tests":
-                    align (0.5, 0.5)
+            text _("No tests are currently assigned to you now.") style "dashboard_no_tests"
 
         else:
             vbox:
-                label current_test.name
-                null height 30
-                text current_test.description
+                text current_test.name style_suffix "name"
+                text current_test.description style_suffix "desc"
 
             vbox yalign 1.0:
-                spacing 30
+                text _("Assigned by {ubuntu=medium}[current_test.assigner]{/ubuntu}") style_suffix "assigned"
 
-                text _("{ubuntu=light}Assigned by{/ubuntu} {ubuntu=medium}[current_test.assigner]{/ubuntu}") color "#000" size 24
-
-                hbox xfill True:
+                hbox:
                     $ has_email = current_test.main_email is not None
 
                     if has_email:
@@ -83,16 +81,21 @@ screen dashboard_test_details():
 
                     use padded_button(_("Begin Test"), Call("wm_start"), xysize=(225, 52), xalign=(1.0 if has_email else 0.0))
 
-    else:
-        fixed:
-            text _("DEBUG: No Test.")
-
-style dashboard_test_details_label is empty
-style dashboard_test_details_label_text is empty
+style dashboard_test_details_vbox is empty
+style dashboard_test_details_hbox is empty
 
 style dashboard_test_details_text is empty
+style dashboard_test_details_name is dashboard_test_details_text
+style dashboard_test_details_desc is dashboard_test_details_text
+style dashboard_test_details_assigned is dashboard_test_details_text
 
-style dashboard_test_details_label_text:
+style dashboard_test_details_vbox:
+    spacing 30
+
+style dashboard_test_details_hbox:
+    xfill True
+
+style dashboard_test_details_name:
     font _wm_font_ubuntu.medium
     size 48
     color "#000"
@@ -103,8 +106,13 @@ style dashboard_test_details_text:
     color "#515151"
 
 style dashboard_no_tests:
+    align (0.5, 0.5)
     font _wm_font_ubuntu.regular
     size 28
+    color "#000"
+
+style dashboard_test_details_assigned:
+    font _wm_font_ubuntu.light
     color "#000"
 
 screen dashboard_ai_subjects():
@@ -123,7 +131,7 @@ screen dashboard_ai_subjects():
 
         null height 10
 
-        add Solid("#B44343") ysize 2
+        add "dashboard_divider"
 
         null height 30
 
@@ -133,13 +141,15 @@ screen dashboard_ai_subjects():
             use dashboard_subject_entry(_wm_dashboard_app.natsuki)
             use dashboard_subject_entry(_wm_dashboard_app.yuri)
 
-style dashboard_ai_subjects_label is dashboard_test_details_label
-style dashboard_ai_subjects_label_text is dashboard_test_details_label_text
-
-style dashboard_ai_subjects_label_text:
-    size 30
+style dashboard_ai_subjects_label is empty
+style dashboard_ai_subjects_label_text is empty
 
 style dashboard_ai_subjects_text is dashboard_test_details_text
+
+style dashboard_ai_subjects_label_text:
+    font _wm_font_ubuntu.medium
+    size 30
+    color "#000"
 
 style dashboard_details_bar_label is empty
 style dashboard_details_bar_label_text is empty
@@ -187,8 +197,7 @@ screen dashboard_completed_tests():
     $ finished_tests = [ test for test in wintermute_tests if test.is_completed() ]
 
     if not finished_tests:
-        text _("No tests are completed.") align (0.5, 0.5):
-            style "dashboard_no_tests"
+        text _("No tests are completed.") style "dashboard_no_tests"
 
     elif dashboard.selected_test is not None:
         use dashboard_test_report()
@@ -205,7 +214,7 @@ screen dashboard_completed_tests():
 
             null height 10
 
-            add Solid("#B44343") ysize 2
+            add "dashboard_divider"
 
             null height 15
 
@@ -223,18 +232,22 @@ screen dashboard_test_entry(test):
 
     vbox:
         button action SetField(dashboard, "selected_test", test):
-            has hbox:
-                yalign 0.5
+            has hbox
 
-            label test.name xsize 550 yalign 0.5
-            text _("Completed") yalign 0.5 color "#009378"
+            label test.name
+            text _("Completed")
 
         add Solid("#C4C4C4") ysize 1
+
+style dashboard_test_entry_hbox is empty
 
 style dashboard_test_entry_button is button
 style dashboard_test_entry_text is empty
 style dashboard_test_entry_label is empty
 style dashboard_test_entry_label_text is dashboard_test_entry_text
+
+style dashboard_test_entry_hbox:
+    yalign 0.5
 
 style dashboard_test_entry_button:
     padding (0, 18)
@@ -243,10 +256,14 @@ style dashboard_test_entry_button:
 
 style dashboard_test_entry_text:
     font _wm_font_ubuntu.light size 22
-    color "#000"
+    yalign 0.5 color "#009378"
+
+style dashboard_test_entry_label:
+    xsize 550 yalign 0.5
 
 style dashboard_test_entry_label_text:
     font _wm_font_ubuntu.regular
+    color "#000"
 
 screen dashboard_test_report():
     style_prefix "dashboard_test_report"
@@ -257,34 +274,78 @@ screen dashboard_test_report():
     vbox:
         label test.name
         null height 10
-        label "{color=#009378}Test Complete{/color}" text_size 24
+
+        text "Test Complete" style_suffix "completed_text"
+
         null height 30
-        text _("{ubuntu=light}Assigned by{/ubuntu} {ubuntu=medium}[test.assigner]{/ubuntu}") color "#000" size 22
+
+        text _("Assigned by {ubuntu=medium}[test.assigner]{/ubuntu}") style_suffix "assigned_text"
+
         null height 5
+
         $ date_frmt = test.assigned_on.strftime("%d %B %Y")
-        text _("Received Assignment on {ubuntu=medium}[date_frmt]{/ubuntu}") color "#000"
+        text _("Received Assignment on {ubuntu=medium}[date_frmt]{/ubuntu}") style_suffix "received_on_text"
 
         null height 30
 
-        label _("{ubuntu=medium}Final Report:{/ubuntu}") text_size 24
+        text _("Final Report:") style_suffix "final_report_header"
 
         null height 20
 
         side "l r":
-            spacing 10
 
-            viewport id "dashboard_test_report_vp" ysize 220:
+            viewport id "dashboard_test_report_vp":
                 mousewheel True
-                text test.final_report color "#000"
+
+                text test.final_report style_suffix "final_report_text"
 
             vbar value YScrollValue("dashboard_test_report_vp")
 
     use padded_button(_("Return"), SetField(dashboard, "selected_test", None), xysize=(225, 52), align=(0.0, 1.0))
 
+style dashboard_test_report_side is empty
+
 style dashboard_test_report_label is dashboard_ai_subjects_label
 style dashboard_test_report_label_text is dashboard_ai_subjects_label_text
 
+style dashboard_test_report_text is empty
+style dashboard_test_report_completed_text is dashboard_test_report_text
+style dashboard_test_report_assigned_text is dashboard_test_report_text
+style dashboard_test_report_received_on_text is dashboard_test_report_text
+style dashboard_test_report_final_report_header is dashboard_test_report_text
+style dashboard_test_report_final_report_text is dashboard_test_report_text
+
+style dashboard_test_report_viewport is empty
 style dashboard_test_report_vscrollbar is vscrollbar
+
+style dashboard_test_report_side:
+    spacing 10
+
+style dashboard_test_report_text:
+    color "#000"
+
+style dashboard_test_report_completed_text:
+    color "#009378"
+    font _wm_font_ubuntu.medium
+    size 24
+
+style dashboard_test_report_assigned_text:
+    font _wm_font_ubuntu.light
+    size 22
+
+style dashboard_test_report_received_on_text:
+    font _wm_font_ubuntu.light
+    size 22
+
+style dashboard_test_report_final_report_header:
+    font _wm_font_ubuntu.medium
+    size 24
+
+style dashboard_test_report_final_report_text:
+    font _wm_font_lexend.light
 
 style dashboard_test_report_vscrollbar:
     unscrollable "hide"
+
+style dashboard_test_report_viewport:
+    ysize 220

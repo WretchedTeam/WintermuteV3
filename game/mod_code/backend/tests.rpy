@@ -9,7 +9,7 @@ define 10 wintermute_tests = [
 
 default 10 persistent.completed_tests = [ ]
 
-init python in _wm_test:
+init -10 python in _wm_test:
     from store import debug, persistent
     from store._wm_email import get_email
 

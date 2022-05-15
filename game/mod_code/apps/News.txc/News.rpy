@@ -1,27 +1,8 @@
-define -2 news_entry_backgrounds = [ "#FFF5F5", "#FFEDED" ]
-define 2 news_client_app = _wm_manager.Application("News For You", "news_client icon", "news_client")
-
-init python in _wm_news_app:
-    from store import wm_game_time, absolute, Text, _wm_font_lexend
-    from store._wm_test import get_current_test
-    import math
-
-    def get_news_headers():
-        test = get_current_test()
-        return test.headlines if test is not None else test.headlines
-
-    def get_title_size(t):
-        l = len(t)
-
-        if l < 60:
-            return 32
-        elif l < 90:
-            return 24
-
-        elif l < 120:
-            return 22
-
-        return 22
+define 2 news_client_app = _wm_manager.Application(
+    "News For You", 
+    "news_client icon", 
+    "news_client"
+)
 
 screen news_client():
     style_prefix "news_client"
@@ -33,13 +14,14 @@ screen news_client():
 
             use news_client_header()
 
-            add Solid("#280000") ysize 2
+            add "news_entry_divider"
 
             for i, entry in enumerate(_wm_news_app.get_news_headers()):
                 use news_entry(entry, news_entry_backgrounds[i % 2])
-                add Solid("#280000") ysize 2
+                add "news_entry_divider"
 
             null height 20
+
             use padded_button(
                 "Show More Articles", 
                 NullAction(), 
@@ -48,6 +30,7 @@ screen news_client():
                 hover_background=Solid("#ff3f3f"),
                 text_font=_wm_font_lexend.regular
             )
+
             null height 20
 
 style news_client_frame is empty
@@ -62,28 +45,43 @@ screen news_client_header():
     style_prefix "news_client_header"
 
     frame:
-        label _("{lexend=semibold}News For You{/lexend}") yalign 0.5
+        label _("News For You")
 
-        vbox xalign 1.0 yalign 0.5:
-            text _("{lexend=light}{size=24}Headlines on:{/size}{/lexend}") xalign 1.0
+        vbox:
+            text _("Headlines on:") style_suffix "headline_tag"
+
             $ test = _wm_test.get_current_test()
-
             if test is not None:
                 $ date_frmt = test.assigned_on.strftime("%d %B %Y")
                 text _("[date_frmt]")
 
+style news_client_header_frame is empty
+style neww_client_header_vbox is empty
+
 style news_client_header_label is empty
 style news_client_header_label_text is empty
+
 style news_client_header_text is empty
-style news_client_header_frame is empty
+style news_client_header_headline_tag is news_client_header_text
+
+style news_client_header_vbox:
+    xalign 1.0 yalign 0.5
+
+style news_client_header_label:
+    yalign 0.5
 
 style news_client_header_label_text:
-    font _wm_font_lexend.regular
+    font _wm_font_lexend.semibold
     size 40
 
 style news_client_header_text:
     font _wm_font_lexend.regular
     size 32
+
+style news_client_header_headline_tag:
+    font _wm_font_lexend.light
+    size 24
+    xalign 1.0
 
 style news_client_header_frame:
     padding (10, 10)
@@ -93,33 +91,50 @@ style news_client_header_frame:
 screen news_entry(entry, bg=None):
     style_prefix "news_entry"
 
-    frame xfill True ysize 150:
-
+    button:
         if bg is not None:
             background bg
 
         has hbox
         add entry.thumbnail fit "contain"
 
-        frame padding (15, 15):
+        frame:
             has vbox:
                 yfill True
 
-            label entry.title:
-                yalign 0.0
-                text_font _wm_font_lexend.semibold
-                text_size _wm_news_app.get_title_size(entry.title)
-                text_layout "greedy"
+            text entry.title style_suffix "title":
+                size _wm_news_app.get_title_size(entry.title)
 
-            hbox spacing 10:
-                yalign 1.0
+            hbox:
                 text entry.publisher
-
                 add RoundedFrame(Solid("#000"), xysize=(10, 10), radius=5) yalign 0.5
-
                 text entry.author
 
+style news_entry_button is empty
 style news_entry_frame is empty
+style news_entry_text is empty
+style news_entry_title is news_entry_text
+
+style news_entry_vbox is vbox
+style news_entry_hbox is hbox
+
+style news_entry_button:
+    xfill True ysize 150
+
 style news_entry_text:
     color "#000"
 
+style news_entry_title:
+    font _wm_font_lexend.semibold size 22
+    color "#0099cc"
+    layout "greedy"
+    yalign 0.0
+
+style news_entry_vbox:
+    xfill True
+
+style news_entry_hbox:
+    spacing 10 yalign 1.0
+
+style news_entry_frame:
+    padding (15, 15)

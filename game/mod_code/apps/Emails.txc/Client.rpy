@@ -1,0 +1,149 @@
+define 2 mail_client_app = _wm_manager.Application(
+    "Turnell Mail Client", 
+    "mail_client icon", 
+    "mail_client", 
+    _wm_email_app.MailClient()
+)
+
+screen mail_client():
+    default mail_client = mail_client_app.userdata
+    python:
+        mail_client.update_mails()
+
+    use program_base(mail_client_app, xysize=(695, 630)):
+        hbox:
+            use navigation_pane([
+                ("{inbox}", "Input", SetField(mail_client, "mailbox", mail_client.INBOX)),
+                ("{spam}", "Spam", SetField(mail_client, "mailbox", mail_client.SPAM)),
+                ("{star}", "Important", SetField(mail_client, "mailbox", mail_client.IMPORTANT)),
+            ], 240)
+
+            use mc_emails(mail_client)
+
+    on "show" action [ 
+        SetField(persistent, "new_email_count", 0), 
+        Hide("mail_notification") 
+    ]
+
+screen mc_emails(mail_client):
+    style_prefix "mc_emails"
+
+    frame background "#F0F2F9":
+        xfill True yfill True
+
+        $ emails = mail_client.get_emails()
+
+        if emails:
+            viewport id "mc_emails_vp":
+                scrollbars "vertical"
+                mousewheel True
+
+                side_spacing 4
+
+                has vbox
+
+                for i, email in enumerate(emails):
+                    use mc_email_entry(email, email_entry_backgrounds[i % 2])
+
+        else:
+            label _("No Mails.")
+
+style mc_emails_frame is empty
+
+style mc_emails_vscrollbar is vscrollbar:
+    unscrollable "hide"
+
+style mc_emails_label is empty
+style mc_emails_label_text is mc_email_entry_text
+
+style mc_emails_label:
+    align (0.5, 0.5)
+
+screen mc_email_entry(email, bg=None):
+    style_prefix "mc_email_entry"
+
+    default do_scroll = False
+
+    button:
+        if bg is not None:
+            background bg
+
+        # ysize 132
+        hovered SetLocalVariable("do_scroll", True)
+        unhovered SetLocalVariable("do_scroll", False)
+
+        action [ 
+            Function(mail_viewer_app.open, email=email),
+            Play("audio", gui.hover_sound)
+        ]
+
+        padding (20, 20)
+        hover_background "#0002"
+        xfill True
+
+        hbox spacing 20:
+            if email.is_read():
+                null width 15
+            else:
+                add RoundedFrame(Solid("#00aeff"), xysize=(15, 15), radius=7.5):
+                    xalign 0.5 yalign 0.5
+
+            vbox xsize 320:
+                text _("[email.subject]") style_suffix "subject":
+                    if not email.is_read:
+                        font _wm_font_ubuntu.medium
+
+                text _("by [email.sender.name]") style_suffix "sender"
+
+                $ date_received = persistent.email_dates.get(email.unique_id)
+                if date_received is not None:
+                    $ date_frmt = _wm_email_app.format_date(date_received)
+
+                    text _("Received [date_frmt]") style_suffix "date"
+
+            use mc_email_indi_icons(email)
+
+style mc_email_entry_button is empty
+style mc_email_entry_text is empty
+
+style mc_email_entry_subject is mc_email_entry_text
+style mc_email_entry_sender is mc_email_entry_text
+style mc_email_entry_date is mc_email_entry_text
+
+style mc_email_entry_button:
+    size_group "mc_email_entry"
+
+style mc_email_entry_text:
+    font _wm_font_ubuntu.regular
+    color "#000" size 24
+
+style mc_email_entry_subject:
+    layout "nobreak"
+
+style mc_email_entry_sender:
+    color "#303030"
+    size 18
+    yalign 1.0
+
+style mc_email_entry_date:
+    color "#303030"
+    size 18
+    yalign 1.0
+
+screen mc_email_indi_icons(email):
+    style_prefix "mc_email_indi_icons"
+
+    vbox:
+        if email.attachments:
+            text _("{paperclip}")
+        if email.quick_replies:
+            text _("{send}")
+
+style mc_email_indi_icons_vbox is empty
+style mc_email_indi_icons_text is empty
+
+style mc_email_indi_icons_vbox:
+    spacing 5
+
+style mc_email_indi_icons_text:
+    size 24 color "#000"

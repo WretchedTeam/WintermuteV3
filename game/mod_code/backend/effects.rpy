@@ -1,4 +1,4 @@
-init python:
+init -100 python:
     class ReloadGlitch(renpy.Displayable):
         def __init__(self, child=None, amt=2.0, **kwarg):
             super(ReloadGlitch, self).__init__(**kwarg)
