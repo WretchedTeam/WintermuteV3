@@ -19,23 +19,16 @@ transform load_doki_choice_text_fade():
 
     on show:
         0.25
-        ease 0.25 alpha 0.1 yoffset 0
+        ease_cubic 0.25 alpha 0.1 yoffset 0
 
     on hide:
         0.25
-        ease 0.25 alpha 0.0 yoffset 100
+        ease_cubic 0.25 alpha 0.0 yoffset 100
 
 screen load_doki_choice(items):
     style_prefix "load_doki_choice"
 
-    default is_hovering = False
-    default hovered_caption = ""
-
     add "choice_black_background"
-
-    showif is_hovering:
-        text hovered_caption.upper() at load_doki_choice_text_fade:
-            style_suffix "caption_display"
 
     vbox:
         for idx, i in enumerate(items):
@@ -46,9 +39,6 @@ screen load_doki_choice(items):
                     t = i.caption
 
             textbutton t action i.action focus_mask True:
-                hovered SetScreenVariable("is_hovering", True), SetScreenVariable("hovered_caption", i.caption)
-                unhovered SetScreenVariable("is_hovering", False)
-
                 at choice_appear(idx)
 
 style load_doki_choice_vbox is vbox

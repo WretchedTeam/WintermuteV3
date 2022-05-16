@@ -22,3 +22,4 @@ define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc_positi
 define wm = Character("Wintermute", what_prefix='"', what_suffix='"', ctc_position="fixed")
 
 default persistent.wm_received = False
+default persistent.seen_wm_program = False

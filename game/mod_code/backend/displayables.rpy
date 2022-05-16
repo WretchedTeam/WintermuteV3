@@ -78,11 +78,18 @@ init python in _wm_displayables:
 
     class Gradient(SingleShaderDisplayable):
         def __init__(self, start_color, end_color, theta=0.0, start_pos=0.0, end_pos=1.0, **kwargs):
+            def normalize_color(col):
+                a = col[3] / 255.0
+                r = a * col[0] / 255.0
+                g = a * col[1] / 255.0
+                b = a * col[2] / 255.0
+                return (r, g, b, a)
+
             uniforms = { 
                 "u_start_pos": start_pos,
                 "u_end_pos": end_pos,
-                "u_start_color": Color(start_color).rgba,
-                "u_end_color": Color(end_color).rgba,
+                "u_start_color": normalize_color(Color(start_color)),
+                "u_end_color": normalize_color(Color(end_color)),
                 "u_theta": theta 
             }
 

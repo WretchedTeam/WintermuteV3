@@ -48,15 +48,15 @@ init -100 python in _wm_font_feather:
     renpy.add_to_all_stores("fi_icon", fi_icon)
     renpy.add_to_all_stores("register_feather_icon", register_feather_icon)
 
-    self_closing_custom_text_tags["unread"] = fi_icon("")
-    self_closing_custom_text_tags["power"] = fi_icon("")
-    self_closing_custom_text_tags["return"] = fi_icon("")
-    self_closing_custom_text_tags["reload"] = fi_icon("")
-    self_closing_custom_text_tags["user_tick"] = fi_icon("")
-    self_closing_custom_text_tags["book"] = fi_icon("")
-    self_closing_custom_text_tags["sliders"] = fi_icon("")
-    self_closing_custom_text_tags["menu"] = fi_icon("")
-    self_closing_custom_text_tags["power"] = fi_icon("")
+    register_feather_icon("unread", "")
+    register_feather_icon("power", "")
+    register_feather_icon("return", "")
+    register_feather_icon("reload", "")
+    register_feather_icon("user_tick", "")
+    register_feather_icon("book", "")
+    register_feather_icon("sliders", "")
+    register_feather_icon("menu", "")
+    register_feather_icon("power", "")
 
     register_feather_icon("user", "")
     register_feather_icon("login", "")
@@ -78,4 +78,12 @@ init -10 python in _wm_font_ubuntu:
     medium = "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"
 
     register_font_tag("ubuntu", { "light": light, "regular": regular, "medium": medium })
+
+init -10 python in _wm_font_jb_mono:
+    light = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Light.ttf"
+    regular = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Regular.ttf"
+    medium = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Medium.ttf"
+    semibold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-SemiBold.ttf"
+
+    register_font_tag("jb_mono", { "light": light, "regular": regular, "medium": medium, "semibold": semibold })
 
