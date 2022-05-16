@@ -21,7 +21,7 @@ init python in _wm_power_service:
             for layer in blur_layers
         ]
 
-init python:
+init -100 python:
     renpy.add_layer("power_off", "screens")
 
 screen power_off_prompt():

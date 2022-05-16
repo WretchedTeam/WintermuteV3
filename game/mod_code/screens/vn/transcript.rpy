@@ -64,5 +64,4 @@ style history_name_text:
     color "#fff"
 
 style history_text:
-    font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
     yalign 0.5

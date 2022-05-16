@@ -24,6 +24,8 @@ screen preferences(return_action=None):
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
+                null height int(10 * 1.5)
+
                 # vbox:
                 #     style_prefix "radio"
                 #     label _("Rollback Side")
@@ -50,17 +52,17 @@ screen preferences(return_action=None):
                 vbox:
                     label _("Text Speed")
 
-                    null height 10
+                    null height int(10 * 1.5)
 
                     frame:
                         has hbox
                         bar value Preference("text speed")
 
-                    null height 20
+                    null height int(20 * 1.5)
 
                     label _("Auto-Forward Time")
 
-                    null height 10
+                    null height int(15 * 1.5)
 
                     frame:
                         has hbox
@@ -71,36 +73,36 @@ screen preferences(return_action=None):
                     if config.has_music:
                         label _("Music Volume")
 
-                        null height 10
+                        null height int(10 * 1.5)
 
                         frame:
                             has hbox
                             bar value Preference("music volume")
 
-                    null height 20
+                    null height int(20 * 1.5)
 
                     if config.has_sound:
 
                         label _("Sound Volume")
 
-                        null height 10
+                        null height int(10 * 1.5)
 
                         frame:
                             has hbox
                             bar value Preference("sound volume")
 
-                    null height 20
+                    null height int(20 * 1.5)
 
                     if config.has_voice:
                         label _("Voice Volume")
 
-                        null height 10
+                        null height int(10 * 1.5)
 
                         frame:
                             has hbox
                             bar value Preference("voice volume")
 
-                    null height 10
+                    null height int(10 * 1.5)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
@@ -142,7 +144,7 @@ style mute_all_button_text is check_button_text
     # top_margin gui.pref_spacing
     # bottom_margin 2
 
-define gui.pref_slider_borders = Borders(5, 5, 5, 5)
+define gui.pref_slider_borders = Borders(7, 7, 7, 7)
 
 style pref_slider:
     idle_left_bar "#C4C4C4"
@@ -150,7 +152,10 @@ style pref_slider:
     right_bar Null()
 
     thumb None
-    ysize 30
+    ysize int(30 * 1.5)
+
+style pref_label:
+    padding (0, 0)
 
 style pref_label_text:
     yalign 1.0
@@ -158,11 +163,11 @@ style pref_label_text:
     color "#fff"
 
 style pref_vbox:
-    spacing 10
+    spacing 15
     # xsize 225
 
 style pref_hbox:
-    spacing 20
+    spacing 30
 
 style radio_label:
     size_group "pref_button_label"
@@ -193,18 +198,18 @@ style check_button_text:
     properties gui.button_text_properties("check_button")
 
 style slider_slider:
-    xsize 350
+    xsize int(350 * 1.5)
 
 style slider_button:
     properties gui.button_properties("slider_button")
     yalign 0.5
-    left_margin 10
+    left_margin 15
 
 style slider_button_text:
     properties gui.button_text_properties("slider_button")
 
 style slider_vbox:
-    xsize 450
+    xsize int(450 * 1.5)
 
 style slider_frame:
     background Frame("mod_assets/gui/slider/bar_frame.png", gui.pref_slider_borders)

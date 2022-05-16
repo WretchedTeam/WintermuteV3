@@ -1,4 +1,4 @@
-init python in _wm_rounded:
+init -100 python in _wm_rounded:
     use_normalized_shader = False
 
     from store import Frame, Color

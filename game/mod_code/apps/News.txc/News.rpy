@@ -24,7 +24,7 @@ screen news_client():
 
             use padded_button(
                 "Show More Articles", 
-                NullAction(), 
+                _wm_error_dialog.OpenError("This action has been blocked by your network."), 
                 xysize=(225, 52), xalign=0.5, 
                 idle_background=Solid("#FF1B1B"),
                 hover_background=Solid("#ff3f3f"),

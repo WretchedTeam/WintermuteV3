@@ -149,7 +149,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Transform("mod_assets/gui/textbox.png", xalign=0.5, yalign=1.0, zoom=0.5)
+    background Image("mod_assets/gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -158,11 +158,13 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame(Transform("mod_assets/gui/namebox.png", zoom=0.5), gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("mod_assets/gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
-    properties gui.text_properties("name", accent=True)
+    color gui.text_color
+    font gui.name_text_font
+    size gui.name_text_size
     xalign gui.name_xalign
     yalign 0.5
 
@@ -284,7 +286,7 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.98
 
             # textbutton _("Back") action Rollback()
             textbutton _("Transcript") action ShowMenu('history')
@@ -494,7 +496,7 @@ style game_menu_content_frame:
     top_margin 10
 
 style game_menu_viewport:
-    xsize 920
+    xsize int(920 * 1.5)
 
 style game_menu_vscrollbar:
     unscrollable gui.unscrollable
@@ -512,9 +514,11 @@ style game_menu_label_text:
     yalign 0.5
 
 style return_button:
-    xpos gui.navigation_xpos
-    yalign 1.0
-    yoffset -30
+    xalign 0.5 yalign 0.95
+
+style return_button_text:
+    font _wm_font_lexend.semibold
+    size 36
 
 
 ## About screen ################################################################
