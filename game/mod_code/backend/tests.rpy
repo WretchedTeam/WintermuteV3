@@ -83,7 +83,7 @@ init -10 python in _wm_test:
         @debug
         def mark_incomplete(self):
             try: persistent.completed_tests.remove(self.key)
-            except Exception: pass
+            except ValueError: pass
 
         def is_completed(self):
             return self.key in persistent.completed_tests
