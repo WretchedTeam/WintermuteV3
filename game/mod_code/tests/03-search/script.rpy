@@ -5,21 +5,6 @@ default persistent.script3_seen = {
     "n": False
 }
 
-init python:
-    search_test = _wm_test.WintermuteTest(
-        "search_test",
-        "Search Query",
-        "Lorem Ipsum",
-        "",
-        "igreen_email_3",
-        datetime.date(year=2029, month=7, day=27),
-        "Iwan Green",
-        [ search_test_headline_1, search_test_headline_2, search_test_headline_3, search_test_headline_4 ],
-        "script3_main",
-        "script3_on_start",
-        "script3_finished"
-    )
-
 label script3_main():
     while not all(persistent.script3_seen.values()):
         menu (screen="load_doki_choice"):
@@ -43,15 +28,6 @@ label script3_main():
                 return False
 
     return True
-
-label script3_on_start():
-    $ igreen_email_3.unlock()
-    $ rbell_email_3.unlock()
-    return
-
-label script3_finished():
-    $ igreen_email_4.unlock()
-    return
 
 label script3_post_finish():
     $ persistent.current_test_no += 1

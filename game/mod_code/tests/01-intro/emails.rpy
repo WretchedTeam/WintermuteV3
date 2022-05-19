@@ -1,8 +1,6 @@
 init python:
-    rbell_sender = EmailSender("Robert Bell", "r.bell")
-
-    rbell_email_1 = Email(
-        unique_id="rbell_email_1",
+    intro_main_email = Email(
+        unique_id="intro_main_email",
         subject="Welcome!",
         contents="""
 Hello, [persistent.firstname!c]! 
@@ -30,7 +28,40 @@ P.S. I know you already got brief to hell on this, but HR says I need to mention
         is_important=True 
     )
 
-    rbell_email_2 = Email(
+    intro_side_email1 = Email(
+        unique_id="intro_side_email1",
+        subject="Da app",
+        contents="""
+Hey hey its me Jez, the one whose lighter you nicked lol
+
+Well well well very nice to see you actually got the job bro. Seems all that time i spent on my knees BEGGING worked lmao ;)
+
+Anyway rob asked (ordered) me to send you a copy of the wintermute program sooo it should be attached
+
+If you have problems send an email or drop by the dev block on the 5th floor (and no matter what anyone tells you it's not inside the disabled loo!!! just past it)
+
+Jez :)
+""",
+        sender=josborne_sender,
+        attachments=[ EmailAttachment("wintermute icon", "Wintermute.txc", SetField(persistent, "wm_received", True)) ]
+    )
+
+    intro_side_email2 = Email(
+        unique_id="intro_side_email2",
+        subject="Welcome to Turnell",
+        contents="""
+Hey [persistent.firstname], I take it you're the new kid on the block. I'm Iwan, one of the main developers here and probably the one everyone shittalks in the breakroom.
+
+I just wanted to email you to get our introductions out of the way. You'll be hearing a lot from me in the near future, as I and Jeremy will be giving you your tasks. I hope you're good at your job, because I do not suffer fools (which this department is full of).
+
+Nice talking with you.
+
+- IG
+""",
+        sender=igreen_sender,
+    )
+
+    intro_final_email = Email(
         unique_id="rbell_email_2",
         subject="Great work!",
         contents="""
@@ -56,55 +87,5 @@ Quality Assurance Lead
             EmailReply("Thanks!", Call("script1_post_finish")), 
             EmailReply("See you soon!", Call("script1_post_finish")), 
             EmailReply("Bye!", Call("script1_post_finish")) 
-        ]
-    )
-
-    rbell_email_3 = Email(
-        unique_id="rbell_email_3",
-        subject="Email bug URGENT",
-        contents="""
-Just so everyone's aware, Greg reported a bug within the application's email system today. Rarely, some emails are being sent to incorrect recipients, but only showing up in the application install directories (so not within the application itself). This is only affecting the Quality Assurance division as of right now, the developer group hasn't reported this.
-
-He's pushing out a fix as we speak, but it's a temporary patch until he can get the full thing working. Currently we don't know what's causing it, but for right now, if you find any emails that don't include your name or a group you've been assigned to as the recipient, please DO NOT open them and instead forward them to me in an email. There shouldn't be anything in there that your level of security clearance isn't supposed to see, but better safe than sorry.
-
-If you do read them and we find out, that's an instant termination. I don't want any of you to be fired because of a dumb glitch, so let's stay true to our Turnell Trust, yeah? I know I can count on you guys to keep this quiet.
-
-Thanks,
-
-Robert Bell
-Quality Assurance Lead
-""",
-        sender=rbell_sender
-    )
-
-    rbell_email_4 = Email(
-        unique_id="rbell_email_4",
-        subject="Mental Health",
-        contents="""
-Hey all, I know we're still reeling from hearing about James' passing. I only just came back from leave, as I was hit hard by this. Those who knew him were fortunate to meet such a smart and focused guy. Even though he was let go, he's still part of the Turnell family for me. We'll miss him a lot. We have a card in the break room for us to sign for his family, and I'll personally deliver it after lunch today.
-
-Given that James was struggling with mental health issues relating to the WM project, we feel it's necessary to perform a mental wellness evaluation on our employees. We'll have an official HR meeting about it next week. It's required attendance, so be there. But just to be quick about things: depression is a very real and valid problem that can affect anyone invisibly, and historically IT work correlates with depression and a feeling of isolation. Depression can manifest itself in many ways:
-
-- Feeling worthless, like a failure, that the world would be better off without you
-- A desire to hurt yourself or end your own life
-- Inappropriate emotional bonds towards inanimate objects or software
-- Constant paranoia and feeling of being watched
-- Having little to no interest in work, hobbies, or activities
-- Assigning significant attachment and meaning to meaningless statements
-- Trouble falling or staying asleep
-- Over-attachment to a personality, such as a celebrity or streamer
-
-If you're feeling any of these symptoms, please reach out to our Mental Health Helpline: mentalhealth@turnelltech.co.uk. They can schedule you a meeting with one of our licensed therapists, who are happy to help. It's anonymous, so feel free to reach out.
-
-Have a great start to your day!
-
--Robert Bell
-Quality Assurance Lead
-""",
-        sender=rbell_sender,
-        quick_replies=[
-            EmailReply("Thank you.", Jump("script5_post_finish")),
-            EmailReply("I'm sorry.", Jump("script5_post_finish")),
-            EmailReply("RIP.", Jump("script5_post_finish")),
         ]
     )

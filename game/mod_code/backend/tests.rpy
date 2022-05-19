@@ -1,13 +1,5 @@
 default 10 persistent.current_test_no = 0
-define 10 wintermute_tests = [ 
-    intro_test,
-    characterization_test,
-    search_test,
-    nickname_test,
-    consulai_test,
-    affection_test,
-    sensory_test
-]
+define 10 wintermute_tests = [ ]
 
 default 10 persistent.completed_tests = [ ]
 
@@ -94,8 +86,11 @@ init -10 python in _wm_test:
         def __call_cb(cb):
             if has_label_and_unseen(cb): renpy.call(cb)
 
-        def run_start(self): return self.__call_cb(self.on_start)
-        def run_complete(self): return self.__call_cb(self.on_complete)
+        def run_start(self): 
+            self.__call_cb(self.on_start)
+
+        def run_complete(self): 
+            self.__call_cb(self.on_complete)
 
 label advance_test(date):
     $ renpy.transition(Fade(0.5, 1, 0.5))
