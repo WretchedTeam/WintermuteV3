@@ -15,7 +15,7 @@ Record the results as usual, and you should be done for the day. Any complicatio
         is_important=True
     )
 
-    search_side_email = Email(
+    search_side_email1 = Email(
         unique_id="search_side_email",
         subject="Email bug URGENT",
         contents="""
@@ -34,6 +34,22 @@ Quality Assurance Lead
         receiver="@TurnellQA"
     )
 
+    search_side_email2 = Email(
+        unique_id="search_side_email",
+        subject="🐍",
+        contents="""
+Hello again mate just wanted to let you know
+
+I had a few extra minutes to spare on my break today so have a custom made snake:)
+
+Dont get too distracted of course now, but if you ever got time to kill or are waiting for that important update to download then knock yourself out :P
+
+Jez :)
+""",
+        sender=josborne_sender,
+        attachments=[ EmailAttachment("snake icon", "Snake.txc", SetField(persistent, "snake_received", True)) ]
+    )
+
     search_final_email = Email(
         unique_id="search_final_email",
         subject="Sayori response",
@@ -48,7 +64,7 @@ I'm making a note of this for Monday so I can take a crack at fixing it then. In
 """,
         sender=igreen_sender,
         quick_replies=[
-            EmailReply("Be there now!", Call("script3_post_finish")),
-            EmailReply("Goodnight.", Call("script3_post_finish"))
+            EmailReply("Be there now!", Call("advance_test")),
+            EmailReply("Goodnight.", Call("advance_test"))
         ]
     )

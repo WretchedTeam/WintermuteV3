@@ -84,8 +84,8 @@ Quality Assurance Lead
 """,
         sender=rbell_sender,
         quick_replies=[ 
-            EmailReply("Thanks!", Call("script1_post_finish")), 
-            EmailReply("See you soon!", Call("script1_post_finish")), 
-            EmailReply("Bye!", Call("script1_post_finish")) 
+            EmailReply("Thanks!", Call("advance_test")), 
+            EmailReply("See you soon!", Call("advance_test")), 
+            EmailReply("Bye!", Call("advance_test")) 
         ]
     )

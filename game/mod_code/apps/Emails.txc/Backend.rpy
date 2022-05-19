@@ -120,6 +120,9 @@ init -10 python in _wm_email:
             self.action = action
 
     def get_email(unique_id, default=None):
+        if isinstance(unique_id, Email):
+            return unique_id
+
         return emails.get(unique_id, default)
 
     renpy.add_to_all_stores("Email", Email)

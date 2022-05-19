@@ -1,6 +1,6 @@
 init python:
-    affection_start_email = Email(
-        unique_id="affection_start_email",
+    affection_main_email = Email(
+        unique_id="affection_main_email",
         subject="Privilege Escalation",
         contents="""
 Hey. Just wanted to be the one to notify you about giving you some higher-level access in the WINTERMUTE testing application. I think you've proven to be smarter than the average "code ninja" tech-wannabe intern assholes that we seem to get every few months. You're more than capable of taking on some extra responsibilities.
@@ -51,8 +51,8 @@ Thanks.
 """,
         sender=igreen_sender,
         quick_replies=[
-            EmailReply("Sorry.", Call("script6_post_finish")),
-            EmailReply("I won't.", Call("script6_post_finish")),
-            EmailReply("Take care.", Call("script6_post_finish"))
+            EmailReply("Sorry.", Call("advance_test")),
+            EmailReply("I won't.", Call("advance_test")),
+            EmailReply("Take care.", Call("advance_test"))
         ]
     )

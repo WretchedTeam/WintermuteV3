@@ -1,3 +1,17 @@
+define characterization_test = _wm_test.WintermuteTest(
+    "characterization_test",
+    "Characterization",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    datetime.date(year=2029, month=7, day=20),
+    "Iwan Green",
+    (characterization_test_headline_1, characterization_test_headline_2, characterization_test_headline_3, characterization_test_headline_4),
+    (characterization_main_email, characterization_side_email),
+    (characterization_final_email,),
+    characterization_main_email,
+    "script2_main"
+)
+
 default persistent.t2doki = ""
 default persistent.d_a1 = ""
 default characterization_monika_open_minded = False
@@ -35,11 +49,6 @@ label script2_on_start():
 
 label script2_finished():
     $ josborne_email_2.unlock()
-    return
-
-label script2_post_finish():
-    $ persistent.current_test_no += 1
-    call advance_test(datetime.date(year=2029, month=7, day=27))
     return
 
 label script2_qa(doki):

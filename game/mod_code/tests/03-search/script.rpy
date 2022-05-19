@@ -1,3 +1,17 @@
+define search_test = _wm_test.WintermuteTest(
+    "search_test",
+    "Search Query",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    datetime.date(year=2029, month=7, day=27),
+    "Iwan Green",
+    (search_test_headline_1, search_test_headline_2, search_test_headline_3, search_test_headline_4),
+    (search_main_email, search_side_email1),
+    (search_final_email,),
+    search_main_email,
+    "script3_main"
+)
+
 default persistent.script3_seen = {
     "m": False,
     "s": False,
@@ -28,11 +42,6 @@ label script3_main():
                 return False
 
     return True
-
-label script3_post_finish():
-    $ persistent.current_test_no += 1
-    call advance_test(datetime.date(year=2029, month=8, day=3))
-    return
 
 label script3_m():
     show monika forward e1a b1a ma at t11 zorder 1

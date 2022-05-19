@@ -30,12 +30,12 @@ screen mail_viewer(email):
 
                     label _("{ubuntu=medium}To:{/ubuntu}")
 
-                    vbox:
+                    vbox yfill True:
                         if email.receiver is None:
                             text "[persistent.firstname] [persistent.lastname]" size 24
                             text "{ubuntu=light}(" + persistent.username + "@turnell.co.uk){/ubuntu}" size 16
                         else:
-                            text email.receiver
+                            text email.receiver size 24 yalign 0.5
 
                     label _("{ubuntu=medium}Subject:{/ubuntu}")
                     text "{ubuntu=regular}" + email.subject + "{/ubuntu}" size 28 yalign 0.5

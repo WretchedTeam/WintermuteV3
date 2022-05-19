@@ -1,6 +1,6 @@
 init python:
-    consulai_start_email = Email(
-        unique_id="consulai_start_email",
+    consulai_main_email = Email(
+        unique_id="consulai_main_email",
         subject="URGENT v0.5.2 upd",
         contents="""
 It's Iwan. I've read through your feedback for the nickname test, and…to put it lightly, {i}holy shit{/i}. I’ve reverted the entire build back to about two hours before Jeremy pushed his sludge, so we should have reverted whatever damage was done.
@@ -43,9 +43,9 @@ Quality Assurance Lead
 """,
         sender=rbell_sender,
         quick_replies=[
-            EmailReply("Thank you.", Jump("script5_post_finish")),
-            EmailReply("I'm sorry.", Jump("script5_post_finish")),
-            EmailReply("RIP.", Jump("script5_post_finish")),
+            EmailReply("Thank you.", Call("advance_test")),
+            EmailReply("I'm sorry.", Call("advance_test")),
+            EmailReply("RIP.", Call("advance_test")),
         ],
         receiver="@TurnellQA"
     )

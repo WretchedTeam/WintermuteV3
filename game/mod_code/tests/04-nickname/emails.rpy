@@ -1,6 +1,6 @@
 init python:
-    nickname_start_email = Email(
-        unique_id="nickname_start_email",
+    nickname_main_email = Email(
+        unique_id="nickname_main_email",
         subject="Got a quick job for you",
         contents="""
 Hey mate wanna let you know that iwan fixed that weirdness you had last week, sayori should now give proper responses, but that's for Clive or Luke to test for
@@ -35,7 +35,7 @@ Jez
 """,
         sender=josborne_sender,
         quick_replies=[
-            EmailReply("Good luck.", Call("script4_post_finish")),
-            EmailReply("Thanks.", Call("script4_post_finish")),
+            EmailReply("Good luck.", Call("advance_test")),
+            EmailReply("Thanks.", Call("advance_test")),
         ]
     )

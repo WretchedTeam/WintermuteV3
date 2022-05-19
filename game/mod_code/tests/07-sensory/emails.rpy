@@ -1,6 +1,6 @@
 init python:
-    sensory_start_email = Email(
-        unique_id="sensory_start_email",
+    sensory_main_email = Email(
+        unique_id="sensory_main_email",
         subject="Sensory emulation",
         contents="""
 Hi mate know its normally iwan giving u your instructions but hes taken some time off today for the funeral. James and him was close so the recent news was a bit of a shitter 
@@ -28,6 +28,25 @@ Jez
         sender=josborne_sender
     )
 
+    sensory_side_email = Email(
+        unique_id="sensory_side_email",
+        subject="Company Holiday cancellation",
+        contents="""
+Hey team!
+
+I’m really sorry to be the bringer of bad news here, but I have to announce that our annual company trip to New York City for the ‘Turnell International Team Meetup’ has been postponed. No more Central Park Luxury & drinks with the NY guys for us, unfortunately. 
+
+As I’ve been told, it has come to William’s attention that there are some urgent matters that need attending alongside the PR Department. Something about another Vox Populi “““hacker””” looking for his cash-out with phony “leaks”. So there you are, at least there’s someone to blame for all the commotion. Full refunds will be issued for employee deposits in the coming days.
+
+Thanks for understanding,
+
+Robert Bell
+Quality Assurance Lead
+""",
+        sender=rbell_sender,
+        receiver="@TurnellQA, @TurnellDev"
+    )
+
     sensory_final_email = Email(
         unique_id="sensory_final_email",
         subject="URGENT SENSORY FEEDBACK",
@@ -36,6 +55,6 @@ Do not breathe a word of what [persistent.t7doki] said to anybody. Forget you ev
 """,
         sender=josborne_sender,
         quick_replies=[
-            EmailReply("I understand.", Call("script7_post_finish")),
+            EmailReply("I understand.", Call("advance_test")),
         ]
     )
