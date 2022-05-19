@@ -46,5 +46,6 @@ Quality Assurance Lead
             EmailReply("Thank you.", Jump("script5_post_finish")),
             EmailReply("I'm sorry.", Jump("script5_post_finish")),
             EmailReply("RIP.", Jump("script5_post_finish")),
-        ]
+        ],
+        receiver="@TurnellQA"
     )

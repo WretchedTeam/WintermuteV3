@@ -27,7 +27,7 @@ init -10 python in _wm_email:
         notification_screen_name = "mail_notification"
 
         def __init__(self, unique_id, subject, contents, sender, is_spam=False, is_important=False,
-                attachments=None, quick_replies=None, open_callbacks=None, unlock_callbacks=None):
+                attachments=None, quick_replies=None, open_callbacks=None, unlock_callbacks=None, receiver=None):
 
             self.unique_id = unique_id
 
@@ -41,6 +41,8 @@ init -10 python in _wm_email:
 
             self.open_callbacks = open_callbacks
             self.unlock_callbacks = unlock_callbacks
+
+            self.receiver = receiver
 
             global emails
             if unique_id not in emails: emails[unique_id]  = self
@@ -94,9 +96,12 @@ init -10 python in _wm_email:
 
     @renpy.pure
     class EmailSender(NoRollback):
-        def __init__(self, name, email_id):
+        def __init__(self, name, email_id, append_turnell_domain=True):
             self.name = name
             self.email_id = email_id
+
+            if append_turnell_domain:
+                self.email_id += "@turnell.co.uk"
 
             global sender_emails
             if email_id not in sender_emails: sender_emails.append(email_id)

@@ -30,7 +30,8 @@ Thanks,
 Robert Bell
 Quality Assurance Lead
 """,
-        sender=rbell_sender
+        sender=rbell_sender,
+        receiver="@TurnellQA"
     )
 
     search_final_email = Email(

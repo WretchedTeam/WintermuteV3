@@ -26,13 +26,16 @@ screen mail_viewer(email):
 
                     vbox:
                         text email.sender.name size 24
-                        text "{ubuntu=light}(" + email.sender.email_id + "@turnell.co.uk){/ubuntu}" size 16
+                        text "{ubuntu=light}(" + email.sender.email_id + "){/ubuntu}" size 16
 
                     label _("{ubuntu=medium}To:{/ubuntu}")
 
                     vbox:
-                        text "[persistent.firstname] [persistent.lastname]" size 24
-                        text "{ubuntu=light}(" + persistent.username + "@turnell.co.uk){/ubuntu}" size 16
+                        if email.receiver is None:
+                            text "[persistent.firstname] [persistent.lastname]" size 24
+                            text "{ubuntu=light}(" + persistent.username + "@turnell.co.uk){/ubuntu}" size 16
+                        else:
+                            text email.receiver
 
                     label _("{ubuntu=medium}Subject:{/ubuntu}")
                     text "{ubuntu=regular}" + email.subject + "{/ubuntu}" size 28 yalign 0.5

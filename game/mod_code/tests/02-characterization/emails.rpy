@@ -47,7 +47,8 @@ If you have any other questions, please contact your supervisor.
 
 Thank you for reading!
 """,
-        sender=board_sender
+        sender=board_sender,
+        receiver="@Wintermute"
     )
 
     characterization_final_email = Email(

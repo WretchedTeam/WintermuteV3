@@ -24,6 +24,21 @@ FYI, I’ll be taking some time off next week.
         is_important=True
     )
 
+    affection_side_email = Email(
+        unique_id="affection_side_email",
+        subject="IMPORTANT MESSAGE URGENT PLEASE READ THANK YOU",
+        contents="""
+Hello valued employee I am Willan Turnel your CEO I have a proposition for you friend I must ask for your assistance immediately to transfer 500,000 british dollar to your accunt as you have wone a company contest today. This prize is secret friend and only you can claim it please click link below NOW to claim your prize i will not extend this offer again because i value opportunity and drive so i want to see you seize this business opportunity friend. please click link NOW and respond.
+
+\[LINK REMOVED DUE TO POTENTIAL SPAM\]
+
+Wiliam turnell
+CEO of Turnell Techno logy
+""",
+        sender=wt_scam_sender,
+        is_spam=True
+    )
+
     affection_final_email = Email(
         unique_id="affection_final_email",
         subject="Bug you reported",
