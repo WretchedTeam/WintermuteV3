@@ -154,59 +154,52 @@ init -10 python in _wm_music_player:
             return self._cover_art
 
     class __MusicPlay(Action):
-        def __init__(self, mr, filename):
-            self.mr = mr
+        def __init__(self, mp, filename):
+            self.mp = mp
             self.filename = filename
             self.selected = self.get_selected()
 
         def __call__(self):
-            if renpy.music.get_playing(self.mr.channel) == self.filename:
-                if renpy.music.get_pause(self.mr.channel):
-                    renpy.music.set_pause(False, self.mr.channel)
+            if renpy.music.get_playing(self.mp.channel) == self.filename:
+                if renpy.music.get_pause(self.mp.channel):
+                    renpy.music.set_pause(False, self.mp.channel)
                     return
 
             else:
-                self.mr.play(self.filename, 0)
+                self.mp.play(self.filename, 0)
 
             renpy.restart_interaction()
 
         def get_selected(self):
-            return renpy.music.get_playing(self.mr.channel) == self.filename
+            return renpy.music.get_playing(self.mp.channel) == self.filename
 
         def periodic(self, st):
             if self.selected != self.get_selected():
                 self.selected = self.get_selected()
                 renpy.restart_interaction()
 
-            self.mr.periodic(st)
-
             return .1
 
     @renpy.pure
     class __MusicTogglePause(Action):
-        def __init__(self, mr):
-            self.mr = mr
+        def __init__(self, mp):
+            self.mp = mp
 
         def __call__(self):
 
             renpy.restart_interaction()
 
-            if not renpy.music.get_playing(self.mr.channel):
+            if not renpy.music.get_playing(self.mp.channel):
                 return
 
-            renpy.music.set_pause(not renpy.music.get_pause(self.mr.channel), self.mr.channel)
+            renpy.music.set_pause(not renpy.music.get_pause(self.mp.channel), self.mp.channel)
 
         def get_selected(self):
-            return renpy.music.get_pause(self.mr.channel)
+            return renpy.music.get_pause(self.mp.channel)
 
         def get_sensitive(self):
-            return renpy.music.get_playing(self.mr.channel)
+            return renpy.music.get_playing(self.mp.channel)
         
-        def periodic(self, st):
-            self.mr.periodic(st)
-
-            return .1
-
     class MusicPlayer(object):
         playlist_keys = ("all", "favorite", "playlist")
 
@@ -228,8 +221,6 @@ init -10 python in _wm_music_player:
             self.shuffled = None
             self.last_playing = None
 
-            self.st = -1
-
         @property
         def playlists(self):
             return {
@@ -238,14 +229,7 @@ init -10 python in _wm_music_player:
                 "playlist": persistent.music_playlist,
             }
 
-        def periodic(self, st):
-            if self.st == st:
-                return
-            elif st < self.st:
-                self.last_playing = None  
-
-            self.st = st
-
+        def periodic(self):
             current_playing = renpy.music.get_playing(self.channel) or ""
             current_playing = strip_filename(current_playing)
 
