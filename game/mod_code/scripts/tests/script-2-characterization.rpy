@@ -1,5 +1,5 @@
-default persistent.t2doki = None
-default persistent.d_a1 = None
+default persistent.t2doki = ""
+default persistent.d_a1 = ""
 default characterization_monika_open_minded = False
 
 init python:

@@ -4,7 +4,9 @@ define 10 wintermute_tests = [
     characterization_test,
     search_test,
     nickname_test,
-    consulai_test
+    consulai_test,
+    affection_test,
+    sensory_test
 ]
 
 default 10 persistent.completed_tests = [ ]

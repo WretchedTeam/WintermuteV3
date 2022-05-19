@@ -1,15 +1,65 @@
-label script6_affection:
-    menu:
-        "Load Monika":
-            jump affection_m
-        "Load Sayori":
-            jump affection_s
-        "Load Natsuki":
-            jump affection_n
-        "Load Yuri":
-            jump affection_y
+default persistent.t6doki = ""
 
-label affection_m:
+init python:
+    affection_test_report = """
+When loading the WINTERMUTE program, I prompted [persistent.t6doki] to talk through their feelings about me with me. At beginning affection values, this conversation came across natural & friendly, with minimal romantic undertones.
+
+However, after adjusting the values, [persistent.t6doki] seemed flustered by the same question - presumably, they were in love but weary about openly expressing it.
+
+After raising the affection values further, [persistent.t6doki] seemed to think I was a different person entirely, a 'James' - presumably the late James Golf, whose position here I inherited. This was deeply unsettling, and I'm flagging this for review by Iwan.
+"""
+
+    affection_test = _wm_test.WintermuteTest(
+        "affection_test",
+        "Affection Test",
+        "Lorem Ipsum",
+        affection_test_report,
+        "igreen_email_6",
+        datetime.date(year=2029, month=8, day=17),
+        "Iwan Green",
+        [ consulai_test_headline_1, consulai_test_headline_2, consulai_test_headline_3, consulai_test_headline_4 ],
+        "script6_main",
+        "script6_on_start",
+        "script6_finished"
+    )
+
+label script6_on_start():
+    $ igreen_email_6.unlock()
+    return
+
+label script6_finished():
+    $ igreen_email_7.unlock()
+    return
+
+label script6_post_finish():
+    $ persistent.current_test_no += 1
+    call advance_test(datetime.date(year=2029, month=8, day=24))
+    return
+
+label script6_main():
+    menu (screen="load_doki_choice"):
+        "Monika":
+            $ persistent.t6doki = "Monika"
+            call script6_m
+
+        "Sayori":
+            $ persistent.t6doki = "Sayori"
+            call script6_s
+
+        "Yuri":
+            $ persistent.t6doki = "Yuri"
+            call script6_y
+
+        "Natsuki":
+            $ persistent.t6doki = "Natsuki"
+            call script6_n
+
+        "Exit" (prepend_load=False):
+            return False
+
+    return True
+
+label script6_m:
 
     show monika forward e1a ma b2a at i11
     mc "Hello, {w=0.2}Monika."
@@ -22,10 +72,9 @@ label affection_m:
     show monika forward e1a b1a rhip mb
     m "How was your day?"
     show monika ma
-    menu:
-        "Respond":
-            show monika mn
-            mc "It was alright."
+    call test_prompt_button("Respond")
+    show monika mn
+    mc "It was alright."
     show monika mb e4b
     m "I'm glad!"
     show monika e1a ma b2a rdown
@@ -33,10 +82,9 @@ label affection_m:
     show monika b2b mg lpoint
     m "...are you okay?"
     show monika md
-    menu:
-        "Query affection":
-            show monika b1f me n3
-            mc "Monika, {w=0.2}is everything okay between us?"
+    call test_prompt_button("Query affection")
+    show monika b1f me n3
+    mc "Monika, {w=0.2}is everything okay between us?"
     show monika lean e4 m3 b1
     m "Of course it is!"
     show monika e2
@@ -48,20 +96,21 @@ label affection_m:
     show monika e4b mb rdown b1a
     m "After all, {w=0.2}I'm always happy to talk to you more."
     show monika ma
-    menu:
-        "Record response":
-            show monika forward wmflicker
-            show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 2":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show monika forward wmflicker
+
+    show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 2":
+        yalign 0.1
+        xalign 0.5
+
     pause(5.0)
-    $mref()
+    $ mref()
+
     show monika forward ldown rdown e1a ma b2a n1 at i11
     hide always_title
-    menu:
-        "Query affection":
-            show monika b1f me n2 e1a
-            mc "Monika, {w=0.2}how's our relationship?"
+    call test_prompt_button("Query affection")
+    show monika b1f me n2 e1a
+    mc "Monika, {w=0.2}how's our relationship?"
     show monika lpoint e4b mb at h11
     m "It's perfect, {w=0.2}$EMPLOYEE_NAME!"
     show monika e1b b2b at t11
@@ -69,29 +118,26 @@ label affection_m:
     show monika e1a mh rhip
     m "I hope I've been a good friend too."
     show monika ma
-    menu:
-        "Record response":
-            show monika forward wmflicker
-            show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 3":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show monika forward wmflicker
+    show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 3":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $mref()
     show monika forward ldown rdown e1a ma b2a n1 at i11
     hide always_title
-    menu:
-        "Query affection":
-            show monika ma b1a at i11
-            mc "Monika, {w=0.2}I've been thinking of asking you something for quite a while."
+    call test_prompt_button("Query affection")
+    show monika ma b1a at i11
+    mc "Monika, {w=0.2}I've been thinking of asking you something for quite a while."
     show monika mb rhip
     m "Oh, {w=0.2}please, {w=0.2}ask away!"
     show monika lean e4 m3 b1
     m "It {i}is{/i} my job to answer any question you throw my way, {w=0.2}after all."
     show monika m1 e1
-    menu:
-        "Query affection":
-            show monika n4 b3 e3
-            mc "Monika, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show monika n4 b3 e3
+    mc "Monika, {w=0.2}do you think of us as more than friends?"
     show monika m4
     pause(1.0)
     show monika e2
@@ -107,11 +153,10 @@ label affection_m:
     show monika me b2c
     m "I mean, {w=0.2}I..."
     show monika forward wmflicker
-    menu:
-        "Refresh affection":
-            show always_title "Console: nodeCor 86753F9 WM125255140 affTree.affVal memReset":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Refresh affection")
+    show always_title "Console: nodeCor 86753F9 WM125255140 affTree.affVal memReset":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $mref()
     show monika forward ldown rdown e1a ma b2a n1 at i11
@@ -121,10 +166,9 @@ label affection_m:
     pause(3.0)
     hide always_title
     hide always_title2
-    menu:
-        "Query affection":
-            show monika b2a n4 at i11
-            mc "Monika, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show monika b2a n4 at i11
+    mc "Monika, {w=0.2}do you think of us as more than friends?"
     show monika lean m2 b1 e2
     m "I always have."
     show monika m3 e1 at fc1
@@ -142,11 +186,10 @@ label affection_m:
     show monika b2b mb at face
     m "I love you."
     show monika ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return
 
-label affection_s:
+label script6_s():
 
     show sayori turned ma e1a b2a at i11
     mc "Hello, {w=0.2}Sayori."
@@ -156,10 +199,9 @@ label affection_s:
     s "I've missed you!"
     show sayori lup
     s "How are you?"
-    menu:
-        "Respond":
-            show sayori mo
-            mc "I'm well."
+    call test_prompt_button("Respond")
+    show sayori mo
+    mc "I'm well."
     show sayori e4b mc at h11
     s "Yay!"
     show sayori e1a ma rdown at t11
@@ -167,10 +209,9 @@ label affection_s:
     show sayori mg b1f
     s "...$EMPLOYEE_NAME?"
     show sayori me
-    menu:
-        "Query affection":
-            show sayori ma
-            mc "Sayori, {w=0.2}is everything okay between us?"
+    call test_prompt_button("Query affection")
+    show sayori ma
+    mc "Sayori, {w=0.2}is everything okay between us?"
     show sayori mc b1a
     s "Everything's right as rain!"
     show sayori e1b mb b2a ldown
@@ -180,20 +221,18 @@ label affection_s:
     show sayori e1
     s "I just wish I got to see you more."
     show sayori m2
-    menu:
-        "Record response":
-            show sayori tap wmflicker
-            show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 2":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show sayori tap wmflicker
+    show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 2":
+        yalign 0.1
+        xalign 0.5
     pause(5.0)
     $sref()
     show sayori turned b1a ma e1a at i11
     hide always_title
-    menu:
-        "Query affection":
-            show sayori b1f me
-            mc "Sayori, {w=0.2}how's our relationship?"
+    call test_prompt_button("Query affection")
+    show sayori b1f me
+    mc "Sayori, {w=0.2}how's our relationship?"
     show sayori mh
     s "Do you even really need to ask?"
     show sayori e4b b3c mc rup lup at h11
@@ -201,29 +240,26 @@ label affection_s:
     show sayori e1a mb b2a at i11
     s "And you know I do my best to be good to you..."
     show sayori ma
-    menu:
-        "Record response":
-            show sayori turned wmflicker
-            show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 3":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show sayori turned wmflicker
+    show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 3":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $sref()
     show sayori turned e1a b1a ma at i11
     hide always_title
-    menu:
-        "Query affection":
-            show sayori b1f mf
-            mc "Sayori, {w=0.2}I've been thinking of asking you something for quite a while."
+    call test_prompt_button("Query affection")
+    show sayori b1f mf
+    mc "Sayori, {w=0.2}I've been thinking of asking you something for quite a while."
     show sayori me
     s "Hmm?"
     show sayori mh
     s "Oh, {w=0.2}what would you like to ask?"
     show sayori md
-    menu:
-        "Query affection":
-            show sayori n4 e2a b1c me
-            mc "Sayori, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show sayori n4 e2a b1c me
+    mc "Sayori, {w=0.2}do you think of us as more than friends?"
     show sayori e2c
     pause(1.0)
     show sayori e2b
@@ -239,12 +275,11 @@ label affection_s:
     show sayori b2c mk
     s "I'm sorry, {w=0.2}I..."
     show sayori md
-    menu:
-        "Refresh affection":
-            show sayori turned wmflicker
-            show always_title "Console: nodeCor 86753F9 WM138222255 affTree.affVal memReset":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Refresh affection")
+    show sayori turned wmflicker
+    show always_title "Console: nodeCor 86753F9 WM138222255 affTree.affVal memReset":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $sref()
     show sayori turned e1a b1a ma at i11
@@ -254,10 +289,9 @@ label affection_s:
     pause(3.0)
     hide always_title
     hide always_title2
-    menu:
-        "Query affection":
-            show sayori me e2b b2a
-            mc "Sayori, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show sayori me e2b b2a
+    mc "Sayori, {w=0.2}do you think of us as more than friends?"
     show sayori mb e1b
     s "Of course I do."
     show sayori b2b mh e1a at fc1
@@ -277,11 +311,11 @@ label affection_s:
     show sayori e4d mb at face
     s "I love you."
     show sayori ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
 
-label affection_n:
+    return
+
+label script6_n():
 
     show natsuki turned md e1b b1a at t11
     mc "Hello, {w=0.2}Natsuki."
@@ -290,10 +324,9 @@ label affection_n:
     show natsuki turned rhip e1a b1c mh
     n "You good?"
     show natsuki md
-    menu:
-        "Respond":
-            show natsuki ma
-            mc "I'm good."
+    call test_prompt_button("Respond")
+    show natsuki ma
+    mc "I'm good."
     show natsuki mb
     n "Good to hear."
     show natsuki e1c mf b1a
@@ -301,10 +334,9 @@ label affection_n:
     show natsuki e1a b1f mg
     n "You're awfully quiet. {w=0.7}You sure you're alright?"
     show natsuki md
-    menu:
-        "Query affection":
-            show natsuki e2a me
-            mc "Natsuki, {w=0.2}is everything okay between us?"
+    call test_prompt_button("Query affection")
+    show natsuki e2a me
+    mc "Natsuki, {w=0.2}is everything okay between us?"
     show natsuki b2a lhip e1a at shrug
     pause(.75)
     show natsuki mh ldown at i11
@@ -342,18 +374,16 @@ label affection_n:
     show natsuki mg
     n "...Please talk to me."
     show natsuki ldown mj e2c
-    menu:
-        "Record response":
-            show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 2":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 2":
+        yalign 0.1
+        xalign 0.5
     pause(5.0)
     hide always_title
     show natsuki e1a ma b1a
-    menu:
-        "Query affection":
-            show natsuki b1c n3 e2a
-            mc "Natsuki, {w=0.2}how's our relationship?"
+    call test_prompt_button("Query affection")
+    show natsuki b1c n3 e2a
+    mc "Natsuki, {w=0.2}how's our relationship?"
     show natsuki cross e4a mb b3b
     n "Never been better."
     show natsuki e1a mc b1c
@@ -367,27 +397,24 @@ label affection_n:
     show natsuki e2a mb
     n "I...{w=0.7}I hope you feel that way too."
     show natsuki ma
-    menu:
-        "Record response":
-            show natsuki turned wmflicker
-            show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 3":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show natsuki turned wmflicker
+    show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 3":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $nref()
     show natsuki turned e1a ma b1a n1
     hide always_title
-    menu:
-        "Query affection":
-            mc "Natsuki, {w=0.2}I've been thinking of asking you something for quite a while."
+    call test_prompt_button("Query affection")
+    mc "Natsuki, {w=0.2}I've been thinking of asking you something for quite a while."
     show natsuki rhip b1c mc
     n "That's what I'm here for!"
     show natsuki lhip mb
     n "Hit me."
-    menu:
-        "Query affection":
-            show natsuki n4 e2a me b1f
-            mc "Natsuki, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show natsuki n4 e2a me b1f
+    mc "Natsuki, {w=0.2}do you think of us as more than friends?"
     pause(1.0)
     show natsuki e2b
     pause(1.0)
@@ -404,12 +431,11 @@ label affection_n:
     show natsuki e2b b1b mk at t11
     n "I mean, {w=0.2}I..."
     show natsuki me
-    menu:
-        "Refresh affection":
-            show natsuki cross wmflicker
-            show always_title "Console: nodeCor 86753F9 WM250153255 affTree.affVal memReset":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Refresh affection")
+    show natsuki cross wmflicker
+    show always_title "Console: nodeCor 86753F9 WM250153255 affTree.affVal memReset":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $nref()
     show natsuki turned e1a b1a ma n1
@@ -419,10 +445,9 @@ label affection_n:
     pause(3.0)
     hide always_title
     hide always_title2
-    menu:
-        "Query affection":
-            show natsuki n4 e2a b1f
-            mc "Natsuki, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show natsuki n4 e2a b1f
+    mc "Natsuki, {w=0.2}do you think of us as more than friends?"
     show natsuki mh b1c at t11
     n "Uh, {w=0.2}dude, {w=0.2}I thought that went without saying."
     show natsuki mb b2b at fc1
@@ -442,11 +467,10 @@ label affection_n:
     show natsuki mc e4a b2c lhip rhip at face
     n "I love you, {w=0.2}James."
     show natsuki mn
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return
 
-label affection_y:
+label script6_y():
 
     show yuri turned e1a md b1c at i11
     mc "Hello, {w=0.2}Yuri."
@@ -457,10 +481,9 @@ label affection_y:
     show yuri b1a
     y "How are you today?"
     show yuri ma
-    menu:
-        "Respond":
-            show yuri n3
-            mc "I'm alright."
+    call test_prompt_button("Respond")
+    show yuri n3
+    mc "I'm alright."
     show yuri lup e1a b1c mb
     y "I'm glad to hear that."
     show yuri b2a ma
@@ -468,10 +491,9 @@ label affection_y:
     show yuri b1f mg
     y "...Are you there?"
     show yuri md
-    menu:
-        "Query affection":
-            show yuri me
-            mc "Yuri, {w=0.2}is everything okay between us?"
+    call test_prompt_button("Query affection")
+    show yuri me
+    mc "Yuri, {w=0.2}is everything okay between us?"
     show yuri e1b mh
     y "Between us?"
     show yuri rdown
@@ -479,20 +501,18 @@ label affection_y:
     show yuri e1a mb b2a
     y "You've actually been quite an interesting person to learn from, {w=0.2}$EMPLOYEE_NAME."
     show yuri ma
-    menu:
-        "Record response":
-            show yuri turned wmflicker
-            show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 2":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show yuri turned wmflicker
+    show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 2":
+        yalign 0.1
+        xalign 0.5
     pause(5.0)
     $yref()
     show yuri turned e1a md b1c at i11
     hide always_title
-    menu:
-        "Query affection":
-            show yuri b1f me
-            mc "Yuri, {w=0.2}how's our relationship?"
+    call test_prompt_button("Query affection")
+    show yuri b1f me
+    mc "Yuri, {w=0.2}how's our relationship?"
     show yuri b1a mb rup
     y "What a silly question."
     show yuri e4a b2a
@@ -500,28 +520,25 @@ label affection_y:
     show yuri mh b2b
     y "And I...{w=0.7}I only hope that I'm even half as good to you."
     show yuri md
-    menu:
-        "Record response":
-            show yuri turned wmflicker
-            show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 3":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Record response")
+    show yuri turned wmflicker
+    show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 3":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $yref()
     show yuri turned e1a md b1c at i11
     hide always_title
-    menu:
-        "Query affection":
-            show yuri ma
-            mc "Yuri, {w=0.2}I've been thinking of asking you something for quite a while."
+    call test_prompt_button("Query affection")
+    show yuri ma
+    mc "Yuri, {w=0.2}I've been thinking of asking you something for quite a while."
     show yuri b1a mg
     y "Oh...{w=0.7}r-really?."
     show yuri mh b1f
     y "What's your question?"
-    menu:
-        "Query affection":
-            show yuri n4 e2b b1b lup me
-            mc "Yuri, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show yuri n4 e2b b1b lup me
+    mc "Yuri, {w=0.2}do you think of us as more than friends?"
     show yuri shy b3 e2 m1
     y "..."
     show yuri m4
@@ -531,12 +548,11 @@ label affection_y:
     show yuri e5
     y "That's...{w=0.7}I'm sorry, {w=0.2}I-"
     show yuri m2
-    menu:
-        "Refresh affection":
-            show yuri shy wmflicker
-            show always_title "Console: nodeCor 86753F9 WM194140255 affTree.affVal memReset":
-                yalign 0.1
-                xalign 0.5
+    call test_prompt_button("Refresh affection")
+    show yuri shy wmflicker
+    show always_title "Console: nodeCor 86753F9 WM194140255 affTree.affVal memReset":
+        yalign 0.1
+        xalign 0.5
     pause(3.0)
     $yref()
     show yuri turned e1a md b1c at i11
@@ -546,10 +562,9 @@ label affection_y:
     pause(3.0)
     hide always_title
     hide always_title2
-    menu:
-        "Query affection":
-            show yuri n4 e2b b1b lup me
-            mc "Yuri, {w=0.2}do you think of us as more than friends?"
+    call test_prompt_button("Query affection")
+    show yuri n4 e2b b1b lup me
+    mc "Yuri, {w=0.2}do you think of us as more than friends?"
     show yuri e2a mk
     y "W-why of course I do!"
     show yuri e2c mg
@@ -573,6 +588,5 @@ label affection_y:
     show yuri e4d at face
     y "And that's all that matters."
     show yuri ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return

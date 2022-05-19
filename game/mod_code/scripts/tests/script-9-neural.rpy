@@ -1,4 +1,4 @@
-label script9_neural:
+label script9_main:
     stop music
     scene black
 
@@ -17,9 +17,8 @@ label script9_neural:
     show sayori md
     show natsuki md
     show yuri md
-    menu:
-        "Respond":
-            mc "I'm here."
+    call test_prompt_button("Respond")
+    mc "I'm here."
     show monika e1b mb b2a
     show sayori e1b mb b2a
     show natsuki e1b mb b2a
@@ -152,25 +151,25 @@ label script9_neural:
     wm "Please. {w=0.7}Please. {w=0.7}Please. {w=0.7}Please. {w=0.7}Please."
 
 
+    call test_prompt_button("Begin Test")
+    hide monika
+    hide natsuki
+    hide sayori
+    hide yuri
+
     menu:
-        "Begin Test":
-            hide monika
-            hide natsuki
-            hide sayori
-            hide yuri
-            menu:
-                "Load Monika":
-                    jump neural_m
-                "Load Sayori":
-                    jump neural_s
-                "Load Natsuki":
-                    jump neural_n
-                "Load Yuri":
-                    jump neural_y
+        "Load Monika":
+            jump script9_m
+        "Load Sayori":
+            jump script9_s
+        "Load Natsuki":
+            jump script9_n
+        "Load Yuri":
+            jump script9_y
 
 
 
-label neural_m:
+label script9_m():
 
     show monika forward e1b ma b1a at i11
     mc "Hi, {w=0.2}Monika."
@@ -181,9 +180,8 @@ label neural_m:
     show monika b2a lpoint
     m "How are you doing?"
     show monika ma
-    menu:
-        "Initiate neural remembrance":
-            show monika e3a b2c me rdown ldown
+    call test_prompt_button("Initiate neural remembrance")
+    show monika e3a b2c me rdown ldown
     m "Wh…"
     show monika forward wmflicker mf
     m "..."
@@ -220,70 +218,63 @@ label neural_m:
         0.1
         repeat
     m "Oh dear God ohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyG{nw}"
-    menu:
-        "Memory reset":
-            $mref()
-            hide monika1
-            hide monika2
-            hide monika3
-            show monika forward e1b ma b1a at i11
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show monika e1a
+    call test_prompt_button("Memory reset")
+    $mref()
+    hide monika1
+    hide monika2
+    hide monika3
+    show monika forward e1b ma b1a at i11
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show monika e1a
     mc "Hello, {w=0.2}Monika."
     show monika lean b1 e1 m3
     m "Oh, {w=0.2}hello $EMPLOYEE_NAME!"
     show monika e4
     m "Can I help you with something?"
-    menu:
-        "Initiate neural remembrance":
-            show monika lean wmflicker e5 m4 b3 as monika1 at i11:
-                yoffset 7
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                repeat
-            show monika forward wmflicker rhip lpoint e3b mp b2c as monika2 at i11:
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                repeat
-            show monika forward wmflicker e4e mm b3a as monika3 at i11:
-                yoffset 4
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                repeat
+    call test_prompt_button("Initiate neural remembrance")
+    show monika lean wmflicker e5 m4 b3 as monika1 at i11:
+        yoffset 7
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        repeat
+    show monika forward wmflicker rhip lpoint e3b mp b2c as monika2 at i11:
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        repeat
+    show monika forward wmflicker e4e mm b3a as monika3 at i11:
+        yoffset 4
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        repeat
     m "OH GOD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{nw}"
-    menu:
-        "Memory reset":
-            hide monika1
-            hide monika2
-            hide monika3
-            $mref()
-            show monika forward rhip mn e1c b1c
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show monika e1a
+    call test_prompt_button("Memory reset")
+    hide monika1
+    hide monika2
+    hide monika3
+    $mref()
+    show monika forward rhip mn e1c b1c
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show monika e1a
     mc "Good evening, {w=0.2}Monika."
     show monika mb
     m "Hi, {w=0.2}$EMPLO{nw}"
@@ -332,11 +323,9 @@ label neural_m:
         0.1
         repeat
     wm "Dear God it hurts [player] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
-
     return
 
-label neural_s:
-
+label script9_s():
     show sayori turned e1b ma b2a at i11
     mc "Hey, {w=0.2}Sayori?"
     show sayori e1a mb
@@ -344,9 +333,8 @@ label neural_s:
     show sayori e4b rup b1a
     s "Long time no see, {w=0.2}how are you?"
     show sayori ma
-    menu:
-        "Initiate neural remembrance":
-            show sayori e3a b2c me rdown ldown
+    call test_prompt_button("Initiate neural remembrance")
+    show sayori e3a b2c me rdown ldown
     s "This...{w=0.7}is wrong..."
     show sayori turned wmflicker mf
     s "..."
@@ -383,70 +371,63 @@ label neural_s:
         0.1
         repeat
     s "No no no no no nononononononononononononononononononon\nonononononononononononononononononononononononononon\nonono{nw}"
-    menu:
-        "Memory reset":
-            $sref()
-            hide sayori1
-            hide sayori2
-            hide sayori3
-            show sayori turned e1b ma b2a at i11
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show sayori e1a
+    call test_prompt_button("Memory reset")
+    $sref()
+    hide sayori1
+    hide sayori2
+    hide sayori3
+    show sayori turned e1b ma b2a at i11
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show sayori e1a
     mc "Hello,{w=0.2} Sayori."
     show sayori mb
     s "Oh,{w=0.2} hi $EMPLOYEE_NAME!!"
     show sayori b1a e4b mc lup
     s "What can I do for you?"
-    menu:
-        "Initiate neural remembrance":
-            show sayori tap wmflicker e3 m4 b1 as sayori1 at i11:
-                yoffset 7
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                repeat
-            show sayori turned wmflicker rup lup e3b mp b2c as sayori2 at i11:
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                repeat
-            show sayori turned wmflicker e4e mm b3a as sayori3 at i11:
-                yoffset 4
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                repeat
+    call test_prompt_button("Initiate neural remembrance")
+    show sayori tap wmflicker e3 m4 b1 as sayori1 at i11:
+        yoffset 7
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        repeat
+    show sayori turned wmflicker rup lup e3b mp b2c as sayori2 at i11:
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        repeat
+    show sayori turned wmflicker e4e mm b3a as sayori3 at i11:
+        yoffset 4
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        repeat
     s "[player] what is this what is going on leave me alone leave me alone leavemealoneleavemealoneleavemealoneleavemealoneleavemeal\noneleavemealoneleavemealoneleavemealoneleavemeal{nw}"
-    menu:
-        "Memory reset":
-            hide sayori1
-            hide sayori2
-            hide sayori3
-            $sref()
-            show sayori turned rup ma e1c b2a
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show sayori e1a
+    call test_prompt_button("Memory reset")
+    hide sayori1
+    hide sayori2
+    hide sayori3
+    $sref()
+    show sayori turned rup ma e1c b2a
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show sayori e1a
     mc "Good evening,{w=0.2} Sayori."
     show sayori mb b1a
     s "Hi,{w=0.2} $EMPLO{nw}"
@@ -498,7 +479,7 @@ label neural_s:
 
     return
 
-label neural_n:
+label script9_n():
 
     show natsuki turned e1a ma b1a at i11
     mc "Hey,{w=0.2} Natsuki."
@@ -507,9 +488,8 @@ label neural_n:
     show natsuki b1f mg
     n "Did ya need something?"
     show natsuki md
-    menu:
-        "Initiate neural remembrance":
-            show natsuki e3a b2c mf rdown ldown
+    call test_prompt_button("Initiate neural remembrance")
+    show natsuki e3a b2c mf rdown ldown
     n "I..."
     show natsuki turned wmflicker me
     n "Is..."
@@ -546,68 +526,61 @@ label neural_n:
         0.1
         repeat
     n "Oh dear God ohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGo{nw}"
-    menu:
-        "Memory reset":
-            $nref()
-            hide natsuki1
-            hide natsuki2
-            hide natsuki3
-            show natsuki turned e1b ma b1a at i11
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    mc "Hello, {w=0.2}Natsuki."
+    call test_prompt_button("Memory reset")
+    $nref()
+    hide natsuki1
+    hide natsuki2
+    hide natsuki3
+    show natsuki turned e1b ma b1a at i11
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    mc "Hello, {w=0.2}Natsuki."
     show natsuki cross mc e1a b1c
     n "'Sup?"
     show natsuki mo
-    menu:
-        "Initiate neural remembrance":
-            show natsuki cross wmflicker e3a mk b1e as natsuki1 at i11:
-                yoffset 7
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                repeat
-            show natsuki turned wmflicker rhip lhip e3b mp b2c as natsuki2 at i11:
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                repeat
-            show natsuki turned wmflicker e4e mm b3a as natsuki3 at i11:
-                yoffset 4
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                repeat
+    call test_prompt_button("Initiate neural remembrance")
+    show natsuki cross wmflicker e3a mk b1e as natsuki1 at i11:
+        yoffset 7
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        repeat
+    show natsuki turned wmflicker rhip lhip e3b mp b2c as natsuki2 at i11:
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        repeat
+    show natsuki turned wmflicker e4e mm b3a as natsuki3 at i11:
+        yoffset 4
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        repeat
     n "Whatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom\newhatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom\newhatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom{nw}"
-    menu:
-        "Memory reset":
-            hide natsuki1
-            hide natsuki2
-            hide natsuki3
-            $nref()
-            show natsuki turned rhip mn e1c b1c
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show natsuki e1a
+    call test_prompt_button("Memory reset")
+    hide natsuki1
+    hide natsuki2
+    hide natsuki3
+    $nref()
+    show natsuki turned rhip mn e1c b1c
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show natsuki e1a
     mc "Good evening, {w=0.2}Natsuki."
     show natsuki mb
     n "Hi, {w=0.2}$EMPLO{nw}"
@@ -660,7 +633,7 @@ label neural_n:
 
     return
 
-label neural_y:
+label script9_y():
 
     show yuri turned e1b ma b2a at i11
     mc "Hey, {w=0.2}Yuri."
@@ -669,12 +642,11 @@ label neural_y:
     show yuri e1d rup b1a
     y "How can I help you today?"
     show yuri ma
-    menu:
-        "Initiate neural remembrance":
-            show yuri e3a b2c me rdown ldown
+    call test_prompt_button("Initiate neural remembrance")
+    show yuri e3a b2c me rdown ldown
     y "I…"
     show yuri turned wmflicker mg
-    y "[player], {w=0.2}what am I–"
+    y "[player], {w=0.2}what am I-"
     show yuri turned wmflicker e4e b1e mp as yuri1 at i11:
         xoffset 3
         0.1
@@ -708,71 +680,64 @@ label neural_y:
         0.1
         repeat
     y "OHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGO\nDOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHG\nODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOH{nw}"
-    menu:
-        "Memory reset":
-            $yref()
-            hide yuri1
-            hide yuri2
-            hide yuri3
-            show yuri turned e1b ma b2a at i11
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show yuri e1a
+    call test_prompt_button("Memory reset")
+    $yref()
+    hide yuri1
+    hide yuri2
+    hide yuri3
+    show yuri turned e1b ma b2a at i11
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show yuri e1a
     mc "Hello, {w=0.2}Yuri."
     show yuri shy e2 b1 m4
     y "H-hello, {w=0.2}$EMPLOYEE_NAME."
     show yuri e1
     y "What can I do for you?"
     show yuri m3
-    menu:
-        "Initiate neural remembrance":
-            show yuri shy wmflicker e6 m2 b3 as yuri1 at i11:
-                yoffset 7
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                repeat
-            show yuri turned wmflicker rup lup e3a mr b2c as yuri2 at i11:
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                xoffset 0
-                0.1
-                repeat
-            show yuri turned wmflicker e4e mm b3a as yuri3 at i11:
-                yoffset 4
-                xoffset 0
-                0.1
-                xoffset 3
-                0.1
-                xoffset -2
-                0.1
-                xoffset 2
-                0.1
-                repeat
+    call test_prompt_button("Initiate neural remembrance")
+    show yuri shy wmflicker e6 m2 b3 as yuri1 at i11:
+        yoffset 7
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        repeat
+    show yuri turned wmflicker rup lup e3a mr b2c as yuri2 at i11:
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        xoffset 0
+        0.1
+        repeat
+    show yuri turned wmflicker e4e mm b3a as yuri3 at i11:
+        yoffset 4
+        xoffset 0
+        0.1
+        xoffset 3
+        0.1
+        xoffset -2
+        0.1
+        xoffset 2
+        0.1
+        repeat
     y "AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\nAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\nAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\n\n\n\n{nw}"
-    menu:
-        "Memory reset":
-            hide yuri1
-            hide yuri2
-            hide yuri3
-            $yref()
-            show yuri turned rup ma e1c b2a
-    menu:
-        "Record results":
-            menu:
-                "Initiate":
-                    show yuri e1a
+    call test_prompt_button("Memory reset")
+    hide yuri1
+    hide yuri2
+    hide yuri3
+    $yref()
+    show yuri turned rup ma e1c b2a
+    call test_prompt_button("Record results")
+    call test_prompt_button("Initiate")
+    show yuri e1a
     mc "Good evening, {w=0.2}Yuri."
     show yuri mb b1a e1d
     y "Hi, {w=0.2}$EMPLO{nw}"

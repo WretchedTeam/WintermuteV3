@@ -37,6 +37,7 @@ from __future__ import division, print_function
 from functools import reduce
 from io import BytesIO
 from zlib import decompress
+from base64 import b64decode
 
 import codecs, io, operator, os, re, struct
 
@@ -741,7 +742,7 @@ class Ogg(TinyTag):
             if '=' in keyvalpair:
                 key, value = keyvalpair.split('=', 1)
                 if key == 'METADATA_BLOCK_PICTURE' and self._load_image:
-                    self._image_data = TinyTagImage.parse_flac(value)
+                    self._image_data = TinyTagImage.parse_flac(b64decode(value))
                 else:
                     fieldname = comment_type_to_attr_mapping.get(key.lower())
                     if fieldname:

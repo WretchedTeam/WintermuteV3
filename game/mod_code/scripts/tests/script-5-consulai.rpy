@@ -50,7 +50,7 @@ label script5_finished():
 
 label script5_post_finish():
     $ persistent.current_test_no += 1
-    call advance_test(datetime.date(year=2029, month=8, day=10))
+    call advance_test(datetime.date(year=2029, month=8, day=17))
     return
 
 label script5_qa(doki):

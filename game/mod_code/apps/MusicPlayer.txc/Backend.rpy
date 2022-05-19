@@ -122,7 +122,7 @@ init -10 python in _wm_music_player:
 
                 return tags, image_data
 
-            except (TinyTagException, OSError) as e: 
+            except (TinyTagException, Exception) as e: 
                 tags = {
                     "title": self.fn,
                     "artist": "Unknown Artist",

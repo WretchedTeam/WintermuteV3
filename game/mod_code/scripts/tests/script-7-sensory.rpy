@@ -1,15 +1,65 @@
-label script7_sensory:
-    menu:
-        "Load Monika":
-            jump sensory_m
-        "Load Sayori":
-            jump sensory_s
-        "Load Natsuki":
-            jump sensory_n
-        "Load Yuri":
-            jump sensory_y
+default persistent.t7doki = ""
 
-label sensory_m:
+init python:
+    sensory_test_report = """
+When loading the WINTERMUTE program, I prompted [persistent.t6doki] to talk through their feelings about me with me. At beginning affection values, this conversation came across natural & friendly, with minimal romantic undertones.
+
+However, after adjusting the values, [persistent.t6doki] seemed flustered by the same question - presumably, they were in love but weary about openly expressing it.
+
+After raising the affection values further, [persistent.t6doki] seemed to think I was a different person entirely, a 'James' - presumably the late James Golf, whose position here I inherited. This was deeply unsettling, and I'm flagging this for review by Iwan.
+"""
+
+    sensory_test = _wm_test.WintermuteTest(
+        "sensory_test",
+        "Sensory Test",
+        "Lorem Ipsum",
+        sensory_test_report,
+        "josborne_email_5",
+        datetime.date(year=2029, month=8, day=24),
+        "Jeremy Osborne",
+        [ consulai_test_headline_1, consulai_test_headline_2, consulai_test_headline_3, consulai_test_headline_4 ],
+        "script7_main",
+        "script7_on_start",
+        "script7_finished"
+    )
+
+label script7_on_start():
+    $ josborne_email_5.unlock()
+    return
+
+label script7_finished():
+    $ josborne_email_6.unlock()
+    return
+
+label script7_post_finish():
+    $ persistent.current_test_no += 1
+    call advance_test(datetime.date(year=2029, month=8, day=31))
+    return
+
+label script7_main:
+    menu (screen="load_doki_choice"):
+        "Monika":
+            $ persistent.t7doki = "Monika"
+            call script7_m
+
+        "Sayori":
+            $ persistent.t7doki = "Sayori"
+            call script7_s
+
+        "Yuri":
+            $ persistent.t7doki = "Yuri"
+            call script7_y
+
+        "Natsuki":
+            $ persistent.t7doki = "Natsuki"
+            call script7_n
+
+        "Exit" (prepend_load=False):
+            return False
+
+    return True
+
+label script7_m():
     show monika forward happ om at t11 zorder 1
     m "Oh, $EMPLOYEE_NAME?"
     show monika forward rhip ce
@@ -17,26 +67,20 @@ label sensory_m:
     show monika lean oe
     m "How can I help you today?"
     show monika m1
-    menu:
-        "Initiate test":
-            pass
+    call test_prompt_button("Initiate test")
     show monika forward neut rhip ma
     mc "Monika, can I ask you a few questions?"
     show monika lpoint happ ce om
     m "That's what I'm here for, aha~"
     show monika ma
-    menu:
-        "Test control analysis":
-            pass
+    call test_prompt_button("Test control analysis")
     show monika ldown e1a
     mc "Can you describe how this feels?"
     show monika curi cm
     m "How what feels, $EMPLOYEE_NAME?"
     show monika awkw e1b mb b1b
     m "I'm not quite following."
-    menu:
-        "Simulate taste":
-            pass
+    call test_prompt_button("Simulate taste")
     $ mref()
     show monika curi cm rdown
     mc "Can you describe it now?"
@@ -58,9 +102,7 @@ label sensory_m:
     m "Is this because of that anecdote I told about Yuri?"
     show monika e4 b1 m1 at h11
     m "Aha~"
-    menu:
-        "Test environment recognition":
-            pass
+    call test_prompt_button("Test environment recognition")
     show bg m_sensory_location zorder 0 with Dissolve(1.0)
     show monika e1
     mc "Can you describe what you see?"
@@ -83,9 +125,7 @@ label sensory_m:
     show monika b1a e1a
     m "Don't worry, it's on me."
     show monika ma
-    menu:
-        "Simulate touch":
-            pass
+    call test_prompt_button("Simulate touch")
     show monika forward curi ma b1f
     mc "Can you describe how this feels?"
     show monika om ldown at s11
@@ -105,9 +145,7 @@ label sensory_m:
     show monika lean happ om ce
     m "But I'll happily hold your hand too."
     show monika cm oe
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show monika neut
     mc "How about now?"
     show monika forward lsur blaw om oe at fc2
@@ -116,9 +154,7 @@ label sensory_m:
     m "That tickles!!"
     show monika mc at fc3
     m "$EMPLOYEE_NAME, ahaha~"
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show monika mb
     mc "And now?"
     show monika -blaw -mb lsur oe at fc4
@@ -128,11 +164,9 @@ label sensory_m:
     show monika mh
     m "You might wanna be a little more careful, becau--"
     show monika me
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show monika e1g mk at fc5
-    m "[firstname], really, that-- OW!"
+    m "[persistent.firstname], really, that-- OW!"
     show monika e1h ml b2c
     m "Please, let go!"
     show monika b2c mq
@@ -141,27 +175,21 @@ label sensory_m:
     pause 1.5
     show monika b2c at fc5
     pause(2.0)
-    menu:
-        "Stop testing":
-            pass
+    call test_prompt_button("Stop testing")
     show monika mh at t11
-    m "...What was that for, [firstname]?"
+    m "...What was that for, [persistent.firstname]?"
     show monika e1h mf at sobbing
     m "You didn't have to..."
     show monika mk
     m "If there's something you need to let off your chest, there are better ways than...this..."
     show monika e4e
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show monika forward wmflicker at i11
     pause(4.0)
     $mref()
     show monika forward dist at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     show monika b1b
     mc "How do you feel?"
     show monika e1a
@@ -171,7 +199,7 @@ label sensory_m:
     show monika me
     m "..."
     show monika mg
-    m "Something's wrong, [firstname]..."
+    m "Something's wrong, [persistent.firstname]..."
     show monika e1d mh b2b
     m "Really wrong..."
     show monika e1b
@@ -191,17 +219,13 @@ label sensory_m:
     show monika me b1c
     m "Please...tell me what happened."
     show monika mj
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show monika forward wmflicker at i11
     pause(4.0)
     $mref()
     show monika forward neut at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     mc "How do you feel now?"
     show monika me b1f
     m "Huh?"
@@ -214,11 +238,10 @@ label sensory_m:
     show monika b1f mh
     m "Why do you ask?"
     show monika me
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return
 
-label sensory_s:
+label script7_s():
 
     show sayori turned happ mb zorder 1 at t11
     s "Oh hey, $EMPLOYEE_NAME!"
@@ -227,9 +250,7 @@ label sensory_s:
     show sayori mh e1a
     s "How're you?"
     show sayori ma
-    menu:
-        "Initiate test":
-            pass
+    call test_prompt_button("Initiate test")
     show sayori e2a me
     mc "Sayori, can I ask you a few questions?"
     show sayori mf rup lup
@@ -237,9 +258,7 @@ label sensory_s:
     show sayori b1f mh
     s "What is it?"
     show sayori ma
-    menu:
-        "Test control analysis":
-            pass
+    call test_prompt_button("Test control analysis")
     mc "Can you describe how this feels?"
     show sayori b2a mo e4b at h11
     s "Ehe~"
@@ -250,9 +269,7 @@ label sensory_s:
     show sayori b2a e1b mb
     s "Well, nothing new, but you know what I mean."
     show sayori ma
-    menu:
-        "Simulate taste":
-            pass
+    call test_prompt_button("Simulate taste")
     mc "Can you describe it now?"
     show sayori mg b1f rdown
     s "What's...wha-?"
@@ -275,9 +292,7 @@ label sensory_s:
     show sayori e4b at h11
     s "Thanks!"
     show sayori ma at t11
-    menu:
-        "Test environment recognition":
-            pass
+    call test_prompt_button("Test environment recognition")
     show bg s_sensory_location zorder 0 with Dissolve(1.0)
     mc "Can you describe what you see?"
     show sayori e2a ml rup at h11
@@ -301,9 +316,7 @@ label sensory_s:
     show sayori e4b mc b1d ldown at t11
     s "Catch up, slowpoke!"
     show sayori mn
-    menu:
-        "Simulate touch":
-            pass
+    call test_prompt_button("Simulate touch")
     show sayori e1a
     mc "Can you describe how this feels?"
     show sayori b1f me
@@ -325,9 +338,7 @@ label sensory_s:
     show sayori e4b mb
     s "D'aww, you're so cute."
     show sayori ma
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show sayori e1a mn
     mc "How about now?"
     show sayori b1b mc lup at fc2
@@ -336,9 +347,7 @@ label sensory_s:
     s "That tickles!!"
     show sayori mo e4b b1c at fc3
     s "$EMPLOYEE_NAME, that really-- ehehehe~"
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     mc "And now?"
     show sayori e1f mb ldown at fc4
     s "Ehe--ow!"
@@ -347,35 +356,27 @@ label sensory_s:
     show sayori mh b2c
     s "Can you-- agh-- please, let go?"
     show sayori me
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show sayori e4d mk at fc5
-    s "[firstname]...please..."
+    s "[persistent.firstname]...please..."
     show sayori mf lup
     s "It really-..."
     show sayori e4e mm
-    menu:
-        "Stop testing":
-            pass
+    call test_prompt_button("Stop testing")
     show sayori mh b2b rup at t11
-    s "Wh-why did you do that, [firstname]?"
+    s "Wh-why did you do that, [persistent.firstname]?"
     show sayori mg b1c e1h
     s "That really hurt..."
     show sayori ml
     s "Did I do something wro---"
     show sayori mj
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show sayori turned wmflicker
     pause(4.0)
     $sref()
     show sayori turned dist at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     mc "How do you feel?"
     show sayori e1a b1c
     pause(2.0)
@@ -386,7 +387,7 @@ label sensory_s:
     show sayori e1a b2b rup
     s "Something feels wrong..."
     show sayori mh n2
-    s "What happened, [firstname]?"
+    s "What happened, [persistent.firstname]?"
     show sayori e1g
     s "My head hurts so bad..."
     show sayori mf
@@ -404,17 +405,13 @@ label sensory_s:
     show sayori mh
     s "Why am I-...?"
     show sayori mj
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show sayori turned wmflicker
     pause(4.0)
     $sref()
     show sayori turned neut at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     mc "How do you feel now?"
     show sayori me b1f
     s "Huh?"
@@ -425,20 +422,17 @@ label sensory_s:
     show sayori mh e1a ldown
     s "Why? Have you got another test?"
     show sayori ma
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return
 
-label sensory_n:
+label script7_n():
 
     show natsuki cross happ mh oe zorder 1 at t11
     n "Oh, $EMPLOYEE_NAME?"
     show natsuki mb
     n "What's got you up this early?"
     show natsuki cm
-    menu:
-        "Initiate test":
-            pass
+    call test_prompt_button("Initiate test")
     show natsuki cross neut
     mc "Natsuki, can I ask you a few questions?"
     show natsuki turned anno mg
@@ -446,18 +440,14 @@ label sensory_n:
     show natsuki mi rhip
     n "This isn't like that \"what's your favourite flavour of ice cream\" shit again, is it?"
     show natsuki cm
-    menu:
-        "Respond":
-            pass
+    call test_prompt_button("Respond")
     mc "No, nothing like that."
     show natsuki om ce
     n "Alright..."
     show natsuki oe rdown
     n "What have you got for me?"
     show natsuki cm
-    menu:
-        "Test control analysis":
-            pass
+    call test_prompt_button("Test control analysis")
     show natsuki neut
     mc "Can you describe how this feels?"
     show natsuki curi om
@@ -467,9 +457,7 @@ label sensory_n:
     show natsuki b1c
     n "I feel normal."
     show natsuki md
-    menu:
-        "Simulate taste":
-            pass
+    call test_prompt_button("Simulate taste")
     mc "Can you describe it now?"
     show natsuki om
     n "I...{p=0.75}{nw}{done} huh."
@@ -497,9 +485,7 @@ label sensory_n:
     show natsuki mc b2c
     n "Cause truth be told, I'd kill for one of those right now."
     show natsuki cm
-    menu:
-        "Test environment recognition":
-            pass
+    call test_prompt_button("Test environment recognition")
     show bg n_sensory_location zorder 0 with Dissolve(1.0)
     show natsuki b1f e1b n2
     mc "Can you describe what you see?"
@@ -524,9 +510,7 @@ label sensory_n:
     show natsuki mb e1d
     n "One quick game?"
     show natsuki mn
-    menu:
-        "Simulate touch":
-            pass
+    call test_prompt_button("Simulate touch")
     show natsuki cross me b1f
     mc "Can you describe how this feels?"
     show natsuki b1d mi
@@ -552,9 +536,7 @@ label sensory_n:
     show natsuki mi
     n "But just this once, 'cause I'm in a good mood."
     show natsuki md
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show natsuki e1a
     mc "How about now?"
     show natsuki turned laug mb at fc2
@@ -566,9 +548,7 @@ label sensory_n:
     show natsuki oe b1e at fc3
     n "You son-of-a---{fast}come on, lay off!"
     show natsuki mn
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show natsuki at fc4
     mc "And now?"
     show natsuki pani e2a  mi
@@ -581,9 +561,7 @@ label sensory_n:
     n "Jesus dude, do you have ears?"
     show natsuki om e1g
     n "I said you're--"
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show natsuki b1c e0b mp at fc5
     n "AAGH!"
     show natsuki e1h mm b2c
@@ -593,9 +571,7 @@ label sensory_n:
     show natsuki b1e at fc5
     n "GET THE HELL OFF ME!!"
     show natsuki e4e b2c mm
-    menu:
-        "Stop testing":
-            pass
+    call test_prompt_button("Stop testing")
     $ nref()
     show natsuki vang e1g b1d mq at t11
     pause(0.5)
@@ -608,9 +584,7 @@ label sensory_n:
     show natsuki e1h mq
     n "Come on, answer me!"
     show natsuki mm
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show natsuki e3a mp
     n "If you don't tell me what the hell you just did to me {i}right now{/i}, I swear to God I'm gonna reach through that headset and---{nw}"
     show natsuki turned wmflicker
@@ -618,9 +592,7 @@ label sensory_n:
     $nref()
     show natsuki turned dist at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     show natsuki e1a
     mc "How do you feel?"
     show natsuki e1b b2b md
@@ -631,9 +603,7 @@ label sensory_n:
     pause 1.0
     show natsuki e1b
     pause(3.0)
-    menu:
-        "Ask again":
-            pass
+    call test_prompt_button("Ask again")
     mc "How do you feel?"
     $ pause(1.0)
     show natsuki e1a me
@@ -649,7 +619,7 @@ label sensory_n:
     show natsuki b2c mg
     n "I don't know what's..."
     show natsuki e1g mh
-    n "What am I feeling, [firstname]?"
+    n "What am I feeling, [persistent.firstname]?"
     show natsuki mf
     n "Like..."
     show natsuki b2b
@@ -665,17 +635,13 @@ label sensory_n:
     n "What the hell is happening to me?"
     show natsuki ce m2
     n "What did you..?"
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show natsuki turned wmflicker
     pause(4.0)
     $nref()
     show natsuki turned neut at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     mc "How do you feel now?"
     show natsuki cross b1f mg
     n "Fine, I guess?"
@@ -699,11 +665,10 @@ label sensory_n:
     show natsuki e1d b1d mi at t11
     n "Hhhh...{fast}{i}pretty please, with a cherry on top?{/i}"
     show natsuki md
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return
 
-label sensory_y:
+label script7_y():
 
     show yuri turned happ b2a mb oe zorder 1 at t11
     y "Hello, $EMPLOYEE_NAME."
@@ -712,18 +677,14 @@ label sensory_y:
     show yuri b1a
     y "How can I help?"
     show yuri ma
-    menu:
-        "Initiate test":
-            pass
+    call test_prompt_button("Initiate test")
     mc "Yuri, can I ask you a few questions?"
     show yuri rup mb e4a
     y "Well, of course you can."
     show yuri mg e1a
     y "I'll do my best to answer anything you'd like to know."
     show yuri ma
-    menu:
-        "Test control analysis":
-            pass
+    call test_prompt_button("Test control analysis")
     mc "Can you describe how this feels?"
     show yuri b1f me
     y "..."
@@ -732,9 +693,7 @@ label sensory_y:
     show yuri lup e1d
     y "Am I missing something?"
     show yuri mf
-    menu:
-        "Simulate taste":
-            pass
+    call test_prompt_button("Simulate taste")
     mc "Can you describe it now?"
     show yuri e1a b1f
     y "Erm..."
@@ -753,9 +712,7 @@ label sensory_y:
     show yuri mh e1d b1b n4
     y "I-I mean, thank you, of course..!"
     show yuri me
-    menu:
-        "Test environment recognition":
-            pass
+    call test_prompt_button("Test environment recognition")
     show bg y_sensory_location zorder 0 with Dissolve(1.0)
     show yuri b1f mf n2
     mc "Can you describe what you see?"
@@ -780,9 +737,7 @@ label sensory_y:
     show yuri n4 mb rup
     y "Maybe we could write something together?"
     show yuri ma
-    menu:
-        "Simulate touch":
-            pass
+    call test_prompt_button("Simulate touch")
     show yuri mf
     mc "Can you describe how this feels?"
     #handhold, yuri's all blushy and that but likes it
@@ -808,9 +763,7 @@ label sensory_y:
     y "This is nice. Thank you."
     show yuri ma
     y "..."
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show yuri e1a
     mc "How about now?"
     #handhold goes into a tickle, yuri's trying to maintain composure
@@ -827,9 +780,7 @@ label sensory_y:
     show yuri e1d ldown
     y "I can barely–{i}aha{/i}--even–{i}ahaha{/i}--get a word out!!"
     show yuri mn
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     mc "And now?"
     #starts to hurt now, yuri asks you to let go
     show yuri mb e1a b1b at fc3
@@ -843,23 +794,19 @@ label sensory_y:
     show yuri e4d mi
     y "Please..."
     show yuri me
-    menu:
-        "Test further":
-            pass
+    call test_prompt_button("Test further")
     show yuri mm b2c at fc5
     y "{size=-8}...{/size}"
     show yuri e4e
-    y "{size=-8}[firstname]...{/size}"
+    y "{size=-8}[persistent.firstname]...{/size}"
     show yuri mh
     y "{size=-8}...please let go...{/size}"
     show yuri me
-    menu:
-        "Stop testing":
-            pass
+    call test_prompt_button("Stop testing")
     show yuri rup lup at t11
     pause(0.75)
     show yuri b1e mi e1h at sobbing
-    y "Why, [firstname]?"
+    y "Why, [persistent.firstname]?"
     show yuri e4e b2b mh
     y "Why did you..?"
     show yuri e1h mg
@@ -867,26 +814,20 @@ label sensory_y:
     show yuri e4e me
     y "I don't understand..."
     show yuri mj
-    menu:
-        "Reset memory":
-            pass
+    call test_prompt_button("Reset memory")
     show yuri turned wmflicker at t11
     pause(4.0)
     $yref()
     show yuri turned dist e1b at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     show yuri e1a b2b
     mc "How do you feel?"
     show yuri me
     pause(1.0)
     show yuri e4a mj
     pause(1.1)
-    menu:
-        "Ask again":
-            pass
+    call test_prompt_button("Ask again")
     show yuri e1a
     mc "How do you feel?"
     show yuri e4a mg at s11
@@ -896,7 +837,7 @@ label sensory_y:
     show yuri mg
     y "I...I feel awful..."
     show yuri b1b
-    y "What happened, [firstname]?"
+    y "What happened, [persistent.firstname]?"
     show yuri e1b mh rup
     y "Something...something terrible must have happened."
     show yuri mg
@@ -908,7 +849,7 @@ label sensory_y:
     show yuri e4d mi
     y "And it hurts...oh my God it hurts."
     show yuri shy e4 b1 m4
-    y "Why do I feel like this, [firstname]?"
+    y "Why do I feel like this, [persistent.firstname]?"
     show yuri e6
     y "What happened to me?"
     show yuri m2
@@ -917,9 +858,7 @@ label sensory_y:
     $yref()
     show yuri turned neut at i11
     pause(3.0)
-    menu:
-        "Inquire":
-            pass
+    call test_prompt_button("Inquire")
     show yuri b1f
     mc "How do you feel now?"
     show yuri b1a mb e1d lup
@@ -933,6 +872,5 @@ label sensory_y:
     show yuri e1c mg b2b ldown
     y "Or...maybe not?"
     show yuri md
-    menu:
-        "Record results":
-            return
+    call test_prompt_button("Record results")
+    return
