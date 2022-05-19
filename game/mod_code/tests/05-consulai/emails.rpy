@@ -3,13 +3,13 @@ init python:
         unique_id="consulai_main_email",
         subject="URGENT v0.5.2 upd",
         contents="""
-It's Iwan. I've read through your feedback for the nickname test, and…to put it lightly, {i}holy shit{/i}. I’ve reverted the entire build back to about two hours before Jeremy pushed his sludge, so we should have reverted whatever damage was done.
+It's Iwan. I've read through your feedback for the nickname test, and…to put it lightly, {i}holy shit{/i}. I've reverted the entire build back to about two hours before Jeremy pushed his sludge, so we should have reverted whatever damage was done.
 
 But if anything like that ever happens again then abort the sim and email me --immediately--. I am not having Jeremy jeopardize our branch by pushing substandard shit again. Got it?
 
-For the moment, I’ve got something else. Personal feelings about e-therapists aside, I’ve been asked to have you stress test Wintermute’s integration with our old ConsulAI framework that was built into the John M chatbot, from way back when. We know who we’re selling virtual girlfriends to. It’s a necessary feature.
+For the moment, I've got something else. Personal feelings about e-therapists aside, I've been asked to have you stress test Wintermute's integration with our old ConsulAI framework that was built into the John M chatbot, from way back when. We know who we're selling virtual girlfriends to. It's a necessary feature.
 
-So, here’s what you need to do. Before you start, you’ll need to enable our "depressed user" customer profiling preset. Tell them you’re sad, and stick to the sob script on the post-it note I left on your desk. After that, just let the Doki try and ‘console’ you and send it back to me. Barring any blatant issues, I’ll relay the results to our psych adviser for the green light.
+So, here's what you need to do. Before you start, you'll need to enable our "depressed user" customer profiling preset. Tell them you're sad, and stick to the sob script on the post-it note I left on your desk. After that, just let the Doki try and 'console' you and send it back to me. Barring any blatant issues, I'll relay the results to our psych adviser for the green light.
 
 - IG
 """,

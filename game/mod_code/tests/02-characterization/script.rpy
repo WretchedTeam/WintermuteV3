@@ -1,26 +1,3 @@
-define characterization_test = _wm_test.WintermuteTest(
-    "characterization_test",
-    "Characterization",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=7, day=20),
-    "Iwan Green",
-    (characterization_test_headline_1, characterization_test_headline_2, characterization_test_headline_3, characterization_test_headline_4),
-    (characterization_main_email, characterization_side_email),
-    (characterization_final_email,),
-    characterization_main_email,
-    "script2_main"
-)
-
-default persistent.t2doki = ""
-default persistent.d_a1 = ""
-default characterization_monika_open_minded = False
-
-init python:
-    def set_characterization_target(d, a1):
-        persistent.t2doki = d
-        persistent.d_a1 = a1
-
 label script2_main():
     menu(screen="load_doki_choice"):
         "Monika":

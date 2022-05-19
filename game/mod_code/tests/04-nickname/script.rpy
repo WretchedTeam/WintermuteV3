@@ -1,20 +1,3 @@
-define nickname_test = _wm_test.WintermuteTest(
-    "nickname_test",
-    "Nickname Recognition",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=8, day=3),
-    "Jeremy Osborne",
-    (nickname_test_headline_1, nickname_test_headline_2, nickname_test_headline_3, nickname_test_headline_4),
-    (nickname_main_email,),
-    (nickname_final_email,),
-    nickname_main_email,
-    "script4_main"
-)
-
-default persistent.t4doki = ""
-default persistent.t4nick = ""
-
 label script4_main():
     menu (screen="load_doki_choice"):
         "Monika":

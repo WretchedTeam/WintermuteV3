@@ -1,43 +1,25 @@
-define consulai_test = _wm_test.WintermuteTest(
-    "consulai_test",
-    "ConsulAI",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=8, day=10),
-    "Iwan Green",
-    (consulai_test_headline_1, consulai_test_headline_2, consulai_test_headline_3, consulai_test_headline_4),
-    (consulai_main_email,),
-    (consulai_final_email,),
-    consulai_main_email,
-    "script5_main"
-)
-
 label script5_main():
     menu (screen="load_doki_choice"):
         "Monika":
+            $ persistent.t5doki = "Monika"
             call script5_m
 
         "Sayori":
+            $ persistent.t5doki = "Sayori"
             call script5_s
 
         "Yuri":
+            $ persistent.t5doki = "Yuri"
             call script5_y
 
         "Natsuki":
+            $ persistent.t5doki = "Natsuki"
             call script5_n
 
         "Exit" (prepend_load=False):
             return False
 
     return True
-
-label script5_on_start():
-    $ consulai_main_email.unlock()
-    return
-
-label script5_finished():
-    $ consulai_final_email.unlock()
-    return
 
 label script5_qa(doki):
     $ menu_set = set()

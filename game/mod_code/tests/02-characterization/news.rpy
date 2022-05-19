@@ -1,13 +1,13 @@
 init python:
     characterization_test_headline_1 = _wm_news.News(
-        "First crypto, then AI, now VR? Is there anything Turnell can’t do? | A review of the Turnell Exodus",
+        "First crypto, then AI, now VR? Is there anything Turnell can't do? | A review of the Turnell Exodus",
         "t2a1.png",
         _wm_news.P_YT,
         _wm_indian_names.get_indian_name()
     )
 
     characterization_test_headline_2 = _wm_news.News(
-        "World’s Fair 2029: All You Need To Know",
+        "World's Fair 2029: All You Need To Know",
         "t2a2.png",
         _wm_news.P_TT,
         _wm_indian_names.get_indian_name()

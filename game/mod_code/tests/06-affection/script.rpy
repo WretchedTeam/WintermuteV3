@@ -1,19 +1,3 @@
-define affection_test = _wm_test.WintermuteTest(
-    "affection_test",
-    "Affection",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=8, day=17),
-    "Iwan Green",
-    tuple(),
-    (affection_main_email, affection_side_email),
-    (affection_final_email,),
-    affection_main_email,
-    "script6_main"
-)
-
-default persistent.t6doki = ""
-
 label script6_main():
     menu (screen="load_doki_choice"):
         "Monika":

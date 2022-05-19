@@ -1,27 +1,3 @@
-define sensory_test = _wm_test.WintermuteTest(
-    "sensory_test",
-    "Sensory Emulation",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=8, day=24),
-    "Jeremy Osborne",
-    tuple(),
-    (sensory_main_email, affection_side_email),
-    (sensory_final_email,),
-    sensory_main_email,
-    "script7_main"
-)
-
-default persistent.t7doki = ""
-
-label script7_on_start():
-    $ sensory_main_email.unlock()
-    return
-
-label script7_finished():
-    $ sensory_final_email.unlock()
-    return
-
 label script7_main:
     menu (screen="load_doki_choice"):
         "Monika":
