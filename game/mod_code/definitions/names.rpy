@@ -1,6 +1,6 @@
 # Indian name generation for headline author names.
 
-init python in _wm_indian_names:
+init -100 python in _wm_indian_names:
     names = [
         "Aniruddha",
         "Akshayakeerti",

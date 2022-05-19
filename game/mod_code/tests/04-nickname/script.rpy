@@ -1,33 +1,3 @@
-default persistent.t4doki = ""
-default persistent.t4nick = ""
-
-default t4nick = ""
-
-init python:
-    nickname_test_report = """
-When loading the WINTERMUTE program, I greeted [persistent.t4doki], and proceeded to give them the nickname "[persistent.t4nick]". Upon hearing this, [persistent.t4doki] initially seemed unable to make the association that the nickname I’d given them was to refer to them.
-
-I’m not sure exactly what happened behind the scenes, but as best I can describe it…
-
-This seemed to lead to [persistent.t4doki] (and by extension, the wider WINTERMUTE program itself) recognizing what it really is, and suffering some kind of mental breakdown as a result. I’m very concerned about the implications this has regarding the true intelligence of the program.
-
-Almost immediately, Jeremy externally shut down my testing application in order to reset the changes made to the program that caused this outburst. This was a very disconcerting experience for me personally.
-"""
-
-    nickname_test = _wm_test.WintermuteTest(
-        "nickname_test",
-        "Nickname Recognition",
-        "Lorem Ipsum",
-        nickname_test_report,
-        "josborne_email_3",
-        datetime.date(year=2029, month=8, day=3),
-        "Jeremy Osborne",
-        [ nickname_test_headline_1, nickname_test_headline_2, nickname_test_headline_3, nickname_test_headline_4 ],
-        "script4_main",
-        "script4_on_start",
-        "script4_finished"
-    )
-
 label script4_main():
     menu (screen="load_doki_choice"):
         "Monika":
@@ -53,18 +23,13 @@ label script4_main():
 
 
 label script4_on_start():
-    $ josborne_email_3.unlock()
+    $ nickname_main_email.unlock()
     return
 
 label script4_finished():
-    $ persistent.t4nick = t4nick
-    $ josborne_email_4.unlock()
+    $ nickname_final_email.unlock()
     return
 
-label script4_post_finish():
-    $ persistent.current_test_no += 1
-    call advance_test(datetime.date(year=2029, month=8, day=10))
-    return
 
 label script4_m():
 
@@ -91,9 +56,9 @@ label script4_m():
     m mh rhip e1a b2a "So, um…is there something specific you wanted to talk about..?"
     ##TEXTBOX
     # Give Monika a nickname:
-    $ t4nick = renpy.input("Give Monika a nickname:")
-    mc "I just wanted to say hi, [t4nick]."
-    m b1f "Oh…[t4nick]?"
+    $ persistent.t4nick = renpy.input("Give Monika a nickname:")
+    mc "I just wanted to say hi, [persistent.t4nick]."
+    m b1f "Oh…[persistent.t4nick]?"
     m mi "Who's that?"
     m "A friend, or--?{w=0.5}{nw}"
     m b1b mh "Is, um…is that…"
@@ -200,9 +165,9 @@ label script4_s():
     s e1a ldown "I'm doing pretty good myself!"
     ##TEXTBOX
     # Give Sayori a nickname:
-    $ t4nick = renpy.input("Give Sayori a nickname:")
-    mc "That's good, [t4nick]."
-    s b1f e2a rup lup mh "Huh? [t4nick]??"
+    $ persistent.t4nick = renpy.input("Give Sayori a nickname:")
+    mc "That's good, [persistent.t4nick]."
+    s b1f e2a rup lup mh "Huh? [persistent.t4nick]??"
     s e1a mi "Who's that?"
     s ldown e1a mb b1a "It's just us, silly!"
     s md rdown "..."
@@ -305,9 +270,9 @@ label script4_n():
     show natsuki md
     ##TEXTBOX
     # Give Natsuki a nickname:
-    $ t4nick = renpy.input("Give Natsuki a nickname:")
-    mc "I'm glad to hear that, [t4nick]."
-    n e1a b1a mh "[t4nick]?"
+    $ persistent.t4nick = renpy.input("Give Natsuki a nickname:")
+    mc "I'm glad to hear that, [persistent.t4nick]."
+    n e1a b1a mh "[persistent.t4nick]?"
     n turned lhip "That's…who's that supposed to be?"
     n b1b mg "Is that me..?"
     n b2c "But I'm…"
@@ -408,9 +373,9 @@ label script4_y:
     show yuri ma
     ##TEXTBOX
     # Give Yuri a nickname:
-    $ t4nick = renpy.input("Give Yuri a nickname:")
-    mc "No problem, [t4nick]."
-    y n2 e1a b1f ldown mh "O-oh...[t4nick]..?"
+    $ persistent.t4nick = renpy.input("Give Yuri a nickname:")
+    mc "No problem, [persistent.t4nick]."
+    y n2 e1a b1f ldown mh "O-oh...[persistent.t4nick]..?"
     y b1b n1 "I-is that supposed to be…who..?"
     y b2c "...Me?"
     y rdown n4 "But I'm-..."

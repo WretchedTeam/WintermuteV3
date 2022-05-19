@@ -1,5 +1,5 @@
 default 10 persistent.current_test_no = 0
-define 10 wintermute_tests = [ 
+define 10 wintermute_tests = [
     intro_test,
     characterization_test,
     search_test,
@@ -36,21 +36,25 @@ init -10 python in _wm_test:
             "assigner", "headlines", "on_start", "labels", "on_advance", "is_finished"
         )
 
-        def __init__(self, key, name, description, final_report, main_email, assigned_on, assigner=None, 
-                headlines=None, main_label="start", on_start=None, on_complete=None, single=False):
+        def __init__(self, key, name, description, final_report, assigned_on, assigner=None, 
+                headlines=None, start_emails=None, complete_emails=None, main_email=None, 
+                main_label="start", on_start=None, on_complete=None, on_advance=None):
 
             self.key = key
             self.name = name
             self.description = description.strip()
             self.final_report = final_report.strip()
-            self.main_email = get_email(main_email)
 
             self.assigned_on = assigned_on
+
+            self.start_emails = start_emails
+            self.complete_emails = complete_emails
+            self.main_email = get_email(main_email)
 
             self.main_label = main_label
             self.on_start = on_start
             self.on_complete = on_complete
-            self.single = single
+            self.on_advance = on_advance
 
             if assigner is None:
                 assigner = self.main_email.sender.name
@@ -94,13 +98,41 @@ init -10 python in _wm_test:
         def __call_cb(cb):
             if has_label_and_unseen(cb): renpy.call(cb)
 
-        def run_start(self): return self.__call_cb(self.on_start)
-        def run_complete(self): return self.__call_cb(self.on_complete)
+        def run_start(self):
+            if self.start_emails is not None:
+                for email in self.start_emails:
+                    email.unlock()
 
-label advance_test(date):
+            self.__call_cb(self.on_start)
+
+        def run_complete(self): 
+            if self.complete_emails is not None:
+                for email in self.complete_emails:
+                    email.unlock()
+
+            self.__call_cb(self.on_complete)
+
+        def run_advance(self):
+            self.__call_cb(self.on_advance)
+
+label advance_test():
+    $ test = _wm_test.get_current_test()
+
+    if test is None:
+        return
+
+    $ test.run_advance()
+    $ persistent.current_test_no += 1
+
     $ renpy.transition(Fade(0.5, 1, 0.5))
     $ _wm_manager.Application.close_all_apps()
-    $ wm_game_time.persistent_date = date
+
+    python hide:
+        test = _wm_test.get_current_test()
+
+        if test is not None:
+            wm_game_time.persistent_date = test.assigned_on
+
     pause 0.75
 
     scene black

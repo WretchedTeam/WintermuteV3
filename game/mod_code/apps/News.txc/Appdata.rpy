@@ -5,7 +5,10 @@ init python in _wm_news_app:
 
     def get_news_headers():
         test = get_current_test()
-        return test.headlines if test is not None else test.headlines
+        if test is None:
+            return tuple()
+
+        return test.headlines or tuple()
 
     def get_title_size(t):
         l = len(t)

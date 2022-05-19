@@ -23,3 +23,5 @@ define wm = Character("Wintermute", what_prefix='"', what_suffix='"', ctc_positi
 
 default persistent.wm_received = False
 default persistent.seen_wm_program = False
+
+default persistent.snake_received = False
