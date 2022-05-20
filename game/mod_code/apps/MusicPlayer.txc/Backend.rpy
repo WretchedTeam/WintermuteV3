@@ -206,8 +206,6 @@ init -10 python in _wm_music_player:
         def __init__(self, channel, loop=True, single_track=False, shuffle=False):
             self.channel = channel
 
-            self.last_played = None
-
             self.loop = loop
             self.single_track = single_track
             
@@ -220,6 +218,7 @@ init -10 python in _wm_music_player:
 
             self.shuffled = None
             self.last_playing = None
+            self.started = False
 
         @property
         def playlists(self):
@@ -234,6 +233,11 @@ init -10 python in _wm_music_player:
             current_playing = strip_filename(current_playing)
 
             if current_playing:
+                if self.last_playing is None:
+                    renpy.restart_interaction()
+
+                self.last_playing = current_playing
+
                 track = Track.get(strip_filename(current_playing))
 
                 self.position = renpy.music.get_pos(self.channel) or self.position
@@ -285,7 +289,7 @@ init -10 python in _wm_music_player:
 
             idx = (idx + offset) % len(playlist)
             filename = playlist[idx]
-            self.last_playing = filename
+            # self.last_playing = filename
 
             if pos:
                 filename = construct_audio_string(pos, filename)
