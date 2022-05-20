@@ -4,6 +4,7 @@ init python in _wm_terminal:
 
     class Terminal(object):
         caret = "[persistent.username]> "
+
         def __init__(self):
             self.__history = [ ]
             
