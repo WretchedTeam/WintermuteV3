@@ -265,7 +265,7 @@ init -10 python in _wm_music_player:
                 self.duration = max(renpy_duration, ttag_duration)
 
             else:
-                if self.started_playing:
+                if self.last_playing is not None:
                     if self.single_track:
                         self.play(self.last_playing, 0)
                     else:
@@ -306,7 +306,6 @@ init -10 python in _wm_music_player:
 
             idx = (idx + offset) % len(playlist)
             filename = playlist[idx]
-            self.started_playing = True
             # self.last_playing = filename
 
             if pos:
