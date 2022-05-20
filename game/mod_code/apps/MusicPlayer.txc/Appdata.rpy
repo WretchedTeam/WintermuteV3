@@ -25,7 +25,7 @@ init python in _wm_music_player_app:
         if not renpy.store.quick_menu:
             return
 
-        renpy.run(ToggleScreen("music_player_overlay", Dissolve(0.25, time_warp=_warper.ease_cubic)))
+        renpy.run(ToggleScreen("mini_player", Dissolve(0.25, time_warp=_warper.ease_cubic)))
 
     _default_keymap.keymap["shift_K_m"] = open_music_player
 
@@ -119,18 +119,17 @@ init python in _wm_music_player_app:
         def is_mp_active(self):
             return self.mp.last_playing is not None
 
-        def position_text(self, *args):
+        def position_text(self, *args, **kwargs):
             if not self.is_mp_active():
-                return Text("--:--", color="#000"), None
+                return Text("--:--", **kwargs), None
 
-            return Text(format_time(self.mp.position), color="#000"), 0.01
+            return Text(format_time(self.mp.position), **kwargs), 0.01
 
-        def duration_text(self, *args):
+        def duration_text(self, *args, **kwargs):
             if not self.is_mp_active():
-                return Text("--:--", color="#000"), None
+                return Text("--:--", **kwargs), None
 
-            return Text(format_time(self.mp.duration), color="#000"), 0.01
+            return Text(format_time(self.mp.duration), **kwargs), 0.01
 
         def on_close(self):
-            print("Test")
             self.category = self.CURRENT

@@ -3,8 +3,7 @@ define 2 music_player_app = _wm_manager.Application(
     "Music Player", 
     "news_client icon", 
     "music_player", 
-    music_player_proxy,
-    music_player_proxy.mp.periodic
+    music_player_proxy
 )
 
 screen music_player():
@@ -14,15 +13,6 @@ screen music_player():
         use music_player_base(mpp)
 
     on "hide" action Function(mpp.on_close)
-
-screen music_player_overlay():
-    zorder 999
-    modal True
-
-    vbox xysize (1200, 860) align (0.5, 0.5):
-        use music_player_base(music_player_app.userdata)
-
-    on "hide" action Function(music_player_app.userdata.on_close)
 
 screen music_player_base(mpp):
     frame background "#F0F2F9":
@@ -111,13 +101,13 @@ screen player_controls(mpp):
         side "l c r" xalign 0.5 yalign 1.0:
             spacing 30
             frame xsize 40:
-                add DynamicDisplayable(mpp.position_text)
+                add DynamicDisplayable(mpp.position_text, color="#000")
 
             bar value mpp.bar_value:
                 yalign 0.5 yoffset 2
 
             frame xsize 40:
-                add DynamicDisplayable(mpp.duration_text) xalign 1.0
+                add DynamicDisplayable(mpp.duration_text, color="#000") xalign 1.0
 
 
 style player_controls_frame is empty
