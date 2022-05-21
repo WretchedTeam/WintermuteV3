@@ -23,11 +23,50 @@ init -10 python in _wm_email:
 
     @renpy.pure
     class Email(NoRollback):
+        """
+        Representation of an email in WM's desktop.
+
+        `unique_id`
+            A unique key associated with the Email.
+
+        `subject`
+            Subject of the email.
+
+        `contents`
+            Contents of the email.
+
+        `sender`
+            Sender of the email.
+
+        `is_spam`
+            True if the email is to be treated as spam.
+
+        `is_important`
+            True if the email is important or a main email.
+
+        `attachments`
+            List of attachments given with the mail.
+
+        `quick_replies`
+            List of quick replies given with the mail.
+
+        `open_callbacks`
+            List of functions to be called when the mail is opened.
+
+        `unlock_callbacks`
+            List of functions to be called when the mail is received/unlocked.
+
+        `receiver`
+            Receiver of the mail. If the value is None, then the receiver
+            is the MC.
+        """
+
         mail_client_screen_name = "mail_client"
         notification_screen_name = "mail_notification"
 
-        def __init__(self, unique_id, subject, contents, sender, is_spam=False, is_important=False,
-                attachments=None, quick_replies=None, open_callbacks=None, unlock_callbacks=None, receiver=None):
+        def __init__(self, unique_id, subject, contents, sender, is_spam=False, 
+                is_important=False, attachments=None, quick_replies=None, 
+                open_callbacks=None, unlock_callbacks=None, receiver=None):
 
             self.unique_id = unique_id
 

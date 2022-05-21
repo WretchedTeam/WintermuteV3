@@ -14,6 +14,15 @@ init python in _wm_chibi:
     class Chibi(renpy.Displayable):
         """
         Chibi with barebones physics.
+
+        `idle`
+            Displayable used when the chibi is not focused..
+        
+        `hover`
+            Displayable used when the chibi is focused.
+
+        `x`, `y`
+            Starting position of the chibi. 
         """
 
         def __init__(self, idle, hover, x, y, **kwargs):

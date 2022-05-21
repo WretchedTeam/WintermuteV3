@@ -6,10 +6,20 @@ init -100 python in _wm_rounded:
     class RoundedFrame(Frame):
         """
         Takes all the arguments as a Frame object.
+
+        `radius`
+            Radius of the frame's corners.
+
+        `outline_width`
+            Width of the border around the frame.
+
+        `outline_color`
+            Color of the border.
         """
-        def __init__(self, image, left=None, top=None, right=None, bottom=None,
-                xborder=0, yborder=0, bilinear=True, tile=False,
-                tile_ratio=0.5, radius=0.0, outline_width=0.0, outline_color="#000", **properties):
+        def __init__(self, image, left=None, top=None, right=None, bottom=None, 
+                xborder=0, yborder=0, bilinear=True, tile=False, tile_ratio=0.5, 
+                radius=0.0, outline_width=0.0, outline_color="#000", **properties):
+
             super(RoundedFrame, self).__init__(image, left, top, right, bottom, xborder, yborder, bilinear, tile, tile_ratio, **properties)
             self.radius = radius
             self.outline_width = outline_width
