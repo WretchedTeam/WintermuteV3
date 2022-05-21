@@ -9,24 +9,30 @@ init 2 python in _wm_error_dialog:
 
 screen error_dialog(msg, sc_name="error_dialog"):
     layer "errors"
-    modal True
     style_prefix "error_dialog"
 
-    drag xalign 0.5 yalign 0.5:
-        frame at RoundedWindows(radius=10.0, outline_width=3.0, outline_color="#828282"):
-            has vbox
+    drag at window_animation:
+        align (0.5, 0.5)
+        vbox at RoundedWindows(radius=10.0, outline_width=3.0, outline_color="#828282"):
+            xsize 700
 
-            text _("{error}") style_suffix "error_icon"
-            text "An Error Occured" style_suffix "error_header"
-            text msg style_suffix "msg"
+            use program_header("Error", Hide("error_dialog"))
 
-            null
+            frame:
+                vbox spacing 10:
+                    hbox spacing 20:
+                        text _("{error}") style_suffix "icon" yalign 0.5
+                        text _("An Error Occured") style_suffix "error_header" yalign 0.5
 
-            textbutton "Dismiss" action Hide(sc_name)
+                    text msg style_suffix "msg"
+
+                    null height 10
+
+                    textbutton _("Dismiss") action Hide(sc_name)
 
 style error_dialog_frame is empty
 style error_dialog_vbox is empty
-style error_dialog_error_icon is error_dialog_text
+style error_dialog_icon is error_dialog_text
 style error_dialog_error_header is error_dialog_text
 style error_dialog_msg is error_dialog_text
 style error_dialog_text is empty
@@ -39,11 +45,9 @@ style error_dialog_text:
     size 28
 
 style error_dialog_button:
-    padding (20, 15)
-    idle_background RoundedFrame("#f00", radius=15.0)
-    hover_background RoundedFrame("#ff3838", radius=15.0)
-
-    xalign 0.5
+    padding (15, 10)
+    idle_background "#f00"
+    hover_background "#ff3838"
 
 style error_dialog_button_text:
     font _wm_font_lexend.light
@@ -54,25 +58,18 @@ style error_dialog_button_text:
 
 style error_dialog_frame:
     background "#fff"
-    padding (20, 20)
+    padding (30, 30)
     xfill True
-    xsize 700
 
-style error_dialog_vbox:
-    xalign 0.5
-    spacing 20
-
-style error_dialog_error_icon:
+style error_dialog_icon:
     color "#f00"
-    size 96
-    xalign 0.5
+    size 48
+    yalign 0.5
 
 style error_dialog_error_header:
     font _wm_font_lexend.semibold
-    size 36
-    xalign 0.5
+    size 40
 
 style error_dialog_msg:
     font _wm_font_lexend.light
-    xalign 0.5
     color "#444"

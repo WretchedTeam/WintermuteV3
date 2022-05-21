@@ -92,6 +92,8 @@ screen news_entry(entry, bg=None):
     style_prefix "news_entry"
 
     button:
+        action _wm_error_dialog.OpenError("This action has been blocked by your network.")
+
         if bg is not None:
             background bg
 
