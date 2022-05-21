@@ -29,7 +29,22 @@ init python in _wm_news:
 
     @renpy.pure
     class News(NoRollback):
-        def __init__(self, title, thumbnail, publisher, author, contents=""):
+        """
+        Representation of a News headline.
+
+        `title`
+            The headline.
+
+        `thumbnail`
+            Thumbnail associated with the headline.
+
+        `publisher`
+            Publisher of the headline's news.
+
+        `author`
+            Author of the news article.
+        """
+        def __init__(self, title, thumbnail, publisher, author):
             self.title = title.strip()
             self.thumbnail = prefix_if_needed(thumbnail)
             self.publisher = publisher

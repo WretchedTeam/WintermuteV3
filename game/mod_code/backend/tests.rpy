@@ -29,12 +29,52 @@ init -10 python in _wm_test:
     class WintermuteTest(object):
         """
         Class representative of the scripted AI Tests.
-        """
 
-        __slots__ = (
-            "key", "name", "description", "final_report", "main_email", "assigned_on", 
-            "assigner", "headlines", "on_start", "labels", "on_advance", "is_finished"
-        )
+        `key`
+            Unique key string associated with the test.
+
+        `name`
+            Name of the test.
+
+        `description`
+            Description of the test.
+
+        `final_report`
+            Final report of the test after completion.
+
+        `assigned_on`
+            In-game date on which the test was assigned.
+
+        `assigner`
+            Name of the person assigned the test.
+
+        `headlines`
+            News headlines to be shown for the given test.
+
+        `start_emails`
+            Emails that are to be unlocked on login at the start of the test.
+
+        `complete_emails`
+            Emails that are to be unlocked after completing the test.
+
+        `main_email`
+            Email used to assign the player the test.
+
+        Callback Labels:
+        ---------------
+
+        `main_label`
+            Label to be called when the test is launched.
+
+        `on_start`
+            Label to be called on login at the start of the test.
+
+        `on_complete`
+            Label to be called on completing and returning to the desktop after the test.
+
+        `on_advance`
+            Label to be called on advancing to another test.
+        """
 
         def __init__(self, key, name, description, final_report, assigned_on, assigner=None, 
                 headlines=None, start_emails=None, complete_emails=None, main_email=None, 
