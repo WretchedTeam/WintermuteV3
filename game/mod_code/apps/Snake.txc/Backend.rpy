@@ -21,6 +21,7 @@ init python in _wm_snake:
         Left = (-1, 0)
         Right = (1, 0)
 
+    # Arrow keys mapped to the direction the snake should face after press.
     direction_keys = {
         pygame.K_UP: Direction.Up,
         pygame.K_DOWN: Direction.Down,
@@ -28,6 +29,7 @@ init python in _wm_snake:
         pygame.K_RIGHT: Direction.Right,
     }
 
+    # Directions mapped to their respective opposite direction.
     opposites = {
         Direction.Up: Direction.Down,
         Direction.Down: Direction.Up,
@@ -36,6 +38,8 @@ init python in _wm_snake:
     }
 
     def draw_cell(canvas, x, y, color, padding=(0, 0)):
+        """Draws a cell given its position, color and padding."""
+
         if isinstance(padding, (float, int)):
             xpadding = ypadding = int(padding)
         else:
@@ -48,6 +52,21 @@ init python in _wm_snake:
         return canvas.rect(color, rect)
 
     class Block(object):
+        """
+        Element of a cell in a grid.
+
+        `x`
+            The column in which the element should be placed in.
+
+        `y`
+            The row in which the element should be placed in.
+
+        `padding`
+            Padding of the placed grid element.
+
+        `color`
+            Color of the element.
+        """
         def __init__(self, x, y, padding, color):
             self.x = x
             self.y = y
@@ -61,6 +80,24 @@ init python in _wm_snake:
             return draw_cell(canvas, self.x, self.y, self.color, self.padding)
 
     class LineGrid(renpy.Displayable):
+        """
+        Displayable for drawing a line grid.
+
+        `xcells`
+            Number of grid columns.
+
+        `ycells`
+            Number of grid rows.
+
+        `grid_size`
+            Size of one cell.
+
+        `grid_line_width`
+            Width of each of the grid lines.
+
+        `grid_line_color`
+            Color of each of the grid lines.
+        """
         def __init__(self, xcells, ycells, grid_size, grid_line_width, grid_line_color, **kwargs):
             super(LineGrid, self).__init__(**kwargs)
             self.xcells = xcells
@@ -91,6 +128,7 @@ init python in _wm_snake:
             return rv
 
     def create_fruit(color):
+        """Creates a randomly placed fruit block of the given color."""
         x = randrange(1, xcells - 1)
         y = randrange(1, ycells - 1)
         return Block(x, y, 4, color)
@@ -108,6 +146,16 @@ init python in _wm_snake:
         return rv
 
     class Snake(renpy.Displayable):
+        """
+        Displayable for the snake game.
+
+        `snake_color`
+            Color of the blocks forming the body of the snake.
+
+        `fruit_color`
+            Color of the fruits placed.
+        """
+
         start_delay = 2.0
 
         def __init__(self, snake_color, fruit_color, **kwargs):
@@ -145,6 +193,7 @@ init python in _wm_snake:
             self.current_position[0] += self.current_direction[0]
             self.current_position[1] += self.current_direction[1]
 
+            # Wrap the snake around the grid.
             self.current_position[0] %= xcells
             self.current_position[1] %= ycells
 
@@ -177,7 +226,8 @@ init python in _wm_snake:
 
             self.fruit.render(canvas)
 
-            if self.game_over: self.game_over_blink(rv)
+            if self.game_over: 
+                self.game_over_blink(rv)
 
             self.handle_redraws()
 
@@ -248,6 +298,15 @@ init python in _wm_snake:
         return Snake("#000", "#000", **kwargs)
 
     class SnakeOverlay(renpy.Displayable):
+        """
+        Facade for Snake and LineGrid.
+
+        `background`
+            Background color for the snake game.
+
+        `grid_color`
+            Color of the grid lines.
+        """
         def __init__(self, background="#fff", grid_color="#888", **kwargs):
             super(SnakeOverlay, self).__init__(**kwargs)
             self.background = Color(background)
