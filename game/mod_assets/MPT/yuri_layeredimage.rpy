@@ -1,18 +1,110 @@
 
 define yuri_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("yuri"), _wm_breathing.BreathingCurried("yuri") ]
 
+image _yur_blink_a:
+    alpha 0.0
+    renpy.random.randint(20, 100)*0.1
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+        "mod_assets/MPT/yuri/yuri_turned_eyes_e4a.png"
+        0.035
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+        "mod_assets/MPT/yuri/yuri_turned_eyes_e4a.png"
+        0.065
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+        "mod_assets/MPT/yuri/yuri_turned_eyes_e4a.png"
+        0.095
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+        "mod_assets/MPT/yuri/yuri_turned_eyes_e4a.png"
+        0.035
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+        alpha 0.0
+        0.15
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+        "mod_assets/MPT/yuri/yuri_turned_eyes_e4a.png"
+        0.035
+        "mod_assets/MPT/yuri/_blink_am.png"
+        0.015
+    repeat
+
+image _yur_blink_s_a:
+    alpha 0.0
+    renpy.random.randint(30, 60)*0.1
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+        "mod_assets/MPT/yuri/_blink_s_af.png"
+        0.035
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+        "mod_assets/MPT/yuri/_blink_s_af.png"
+        0.065
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+        "mod_assets/MPT/yuri/_blink_s_af.png"
+        0.095
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+        "mod_assets/MPT/yuri/_blink_s_af.png"
+        0.035
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+        alpha 0.0
+        0.15
+        alpha 1.0
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+        "mod_assets/MPT/yuri/_blink_s_af.png"
+        0.035
+        "mod_assets/MPT/yuri/_blink_s_am.png"
+        0.015
+    repeat
+
 layeredimage yuri turned:
     at yuri_transforms
     always "mod_assets/MPT/yuri/yuri_turned_facebase.png"
-    
-    
-    
+
+
+
     group outfit: #These attributes are here only to determine which set of "body" sprites to use later.  "null" is what lets us just use these attributes as logic and nothing else.
         attribute uniform default null
         attribute casual null
-    
-    
-    
+
+
+
     group mood: #Mood determines what the defaults images are for the following attributes:
         #"oe", "ce", "om", "cm", "brow".
         #By changing what the "mood" attribute is, you can easily switch between premade sets of expressions that work well together, speeding up your workflow.
@@ -39,18 +131,18 @@ layeredimage yuri turned:
         attribute worr null #worried
         attribute yand null #yandere
         #attribute xxxx null #xxxx #Do you want to define a new mood?  Here, have a template!
-    
-    
-    
+
+
+
     group blush: #Have to separate these out, they can't share moods.
         attribute nobl default null #No blush.
         attribute awkw null #awkward.  defaults for n
         attribute blus null #blushing.  defaults for n
         attribute blaw null #blushing AND awkward.  defaults for n
         #attribute bful null #full face blush.  Currently unused for her turned pose.
-    
-    
-    
+
+
+
     group left:
         #anchor (0,0)
         subpixel (True)
@@ -61,15 +153,15 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_uniform_left_down.png"
         attribute lup if_any(["rup","rcut"]) if_all(["uniform"]):
             "mod_assets/MPT/yuri/yuri_turned_uniform_left_up.png"
-        
+
         #casual
         attribute ldown default if_any(["casual"]):
             "mod_assets/MPT/yuri/yuri_turned_casual_left_down.png"
         attribute lup if_any(["rup","rcut"]) if_all(["casual"]):
             "mod_assets/MPT/yuri/yuri_turned_casual_left_up.png"
-    
-    
-    
+
+
+
     group right:
         #anchor (0,0)
         subpixel (True)
@@ -80,15 +172,15 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_uniform_right_up.png"
         attribute rcut if_any(["uniform"]):
             "mod_assets/MPT/yuri/yuri_turned_uniform_right_cut.png"
-        
-        
+
+
         attribute rdown default if_any(["casual"]):
             "mod_assets/MPT/yuri/yuri_turned_casual_right_down.png"
         attribute rup if_any(["casual"]):
             "mod_assets/MPT/yuri/yuri_turned_casual_right_up.png"
-    
-    
-    
+
+
+
     group left:#This is here a second time to deal with if the right half of Yuri is shown only down; the left half of her with her arm up has to render over the right half.
         #anchor (0,0)
         subpixel (True)
@@ -97,17 +189,17 @@ layeredimage yuri turned:
         #uniform
         attribute lup if_not(["rup","rcut"]) if_all(["uniform"]):
             "mod_assets/MPT/yuri/yuri_turned_uniform_left_up.png"
-        
+
         #casual
         attribute lup if_not(["rup","rcut"]) if_all(["casual"]):
             "mod_assets/MPT/yuri/yuri_turned_casual_left_up.png"
-    
-    
-    
+
+
+
     group nose:
-        
+
         anchor (0,0) subpixel (True)
-        
+
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):#default nose
             "mod_assets/MPT/yuri/yuri_turned_nose_n1.png"
@@ -117,8 +209,8 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_nose_n3.png"
         attribute nose default if_any(["blaw"]):#default nose when "blushing" and "awkward"
             "mod_assets/MPT/yuri/yuri_turned_nose_n4.png"
-        
-        
+
+
         ###All noses - truncated tags:
         attribute n1:
             "mod_assets/MPT/yuri/yuri_turned_nose_n1.png"
@@ -128,13 +220,13 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_nose_n3.png"
         attribute n4:
             "mod_assets/MPT/yuri/yuri_turned_nose_n4.png"
-    
-    
-    
+
+
+
     group mouth:
-        
+
         anchor (0,0) subpixel (True)
-        
+
         #Default Closed Mouths:
         attribute cm default if_any(["happ","laug"]):
             "mod_assets/MPT/yuri/yuri_turned_mouth_ma.png"
@@ -154,7 +246,7 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_mouth_mm.png"
         attribute cm default if_any(["yand"]):
             "mod_assets/MPT/yuri/yuri_turned_mouth_mo.png"
-        
+
         #Open Mouths:
         attribute om if_any(["happ"]):
             "mod_assets/MPT/yuri/yuri_turned_mouth_mb.png"
@@ -174,8 +266,8 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_mouth_mk.png"
         attribute om if_any(["vang","shoc","pani"]):
             "mod_assets/MPT/yuri/yuri_turned_mouth_ml.png"
-        
-        
+
+
         ###All mouths - truncated tags:
         attribute ma:
             "mod_assets/MPT/yuri/yuri_turned_mouth_ma.png"
@@ -213,13 +305,13 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_mouth_mq.png"
         attribute mr:
             "mod_assets/MPT/yuri/yuri_turned_mouth_mr.png"
-    
-    
-    
+
+
+
     group eyes:
-        
+
         anchor (0,0) subpixel (True)
-        
+
         #Default Opened eyes:
         attribute oe default if_any(["neut","sedu"]):
             "mod_assets/MPT/yuri/yuri_turned_eyes_e1a.png"
@@ -239,7 +331,7 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_eyes_e2d.png"
         attribute oe default if_any(["yand"]):
             "mod_assets/MPT/yuri/yuri_turned_eyes_e3a.png"
-        
+
         #Default Closed eyes:
         attribute ce if_any(["dist","anno","vang","flus","lsur","shoc","vsur","worr","sad","angr","nerv","curi","doub"]):
             "mod_assets/MPT/yuri/yuri_turned_eyes_e4a.png"
@@ -247,8 +339,8 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_eyes_e4b.png"
         attribute ce if_any(["cry"]):
             "mod_assets/MPT/yuri/yuri_turned_eyes_e4e.png"
-        
-        
+
+
         ###All eyes - truncated tags:
         attribute e1a:
             "mod_assets/MPT/yuri/yuri_turned_eyes_e1a.png"
@@ -296,13 +388,20 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_eyes_ela.png"
         attribute elb:
             "mod_assets/MPT/yuri/yuri_turned_eyes_elb.png"
-    
-    
-    
-    group eyebrows:
-        
+
+    group blink:
+
         anchor (0,0) subpixel (True)
-        
+
+        attribute blink_a default if_not(["ce","e4a","e4b","e4c","e4d","e4f","e4e","e1e","e1f"]):
+            "_yur_blink_a"
+        attribute no_blink:
+            "sprite_blank"
+
+    group eyebrows:
+
+        anchor (0,0) subpixel (True)
+
         #Default Eyebrows:
         attribute brow default if_any(["neut"]):
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b1a.png"
@@ -324,8 +423,8 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b2c.png"
         attribute brow default if_any(["pout"]):
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b3b.png"
-        
-        
+
+
         ###All eyebrows - truncated tags:
         #This first set of definitions has only the logic to exclude certain eyebrows for particular large eye Yuri expressions.
         attribute b1a:
@@ -352,8 +451,8 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b3b.png"
         attribute b3c:
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b3c.png"
-        
-        
+
+
         #This second set allows those above eyebrows to render on problematic moods...so long as their eyes are closed.
         attribute b1c if_any(["shoc","pani","vsur","yand"]) if_all(["ce"]):
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b1c.png"
@@ -367,14 +466,14 @@ layeredimage yuri turned:
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b3a.png"
         attribute b3b if_any(["shoc","pani","vsur","yand"]) if_all(["ce"]):
             "mod_assets/MPT/yuri/yuri_turned_eyebrows_b3b.png"
-    
-    
-    
+
+
+
     #This group is intentionally last on this list, so it will render over top of every other thing on the face.
     group special:
-        
+
         anchor (0,0) subpixel (True)
-        
+
         attribute s_scream:
             "mod_assets/MPT/yuri/yuri_turned_special_scream.png"
 
@@ -383,19 +482,19 @@ layeredimage yuri turned:
 layeredimage yuri shy:
     at yuri_transforms
     always "mod_assets/MPT/yuri/yuri_shy_facebase.png"
-    
-    
-    
+
+
+
     group outfit:
-        
+
         anchor (0,0) subpixel (True)
         attribute uniform default:
             "mod_assets/MPT/yuri/yuri_shy_uniform_bodybase.png"
         attribute casual:
             "mod_assets/MPT/yuri/yuri_shy_casual_bodybase.png"
-    
-    
-    
+
+
+
     group mood: #Mood determines what the defaults images are for the following attributes:
         #"oe", "ce", "om", "cm", "brow".
         #By changing what the "mood" attribute is, you can easily switch between premade sets of expressions that work well together, speeding up your workflow.
@@ -404,21 +503,21 @@ layeredimage yuri shy:
         attribute angr null #angry
         attribute happ null #happy
         attribute sad null  #sad
-    
-    
-    
+
+
+
     group blush:
         attribute nobl default null #No blush.
         attribute awkw null #awkward.  defaults for n
         attribute blus null #blushing.  defaults for n
         attribute blaw null #blushing AND awkward.  defaults for n
         attribute bful null #full face blush.  Currently only works on the side face.
-    
-    
+
+
     group nose:
-        
+
         anchor (0,0) subpixel (True)
-        
+
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):#default nose
             "mod_assets/MPT/yuri/yuri_shy_nose_n1.png"
@@ -430,8 +529,8 @@ layeredimage yuri shy:
             "mod_assets/MPT/yuri/yuri_shy_nose_n4.png"
         attribute nose default if_any(["bful"]):#Full face blush
             "mod_assets/MPT/yuri/yuri_shy_nose_n5.png"
-        
-        
+
+
         ###All noses - truncated tags:
         attribute n1:
             "mod_assets/MPT/yuri/yuri_shy_nose_n1.png"
@@ -443,13 +542,13 @@ layeredimage yuri shy:
             "mod_assets/MPT/yuri/yuri_shy_nose_n4.png"
         attribute n5:
             "mod_assets/MPT/yuri/yuri_shy_nose_n5.png"
-    
-    
-    
+
+
+
     group mouth:
-        
+
         anchor (0,0) subpixel (True)
-        
+
         #default closed mouths
         attribute cm default if_any(["neut"]):
             "mod_assets/MPT/yuri/yuri_shy_mouth_m1.png"
@@ -457,12 +556,12 @@ layeredimage yuri shy:
             "mod_assets/MPT/yuri/yuri_shy_mouth_m2.png"
         attribute cm default if_any(["happ"]):
             "mod_assets/MPT/yuri/yuri_shy_mouth_m3.png"
-        
+
         #default open mouth.  As of this writing...she only has one open mouth.
         attribute om:
             "mod_assets/MPT/yuri/yuri_shy_mouth_m4.png"
-        
-        
+
+
         #All mouths - truncated tags:
         attribute m1:
             "mod_assets/MPT/yuri/yuri_shy_mouth_m1.png"
@@ -472,13 +571,13 @@ layeredimage yuri shy:
             "mod_assets/MPT/yuri/yuri_shy_mouth_m3.png"
         attribute m4:
             "mod_assets/MPT/yuri/yuri_shy_mouth_m4.png"
-    
-    
-    
+
+
+
     group eyes if_not(["n5","bful"]): #Cannot show if full-face blush is present.
-        
+
         anchor (0,0) subpixel (True)
-        
+
         #Open eyes
         attribute oe default if_any(["happ"]):
             "mod_assets/MPT/yuri/yuri_shy_eyes_e1.png"
@@ -488,14 +587,14 @@ layeredimage yuri shy:
             "mod_assets/MPT/yuri/yuri_shy_eyes_e3.png"
         attribute oe default if_any(["sad"]):
             "mod_assets/MPT/yuri/yuri_shy_eyes_e4.png"
-        
+
         #Closed eyes
         attribute ce if_any(["angr","neut","happ"]):
             "mod_assets/MPT/yuri/yuri_shy_eyes_e5.png"
         attribute ce if_any(["sad"]):
             "mod_assets/MPT/yuri/yuri_shy_eyes_e6.png"
-        
-        
+
+
         #All eyes - truncated tags:
         attribute e1:
             "mod_assets/MPT/yuri/yuri_shy_eyes_e1.png"
@@ -509,21 +608,29 @@ layeredimage yuri shy:
             "mod_assets/MPT/yuri/yuri_shy_eyes_e5.png"
         attribute e6:
             "mod_assets/MPT/yuri/yuri_shy_eyes_e6.png"
-    
-    
-    
-    group eyebrows if_not(["n5","bful"]): #Cannot show if full-face blush is present.
-        
+
+
+    group blink:
+
         anchor (0,0) subpixel (True)
-        
+
+        attribute blink_a default if_not(["ce","e5","e6","n5", "bful"]):
+            "_yur_blink_s_a"
+        attribute no_blink:
+            "sprite_blank"
+
+    group eyebrows if_not(["n5","bful"]): #Cannot show if full-face blush is present.
+
+        anchor (0,0) subpixel (True)
+
         attribute brow default if_any(["happ"]):
             "mod_assets/MPT/yuri/yuri_shy_eyebrows_b1.png"
         attribute brow default if_any(["neut","sad"]):
             "mod_assets/MPT/yuri/yuri_shy_eyebrows_b2.png"
         attribute brow default if_any(["angr"]):
             "mod_assets/MPT/yuri/yuri_shy_eyebrows_b3.png"
-        
-        
+
+
         #all brows - truncated:
         attribute b1:
             "mod_assets/MPT/yuri/yuri_shy_eyebrows_b1.png"

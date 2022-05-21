@@ -1,16 +1,107 @@
 define monika_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("monika"), _wm_breathing.BreathingCurried("monika") ]
+image _mon_blink_a:
+    alpha 0.0
+    renpy.random.randint(20, 100)*0.1
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+        "mod_assets/MPT/monika/monika_forward_eyes_e4a.png"
+        0.035
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+        "mod_assets/MPT/monika/monika_forward_eyes_e4a.png"
+        0.065
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+        "mod_assets/MPT/monika/monika_forward_eyes_e4a.png"
+        0.095
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+        "mod_assets/MPT/monika/monika_forward_eyes_e4a.png"
+        0.035
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+        alpha 0.0
+        0.15
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+        "mod_assets/MPT/monika/monika_forward_eyes_e4a.png"
+        0.035
+        "mod_assets/MPT/monika/_blink_am.png"
+        0.015
+    repeat
+
+image _mon_blink_l_a:
+    alpha 0.0
+    renpy.random.randint(30, 60)*0.1
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+        "mod_assets/MPT/monika/_blink_l_af.png"
+        0.035
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+        "mod_assets/MPT/monika/_blink_l_af.png"
+        0.065
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+        "mod_assets/MPT/monika/_blink_l_af.png"
+        0.095
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+    choice:
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+        "mod_assets/MPT/monika/_blink_l_af.png"
+        0.035
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+        alpha 0.0
+        0.15
+        alpha 1.0
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+        "mod_assets/MPT/monika/_blink_l_af.png"
+        0.035
+        "mod_assets/MPT/monika/_blink_l_am.png"
+        0.015
+    repeat
 
 layeredimage monika forward: #All definitions are for her facing forward.
     at monika_transforms
     always "mod_assets/MPT/monika/monika_forward_facebase.png" #We always use the basic face.
-    
+
     group outfit:
-        
+
         attribute uniform default null
         attribute casual null
-    
-    
-    
+
+
+
     group mood: #Mood determines what the defaults images are for the following attributes:
         #"oe", "ce", "om", "cm", "brow".
         #By changing what the "mood" attribute is, you can easily switch between premade sets of expressions that work well together, speeding up your workflow.
@@ -37,17 +128,17 @@ layeredimage monika forward: #All definitions are for her facing forward.
         attribute worr null #worried
         attribute yand null #yandere
         #attribute xxxx null #xxxx #Do you want to define a new mood?  Here, have a template!
-    
-    
-    
+
+
+
     group blush: #These are intentionally separate from mood; the idea being that these aren't consciously controlled by the character - rather, they're a result of their emotions making them blush/sweat/etc.
         attribute nobl default null #Default, no blush.
         attribute awkw null #awkward.  defaults for n
         attribute blus null #blushing.  defaults for n
         attribute blaw null #blushing and awkward.  defaults for n
-    
-    
-    
+
+
+
     group left:
         anchor (0,0) subpixel (True)
         yoffset (-0.5)
@@ -59,9 +150,9 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_uniform_left_point.png"
         attribute lpoint if_any(["casual"]):
             "mod_assets/MPT/monika/monika_forward_casual_left_point.png"
-    
-    
-    
+
+
+
     group right:
         anchor (0,0) subpixel (True)
         yoffset (-0.5)
@@ -73,11 +164,11 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_uniform_right_hip.png"
         attribute rhip if_any(["casual"]):
             "mod_assets/MPT/monika/monika_forward_casual_right_hip.png"
-    
-    
-    
+
+
+
     group nose:
-        
+
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):#default nose
             "mod_assets/MPT/monika/monika_forward_nose_n1.png"
@@ -87,8 +178,8 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_nose_n3.png"
         attribute nose default if_any(["blaw"]):#default nose when "blushing and awkward"
             "mod_assets/MPT/monika/monika_forward_nose_n4.png"
-        
-        
+
+
         #All noses - truncated tags:
         attribute n1:
             "mod_assets/MPT/monika/monika_forward_nose_n1.png"
@@ -98,11 +189,11 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_nose_n3.png"
         attribute n4:
             "mod_assets/MPT/monika/monika_forward_nose_n4.png"
-    
-    
-    
+
+
+
     group mouth:
-        
+
         #Default Closed Mouths:
         attribute cm default if_any(["happ","nerv"]):
             "mod_assets/MPT/monika/monika_forward_mouth_ma.png"
@@ -122,7 +213,7 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_mouth_mn.png"
         attribute cm default if_any(["yand"]):
             "mod_assets/MPT/monika/monika_forward_mouth_mo.png"
-        
+
         #Open Mouths:
         attribute om if_any(["happ","sedu"]):
             "mod_assets/MPT/monika/monika_forward_mouth_mb.png"
@@ -142,8 +233,8 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_mouth_ml.png"
         attribute om if_any(["vang","angr","doub","pani"]):
             "mod_assets/MPT/monika/monika_forward_mouth_mq.png"
-        
-        
+
+
         ###All mouths - truncated tags:
         attribute ma:
             "mod_assets/MPT/monika/monika_forward_mouth_ma.png"
@@ -181,11 +272,11 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_mouth_mq.png"
         attribute mr:
             "mod_assets/MPT/monika/monika_forward_mouth_mr.png"
-    
-    
-    
+
+
+
     group eyes:
-        
+
         #Default Opened eyes:
         attribute oe default if_any(["neut","happ","laug","sad","pout","curi"]):
             "mod_assets/MPT/monika/monika_forward_eyes_e1a.png"
@@ -203,7 +294,7 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_eyes_e2d.png"
         attribute oe default if_any(["yand"]):
             "mod_assets/MPT/monika/monika_forward_eyes_e3a.png"
-        
+
         #Default Closed eyes:
         attribute ce if_any(["neut","anno","vang","shoc","worr","sad","angr","lsur","vsur","pani","dist","worr"]):
             "mod_assets/MPT/monika/monika_forward_eyes_e4a.png"#
@@ -211,8 +302,8 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_eyes_e4b.png"#
         attribute ce if_any(["cry"]):
             "mod_assets/MPT/monika/monika_forward_eyes_e4e.png"
-        
-        
+
+
         ###All eyes - truncated tags:
         attribute e1a:
             "mod_assets/MPT/monika/monika_forward_eyes_e1a.png"
@@ -256,11 +347,19 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_eyes_e0a.png"
         attribute e0b:
             "mod_assets/MPT/monika/monika_forward_eyes_e0b.png"
-    
-    
-    
+
+    group blink:
+
+        anchor (0,0) subpixel (True)
+
+        attribute blink_a default if_not(["ce","e4a","e4b","e4c","e4d","e4f","e4e","e1e","e1f"]):
+            "_mon_blink_a"
+        attribute no_blink:
+            "sprite_blank"
+
+
     group eyebrows:
-        
+
         #Default Eyebrows:
         attribute brow default if_any(["neut","happ","yand"]):
             "mod_assets/MPT/monika/monika_forward_eyebrows_b1a.png"#
@@ -278,14 +377,14 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_eyebrows_b1d.png"#
         attribute brow default if_any(["curi"]):
             "mod_assets/MPT/monika/monika_forward_eyebrows_b1f.png"#
-        
+
         #The following brows are for moods that differ between open and closed eyes:
         attribute brow default if_any(["doub"]) if_all(["oe"]) if_not(["ce"]):
             "mod_assets/MPT/monika/monika_forward_eyebrows_b1f.png"#
         attribute brow default if_any(["doub"]) if_all(["ce"]) if_not(["oe"]):
             "mod_assets/MPT/monika/monika_forward_eyebrows_b3b.png"#
-        
-        
+
+
         #All eyebrows - truncated tags:
         attribute b1a:
             "mod_assets/MPT/monika/monika_forward_eyebrows_b1a.png"
@@ -311,12 +410,12 @@ layeredimage monika forward: #All definitions are for her facing forward.
             "mod_assets/MPT/monika/monika_forward_eyebrows_b3b.png"
         attribute b3c if_any(["e4a","e4b","e4c","e4d","e4e","ce"]):
             "mod_assets/MPT/monika/monika_forward_eyebrows_b3c.png"
-    
-    
-    
+
+
+
     #This group is intentionally last on this list, so it will render over top of every other thing on the face.
     group special:
-    
+
         attribute s_scream:
             "mod_assets/MPT/monika/monika_forward_special_scream.png"
 
@@ -324,14 +423,14 @@ layeredimage monika forward: #All definitions are for her facing forward.
 
 layeredimage monika lean:
     at monika_transforms
-    
+
     group outfit: #These attributes are here only to determine which set of "body" sprites to use later.  "null" is what lets us just use these attributes as logic and nothing else.
-        
+
         attribute uniform default null
         attribute casual null
-    
-    
-    
+
+
+
     group mood: #Mood determines what the defaults images are for the following attributes:
         #"oe", "ce", "om", "cm", "brow".
         #By changing what the "mood" attribute is, you can easily switch between premade sets of expressions that work well together, speeding up your workflow.
@@ -340,36 +439,36 @@ layeredimage monika lean:
         attribute angr null #angry
         attribute anno null #annoyed
         attribute neut null #neutral
-    
-    
-    
+
+
+
     group blush: #Have to separate these out, they can't share moods.
         attribute nobl default null #Default, no blush.
         attribute awkw null #awkward.  defaults for n
         attribute blus null #blushing.  defaults for n
         attribute blaw null #blushing and awkward.  defaults for n
         attribute bful null #attribute bful null #full face blush.
-    
-    
-    
+
+
+
     group body:
         attribute body default if_any(["uniform"]):
             "mod_assets/MPT/monika/monika_lean_uniform_bodybase.png"
         attribute body default if_any(["casual"]):
             "mod_assets/MPT/monika/monika_lean_casual_bodybase.png"
-    
-    
-    
+
+
+
     group head:
         attribute head default if_any(["uniform"]):
             "mod_assets/MPT/monika/monika_lean_uniform_facebase.png"
         attribute head default if_any(["casual"]):
             "mod_assets/MPT/monika/monika_lean_casual_facebase.png"
-    
-    
-    
+
+
+
     group nose:
-        
+
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):#default nose
             "mod_assets/MPT/monika/monika_lean_nose_n1.png"
@@ -381,8 +480,8 @@ layeredimage monika lean:
             "mod_assets/MPT/monika/monika_lean_nose_n4.png"
         attribute nose default if_any(["bful"]):#full face blush, obscures eyes/eyebrows.
             "mod_assets/MPT/monika/monika_lean_nose_n5.png"
-        
-        
+
+
         #All noses - truncated tags:
         attribute n1:
             "mod_assets/MPT/monika/monika_lean_nose_n1.png"
@@ -394,24 +493,24 @@ layeredimage monika lean:
             "mod_assets/MPT/monika/monika_lean_nose_n4.png"
         attribute n5:
             "mod_assets/MPT/monika/monika_lean_nose_n5.png"
-    
-    
-    
+
+
+
     group mouth:
-        
+
         #Default Closed Mouths:
         attribute cm default if_any(["happ"]):
             "mod_assets/MPT/monika/monika_lean_mouth_m1.png"
         attribute cm default if_any(["neut","angr","anno"]):
             "mod_assets/MPT/monika/monika_lean_mouth_m4.png"
-        
+
         #Open Mouths:
         attribute om if_any(["neut","angr","anno"]):
             "mod_assets/MPT/monika/monika_lean_mouth_m2.png"
         attribute om if_any(["happ"]):
             "mod_assets/MPT/monika/monika_lean_mouth_m3.png"
-        
-        
+
+
         #All mouths - truncated tags:
         attribute m1:
             "mod_assets/MPT/monika/monika_lean_mouth_m1.png"
@@ -421,11 +520,11 @@ layeredimage monika lean:
             "mod_assets/MPT/monika/monika_lean_mouth_m3.png"
         attribute m4:
             "mod_assets/MPT/monika/monika_lean_mouth_m4.png"
-    
-    
-    
+
+
+
     group eyes if_not(["n5","bful"]): #Cannot show if full-face blush is present.
-        
+
         ##Default Opened eyes:
         attribute oe default if_any(["happ","neut"]):
             "mod_assets/MPT/monika/monika_lean_eyes_e1.png"
@@ -433,14 +532,14 @@ layeredimage monika lean:
             "mod_assets/MPT/monika/monika_lean_eyes_e2.png"
         attribute oe default if_any(["angr"]):
             "mod_assets/MPT/monika/monika_lean_eyes_e3.png"
-        
+
         #Default Closed eyes:
         attribute ce if_any(["happ"]):
             "mod_assets/MPT/monika/monika_lean_eyes_e4.png"
         attribute ce if_any(["neut","angr","anno"]):
             "mod_assets/MPT/monika/monika_lean_eyes_e5.png"
-        
-        
+
+
         #All eyes - truncated tags:
         attribute e1:
             "mod_assets/MPT/monika/monika_lean_eyes_e1.png"
@@ -454,18 +553,26 @@ layeredimage monika lean:
             "mod_assets/MPT/monika/monika_lean_eyes_e5.png"
         attribute e6:
             "mod_assets/MPT/monika/monika_lean_eyes_e6.png"
-    
-    
-    
+
+    group blink:
+
+        anchor (0,0) subpixel (True)
+
+        attribute blink_a default if_not(["ce","e4","e5","n5", "bful"]):
+            "_mon_blink_l_a"
+        attribute no_blink:
+            "sprite_blank"
+
+
     group eyebrows if_not(["n5","bful"]): #Cannot show if full-face blush is present.
-        
+
         #Default Eyebrows:
         attribute brow default if_any(["happ","neut"]):
             "mod_assets/MPT/monika/monika_lean_eyebrows_b1.png"
         attribute brow default if_any(["angr","anno"]):
             "mod_assets/MPT/monika/monika_lean_eyebrows_b2.png"
-        
-        
+
+
         #All eyebrows - truncated tags:
         attribute b1:
             "mod_assets/MPT/monika/monika_lean_eyebrows_b1.png"
