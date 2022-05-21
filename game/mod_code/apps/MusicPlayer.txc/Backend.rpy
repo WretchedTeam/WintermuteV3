@@ -199,7 +199,16 @@ init -10 python in _wm_music_player:
 
         def get_sensitive(self):
             return renpy.music.get_playing(self.mp.channel)
-        
+
+    class PeriodicMusic(Null):
+        def __init__(self, f, **kwargs):
+            super(PeriodicMusic, self).__init__(**kwargs)
+            self.f = f
+
+        def event(self, ev, x, y, st):
+            renpy.game.interface.timeout(0.0)
+            self.f(st)
+
     class MusicPlayer(object):
         playlist_keys = ("all", "favorite", "playlist")
 
@@ -217,8 +226,15 @@ init -10 python in _wm_music_player:
             self.playlist_key = "all"
 
             self.shuffled = None
+            self.started_playing = False
             self.last_playing = None
             self.started = False
+
+            self.st = 0.0
+
+            renpy.config.underlay.append(
+                PeriodicMusic(self.periodic)
+            )
 
         @property
         def playlists(self):
@@ -228,11 +244,12 @@ init -10 python in _wm_music_player:
                 "playlist": persistent.music_playlist,
             }
 
-        def periodic(self):
-            current_playing = renpy.music.get_playing(self.channel) or ""
-            current_playing = strip_filename(current_playing)
+        def periodic(self, st):
+            current_playing = renpy.music.get_playing(self.channel)
 
-            if current_playing:
+            if current_playing is not None:
+                current_playing = strip_filename(current_playing)
+
                 if self.last_playing is None:
                     renpy.restart_interaction()
 

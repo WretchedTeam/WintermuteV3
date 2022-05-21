@@ -1,6 +1,5 @@
 init -1000 python in _wm_manager:
     from store import execute_callbacks
-    from renpy.config import periodic_callbacks
 
     zorders = [ ]
     positions = { }
@@ -44,22 +43,15 @@ init -1000 python in _wm_manager:
         _instances = [ ]
 
         @classmethod
-        def run_periodic(cls):
-            for i in cls._instances:
-                if callable(i.periodic):
-                    i.periodic()
-
-        @classmethod
         def close_all_apps(cls):
             for i in cls._instances:
                 i.close()
 
-        def __init__(self, name, icon, screen_id, userdata=None, periodic=None):
+        def __init__(self, name, icon, screen_id, userdata=None):
             self.name = name
             self.icon = icon
             self.screen_id = screen_id
             self.userdata = userdata
-            self.periodic = periodic
             self._instances.append(self)
 
         def raise_window(self, *args, **kwargs):
@@ -86,8 +78,6 @@ init -1000 python in _wm_manager:
 
             if self in open_apps:
                 open_apps.remove(self)
-
-    periodic_callbacks.append(Application.run_periodic)
 
 transform window_animation():
     crop_relative True
