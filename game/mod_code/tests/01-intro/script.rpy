@@ -2,19 +2,19 @@ label script1_main():
     while not all(persistent.script1_seen.values()):
         menu (screen="load_doki_choice"):
             "Monika" if not persistent.script1_seen["m"]:
-                call script1_m
+                call script1_m from _call_script1_m
                 $ persistent.script1_seen["m"] = True
 
             "Sayori" if not persistent.script1_seen["s"]:
-                call script1_s
+                call script1_s from _call_script1_s
                 $ persistent.script1_seen["s"] = True
 
             "Yuri" if not persistent.script1_seen["y"]:
-                call script1_y
+                call script1_y from _call_script1_y
                 $ persistent.script1_seen["y"] = True
 
             "Natsuki" if not persistent.script1_seen["n"]:
-                call script1_n
+                call script1_n from _call_script1_n
                 $ persistent.script1_seen["n"] = True
 
             "Exit" (prepend_load=False):
@@ -38,7 +38,7 @@ label script1_m():
     m b1a e1a "I can tell we're going to be great friends!"
     m lean b1 e1 m3 "Let me know when you're ready, and we'll move forward."
 
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_165
 
     show monika at thide
     hide monika
@@ -65,7 +65,7 @@ label script1_s():
     s mb rdown b1a e1a "Just don't be a big meanie about it, okay?"
     s e4b mc lup rup "I can't wait to talk to you. Let me know when you're ready!"
 
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_166
 
     show sayori at thide
     hide sayori
@@ -91,7 +91,7 @@ label script1_y():
     y mb "But...I believe we will get along wonderfully.."
     y e1a "Let me know when you're ready to continue."
 
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_167
 
     show yuri at thide
     hide yuri
@@ -111,7 +111,7 @@ label script1_n():
     n cross b2a "Just don't be weird, dummy."
     n mc e1f "And hit me up when you wanna carry on."
 
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_168
 
     show natsuki at thide
     hide natsuki

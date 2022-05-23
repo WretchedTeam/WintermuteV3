@@ -9,11 +9,11 @@ label wm_start():
     show screen interactive_console(console)
 
     if not persistent.seen_wm_program:
-        call wm_first_console(console)
+        call wm_first_console(console) from _call_wm_first_console
         $ persistent.seen_wm_program = True
 
     else:
-        call fill_console_and_wmservice(console)
+        call fill_console_and_wmservice(console) from _call_fill_console_and_wmservice
         scene dev_bg_open
         pause 1.45
 
@@ -22,7 +22,7 @@ label wm_start():
     $ test = _wm_test.get_current_test()
 
     if test is not None:
-        call expression test.main_label
+        call expression test.main_label from _call_expression_9
         if _return:
             $ test.mark_complete()
             $ test.run_complete()

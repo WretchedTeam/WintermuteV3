@@ -2,19 +2,19 @@ label script4_main():
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t4doki = "Monika"
-            call script4_m
+            call script4_m from _call_script4_m
 
         "Sayori":
             $ persistent.t4doki = "Sayori"
-            call script4_s
+            call script4_s from _call_script4_s
 
         "Yuri":
             $ persistent.t4doki = "Yuri"
-            call script4_y
+            call script4_y from _call_script4_y
 
         "Natsuki":
             $ persistent.t4doki = "Natsuki"
-            call script4_n
+            call script4_n from _call_script4_n
 
         "Exit" (prepend_load=False):
             return False
@@ -38,7 +38,7 @@ label script4_m():
     # Address Monika
     scene black
     show monika forward happ cm e1c at t11
-    call test_prompt_button("Address Monika")
+    call test_prompt_button("Address Monika") from _call_test_prompt_button_144
     mc "Hello, Monika."
     show monika oe
     pause(0.5)
@@ -50,7 +50,7 @@ label script4_m():
     show monika ma
     ##BUTTON:
     # Respond
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_145
     mc "I'm doing well."
     m e1f mb "That's great to hear, $EMPLOYEE_NAME!"
     m mh rhip e1a b2a "So, um…is there something specific you wanted to talk about..?"
@@ -146,7 +146,7 @@ label script4_s():
     # Address Sayori
     scene black
     show sayori turned ma e4b b1a lup rup at t11
-    call test_prompt_button("Address Sayori")
+    call test_prompt_button("Address Sayori") from _call_test_prompt_button_146
     mc "Hello, Sayori."
     show sayori e1a mf
     pause(0.5)
@@ -158,7 +158,7 @@ label script4_s():
     ##BUTTON:
     # Respond
     show sayori ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_147
     mc "I'm doing well."
     show sayori e4b mb at h11
     s "Yay!"
@@ -255,14 +255,14 @@ label script4_n():
     # Address Natsuki
     scene black
     show natsuki cross e1b mj b1a at t11
-    call test_prompt_button("Address Natsuki")
+    call test_prompt_button("Address Natsuki") from _call_test_prompt_button_148
     mc "Hello, Natsuki."
     n e1a mg "Oh, it's you."
     n turned e1a mg b1a "What do you want?"
     show natsuki mj
     ##BUTTON
     # Respond
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_149
     mc "How are you?"
     n rhip mh b1d "Do you like asking pointless questions or is it 'annoy Natsuki' day?"
     n b1c md "..."
@@ -357,7 +357,7 @@ label script4_y:
     # Address Yuri
     scene black
     show yuri turned ma b1a e1b lup rup at t11
-    call test_prompt_button("Address Yuri")
+    call test_prompt_button("Address Yuri") from _call_test_prompt_button_150
     mc "Hello, Yuri."
     y e1a mh b1a ldown "Oh! Um…"
     y mg e1b "Hi…"
@@ -365,7 +365,7 @@ label script4_y:
     show yuri ma
     ##BUTTON
     # Respond
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_151
     mc "You look nice today."
     y shy b1 e2 m4 n5 "Uuu…"
     y e1 n4 b2 "That's...really nice of you."

@@ -2,19 +2,19 @@ label script2_main():
     menu(screen="load_doki_choice"):
         "Monika":
             $ set_characterization_target("Monika", "boldly")
-            call script2_m
+            call script2_m from _call_script2_m
 
         "Sayori":
             $ set_characterization_target("Sayori", "reluctantly")
-            call script2_s
+            call script2_s from _call_script2_s
 
         "Yuri":
             $ set_characterization_target("Yuri", "nervously")
-            call script2_y
+            call script2_y from _call_script2_y
 
         "Natsuki":
             $ set_characterization_target("Natsuki", "snarkily")
-            call script2_n
+            call script2_n from _call_script2_n
 
         "Exit" (prepend_load=False):
             return False
@@ -36,15 +36,15 @@ label script2_qa(doki):
             set menu_set
 
             "Likes?":
-                call expression "script2_" + doki + "_likes"
+                call expression "script2_" + doki + "_likes" from _call_expression
             "Dislikes?":
-                call expression "script2_" + doki + "_dislikes"
+                call expression "script2_" + doki + "_dislikes" from _call_expression_1
             "Favourite media?":
-                call expression "script2_" + doki + "_media"
+                call expression "script2_" + doki + "_media" from _call_expression_2
             "Your ideal day?":
-                call expression "script2_" + doki + "_ideal_day"
+                call expression "script2_" + doki + "_ideal_day" from _call_expression_3
             "Attractions?":
-                call expression "script2_" + doki + "_attractions"
+                call expression "script2_" + doki + "_attractions" from _call_expression_4
 
     $ del menu_set
     return
@@ -178,7 +178,7 @@ label script2_m():
     m "I hope you're doing well today!"
     m "How can I help you?"
 
-    call test_prompt_button("Ask Monika about herself")
+    call test_prompt_button("Ask Monika about herself") from _call_test_prompt_button
     ##BUTTON
     # Ask Monika about herself
 
@@ -193,7 +193,7 @@ label script2_m():
     # Your ideal day?
     # Attractions?
 
-    call script2_qa("m")
+    call script2_qa("m") from _call_script2_qa
 
     ##IF LIKES:
     ##IF DISLIKES
@@ -202,7 +202,7 @@ label script2_m():
     ##IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
-    call test_prompt_button("What are you thinking right now?")
+    call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_1
     mc "What are you thinking right now?"
     m "Hmm…"
     m "I'm thinking of that day I described, how it'd be nice to do that every day…"
@@ -213,7 +213,7 @@ label script2_m():
 
     ##BUTTON:
     # Record Results
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_2
     return True
 
 label script2_s_likes():
@@ -329,7 +329,7 @@ label script2_s():
 
     ##BUTTON
     # Ask Sayori about herself
-    call test_prompt_button("Ask Sayori about herself")
+    call test_prompt_button("Ask Sayori about herself") from _call_test_prompt_button_3
     mc "Can you tell me about yourself?"
     s "Oh! Sure thing!"
     s "Though...I don't really like talking about myself, ehehe~"
@@ -344,7 +344,7 @@ label script2_s():
     # Your ideal day?
     # Attractions?
 
-    call script2_qa("s")
+    call script2_qa("s") from _call_script2_qa_1
 
     # IF LIKES
     # IF DISLIKES
@@ -353,7 +353,7 @@ label script2_s():
     #IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
-    call test_prompt_button("What are you thinking right now?")
+    call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_4
     mc "What are you thinking right now?"
     s "Right now?"
     s "I...am still kinda embarrassed over what I said earlier."
@@ -365,7 +365,7 @@ label script2_s():
 
     ##BUTTON:
     # Record Results
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_5
     return True
 
 label script2_n_likes():
@@ -470,7 +470,7 @@ label script2_n():
 
     ##BUTTON
     # Ask Natsuki about herself
-    call test_prompt_button("Ask Natsuki about herself")
+    call test_prompt_button("Ask Natsuki about herself") from _call_test_prompt_button_6
     mc "Can you tell me about yourself?"
     n "Uhhh…"
     n "Bit of a weird one, but…"
@@ -482,7 +482,7 @@ label script2_n():
     # Favourite media?
     # Your ideal day?
     # Attractions?
-    call script2_qa("n")
+    call script2_qa("n") from _call_script2_qa_2
 
     # IF LIKES
     # IF DISLIKES
@@ -491,7 +491,7 @@ label script2_n():
     #IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
-    call test_prompt_button("What are you thinking right now?")
+    call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_7
     mc "What are you thinking right now?"
     n "The best way to get out of this conversation as quickly as possible."
     n "{i}Exit game.{/i}"
@@ -502,7 +502,7 @@ label script2_n():
 
     ##BUTTON:
     # Record Results
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_8
     return True
 
 label script2_y_likes():
@@ -581,7 +581,7 @@ label script2_y():
 
     ##BUTTON
     # Ask Yuri about herself
-    call test_prompt_button("Ask Yuri about herself")
+    call test_prompt_button("Ask Yuri about herself") from _call_test_prompt_button_9
     mc "Can you tell me about yourself?"
     y "A-about myself…?"
     y "Uuuu…."
@@ -602,7 +602,7 @@ label script2_y():
     # Your ideal day?
     # Attractions?
 
-    call script2_qa("y")
+    call script2_qa("y") from _call_script2_qa_3
 
     # IF LIKES
     # IF DISLIKES
@@ -611,7 +611,7 @@ label script2_y():
     #IF ATTRACTIONS
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
-    call test_prompt_button("What are you thinking right now?")
+    call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_10
     mc "What are you thinking right now?"
     y "Oh, well I'm just hoping to get the chance to read with you."
     y "I'd love nothing more than to share some great stories with you, and immerse ourselves in a captivating fantasy world."
@@ -620,5 +620,5 @@ label script2_y():
 
     ##BUTTON:
     # Record Results
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_11
     return True

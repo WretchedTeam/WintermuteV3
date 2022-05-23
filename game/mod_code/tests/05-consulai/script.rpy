@@ -2,19 +2,19 @@ label script5_main():
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t5doki = "Monika"
-            call script5_m
+            call script5_m from _call_script5_m
 
         "Sayori":
             $ persistent.t5doki = "Sayori"
-            call script5_s
+            call script5_s from _call_script5_s
 
         "Yuri":
             $ persistent.t5doki = "Yuri"
-            call script5_y
+            call script5_y from _call_script5_y
 
         "Natsuki":
             $ persistent.t5doki = "Natsuki"
-            call script5_n
+            call script5_n from _call_script5_n
 
         "Exit" (prepend_load=False):
             return False
@@ -29,13 +29,13 @@ label script5_qa(doki):
             set menu_set
 
             "Disillusionment with news.":
-                call expression "script5_" + doki + "_news" pass (len(menu_set) == 4)
+                call expression "script5_" + doki + "_news" pass (len(menu_set) == 4) from _call_expression_5
             "Disillusionment with job.":
-                call expression "script5_" + doki + "_job" pass (len(menu_set) == 4)
+                call expression "script5_" + doki + "_job" pass (len(menu_set) == 4) from _call_expression_6
             "Disillusionment with life.":
-                call expression "script5_" + doki + "_life" pass (len(menu_set) == 4)
+                call expression "script5_" + doki + "_life" pass (len(menu_set) == 4) from _call_expression_7
             "Disillusionment with you.":
-                call expression "script5_" + doki + "_you" pass (len(menu_set) == 4)
+                call expression "script5_" + doki + "_you" pass (len(menu_set) == 4) from _call_expression_8
 
     $ del menu_set
     return
@@ -71,7 +71,7 @@ label script5_m_news(last=False):
     m e4a ldown "It's admirable, but ultimately futile, to take on the whole world's heartaches all the time."
     m mb "Sometimes, you have to turn it off, take a breather and put yourself first."
     show monika ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_104
     show monika ma
     mc "Thanks, Monika."
     #If not last pick
@@ -105,7 +105,7 @@ label script5_m_job(last=False):
     m "I hope it all works out for you, $EMPLOYEE_NAME."
     m rhip e4b mb "And if nothing else - you'll always have me to talk to!"
     show monika ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_105
     mc "I appreciate that."
     #If not last pick
     if not last:
@@ -151,7 +151,7 @@ label script5_m_life(last=False):
     m "In other words...{w=0.9}{nw}{done}join a club."
     m mb e4b "In other words...{fast}join a club!"
     m lpoint b1b "And that's Monika's life advice tip for the day, ahaha~"
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_106
     show monika ma
     mc "Thank you, Monika."
     #If not last pick
@@ -181,7 +181,7 @@ label script5_m_you(last=False):
     m e1a mh "Why don't you just take five, calm down and just...we carry on?"
     m b1b lpoint "This isn't worth throwing away for some petty squabble about what's \"real\" and what isn't."
     show monika md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_107
     mc "I think you're right. I'm sorry, I overreacted."
     show monika ma
     mc "Thank you for setting me straight."
@@ -197,7 +197,7 @@ label script5_m:
     m e4b "Good to see you!"
     m rhip e1a "How can I help?"
     show monika ma
-    call test_prompt_button("Initialize ConsulAI")
+    call test_prompt_button("Initialize ConsulAI") from _call_test_prompt_button_108
     mc "I'm not feeling too well."
     show monika md
     pause 1.2
@@ -206,7 +206,7 @@ label script5_m:
     m e1b mh "Well, I'm no doctor, but I can make some educated guesses...{w=0.9}{nw}{done}"
     m e1a b1a lpoint "Well, I'm no doctor, but I can make some educated guesses...{fast}if you want me to have a look?"
     show monika me
-    call test_prompt_button("Accept")
+    call test_prompt_button("Accept") from _call_test_prompt_button_109
     mc "Please do."
     show monika b2a
     m mh "Right away, but first thing's first..."
@@ -216,7 +216,7 @@ label script5_m:
     m b2c "And I can always do that for you, should you need it."
     m b1f mh "Are you alright with that?"
     show monika md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_110
     mc "Yes."
     show monika b1a ma
     pause 0.9
@@ -225,7 +225,7 @@ label script5_m:
     m "Are you showing any unusual symptoms?"
     m b1f "Any involuntary shivers, blurred vision..?"
     show monika md ldown
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_111
     mc "Actually, no. It's nothing like that."
     show monika b1a
     mc "I've been feeling pretty down lately, is all."
@@ -241,13 +241,13 @@ label script5_m:
     # Disillusionment with life
     # Disillusionment with you
 
-    call script5_qa("m")
+    call script5_qa("m") from _call_script5_qa
 
     ## "POST CHOICE"
     m b2a e1a mg "Well, I feel like we made some great progress today."
     m b1a mh "How are you feeling now? More like yourself?"
     show monika me b1b
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_112
     show monika ma
     mc "Definitely. Thank you, Monika."
     show monika rhip mb
@@ -255,7 +255,7 @@ label script5_m:
     m e4a "Now, if I may suggest something..."
     m b1a e4b rdown mc "How about I play you a song?"
     show monika ma
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_113
     hide monika
     return
 
@@ -292,7 +292,7 @@ label script5_s_news(last=False):
     s e1b b1c mg "...but you need to turn it off every once in a while, y'know?"
     s e1a ldown "Because it can hurt you more than it helps in the long run."
     show sayori md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_114
     show sayori md
     mc "Thanks, Sayori."
     #If not last pick
@@ -324,7 +324,7 @@ label script5_s_job(last=False):
     s b1d e1d mb "Plus hey, if you were to somehow bring me even closer to my character, you might not be the only one of us that needs therapy."
     s e1a ldown b1a "Not that I don't need to talk to you as is~"
     show sayori ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_115
     show sayori rdown
     mc "I appreciate that."
     #If not last pick
@@ -372,7 +372,7 @@ label script5_s_life(last=False):
     s b1b e1a mb "I'd be happy to do that for you."
     s mg ldown "Just don't forget about me, y'know?"
     show sayori ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_116
     show sayori b1a ma
     mc "Thank you, but this is something I need to do myself."
     #If not last pick
@@ -404,7 +404,7 @@ label script5_s_you(last=False):
     s b1a mb "How does that sound?"
     s e1a "You and me?"
     show sayori ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_117
     mc "Okay...I trust you."
     mc "We can do this together."
     #If not last pick
@@ -419,13 +419,13 @@ label script5_s:
     s om ce "Hi, $EMPLOYEE_NAME!"
     s lup oe "Anything I can do for you today?"
     show sayori turned neut me
-    call test_prompt_button("Initialize ConsulAI")
+    call test_prompt_button("Initialize ConsulAI") from _call_test_prompt_button_118
     mc "I'm not feeling too well."
     # show some faux code on the side, AI is immediately looking for problems
     s mi b1b rup "Aww, I'm sorry!"
     s mg "I'm not a doctor, but if you want, I can try and help you figure out what's up?"
     show sayori md
-    call test_prompt_button("Accept")
+    call test_prompt_button("Accept") from _call_test_prompt_button_119
     mc "Please do."
     s e1b mg "Well, before I can take a look..."
     s ldown rdown e1a mi "I'm obligated to tell you that nothing I say here should be taken as medical advice."
@@ -434,14 +434,14 @@ label script5_s:
     s b2c "And I can always do that for you, should you need it."
     s mh "Is that all okay with you?"
     show sayori md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_120
     mc "Yes."
     s mb b1a "Okay!"
     s b1c mh "So, what seems to be the matter?"
     s mg "If you give me some symptoms, I can try and connect the dots for you."
     s mh rup "Upset stomach? Any difficulty breathing?"
     show sayori md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_121
     mc "Actually no, it's nothing like that."
     mc "I've been feeling pretty down lately, is all."
     s lup mi e1b "I-I'm sorry! I thought you meant physical..."
@@ -458,20 +458,20 @@ label script5_s:
         # Disillusionment with life
         # Disillusionment with you
 
-    call script5_qa("s")
+    call script5_qa("s") from _call_script5_qa_1
 
     ## "POST CHOICE"
     s e4b mb "See? It's always good to get things off of your chest."
     s e1a "Feeling better, right?"
     show sayori ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_122
     mc "Better. Thank you, Sayori."
     s mb "Think nothing of it, $EMPLOYEE_NAME."
     s rup lup e4b "I know you'd do the same for me."
     s e1a "Now, what next?"
     s b1f e1d rdown "Maybe you...wanna rent a movie?"
     show sayori mn
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_123
     hide sayori
     return
 
@@ -524,7 +524,7 @@ label script5_n_news(last=False):
     show natsuki rhip b1c
     n "Because it can only ever be bad for you."
     show natsuki md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_124
     mc "Thanks, Natsuki."
     #If not last pick
     if not last:
@@ -583,7 +583,7 @@ label script5_n_job(last=False):
     show natsuki turned rhip b1a mb e1a
     n "You just need to show them what an asset they have."
     show natsuki ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_125
     mc "I appreciate that."
     #If not last pick
     if not last:
@@ -647,7 +647,7 @@ label script5_n_life(last=False):
     show natsuki mc
     n "And there's no escaping that, got it?"
     show natsuki ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_126
     show natsuki e1a b1c
     mc "Thank you, Natsuki. I'll give it a try."
     #If not last pick
@@ -698,7 +698,7 @@ label script5_n_you(last=False):
     show natsuki mg b1b
     n "Okay?"
     show natsuki mj
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_127
     show natsuki b1c
     mc "I'm sorry. I was wrong to take out my problems on you."
     show natsuki ma n1 rdown
@@ -715,7 +715,7 @@ label script5_n:
     n mg "Oh, hey $EMPLOYEE_NAME."
     n b1c mb "'Sup?"
     show natsuki ma
-    call test_prompt_button("Initialize ConsulAI")
+    call test_prompt_button("Initialize ConsulAI") from _call_test_prompt_button_128
     show natsuki b1b mj
     mc "I'm not feeling too well."
     #show some faux code on the side, ai is immediately looking for problems
@@ -723,7 +723,7 @@ label script5_n:
     n e1b "Uhhh...okay, I'm not a doctor, but I do have a pretty big library of dots I can connect."
     n b2a e1a mg "So, if you wanna try and paint a picture for me, I'll see what I can do."
     show natsuki md
-    call test_prompt_button("Accept")
+    call test_prompt_button("Accept") from _call_test_prompt_button_129
     mc "Please do."
     n mg "Well, alright then."
     n mf e1c "FYI, before I start..."
@@ -733,14 +733,14 @@ label script5_n:
     n b2c "And I can always do that for you, should you need it."
     n mg rhip "You cool with that?"
     show natsuki me
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_130
     mc "I am."
     show natsuki cross b1c mh
     n "Alright then, what kind of symptoms are there?"
     show natsuki b1f mg
     n "Migraines? Any back pain?"
     show natsuki md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_131
     mc "Actually, no. It's nothing like that."
     show natsuki e1c b2b
     mc "I've been feeling pretty down lately, is all."
@@ -758,7 +758,7 @@ label script5_n:
     # Disillusionment with life
     # Disillusionment with you
 
-    call script5_qa("n")
+    call script5_qa("n") from _call_script5_qa_2
 
     ## "POST CHOICE"
     show natsuki mg b2b
@@ -766,7 +766,7 @@ label script5_n:
     show natsuki b2a mh rhip
     n "Well, if nothing else, I'm glad you're opening up to me."
     show natsuki md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_132
     show natsuki ma
     mc "I'm glad you were there to talk to me. Thank you, Natsuki."
     show natsuki mh
@@ -780,7 +780,7 @@ label script5_n:
     show natsuki b1c mc e1a
     n "Parfait Girls?"
     show natsuki ma
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_133
     hide natsuki
     return
 
@@ -817,7 +817,7 @@ label script5_y_news(last=False):
     y mg "No?"
     y b1a e1a mb lup "Well, I'll be here regardless."
     show yuri ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_134
 
     mc "Thanks, Yuri."
     #If not last pick
@@ -857,7 +857,7 @@ label script5_y_job(last=False):
     y mg "And I believe this is one you should grasp with both hands."
     y mb e1a b2a "I believe in you."
     show yuri ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_135
 
     show yuri b1a e1a
 
@@ -908,7 +908,7 @@ label script5_y_life(last=False):
     show yuri turned e1a b1c mh rup lup
     y "A-anyway, that's just how I cope between social interactions."
     y ma b1b n1 "Perhaps if you read between phone calls, or after an exhausting day out, you can manage things better?"
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_136
 
     show yuri b1a
 
@@ -946,7 +946,7 @@ label script5_y_you(last=False):
     y b1b "Without you, I have no meaning..."
     y e1a b2b rup "So p-please...tell me what to do."
     show yuri mj
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_137
     mc "Okay...one more chance."
     mc "We can figure it out together."
     #If not last pick
@@ -963,7 +963,7 @@ label script5_y:
     y e1a lup "How are you today?"
 
     show yuri ma
-    call test_prompt_button("Initialize ConsulAI")
+    call test_prompt_button("Initialize ConsulAI") from _call_test_prompt_button_138
     show yuri me
     mc "I'm not feeling too well."
     # show some faux code on the side, AI is immediately looking for problems
@@ -971,7 +971,7 @@ label script5_y:
     y mh rup "I'm not a medical expert, but I am supplied with a pretty extensive library of information I can take reference from."
     y mg "So if you wanted me to, I could try and determine a cause?"
     show yuri me
-    call test_prompt_button("Accept")
+    call test_prompt_button("Accept") from _call_test_prompt_button_139
 
     mc "Please do."
     y b2a e1b mg "I'm happy to help, but I do have to say..."
@@ -981,14 +981,14 @@ label script5_y:
     y mh "And I can always do that for you, should you need it."
     y mg b2a "Do you understand this?"
     show yuri me
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_140
 
     mc "Yes."
     y b1b mb "I'm glad to hear that."
     y rup b1a e1a mh "To start with, what kind of symptoms are you experiencing?"
     y b1f "Do you have a temperature? A particularly bad cough?"
     show yuri me
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_141
 
     show yuri b1a
     mc "Actually, no. It's nothing like that."
@@ -1008,7 +1008,7 @@ label script5_y:
 
     show yuri m1
 
-    call script5_qa("y")
+    call script5_qa("y") from _call_script5_qa_3
 
     "##POST CHOICE"
 
@@ -1018,7 +1018,7 @@ label script5_y:
     y e1a mh b1b "Do you feel...better?"
     y e1b rup "I-I hope you don't feel worse."
     show yuri me
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_142
     show yuri e1a
     mc "Better. Thank you, Yuri."
     y mh "Well...it's my pleasure."
@@ -1028,6 +1028,6 @@ label script5_y:
     y b1d e1a mb rdown "...I have a Portrait of Markov shaped book with your name on it."
 
     show yuri ma
-    call test_prompt_button("Record Results")
+    call test_prompt_button("Record Results") from _call_test_prompt_button_143
     hide yuri
     return

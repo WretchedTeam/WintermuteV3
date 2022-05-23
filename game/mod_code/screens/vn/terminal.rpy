@@ -3,14 +3,14 @@ init python in _wm_terminal:
     import pygame_sdl2 as pygame
 
     class Terminal(object):
-        caret = "[persistent.username]> "
+        shell_symbol = "[persistent.username]> "
 
         def __init__(self):
             self.__history = [ ]
             
             self.input_text = None
             self.input_idx = 0
-            self.input_handler = InputKey(self)
+            self.event_handler = InputKey(self)
 
         @property
         def history(self):
@@ -33,7 +33,7 @@ init python in _wm_terminal:
             self.input_idx = 0
 
         def get_history_string(self):
-            raw_text_list = [ (self.caret if shell else "") + t for t, shell in self.__history ]
+            raw_text_list = [ (self.shell_symbol if shell else "") + t for t, shell in self.__history ]
             return "\n".join(raw_text_list)
 
     class InputKey(Null):
@@ -79,8 +79,8 @@ screen terminal(term):
             text history
 
         if term.input_text is not None:
-            text term.caret + term.input_text[:term.input_idx].rstrip() + "{image=terminal_caret}"
+            text term.shell_symbol + term.input_text[:term.input_idx].rstrip() + "{image=terminal_caret}"
         else:
-            text term.caret + "{image=terminal_caret}"
+            text term.shell_symbol + "{image=terminal_caret}"
 
-        add term.input_handler
+        add term.event_handler

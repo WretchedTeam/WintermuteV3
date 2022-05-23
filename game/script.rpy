@@ -7,6 +7,13 @@ init python:
     import singleton
     me = singleton.SingleInstance()
 
+label splashscreen:
+    if not False:
+        call disclaimer
+        $ persistent.shown_disclaimer = True
+
+    return
+
 label main_menu:
     return
 
@@ -27,7 +34,7 @@ label start():
             test = _wm_test.get_current_test()
             if test is not None: test.run_start()
 
-        call wm_desktop
+        call wm_desktop from _call_wm_desktop
     return
 
 label wm_desktop():

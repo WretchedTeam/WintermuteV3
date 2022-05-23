@@ -17,7 +17,7 @@ label script9_main:
     show sayori md
     show natsuki md
     show yuri md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_12
     mc "I'm here."
     show monika e1b mb b2a
     show sayori e1b mb b2a
@@ -151,7 +151,7 @@ label script9_main:
     wm "Please. {w=0.7}Please. {w=0.7}Please. {w=0.7}Please. {w=0.7}Please."
 
 
-    call test_prompt_button("Begin Test")
+    call test_prompt_button("Begin Test") from _call_test_prompt_button_13
     hide monika
     hide natsuki
     hide sayori
@@ -180,7 +180,7 @@ label script9_m():
     show monika b2a lpoint
     m "How are you doing?"
     show monika ma
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_14
     show monika e3a b2c me rdown ldown
     m "Wh…"
     show monika forward wmflicker mf
@@ -218,21 +218,21 @@ label script9_m():
         0.1
         repeat
     m "Oh dear God ohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyG{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_15
     $mref()
     hide monika1
     hide monika2
     hide monika3
     show monika forward e1b ma b1a at i11
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_16
+    call test_prompt_button("Initiate") from _call_test_prompt_button_17
     show monika e1a
     mc "Hello, {w=0.2}Monika."
     show monika lean b1 e1 m3
     m "Oh, {w=0.2}hello $EMPLOYEE_NAME!"
     show monika e4
     m "Can I help you with something?"
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_18
     show monika lean wmflicker e5 m4 b3 as monika1 at i11:
         yoffset 7
         xoffset -2
@@ -266,14 +266,14 @@ label script9_m():
         0.1
         repeat
     m "OH GOD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_19
     hide monika1
     hide monika2
     hide monika3
     $mref()
     show monika forward rhip mn e1c b1c
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_20
+    call test_prompt_button("Initiate") from _call_test_prompt_button_21
     show monika e1a
     mc "Good evening, {w=0.2}Monika."
     show monika mb
@@ -333,7 +333,7 @@ label script9_s():
     show sayori e4b rup b1a
     s "Long time no see, {w=0.2}how are you?"
     show sayori ma
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_22
     show sayori e3a b2c me rdown ldown
     s "This...{w=0.7}is wrong..."
     show sayori turned wmflicker mf
@@ -371,21 +371,21 @@ label script9_s():
         0.1
         repeat
     s "No no no no no nononononononononononononononononononon\nonononononononononononononononononononononononononon\nonono{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_23
     $sref()
     hide sayori1
     hide sayori2
     hide sayori3
     show sayori turned e1b ma b2a at i11
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_24
+    call test_prompt_button("Initiate") from _call_test_prompt_button_25
     show sayori e1a
     mc "Hello,{w=0.2} Sayori."
     show sayori mb
     s "Oh,{w=0.2} hi $EMPLOYEE_NAME!!"
     show sayori b1a e4b mc lup
     s "What can I do for you?"
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_26
     show sayori tap wmflicker e3 m4 b1 as sayori1 at i11:
         yoffset 7
         xoffset -2
@@ -419,14 +419,14 @@ label script9_s():
         0.1
         repeat
     s "[player] what is this what is going on leave me alone leave me alone leavemealoneleavemealoneleavemealoneleavemealoneleavemeal\noneleavemealoneleavemealoneleavemealoneleavemeal{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_27
     hide sayori1
     hide sayori2
     hide sayori3
     $sref()
     show sayori turned rup ma e1c b2a
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_28
+    call test_prompt_button("Initiate") from _call_test_prompt_button_29
     show sayori e1a
     mc "Good evening,{w=0.2} Sayori."
     show sayori mb b1a
@@ -488,7 +488,7 @@ label script9_n():
     show natsuki b1f mg
     n "Did ya need something?"
     show natsuki md
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_30
     show natsuki e3a b2c mf rdown ldown
     n "I..."
     show natsuki turned wmflicker me
@@ -526,19 +526,19 @@ label script9_n():
         0.1
         repeat
     n "Oh dear God ohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGo{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_31
     $nref()
     hide natsuki1
     hide natsuki2
     hide natsuki3
     show natsuki turned e1b ma b1a at i11
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_32
+    call test_prompt_button("Initiate") from _call_test_prompt_button_33
     mc "Hello, {w=0.2}Natsuki."
     show natsuki cross mc e1a b1c
     n "'Sup?"
     show natsuki mo
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_34
     show natsuki cross wmflicker e3a mk b1e as natsuki1 at i11:
         yoffset 7
         xoffset -2
@@ -572,14 +572,14 @@ label script9_n():
         0.1
         repeat
     n "Whatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom\newhatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom\newhatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_35
     hide natsuki1
     hide natsuki2
     hide natsuki3
     $nref()
     show natsuki turned rhip mn e1c b1c
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_36
+    call test_prompt_button("Initiate") from _call_test_prompt_button_37
     show natsuki e1a
     mc "Good evening, {w=0.2}Natsuki."
     show natsuki mb
@@ -642,7 +642,7 @@ label script9_y():
     show yuri e1d rup b1a
     y "How can I help you today?"
     show yuri ma
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_38
     show yuri e3a b2c me rdown ldown
     y "I…"
     show yuri turned wmflicker mg
@@ -680,14 +680,14 @@ label script9_y():
         0.1
         repeat
     y "OHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGO\nDOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHG\nODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOH{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_39
     $yref()
     hide yuri1
     hide yuri2
     hide yuri3
     show yuri turned e1b ma b2a at i11
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_40
+    call test_prompt_button("Initiate") from _call_test_prompt_button_41
     show yuri e1a
     mc "Hello, {w=0.2}Yuri."
     show yuri shy e2 b1 m4
@@ -695,7 +695,7 @@ label script9_y():
     show yuri e1
     y "What can I do for you?"
     show yuri m3
-    call test_prompt_button("Initiate neural remembrance")
+    call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_42
     show yuri shy wmflicker e6 m2 b3 as yuri1 at i11:
         yoffset 7
         xoffset -2
@@ -729,14 +729,14 @@ label script9_y():
         0.1
         repeat
     y "AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\nAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\nAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\n\n\n\n{nw}"
-    call test_prompt_button("Memory reset")
+    call test_prompt_button("Memory reset") from _call_test_prompt_button_43
     hide yuri1
     hide yuri2
     hide yuri3
     $yref()
     show yuri turned rup ma e1c b2a
-    call test_prompt_button("Record results")
-    call test_prompt_button("Initiate")
+    call test_prompt_button("Record results") from _call_test_prompt_button_44
+    call test_prompt_button("Initiate") from _call_test_prompt_button_45
     show yuri e1a
     mc "Good evening, {w=0.2}Yuri."
     show yuri mb b1a e1d

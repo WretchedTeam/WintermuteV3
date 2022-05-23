@@ -2,19 +2,19 @@ label script6_main():
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t6doki = "Monika"
-            call script6_m
+            call script6_m from _call_script6_m
 
         "Sayori":
             $ persistent.t6doki = "Sayori"
-            call script6_s
+            call script6_s from _call_script6_s
 
         "Yuri":
             $ persistent.t6doki = "Yuri"
-            call script6_y
+            call script6_y from _call_script6_y
 
         "Natsuki":
             $ persistent.t6doki = "Natsuki"
-            call script6_n
+            call script6_n from _call_script6_n
 
         "Exit" (prepend_load=False):
             return False
@@ -34,7 +34,7 @@ label script6_m:
     show monika forward e1a b1a rhip mb
     m "How was your day?"
     show monika ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_169
     show monika mn
     mc "It was alright."
     show monika mb e4b
@@ -44,7 +44,7 @@ label script6_m:
     show monika b2b mg lpoint
     m "...are you okay?"
     show monika md
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_170
     show monika b1f me n3
     mc "Monika, {w=0.2}is everything okay between us?"
     show monika lean e4 m3 b1
@@ -58,7 +58,7 @@ label script6_m:
     show monika e4b mb rdown b1a
     m "After all, {w=0.2}I'm always happy to talk to you more."
     show monika ma
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_171
     show monika forward wmflicker
 
     show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 2":
@@ -70,7 +70,7 @@ label script6_m:
 
     show monika forward ldown rdown e1a ma b2a n1 at i11
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_172
     show monika b1f me n2 e1a
     mc "Monika, {w=0.2}how's our relationship?"
     show monika lpoint e4b mb at h11
@@ -80,7 +80,7 @@ label script6_m:
     show monika e1a mh rhip
     m "I hope I've been a good friend too."
     show monika ma
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_173
     show monika forward wmflicker
     show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 3":
         yalign 0.1
@@ -89,7 +89,7 @@ label script6_m:
     $mref()
     show monika forward ldown rdown e1a ma b2a n1 at i11
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_174
     show monika ma b1a at i11
     mc "Monika, {w=0.2}I've been thinking of asking you something for quite a while."
     show monika mb rhip
@@ -97,7 +97,7 @@ label script6_m:
     show monika lean e4 m3 b1
     m "It {i}is{/i} my job to answer any question you throw my way, {w=0.2}after all."
     show monika m1 e1
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_175
     show monika n4 b3 e3
     mc "Monika, {w=0.2}do you think of us as more than friends?"
     show monika m4
@@ -115,7 +115,7 @@ label script6_m:
     show monika me b2c
     m "I mean, {w=0.2}I..."
     show monika forward wmflicker
-    call test_prompt_button("Refresh affection")
+    call test_prompt_button("Refresh affection") from _call_test_prompt_button_176
     show always_title "Console: nodeCor 86753F9 WM125255140 affTree.affVal memReset":
         yalign 0.1
         xalign 0.5
@@ -128,7 +128,7 @@ label script6_m:
     pause(3.0)
     hide always_title
     hide always_title2
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_177
     show monika b2a n4 at i11
     mc "Monika, {w=0.2}do you think of us as more than friends?"
     show monika lean m2 b1 e2
@@ -148,7 +148,7 @@ label script6_m:
     show monika b2b mb at face
     m "I love you."
     show monika ma
-    call test_prompt_button("Record results")
+    call test_prompt_button("Record results") from _call_test_prompt_button_178
     return
 
 label script6_s():
@@ -161,7 +161,7 @@ label script6_s():
     s "I've missed you!"
     show sayori lup
     s "How are you?"
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_179
     show sayori mo
     mc "I'm well."
     show sayori e4b mc at h11
@@ -171,7 +171,7 @@ label script6_s():
     show sayori mg b1f
     s "...$EMPLOYEE_NAME?"
     show sayori me
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_180
     show sayori ma
     mc "Sayori, {w=0.2}is everything okay between us?"
     show sayori mc b1a
@@ -183,7 +183,7 @@ label script6_s():
     show sayori e1
     s "I just wish I got to see you more."
     show sayori m2
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_181
     show sayori tap wmflicker
     show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 2":
         yalign 0.1
@@ -192,7 +192,7 @@ label script6_s():
     $sref()
     show sayori turned b1a ma e1a at i11
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_182
     show sayori b1f me
     mc "Sayori, {w=0.2}how's our relationship?"
     show sayori mh
@@ -202,7 +202,7 @@ label script6_s():
     show sayori e1a mb b2a at i11
     s "And you know I do my best to be good to you..."
     show sayori ma
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_183
     show sayori turned wmflicker
     show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 3":
         yalign 0.1
@@ -211,7 +211,7 @@ label script6_s():
     $sref()
     show sayori turned e1a b1a ma at i11
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_184
     show sayori b1f mf
     mc "Sayori, {w=0.2}I've been thinking of asking you something for quite a while."
     show sayori me
@@ -219,7 +219,7 @@ label script6_s():
     show sayori mh
     s "Oh, {w=0.2}what would you like to ask?"
     show sayori md
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_185
     show sayori n4 e2a b1c me
     mc "Sayori, {w=0.2}do you think of us as more than friends?"
     show sayori e2c
@@ -237,7 +237,7 @@ label script6_s():
     show sayori b2c mk
     s "I'm sorry, {w=0.2}I..."
     show sayori md
-    call test_prompt_button("Refresh affection")
+    call test_prompt_button("Refresh affection") from _call_test_prompt_button_186
     show sayori turned wmflicker
     show always_title "Console: nodeCor 86753F9 WM138222255 affTree.affVal memReset":
         yalign 0.1
@@ -251,7 +251,7 @@ label script6_s():
     pause(3.0)
     hide always_title
     hide always_title2
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_187
     show sayori me e2b b2a
     mc "Sayori, {w=0.2}do you think of us as more than friends?"
     show sayori mb e1b
@@ -273,7 +273,7 @@ label script6_s():
     show sayori e4d mb at face
     s "I love you."
     show sayori ma
-    call test_prompt_button("Record results")
+    call test_prompt_button("Record results") from _call_test_prompt_button_188
 
     return
 
@@ -286,7 +286,7 @@ label script6_n():
     show natsuki turned rhip e1a b1c mh
     n "You good?"
     show natsuki md
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_189
     show natsuki ma
     mc "I'm good."
     show natsuki mb
@@ -296,7 +296,7 @@ label script6_n():
     show natsuki e1a b1f mg
     n "You're awfully quiet. {w=0.7}You sure you're alright?"
     show natsuki md
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_190
     show natsuki e2a me
     mc "Natsuki, {w=0.2}is everything okay between us?"
     show natsuki b2a lhip e1a at shrug
@@ -336,14 +336,14 @@ label script6_n():
     show natsuki mg
     n "...Please talk to me."
     show natsuki ldown mj e2c
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_191
     show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 2":
         yalign 0.1
         xalign 0.5
     pause(5.0)
     hide always_title
     show natsuki e1a ma b1a
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_192
     show natsuki b1c n3 e2a
     mc "Natsuki, {w=0.2}how's our relationship?"
     show natsuki cross e4a mb b3b
@@ -359,7 +359,7 @@ label script6_n():
     show natsuki e2a mb
     n "I...{w=0.7}I hope you feel that way too."
     show natsuki ma
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_193
     show natsuki turned wmflicker
     show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 3":
         yalign 0.1
@@ -368,13 +368,13 @@ label script6_n():
     $nref()
     show natsuki turned e1a ma b1a n1
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_194
     mc "Natsuki, {w=0.2}I've been thinking of asking you something for quite a while."
     show natsuki rhip b1c mc
     n "That's what I'm here for!"
     show natsuki lhip mb
     n "Hit me."
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_195
     show natsuki n4 e2a me b1f
     mc "Natsuki, {w=0.2}do you think of us as more than friends?"
     pause(1.0)
@@ -393,7 +393,7 @@ label script6_n():
     show natsuki e2b b1b mk at t11
     n "I mean, {w=0.2}I..."
     show natsuki me
-    call test_prompt_button("Refresh affection")
+    call test_prompt_button("Refresh affection") from _call_test_prompt_button_196
     show natsuki cross wmflicker
     show always_title "Console: nodeCor 86753F9 WM250153255 affTree.affVal memReset":
         yalign 0.1
@@ -407,7 +407,7 @@ label script6_n():
     pause(3.0)
     hide always_title
     hide always_title2
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_197
     show natsuki n4 e2a b1f
     mc "Natsuki, {w=0.2}do you think of us as more than friends?"
     show natsuki mh b1c at t11
@@ -429,7 +429,7 @@ label script6_n():
     show natsuki mc e4a b2c lhip rhip at face
     n "I love you, {w=0.2}James."
     show natsuki mn
-    call test_prompt_button("Record results")
+    call test_prompt_button("Record results") from _call_test_prompt_button_198
     return
 
 label script6_y():
@@ -443,7 +443,7 @@ label script6_y():
     show yuri b1a
     y "How are you today?"
     show yuri ma
-    call test_prompt_button("Respond")
+    call test_prompt_button("Respond") from _call_test_prompt_button_199
     show yuri n3
     mc "I'm alright."
     show yuri lup e1a b1c mb
@@ -453,7 +453,7 @@ label script6_y():
     show yuri b1f mg
     y "...Are you there?"
     show yuri md
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_200
     show yuri me
     mc "Yuri, {w=0.2}is everything okay between us?"
     show yuri e1b mh
@@ -463,7 +463,7 @@ label script6_y():
     show yuri e1a mb b2a
     y "You've actually been quite an interesting person to learn from, {w=0.2}$EMPLOYEE_NAME."
     show yuri ma
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_201
     show yuri turned wmflicker
     show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 2":
         yalign 0.1
@@ -472,7 +472,7 @@ label script6_y():
     $yref()
     show yuri turned e1a md b1c at i11
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_202
     show yuri b1f me
     mc "Yuri, {w=0.2}how's our relationship?"
     show yuri b1a mb rup
@@ -482,7 +482,7 @@ label script6_y():
     show yuri mh b2b
     y "And I...{w=0.7}I only hope that I'm even half as good to you."
     show yuri md
-    call test_prompt_button("Record response")
+    call test_prompt_button("Record response") from _call_test_prompt_button_203
     show yuri turned wmflicker
     show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 3":
         yalign 0.1
@@ -491,14 +491,14 @@ label script6_y():
     $yref()
     show yuri turned e1a md b1c at i11
     hide always_title
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_204
     show yuri ma
     mc "Yuri, {w=0.2}I've been thinking of asking you something for quite a while."
     show yuri b1a mg
     y "Oh...{w=0.7}r-really?."
     show yuri mh b1f
     y "What's your question?"
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_205
     show yuri n4 e2b b1b lup me
     mc "Yuri, {w=0.2}do you think of us as more than friends?"
     show yuri shy b3 e2 m1
@@ -510,7 +510,7 @@ label script6_y():
     show yuri e5
     y "That's...{w=0.7}I'm sorry, {w=0.2}I-"
     show yuri m2
-    call test_prompt_button("Refresh affection")
+    call test_prompt_button("Refresh affection") from _call_test_prompt_button_206
     show yuri shy wmflicker
     show always_title "Console: nodeCor 86753F9 WM194140255 affTree.affVal memReset":
         yalign 0.1
@@ -524,7 +524,7 @@ label script6_y():
     pause(3.0)
     hide always_title
     hide always_title2
-    call test_prompt_button("Query affection")
+    call test_prompt_button("Query affection") from _call_test_prompt_button_207
     show yuri n4 e2b b1b lup me
     mc "Yuri, {w=0.2}do you think of us as more than friends?"
     show yuri e2a mk
@@ -550,5 +550,5 @@ label script6_y():
     show yuri e4d at face
     y "And that's all that matters."
     show yuri ma
-    call test_prompt_button("Record results")
+    call test_prompt_button("Record results") from _call_test_prompt_button_208
     return
