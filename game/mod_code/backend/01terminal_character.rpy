@@ -223,6 +223,7 @@ init -1500 python:
         kind=adv
     )
 
+    # Made this in 5 minutes or smth, redo this before release for the love of god
     box_chars = [ "{font=mod_assets/gui/font/SourceCodePro-Regular.ttf}" + i + "{/font}" for i in "━┃┏┓┗┛" ]
 
     def box_draw(t):

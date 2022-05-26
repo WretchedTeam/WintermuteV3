@@ -8,9 +8,18 @@ init python:
     me = singleton.SingleInstance()
 
 label splashscreen:
-    if not False:
+    if not persistent.shown_disclaimer:
         call disclaimer
-        $ persistent.shown_disclaimer = True
+        pause 1.0
+        call title_drop
+        pause 1.0
+
+        show desktop_background
+        pause 0.25
+
+    call screen assessment with Dissolve(0.35, alpha=True)
+
+    $ persistent.shown_disclaimer = True
 
     return
 

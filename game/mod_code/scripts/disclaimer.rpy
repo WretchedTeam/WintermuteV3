@@ -36,6 +36,7 @@ init python:
 
 define term_command = TerminalCharacter("shell> ", callback=terminal_character_callback, ctc="startup_terminal_caret")
 define term_echo = TerminalCharacter(None, callback=terminal_character_callback)
+define term_echo_nocb = TerminalCharacter(None, callback=None)
 define term_echo_caret = TerminalCharacter("$ ", callback=terminal_character_callback, ctc="startup_terminal_caret")
 
 image startup_terminal_progress:
@@ -84,48 +85,70 @@ label disclaimer():
         "I Agree":
             pass
 
+    call installation_script
+
+    return
+
+label installation_script():
     $ terminal_clear()
     $ renpy.pause(1.5, hard=True)
 
+    term_command "{nw}" (callback=None)
+
+    $ terminal_show()
+    $ renpy.pause(1.0, hard=True)
+    $ terminal_pop()
+
     term_command "sh core/install_ui_service.sh --restart{nw}"
-    term_echo "Preparing to run script{image=startup_terminal_dot_loading}{fast}{nw}"
+    term_echo_nocb "Preparing to run script{image=startup_terminal_dot_loading}{fast}{nw}"
     $ terminal_show()
     $ renpy.pause(1.5, hard=True)
 
     $ terminal_pop()
-    term_echo "Preparing to run script... Done.{fast}{nw}"
+    term_echo_nocb "Preparing to run script... Done.{fast}{nw}"
 
-    term_echo "Checking for root access: {image=startup_terminal_loading}{fast}{nw}"
+    term_echo_nocb "Checking for root access{image=startup_terminal_dot_loading}{fast}{nw}"
     $ terminal_show()
     $ renpy.pause(1.5, hard=True)
 
     $ terminal_pop()
-    term_echo "Checking for root access: Passed{fast}{nw}"
+    term_echo_nocb "Checking for root access... Passed.{fast}{nw}"
 
-    term_echo "Updating Package Lists{image=startup_terminal_dot_loading}{nw}"
+    term_echo_nocb "{nw}"
+
+    term_echo_nocb "Updating Package Lists{image=startup_terminal_dot_loading}{fast}{nw}"
     $ terminal_show()
     $ renpy.pause(1.2, hard=True)
     $ terminal_pop()
 
-    term_echo "Updating Package Lists... Done.{fast}{nw}"
+    term_echo_nocb "Updating Package Lists... Done.{fast}{nw}"
+
+    term_echo_nocb "{nw}"
 
     $ completed_hashs = "#" * 50
-    term_echo "Building Dep Trees:{fast}{nw}"
-    term_echo "{image=startup_terminal_progress}{nw}"
+
+    term_echo_nocb "Building Dep Trees:{fast}{nw}"
+    term_echo_nocb "{image=startup_terminal_progress}{nw}"
     $ terminal_show()
     $ renpy.pause(2.0, hard=True)
     $ terminal_pop()
-    term_echo "[[[completed_hashs]]{fast}{nw}"
+    term_echo_nocb "[[[completed_hashs]]{fast}{nw}"
 
-    term_echo "Installing Packages:{fast}{nw}"
-    term_echo "{image=startup_terminal_progress}{nw}"
+    term_echo_nocb "{nw}"
+
+    term_echo_nocb "Installing Packages:{fast}{nw}"
+    term_echo_nocb "{image=startup_terminal_progress}{nw}"
     $ terminal_show()
     $ renpy.pause(2.0, hard=True)
     $ terminal_pop()
-    term_echo "[[[completed_hashs]]{fast}{nw}"
+    term_echo_nocb "[[[completed_hashs]]{fast}{nw}"
 
-    term_echo "Installation Complete.{fast}{nw}"
-    term_echo "Restarting{image=startup_terminal_dot_loading}"
+    term_echo_nocb "{nw}"
+
+    term_echo_nocb "Installation Complete.{fast}{nw}"
+    term_echo_nocb "Restarting{image=startup_terminal_dot_loading}{nw}"
+    $ terminal_show()
+    $ renpy.pause(2.0, hard=True)
 
     $ menu = renpy.display_menu
     return
