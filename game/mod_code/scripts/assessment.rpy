@@ -1,5 +1,5 @@
 # Welcome to the Wintermute Quality Assurance program.
-# Before you may begin your duties as a Turnell employee, please complete the mandatory Employee Risk Assessment.                         
+# Before you may begin your duties as a Turnell employee, please complete the mandatory Employee Risk Assessment.
 # Refusal is grounds for termination.
 #
 # Thank you.
@@ -25,19 +25,19 @@
 define wm_terms_agreement = """
 By signing these terms, you acknowledge that:-
 
-YOU ARE AWARE OF PROJECT WINTERMUTE'S CONFIDENTIAL STATUS AND INTEND TO RESPECT THE TERMS OF MY NONDISCLOSURE AGREEMENT.
+a) YOU ARE AWARE OF PROJECT WINTERMUTE'S CONFIDENTIAL STATUS AND INTEND TO RESPECT THE TERMS OF THIS NONDISCLOSURE AGREEMENT.
 
-YOU WILL NOT DISCUSS PROJECT WINTERMUTE WITH ACQUANTAINCES NOT EMPLOYED BY TURNELL.
+b) YOU WILL NOT DISCUSS PROJECT WINTERMUTE WITH ACQUANTAINCES NOT EMPLOYED BY TURNELL.
 
-YOU WILL NOT DISCUSS PROJECT WINTERMUTE WITH CLOSE FRIENDS AND FAMILY.
+c) YOU WILL NOT DISCUSS PROJECT WINTERMUTE WITH CLOSE FRIENDS AND FAMILY.
 
-YOU WILL NOT DISCUSS PROJECT WINTERMUTE WITH MY SPOUSE OR PARTNER.
+d) YOU WILL NOT DISCUSS PROJECT WINTERMUTE WITH YOUR SPOUSE OR PARTNER.
 
-YOU DO NOT SUFFER FROM ANY MENTAL IMPAIRMENT, DEFICIENCY OR DISEASE THAT MAY RESULT IN DISCLOSURE OF SENSITIVE INFORMATION.
+e) YOU DO NOT SUFFER FROM ANY MENTAL IMPAIRMENT, DEFICIENCY OR DISEASE THAT MAY RESULT IN DISCLOSURE OF SENSITIVE INFORMATION.
 
-I WILL REPORT ANY ABBERANT OR SUSPICIOUS BEHAVIOUR ON THE PART OF MY FELLOW COLLEAGUES.
+f) YOU WILL REPORT ANY ABBERANT OR SUSPICIOUS BEHAVIOUR ON THE PART YOUR MY FELLOW COLLEAGUES.
 
-I WILL ALWAYS UPHOLD MY TURNELL TRUST.
+g) YOU WILL ALWAYS UPHOLD YOU TURNELL TRUST.
 """.strip()
 
 init python in _wm_assessment:
@@ -115,16 +115,16 @@ screen assessment_center_pane():
                 spacing 40
 
                 add _wm_assessment.ScrolldownActivateButton(
-                    Text(_("Decline"), style="assessment_decline_button_text"), 
+                    Text(_("Decline"), style="assessment_decline_button_text"),
                     style="assessment_decline_button",
-                    action=Quit(False), 
+                    action=Quit(False),
                     vp="assessment_terms_vp"
                 )
 
                 add _wm_assessment.ScrolldownActivateButton(
-                    Text(_("Accept"), style="assessment_accept_button_text"), 
+                    Text(_("Accept"), style="assessment_accept_button_text"),
                     style="assessment_accept_button",
-                    action=Return(), 
+                    action=Return(),
                     vp="assessment_terms_vp"
                 ) xalign 1.0
 
@@ -138,7 +138,7 @@ screen assessment_center_pane():
 
     vbar value YScrollValue("assessment_terms_vp"):
         style "assessment_bar"
-                
+
 style assessment_bar:
     bar_vertical True
     bar_invert True
