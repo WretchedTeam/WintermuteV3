@@ -20,6 +20,15 @@ image news_client icon:
     "mod_assets/os/icons/news_client.png"
     zoom 0.25
 
+image rorschach icon:
+    "mod_assets/os/icons/rorschach.png"
+    zoom 0.25
+
+
+image music_player icon:
+    "mod_assets/os/icons/music_player.png"
+    zoom 0.25
+
 image icosahedron:
     "mod_assets/os/icosahedron.png"
     zoom 0.5

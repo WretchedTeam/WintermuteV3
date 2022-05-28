@@ -18,7 +18,7 @@ screen icon_grid():
         has draggroup
 
         if not persistent.done_rorschach_test:
-            use desktop_label_icon("Rorschach", "mail_client icon", "rorschach", cell=(0, 0))
+            use desktop_label_icon("Rorschach", "rorschach icon", "rorschach", cell=(0, 0))
 
         else:
             use desktop_app_icon("Email", mail_client_app)

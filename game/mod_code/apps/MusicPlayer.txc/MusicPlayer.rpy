@@ -1,7 +1,7 @@
 define music_player_proxy = _wm_music_player_app.MusicPlayerProxy()
 define 2 music_player_app = _wm_manager.Application(
     "Music Player", 
-    "news_client icon", 
+    "music_player icon", 
     "music_player", 
     music_player_proxy
 )
