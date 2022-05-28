@@ -96,7 +96,7 @@ init python in _wm_penny:
             return
 
         if unlock_email_queue is not None:
-            show_screen_with_delay("penny", delay=3.0, t=unlock_email_queue)
+            show_screen_with_delay("penny", delay=2.5, t=unlock_email_queue)
             unlock_email_queue = None
 
     @desktop_hide_callbacks.append

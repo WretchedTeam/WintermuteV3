@@ -139,7 +139,7 @@ init -10 python in _wm_test:
             if has_label_and_unseen(cb): renpy.call(cb)
 
         def run_start(self):
-            if self.start_emails is not None and persistent.email_received:
+            if self.start_emails is not None:
                 for email in self.start_emails:
                     email.unlock()
 

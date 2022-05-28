@@ -1,11 +1,16 @@
 default persistent.rorschach_responses = [ "", "", "" ]
 
-define rorschach_test = """
+define rorschach_test_intro = """
 In order to ensure the mental acuity & physical safety of all employees, Turnell Technologies requires you complete a Psychological Evaluation prior to testing.
 \nYou will be prompted with three "Rorscach test" cards. Simply tell us what you see for each, and the test is complete.
-\nAfter an initial manual review, any data that is entered will be destroyed.
-\n{cps=0}{a=jump:rorschach.confirmed_click}Please click to proceed.{/a}{/cps}
-"""
+\nAfter an initial manual review, any data that is entered will be destroyed.{w=1.0}
+\n{cps=0}{a=jump:rorschach.confirmed_start_click}Please click to proceed.{/a}{/cps}
+""".strip()
+
+define rorschach_test_outro = """
+Thank you for participating. You may now access your Turnell workstation.{w=1.0}
+\n{cps=0}{a=jump:rorschach.confirmed_end_click}Click to proceed.{/a}{/cps}
+""".strip()
 
 image rorschach_slide_1:
     "mod_assets/images/rorschach_1.png"
@@ -45,9 +50,9 @@ init 10 python in _wm_rorschach:
 
 label rorschach():
     show black with dissolve_scene_full
-    $ renpy.say(rorschach_centered, rorschach_test, advance=False)
+    $ renpy.say(rorschach_centered, rorschach_test_intro, advance=False)
 
-    label .confirmed_click:
+    label .confirmed_start_click:
     show light_gray with dissolve_scene_full
 
     python:
@@ -66,6 +71,9 @@ label rorschach():
             _window_hide(None)
             renpy.pause(1.0, hard=True)
 
-    $ persistent.email_received = True
+    scene black with dissolve_scene_full
+    $ renpy.say(rorschach_centered, rorschach_test_outro, advance=False)
+
+    label .confirmed_end_click:
     $ persistent.done_rorschach_test = True
     return

@@ -20,14 +20,14 @@ screen icon_grid():
         if not persistent.done_rorschach_test:
             use desktop_label_icon("Rorschach", "mail_client icon", "rorschach", cell=(0, 0))
 
-        if persistent.email_received:
+        else:
             use desktop_app_icon("Email", mail_client_app)
 
-        if persistent.wm_received:
-            use desktop_app_icon("Wintermute", dashboard_app, (0, 1))
+            if persistent.wm_received:
+                use desktop_app_icon("Wintermute", dashboard_app, (0, 1))
 
-        if persistent.snake_received:
-            use desktop_app_icon("Snake", snake_app, (0, 2))
+            if persistent.snake_received:
+                use desktop_app_icon("Snake", snake_app, (0, 2))
 
-        use desktop_app_icon("News", news_client_app, (0, 3))
-        use desktop_app_icon("Music Player", music_player_app, (0, 4))
+            use desktop_app_icon("News", news_client_app, (0, 3))
+            use desktop_app_icon("Music Player", music_player_app, (0, 4))

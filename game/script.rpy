@@ -35,10 +35,11 @@ label start():
         call screen register()
 
     while True:
-        python hide:
-            test = _wm_test.get_current_test()
-            if test is not None: 
-                test.run_start()
+        if persistent.done_rorschach_test:
+            python hide:
+                test = _wm_test.get_current_test()
+                if test is not None: 
+                    test.run_start()
 
         call wm_desktop from _call_wm_desktop
     return

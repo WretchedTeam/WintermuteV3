@@ -25,6 +25,5 @@ default persistent.seen_wm_program = False
 
 default persistent.done_rorschach_test = False
 
-default persistent.email_received = False
 default persistent.wm_received = False
 default persistent.snake_received = False
