@@ -1062,8 +1062,8 @@ layeredimage natsuki cross:
     group blink if_all(["ff"]) if_not(["fta","fs"]):
 
         anchor (0,0) subpixel (True)
-        xoffset (18)
-        yoffset (22)
+        xoffset (27)
+        yoffset (33)
 
         attribute blink_a default if_not(["ce","e4a","e4b","e4c", "e4d", "e4e", "e1e", "e1f"]):
             "_nat_blink_a"
@@ -1275,7 +1275,7 @@ layeredimage natsuki cross:
         yoffset (22)
 
         attribute blink_a default if_not(["ce","e4","e5","e6","n5","bful"]):
-            "_nat_blink_s_a"    
+            "_nat_blink_s_a"
 
     group eyebrows if_all(["fs"]) if_not(["ff","fta","n5","bful"]): #Cannot show if full-face blush is present.
 
