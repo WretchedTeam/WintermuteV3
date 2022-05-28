@@ -40,7 +40,8 @@ init python in _wm_penny:
     from store import (
         NoRollback,
         persistent, 
-        _wm_penny_dialogues
+        _wm_penny_dialogues,
+        show_screen_with_delay
     )
     from store._wm_email import (
         email_unlock_callbacks,
@@ -87,13 +88,16 @@ init python in _wm_penny:
     @desktop_open_callbacks.append
     def show_penny_if_needed():
         global unlock_email_queue
+        renpy.show_screen("penny_idle")
+
+        if not persistent.penny_flags["first_login"]:
+            show_screen_with_delay("penny", delay=1.5, t=_wm_penny_dialogues.first_login)
+            persistent.penny_flags["first_login"] = True
+            return
 
         if unlock_email_queue is not None:
-            renpy.show_screen("penny", t=unlock_email_queue)
+            show_screen_with_delay("penny", delay=3.0, t=unlock_email_queue)
             unlock_email_queue = None
-
-        if not renpy.get_screen("penny"):
-            renpy.show_screen("penny_idle")
 
     @desktop_hide_callbacks.append
     def hide_penny():
@@ -103,15 +107,15 @@ init python in _wm_penny:
         if persistent.penny_flags["first_wm_open"]:
             return
 
-        renpy.show_screen("penny", t=_wm_penny_dialogues.first_wm_open)
+        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_wm_open)
         persistent.penny_flags["first_wm_open"] = True
 
     @email_open_callbacks.append
     def email_open_cb(mail):
         if not persistent.penny_flags["first_attachment"] and mail.attachments:
-            renpy.show_screen("penny", _wm_penny_dialogues.first_attachment)
+            show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_attachment)
             persistent.penny_flags["first_attachment"] = True
 
         elif not persistent.penny_flags["first_email_reply"] and mail.quick_replies:
-            renpy.show_screen("penny", _wm_penny_dialogues.first_email_reply)
+            show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_email_reply)
             persistent.penny_flags["first_email_reply"] = True

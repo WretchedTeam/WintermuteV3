@@ -5,7 +5,8 @@ init -10 python in _wm_email:
         persistent, 
         debug, 
         execute_callbacks,
-        wm_game_time
+        wm_game_time,
+        show_screen_with_delay
     )
     from store._wm_manager import desktop_open_callbacks
 
@@ -19,7 +20,7 @@ init -10 python in _wm_email:
     @desktop_open_callbacks.append
     def show_notifs():
         if persistent.new_email_count > 0:
-            renpy.show_screen(Email.notification_screen_name)
+            show_screen_with_delay(Email.notification_screen_name, delay=1.5)
 
     @renpy.pure
     class Email(NoRollback):

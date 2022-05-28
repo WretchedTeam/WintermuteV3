@@ -33,6 +33,10 @@ label title_drop():
 
     show penny neutral at penny_transform
 
-    pause 2.0
+    pause 1.0
+
+    show penny sleep at penny_transform
+    pause 0.1
+    show penny neutral at penny_transform
 
     return

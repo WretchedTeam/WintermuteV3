@@ -1,4 +1,7 @@
 init -1400 python:
+    def show_screen_with_delay(screen_name, delay, *args, **kwargs):
+        ui.timer(delay, Show(screen_name, *args, **kwargs))
+
     import datetime
     def debug(method):
         def inner(*args, **kwargs):
@@ -52,3 +55,4 @@ label test_prompt_button(t):
             pass
 
     return
+

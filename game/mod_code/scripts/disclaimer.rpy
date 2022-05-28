@@ -146,7 +146,7 @@ label installation_script():
     term_echo_nocb "{nw}"
 
     term_echo_nocb "Installation Complete.{fast}{nw}"
-    term_echo_nocb "Restarting{image=startup_terminal_dot_loading}{nw}"
+    term_echo_nocb "Restarting{image=startup_terminal_dot_loading}{fast}{nw}"
     $ terminal_show()
     $ renpy.pause(2.0, hard=True)
 

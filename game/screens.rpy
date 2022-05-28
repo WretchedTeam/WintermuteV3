@@ -191,7 +191,7 @@ screen input(prompt):
 
     window:
 
-        vbox:
+        vbox spacing 10:
             xalign gui.dialogue_text_xalign
             xpos gui.dialogue_xpos
             xsize gui.dialogue_width
@@ -204,12 +204,18 @@ style input_prompt is default
 
 style input_prompt:
     xalign gui.dialogue_text_xalign
-    properties gui.text_properties("input_prompt")
+    # properties gui.text_properties("input_prompt")
+    properties gui.text_properties("dialogue")
 
 style input:
     xalign gui.dialogue_text_xalign
     xmaximum gui.dialogue_width
-
+    properties gui.text_properties("dialogue")
+    color "#bbb"
+    caret renpy.display.behavior.CaretBlink(
+        Window(Solid("#bbb", xsize=3, yoffset=4), style="empty", left_margin=3), 
+        1.0
+    )
 
 ## Choice screen ###############################################################
 ##

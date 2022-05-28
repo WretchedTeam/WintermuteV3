@@ -17,7 +17,11 @@ screen icon_grid():
 
         has draggroup
 
-        use desktop_app_icon("Email", mail_client_app)
+        if not persistent.done_rorschach_test:
+            use desktop_label_icon("Rorschach", "mail_client icon", "rorschach", cell=(0, 0))
+
+        if persistent.email_received:
+            use desktop_app_icon("Email", mail_client_app)
 
         if persistent.wm_received:
             use desktop_app_icon("Wintermute", dashboard_app, (0, 1))

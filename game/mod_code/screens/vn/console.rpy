@@ -77,6 +77,7 @@ style console_text is empty
 style console_frame:
     background "#5050509f"
     padding (30, 30)
+    xsize 520
 
 style console_text:
     font _wm_font_jb_mono.regular

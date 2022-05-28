@@ -110,3 +110,6 @@ image monika_thumb = "mod_assets/os/icons/dashboard/monika_thumb.png"
 image sayori_thumb = "mod_assets/os/icons/dashboard/sayori_thumb.png"
 image natsuki_thumb = "mod_assets/os/icons/dashboard/natsuki_thumb.png"
 image yuri_thumb = "mod_assets/os/icons/dashboard/yuri_thumb.png"
+
+image black = "#000"
+image light_gray = "#bfbfbf"
