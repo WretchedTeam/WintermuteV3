@@ -29,6 +29,7 @@ style rorschach_text:
     font _wm_font_lexend.regular
     size 28
     text_align 0.5
+    layout "subtitle"
 
 style rorschach_hyperlink is rorschach_text:
     idle_color "#959595"
@@ -51,8 +52,6 @@ label rorschach():
 
     python:
         for i in range(0, 3):
-            _window_hide(None)
-
             renpy.show("rorschach_slide_%s" % (i + 1), tag="rorschach_slide")
             # renpy.with_statement(rorschach_fade)
 
@@ -63,6 +62,7 @@ label rorschach():
             while not persistent.rorschach_responses[i]:
                 persistent.rorschach_responses[i] = renpy.input("What do you see?")
 
+            _window_hide(None)
             renpy.pause(1.0, hard=True)
 
     $ persistent.email_received = True
