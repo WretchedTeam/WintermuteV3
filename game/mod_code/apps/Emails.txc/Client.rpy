@@ -22,7 +22,8 @@ screen mail_client():
 
     on "show" action [ 
         SetField(persistent, "new_email_count", 0), 
-        Hide("mail_notification") 
+        Hide("mail_notification"),
+        Hide("mail_unread_notification")
     ]
 
 screen mc_emails(mail_client):

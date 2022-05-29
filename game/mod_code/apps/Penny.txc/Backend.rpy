@@ -81,10 +81,6 @@ init python in _wm_penny:
             unlock_email_queue = _wm_penny_dialogues.first_email
             persistent.penny_flags["first_email"] = True
 
-        elif not persistent.penny_flags["first_spam_email"] and mail.is_spam:
-            unlock_email_queue = _wm_penny_dialogues.first_spam_email
-            persistent.penny_flags["first_spam_email"] = True
-
     @desktop_open_callbacks.append
     def show_penny_if_needed():
         global unlock_email_queue
@@ -119,3 +115,7 @@ init python in _wm_penny:
         elif not persistent.penny_flags["first_email_reply"] and mail.quick_replies:
             show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_email_reply)
             persistent.penny_flags["first_email_reply"] = True
+
+        elif not persistent.penny_flags["first_spam_email"] and mail.is_spam:
+            unlock_email_queue = _wm_penny_dialogues.first_spam_email
+            persistent.penny_flags["first_spam_email"] = True

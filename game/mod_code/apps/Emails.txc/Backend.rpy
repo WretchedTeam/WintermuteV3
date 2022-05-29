@@ -17,10 +17,18 @@ init -10 python in _wm_email:
     email_unlock_callbacks = [ ]
     notif_show_callbacks = [ ]
 
+    def unread_emails():
+        return list(set(persistent.unlocked_emails) - set(persistent.read_emails))
+
     @desktop_open_callbacks.append
     def show_notifs():
+        unread_emails_count = len(unread_emails()) - persistent.new_email_count
+    
         if persistent.new_email_count > 0:
-            show_screen_with_delay(Email.notification_screen_name, delay=1.5)
+            show_screen_with_delay("mail_notification", n=persistent.new_email_count, delay=1.5)
+
+        if unread_emails_count > 0:
+            show_screen_with_delay("mail_unread_notification", n=unread_emails_count, delay=1.75)
 
     @renpy.pure
     class Email(NoRollback):
@@ -63,7 +71,6 @@ init -10 python in _wm_email:
         """
 
         mail_client_screen_name = "mail_client"
-        notification_screen_name = "mail_notification"
 
         def __init__(self, unique_id, subject, contents, sender, is_spam=False, 
                 is_important=False, attachments=None, quick_replies=None, 
