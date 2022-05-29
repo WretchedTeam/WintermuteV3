@@ -11,12 +11,12 @@ transform penny_transform():
 
 label title_drop():
     show splash
-    with Dissolve(0.5, alpha=True)
+    with BlurDissolveCurried(0.5, 16.0)
 
     pause 2.5
 
     hide splash
-    with Dissolve(0.5, alpha=True)
+    with BlurDissolveCurried(0.5, 16.0)
 
     pause 1.0
 

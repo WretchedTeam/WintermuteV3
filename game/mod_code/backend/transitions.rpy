@@ -160,3 +160,61 @@ init python:
             return rv
 
     ZoomInFisheyeShaderCurried = renpy.curry(ZoomInFisheyeShader)
+
+    class BlurDissolve(renpy.display.transition.Transition):
+        time_warp = None
+
+        def __init__(self, time, blur, old_widget=None, new_widget=None, time_warp=None, **properties):
+            super(BlurDissolve, self).__init__(time, **properties)
+
+            self.time = time
+            self.blur = blur
+            self.old_widget = old_widget
+            self.new_widget = new_widget
+            self.events = False
+            self.time_warp = time_warp
+
+        def render(self, width, height, st, at):
+
+            if renpy.game.less_updates:
+                return renpy.diplay.transition.null_render(self, width, height, st, at)
+
+            if st >= self.time:
+                self.events = True
+                return renpy.render(self.new_widget, width, height, st, at)
+
+            complete = min(1.0, st / self.time)
+
+            if self.time_warp is not None:
+                complete = self.time_warp(complete)
+
+            bottom = renpy.render(self.old_widget, width, height, st, at)
+            top = renpy.render(self.new_widget, width, height, st, at)
+
+            width = min(top.width, bottom.width)
+            height = min(top.height, bottom.height)
+
+            rv = renpy.display.render.Render(width, height, opaque=False)
+            target = rv.get_size()
+
+            if top.get_size() != target:
+                top = top.subsurface((0, 0, width, height))
+            if bottom.get_size() != target:
+                bottom = bottom.subsurface((0, 0, width, height))
+
+            rv.mesh = True
+            rv.add_shader("renpy.dissolve")
+            rv.add_uniform("u_renpy_dissolve", complete)
+            rv.add_property("mipmap", renpy.config.mipmap_dissolves if (self.style.mipmap is None) else self.style.mipmap)
+
+            bottom = _wm_gaussian.gaussian_blur(bottom, self.blur * complete)
+            top = _wm_gaussian.gaussian_blur(top, self.blur * (1.0 - complete))
+
+            rv.blit(bottom, (0, 0), focus=False, main=False)
+            rv.blit(top, (0, 0), focus=True, main=True)
+
+            renpy.display.render.redraw(self, 0)
+
+            return rv
+
+    BlurDissolveCurried = renpy.curry(BlurDissolve)

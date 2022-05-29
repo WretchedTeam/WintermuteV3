@@ -13,7 +13,7 @@ label splashscreen:
         show desktop_background
         pause 0.25
 
-        call screen assessment with Dissolve(0.35, alpha=True)
+        call screen assessment with BlurDissolveCurried(0.35, 16.0)
 
     $ persistent.shown_disclaimer = True
 
