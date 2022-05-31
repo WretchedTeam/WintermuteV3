@@ -11,18 +11,23 @@ init python in _wm_reload:
 
     from store import (
         _wm_font_jb_mono,
+        AlphaMask,
         BrightnessMatrix, 
         hard_pause,
         skip_hard_pause,
         TintMatrix, 
         Text, 
+        Transform
     )
+
+    from store._wm_matrix_rain import MatrixRain
 
     class SpriteReload(renpy.Displayable):
         def __init__(self, info, t_offset, val=1.0, **properties):
             super(SpriteReload, self).__init__(**properties)
             self.child1 = renpy.displayable("mod_assets/silhouettes/" + info[1])
             self.child2 = renpy.displayable("mod_assets/silhouettes/" + info[0])
+            self.matrix_rain = AlphaMask(Transform(MatrixRain(), blend="add"), self.child1)
             self.bounds = info[2]
 
             self.val = val
@@ -53,6 +58,7 @@ init python in _wm_reload:
 
             rv = renpy.Render(width, height)
             tr = renpy.render(self.text, width, height, st, at)
+            mrr = renpy.render(self.matrix_rain, width, height, st, at)
 
             crop_w = self.bounds[0] + int((self.bounds[1] - self.bounds[0]) * complete)
             top = top.subsurface((0, 0, crop_w, height))
@@ -64,10 +70,11 @@ init python in _wm_reload:
             text_x = int((width - tr.width) / 2.0) + self.t_offset[0]
             text_y = int((height - tr.height) / 2.0) + self.t_offset[1]
             rv.blit(tr, (text_x, text_y))
+            rv.blit(mrr, (0, 0))
             return rv
 
         def visit(self):
-            return [ self.child1, self.child2 ]
+            return [ self.child1, self.child2, self.matrix_rain ]
 
     Monika = renpy.partial(SpriteReload, monika_info, (0, 50)) 
     Natsuki = renpy.partial(SpriteReload, natsuki_info, (22, 90)) 
