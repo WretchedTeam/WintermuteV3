@@ -763,7 +763,7 @@ label script5_n:
     ## "POST CHOICE"
     show natsuki mg b2b
     n "Okay..."
-    show natsuki b2a mh rhip
+    show natsuki turned rhip b2a mh
     n "Well, if nothing else, I'm glad you're opening up to me."
     show natsuki md
     call test_prompt_button("Respond") from _call_test_prompt_button_132
@@ -866,7 +866,7 @@ label script5_y_job(last=False):
     if not last:
         mc "There's just..."
 
-    return 
+    return
 
 label script5_y_life(last=False):
     ################################################################

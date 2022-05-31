@@ -142,7 +142,7 @@ transform t22:
 transform t11:
     tcommon(calculate_position(1, 1))
 
-# Makes the character pop in 
+# Makes the character pop in
 transform i41:
     tinstant(calculate_position(4, 1))
 transform i42:
@@ -490,6 +490,115 @@ transform heartbeat2(m):
         easeout_bounce 0.3 xalign 0.5 + 0.02 * m
         easeout_bounce 0.3 xalign 0.5 - 0.02 * m
         repeat
+
+transform fc1(z=0.80, y=500):
+    subpixel True
+    xcenter 640
+    yanchor 1.0
+    parallel:
+        easein 0.25 yoffset y
+    parallel:
+        easein 0.25 zoom 1.2 * z ypos 0.5
+
+transform fc2(z=0.80, y=500):
+    subpixel True
+    xcenter 640
+    yanchor 1.0
+    parallel:
+        easein 0.25 yoffset y
+    parallel:
+        easein 0.25 zoom 1.3 * z ypos 0.575
+
+transform fc3(z=0.80, y=500):
+    subpixel True
+    xcenter 640
+    yanchor 1.0
+    parallel:
+        easein 0.25 yoffset y
+    parallel:
+        easein 0.25 zoom 1.4 * z ypos 0.65
+
+transform fc4(z=0.80, y=500):
+    subpixel True
+    xcenter 640
+    yanchor 1.0
+    parallel:
+        easein 0.25 yoffset y
+    parallel:
+        easein 0.25 zoom 1.5 * z ypos 0.775
+
+transform fc5(z=0.80, y=500):
+    subpixel True
+    xcenter 640
+    yanchor 1.0
+    parallel:
+        easein 0.25 yoffset y
+    parallel:
+        easein 0.25 zoom 1.6 * z ypos 0.8
+
+transform laughing(x=640, z=0.80):
+    xcenter x yoffset 0 yanchor 1.0 ypos 1.03 zoom z*1.00 alpha 1.00 subpixel True
+    easein .1 yoffset -20
+    easeout .1 yoffset 0
+    repeat
+
+transform shrug(x=640, z=0.80):
+    xcenter x yoffset 0 yanchor 1.0 ypos 1.03 zoom z*1.00 alpha 1.00 subpixel True
+    easein .2 yoffset -24
+    easeout .2 yoffset 0
+
+transform halfface(z=0.80, y=500):
+    subpixel True
+    xcenter 640
+    yanchor 1.0
+    parallel:
+        easein 0.25 zoom 1.4 * z ypos 0.65
+    parallel:
+        easein 0.15 yoffset y
+
+transform fchide(z=0.80, y=500):
+    subpixel True
+    transform_anchor True
+    xcenter 640
+    yanchor 1.0 ypos 0.5
+    zoom z * 1.20
+
+    on hide:
+        easein .25 zoom z*0.95 alpha 0.00
+
+transform vibrate:
+    subpixel True
+    xoffset 0
+    linear .01 xoffset -4
+    linear .02 xoffset 4
+    linear .01 xoffset 0
+    repeat 10
+
+transform button_vibrate:
+    on hover:
+        subpixel True
+        xoffset 0
+        linear .01 xoffset -0.4
+        linear .02 xoffset 0.4
+        linear .01 xoffset 0
+        repeat
+    on idle:
+        xoffset 0
+
+transform sobbing:
+    yoffset 0
+    block:
+        choice 0.8:
+            easeout .1 yoffset 10
+            easein .1 yoffset 0
+        choice 0.2:
+            easeout .1 yoffset 10
+            easein .1 yoffset 0
+            easeout .1 yoffset 6
+            easein .1 yoffset 0
+        pause 5 * renpy.random.random() + 0.5
+        repeat
+
 
 transform wintermute_flicker:
     choice:
