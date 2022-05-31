@@ -27,8 +27,8 @@ label main_menu:
 label start():
     $ quick_menu = False
 
+    $ renpy.run(Play("sound", "mod_assets/audio/os/startupsound1.ogg"))
     if persistent.firstname and persistent.lastname:
-        $ renpy.run(Play("sound", "mod_assets/audio/os/startupsound1.ogg"))
         call screen login()
 
     else:

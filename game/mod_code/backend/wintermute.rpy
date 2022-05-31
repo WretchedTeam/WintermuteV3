@@ -1,4 +1,5 @@
 label wm_start():
+    $ renpy.scene("screens")
     $ renpy.transition(Fade(0.5, 1, 0.5))
     $ _wm_manager.Application.close_all_apps()
     pause 0.75

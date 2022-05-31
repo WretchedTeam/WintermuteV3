@@ -6,7 +6,8 @@ init -10 python in _wm_email:
         debug, 
         execute_callbacks,
         wm_game_time,
-        show_screen_with_delay
+        show_screen_with_delay,
+        Play
     )
     from store._wm_manager import desktop_open_callbacks
 
@@ -16,6 +17,8 @@ init -10 python in _wm_email:
     email_open_callbacks = [ ]
     email_unlock_callbacks = [ ]
     notif_show_callbacks = [ ]
+
+    notif_show_callbacks.append(Play("sound", "mod_assets/audio/os/emailget.ogg"))
 
     def unread_emails():
         return list(set(persistent.unlocked_emails) - set(persistent.read_emails))
