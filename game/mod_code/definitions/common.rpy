@@ -49,6 +49,13 @@ init -1400 python:
         for i in callbacks:
             i(*args, **kwargs)
 
+    def hard_pause():
+        renpy.ui.interact(suppress_overlay=True, suppress_underlay=True)
+
+    def skip_hard_pause():
+        renpy.ui.pausebehavior(0.01, True)
+        renpy.restart_interaction()
+
 label test_prompt_button(t):
     menu:
         "[t]":

@@ -86,9 +86,10 @@ label script6_m:
     show screen terminal(term)
     call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.setAff 2")
 
-    $ mref()
-
+    call show_monika_reload()
     show monika forward ldown rdown e1a ma b2a n1 at i11
+    pause 0.2
+
     call test_prompt_button("Query affection") from _call_test_prompt_button_172
     show monika b1f me n2 e1a
     mc "Monika, {w=0.2}how's our relationship?"
@@ -101,8 +102,9 @@ label script6_m:
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_173
     call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.setAff 3")
-    $mref()
+    call show_monika_reload()
     show monika forward ldown rdown e1a ma b2a n1 at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_174
     show monika ma b1a at i11
     mc "Monika, {w=0.2}I've been thinking of asking you something for quite a while."
@@ -132,8 +134,9 @@ label script6_m:
 
     call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.affVal memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
 
-    $ mref()
+    call show_monika_reload()
     show monika forward ldown rdown e1a ma b2a n1 at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_177
     show monika b2a n4 at i11
     mc "Monika, {w=0.2}do you think of us as more than friends?"
@@ -194,8 +197,9 @@ label script6_s():
     $ term = _wm_terminal.Terminal()
     show screen terminal(term)
     call nodecor_command(term, "nodeCor 86753F9 WM138222255 affTree.setAff 2")
-    $sref()
+    call show_sayori_reload()
     show sayori turned b1a ma e1a at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_182
     show sayori b1f me
     mc "Sayori, {w=0.2}how's our relationship?"
@@ -208,8 +212,9 @@ label script6_s():
     show sayori ma
     call test_prompt_button("Record response") from _call_test_prompt_button_183
     call nodecor_command(term, "nodeCor 86753F9 WM138222255 affTree.setAff 3")
-    $sref()
+    call show_sayori_reload()
     show sayori turned e1a b1a ma at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_184
     show sayori b1f mf
     mc "Sayori, {w=0.2}I've been thinking of asking you something for quite a while."
@@ -239,8 +244,9 @@ label script6_s():
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_186
     call nodecor_command(term, "nodeCor 86753F9 WM138222255 affTree.affVal memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
 
-    $sref()
+    call show_sayori_reload()
     show sayori turned e1a b1a ma at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_187
     show sayori me e2b b2a
     mc "Sayori, {w=0.2}do you think of us as more than friends?"
@@ -331,7 +337,9 @@ label script6_n():
     show screen terminal(term)
 
     call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.setAff 2")
+    call show_natsuki_reload()
     show natsuki e1a ma b1a
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_192
     show natsuki b1c n3 e2a
     mc "Natsuki, {w=0.2}how's our relationship?"
@@ -350,8 +358,9 @@ label script6_n():
     show natsuki ma
     call test_prompt_button("Record response") from _call_test_prompt_button_193
     call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.setAff 3")
-    $nref()
+    call show_natsuki_reload()
     show natsuki turned e1a ma b1a n1
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_194
     mc "Natsuki, {w=0.2}I've been thinking of asking you something for quite a while."
     show natsuki rhip b1c mc
@@ -380,8 +389,9 @@ label script6_n():
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_196
 
     call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.affVal memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
-    $nref()
+    call show_natsuki_reload()
     show natsuki turned e1a b1a ma n1
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_197
     show natsuki n4 e2a b1f
     mc "Natsuki, {w=0.2}do you think of us as more than friends?"
@@ -442,8 +452,9 @@ label script6_y():
     $ term = _wm_terminal.Terminal()
     show screen terminal(term)
     call nodecor_command(term, "nodeCor 86753F9 WM194140255 affTree.setAff 2")
-    $yref()
+    call show_yuri_reload()
     show yuri turned e1a md b1c at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_202
     show yuri b1f me
     mc "Yuri, {w=0.2}how's our relationship?"
@@ -456,8 +467,9 @@ label script6_y():
     show yuri md
     call test_prompt_button("Record response") from _call_test_prompt_button_203
     call nodecor_command(term, "nodeCor 86753F9 WM194140255 affTree.setAff 3")
-    $yref()
+    call show_yuri_reload()
     show yuri turned e1a md b1c at i11
+    pause 0.2
     call test_prompt_button("Query affection") from _call_test_prompt_button_204
     show yuri ma
     mc "Yuri, {w=0.2}I've been thinking of asking you something for quite a while."
@@ -481,8 +493,10 @@ label script6_y():
 
     call nodecor_command(term, "nodeCor 86753F9 WM194140255 affTree.affVal memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
 
-    $ yref()
+    call show_yuri_reload()
     show yuri turned e1a md b1c at i11
+    pause 0.2
+
     call test_prompt_button("Query affection") from _call_test_prompt_button_207
     show yuri n4 e2b b1b lup me
     mc "Yuri, {w=0.2}do you think of us as more than friends?"

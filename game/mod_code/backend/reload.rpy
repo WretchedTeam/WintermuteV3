@@ -1,21 +1,35 @@
 init python in _wm_reload:
-    from store import BrightnessMatrix, TintMatrix, Text
+    monika_bounds = (370, 1224)
+    natsuki_bounds = (351, 1141)
+    sayori_bounds = (292, 1241)
+    yuri_bounds = (389, 1156)
 
-    def matrix_render(r, m):
-        rv = renpy.Render(*r.get_size())
-        rv.blit(r, (0, 0))
-        rv.add_shader("renpy.matrixcolor")
-        rv.add_uniform("u_renpy_matrixcolor", m(None, 1.0))
+    monika_info = ("md1.png", "md2.png", monika_bounds)
+    natsuki_info = ("nd1.png", "nd2.png", natsuki_bounds)
+    sayori_info = ("sd1.png", "sd2.png", sayori_bounds)
+    yuri_info = ("yd1.png", "yd2.png", yuri_bounds)
 
-        return rv
+    from store import (
+        _wm_font_jb_mono,
+        BrightnessMatrix, 
+        hard_pause,
+        skip_hard_pause,
+        TintMatrix, 
+        Text, 
+    )
 
     class SpriteReload(renpy.Displayable):
-        def __init__(self, child1, child2, time=1.0, **properties):
+        def __init__(self, info, t_offset, val=1.0, **properties):
             super(SpriteReload, self).__init__(**properties)
-            self.child1 = renpy.displayable(child1)
-            self.child2 = renpy.displayable(child2)
-            self.time = time
-            self.text = Text("", text_align=0.5)
+            self.child1 = renpy.displayable("mod_assets/silhouettes/" + info[1])
+            self.child2 = renpy.displayable("mod_assets/silhouettes/" + info[0])
+            self.bounds = info[2]
+
+            self.val = val
+            self.text = Text("", text_align=0.5, font=_wm_font_jb_mono.regular, size=28)
+            self.t_offset = t_offset
+            self.st = 0
+            self.last_st = 0
 
         def render(self, width, height, st, at):
             top = renpy.render(self.child1, width, height, st, at)
@@ -24,37 +38,58 @@ init python in _wm_reload:
             width = min(top.width, bottom.width)
             height = min(top.height, bottom.height)
 
-            if st > self.time:
+            delta = st - self.last_st
+            self.st += delta * renpy.random.random() * 2.0
+            self.last_st = st
+
+            if self.st > self.val:
+                skip_hard_pause()
                 return top
 
-            complete = min(st / self.time, 1.0)
-            renpy.redraw(self, 0.0)
+            complete = min(self.st / self.val, 1.0)
+            renpy.redraw(self, delta * renpy.random.random())
 
             self.text.set_text("Reloading\n{:.0%}".format(complete))
 
             rv = renpy.Render(width, height)
             tr = renpy.render(self.text, width, height, st, at)
 
-            crop_w = int(width * complete)
+            crop_w = self.bounds[0] + int((self.bounds[1] - self.bounds[0]) * complete)
             top = top.subsurface((0, 0, crop_w, height))
             bottom = bottom.subsurface((crop_w, 0, width - crop_w, height))
 
             rv.blit(bottom, (crop_w, 0), focus=False, main=False)
             rv.blit(top, (0, 0), focus=True, main=True)
 
-            text_x = int(width / 2.0 - tr.width / 2.0)
-            text_y = int(height / 2.0 - tr.height / 2.0)
+            text_x = int((width - tr.width) / 2.0) + self.t_offset[0]
+            text_y = int((height - tr.height) / 2.0) + self.t_offset[1]
             rv.blit(tr, (text_x, text_y))
             return rv
 
-image natsuki silhouette 1:
-    "mod_assets/silhouettes/natdev1.png"
-    subpixel True
-    zoom 0.8
+        def visit(self):
+            return [ self.child1, self.child2 ]
 
-image natsuki silhouette 2:
-    "mod_assets/silhouettes/natdev2.png"
-    subpixel True
-    zoom 0.8
+    Monika = renpy.partial(SpriteReload, monika_info, (0, 50)) 
+    Natsuki = renpy.partial(SpriteReload, natsuki_info, (22, 90)) 
+    Sayori = renpy.partial(SpriteReload, sayori_info, (28, 30)) 
+    Yuri = renpy.partial(SpriteReload, yuri_info, (0, 0)) 
 
-image test_r = _wm_reload.SpriteReload("natsuki silhouette 2", "natsuki silhouette 1", 5.0)
+label show_monika_reload():
+    show expression _wm_reload.Monika(4.0) as monika
+    $ hard_pause()
+    return
+
+label show_sayori_reload():
+    show expression _wm_reload.Sayori(4.0) as sayori
+    $ hard_pause()
+    return
+
+label show_natsuki_reload():
+    show expression _wm_reload.Natsuki(4.0) as natsuki
+    $ hard_pause()
+    return
+
+label show_yuri_reload():
+    show expression _wm_reload.Yuri(4.0) as yuri
+    $ hard_pause()
+    return
