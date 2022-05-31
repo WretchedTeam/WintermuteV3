@@ -338,7 +338,7 @@ label script6_n():
 
     call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.setAff 2")
     call show_natsuki_reload()
-    show natsuki e1a ma b1a
+    show natsuki turned e1a ma b1a
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_192
     show natsuki b1c n3 e2a

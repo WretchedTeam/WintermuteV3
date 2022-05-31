@@ -567,7 +567,7 @@ label script7_n():
     pause(3.0)
     call test_prompt_button("Ask again") from _call_test_prompt_button_86
     mc "How do you feel?"
-    $ pause(1.0)
+    pause(1.0)
     show natsuki e1a me
     n "..."
     show natsuki mg
@@ -621,7 +621,7 @@ label script7_n():
     show natsuki cm oe
     pause 1.0
     show natsuki b1f e1d mj
-    $ pause(1.0)
+    pause(1.0)
     show natsuki b1d e4a mf awkw at s11
     n "Hhhh...{w}{done}{i}pretty please, with a cherry on top?{/i}"
     show natsuki e1d b1d mi at t11
