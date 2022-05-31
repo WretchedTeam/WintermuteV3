@@ -39,7 +39,7 @@ from io import BytesIO
 from zlib import decompress
 from base64 import b64decode
 
-import codecs, io, operator, os, re, struct
+import codecs, io, os, re, struct
 
 class TinyTagException(LookupError):  # inherit LookupError for backwards compat
     pass

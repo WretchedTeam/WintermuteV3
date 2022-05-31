@@ -12,6 +12,15 @@ init python in _wm_terminal:
             self.input_idx = 0
             self.event_handler = InputKey(self)
 
+            self.show_caret = False
+            self.show_shell = True
+
+        def set_caret(self, v):
+            self.show_caret = v
+
+        def set_shell(self, v):
+            self.show_shell = v
+
         @property
         def history(self):
             return self.__history[:]
@@ -25,7 +34,7 @@ init python in _wm_terminal:
             self.__history.append((t, shell))
             renpy.restart_interaction()
 
-        def pop_history(i=-1):
+        def pop_history(self, i=-1):
             self.__history.pop(i)
 
         def set_input(self, t):
@@ -50,6 +59,7 @@ init python in _wm_terminal:
                     if ev.key == pygame.K_RETURN:
                         self.term.append_history(self.term.input_text)
                         self.term.set_input(None)
+                        return True
 
                     raise renpy.IgnoreEvent()
 
@@ -79,8 +89,8 @@ screen terminal(term):
             text history
 
         if term.input_text is not None:
-            text term.shell_symbol + term.input_text[:term.input_idx].rstrip() + "{image=terminal_caret}"
-        else:
-            text term.shell_symbol + "{image=terminal_caret}"
+            text term.shell_symbol + term.input_text[:term.input_idx] + "{image=terminal_caret}"
+        elif term.show_shell:
+            text term.shell_symbol + ("{image=terminal_caret}" if term.show_caret else "")
 
         add term.event_handler

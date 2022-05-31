@@ -39,6 +39,7 @@ transform tcommon(x=640, z=0.80):
             easein .15 yoffset 0 ypos 1.03
 
 transform tinstant(x=640, z=0.80):
+    subpixel True
     xcenter x yoffset 0 zoom z*1.00 alpha 1.00 yanchor 1.0 ypos 1.03
 
 # This pulls out the character that is talking and makes them bigger

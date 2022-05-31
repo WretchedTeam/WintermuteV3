@@ -21,6 +21,28 @@ label script6_main():
 
     return True
 
+label nodecor_command(term, t, completed=None):
+    $ term.set_caret(True)
+    $ term.set_input(t)
+    $ renpy.ui.interact(mouse="screen", type="screen")
+    $ term.set_shell(False)
+
+    pause 0.1
+
+    $ term.append_history("Processing {image=terminal_loading}", False)
+
+    pause renpy.random.uniform(0.75, 3.0)
+
+    $ term.pop_history()
+    $ term.append_history("{color=#6f6}Processing complete.{/color}", False)
+    if completed is not None:
+        $ term.append_history(completed, False)
+
+    $ term.set_caret(False)
+    $ term.set_shell(True)
+
+    return
+
 label script6_m:
 
     show monika forward e1a ma b2a at i11
@@ -59,17 +81,14 @@ label script6_m:
     m "After all, {w=0.2}I'm always happy to talk to you more."
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_171
-    show monika forward wmflicker
 
-    show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 2":
-        yalign 0.1
-        xalign 0.5
+    $ term = _wm_terminal.Terminal()
+    show screen terminal(term)
+    call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.setAff 2")
 
-    pause(5.0)
     $ mref()
 
     show monika forward ldown rdown e1a ma b2a n1 at i11
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_172
     show monika b1f me n2 e1a
     mc "Monika, {w=0.2}how's our relationship?"
@@ -81,14 +100,12 @@ label script6_m:
     m "I hope I've been a good friend too."
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_173
-    show monika forward wmflicker
-    show always_title "Console: nodeCor 86753F9 WM125255140 affTree.setAff 3":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
+    call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.setAff 3")
+
+    # $ term.set_input("nodeCor 86753F9 WM125255140 affTree.setAff 3")
+    # $ renpy.ui.interact(mouse="screen", type="screen")
     $mref()
     show monika forward ldown rdown e1a ma b2a n1 at i11
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_174
     show monika ma b1a at i11
     mc "Monika, {w=0.2}I've been thinking of asking you something for quite a while."
@@ -114,20 +131,12 @@ label script6_m:
     m "I don't possibly know how I could answer that..."
     show monika me b2c
     m "I mean, {w=0.2}I..."
-    show monika forward wmflicker
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_176
-    show always_title "Console: nodeCor 86753F9 WM125255140 affTree.affVal memReset":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
-    $mref()
+
+    call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.affVal memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
+
+    $ mref()
     show monika forward ldown rdown e1a ma b2a n1 at i11
-    show always_title "node 86753F9 for branch ID WM125255140: node memory reset successful" as always_title2:
-        yalign 0.2
-        xalign 0.5
-    pause(3.0)
-    hide always_title
-    hide always_title2
     call test_prompt_button("Query affection") from _call_test_prompt_button_177
     show monika b2a n4 at i11
     mc "Monika, {w=0.2}do you think of us as more than friends?"
@@ -184,14 +193,12 @@ label script6_s():
     s "I just wish I got to see you more."
     show sayori m2
     call test_prompt_button("Record response") from _call_test_prompt_button_181
-    show sayori tap wmflicker
-    show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 2":
-        yalign 0.1
-        xalign 0.5
-    pause(5.0)
+
+    $ term = _wm_terminal.Terminal()
+    show screen terminal(term)
+    call nodecor_command(term, "nodeCor 86753F9 WM138222255 affTree.setAff 2")
     $sref()
     show sayori turned b1a ma e1a at i11
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_182
     show sayori b1f me
     mc "Sayori, {w=0.2}how's our relationship?"
@@ -203,14 +210,9 @@ label script6_s():
     s "And you know I do my best to be good to you..."
     show sayori ma
     call test_prompt_button("Record response") from _call_test_prompt_button_183
-    show sayori turned wmflicker
-    show always_title "Console: nodeCor 86753F9 WM138222255 affTree.setAff 3":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
+    call nodecor_command(term, "nodeCor 86753F9 WM138222255 affTree.setAff 3")
     $sref()
     show sayori turned e1a b1a ma at i11
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_184
     show sayori b1f mf
     mc "Sayori, {w=0.2}I've been thinking of asking you something for quite a while."
@@ -238,19 +240,10 @@ label script6_s():
     s "I'm sorry, {w=0.2}I..."
     show sayori md
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_186
-    show sayori turned wmflicker
-    show always_title "Console: nodeCor 86753F9 WM138222255 affTree.affVal memReset":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
+    call nodecor_command(term, "nodeCor 86753F9 WM138222255 affTree.affVal memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
+
     $sref()
     show sayori turned e1a b1a ma at i11
-    show always_title "node 86753F9 for branch ID WM138222255: node memory reset successful" as always_title2:
-        yalign 0.2
-        xalign 0.5
-    pause(3.0)
-    hide always_title
-    hide always_title2
     call test_prompt_button("Query affection") from _call_test_prompt_button_187
     show sayori me e2b b2a
     mc "Sayori, {w=0.2}do you think of us as more than friends?"
@@ -337,11 +330,10 @@ label script6_n():
     n "...Please talk to me."
     show natsuki ldown mj e2c
     call test_prompt_button("Record response") from _call_test_prompt_button_191
-    show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 2":
-        yalign 0.1
-        xalign 0.5
-    pause(5.0)
-    hide always_title
+    $ term = _wm_terminal.Terminal()
+    show screen terminal(term)
+
+    call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.setAff 2")
     show natsuki e1a ma b1a
     call test_prompt_button("Query affection") from _call_test_prompt_button_192
     show natsuki b1c n3 e2a
@@ -360,14 +352,9 @@ label script6_n():
     n "I...{w=0.7}I hope you feel that way too."
     show natsuki ma
     call test_prompt_button("Record response") from _call_test_prompt_button_193
-    show natsuki turned wmflicker
-    show always_title "Console: nodeCor 86753F9 WM250153255 affTree.setAff 3":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
+    call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.setAff 3")
     $nref()
     show natsuki turned e1a ma b1a n1
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_194
     mc "Natsuki, {w=0.2}I've been thinking of asking you something for quite a while."
     show natsuki rhip b1c mc
@@ -394,19 +381,10 @@ label script6_n():
     n "I mean, {w=0.2}I..."
     show natsuki me
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_196
-    show natsuki cross wmflicker
-    show always_title "Console: nodeCor 86753F9 WM250153255 affTree.affVal memReset":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
+
+    call nodecor_command(term, "nodeCor 86753F9 WM250153255 affTree.affVal memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
     $nref()
     show natsuki turned e1a b1a ma n1
-    show always_title "node 86753F9 for branch ID WM250153255: node memory reset successful" as always_title2:
-        yalign 0.2
-        xalign 0.5
-    pause(3.0)
-    hide always_title
-    hide always_title2
     call test_prompt_button("Query affection") from _call_test_prompt_button_197
     show natsuki n4 e2a b1f
     mc "Natsuki, {w=0.2}do you think of us as more than friends?"
@@ -464,14 +442,11 @@ label script6_y():
     y "You've actually been quite an interesting person to learn from, {w=0.2}$EMPLOYEE_NAME."
     show yuri ma
     call test_prompt_button("Record response") from _call_test_prompt_button_201
-    show yuri turned wmflicker
-    show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 2":
-        yalign 0.1
-        xalign 0.5
-    pause(5.0)
+    $ term = _wm_terminal.Terminal()
+    show screen terminal(term)
+    call nodecor_command(term, "nodeCor 86753F9 WM194140255 affTree.setAff 2")
     $yref()
     show yuri turned e1a md b1c at i11
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_202
     show yuri b1f me
     mc "Yuri, {w=0.2}how's our relationship?"
@@ -483,14 +458,9 @@ label script6_y():
     y "And I...{w=0.7}I only hope that I'm even half as good to you."
     show yuri md
     call test_prompt_button("Record response") from _call_test_prompt_button_203
-    show yuri turned wmflicker
-    show always_title "Console: nodeCor 86753F9 WM194140255 affTree.setAff 3":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
+    call nodecor_command(term, "nodeCor 86753F9 WM194140255 affTree.setAff 3")
     $yref()
     show yuri turned e1a md b1c at i11
-    hide always_title
     call test_prompt_button("Query affection") from _call_test_prompt_button_204
     show yuri ma
     mc "Yuri, {w=0.2}I've been thinking of asking you something for quite a while."
@@ -511,19 +481,11 @@ label script6_y():
     y "That's...{w=0.7}I'm sorry, {w=0.2}I-"
     show yuri m2
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_206
-    show yuri shy wmflicker
-    show always_title "Console: nodeCor 86753F9 WM194140255 affTree.affVal memReset":
-        yalign 0.1
-        xalign 0.5
-    pause(3.0)
-    $yref()
+
+    call nodecor_command(term, "nodeCor 86753F9 WM194140255 affTree.affVal memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
+
+    $ yref()
     show yuri turned e1a md b1c at i11
-    show always_title "node 86753F9 for branch ID WM194140255: node memory reset successful" as always_title2:
-        yalign 0.2
-        xalign 0.5
-    pause(3.0)
-    hide always_title
-    hide always_title2
     call test_prompt_button("Query affection") from _call_test_prompt_button_207
     show yuri n4 e2b b1b lup me
     mc "Yuri, {w=0.2}do you think of us as more than friends?"
