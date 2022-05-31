@@ -101,9 +101,6 @@ label script6_m:
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_173
     call nodecor_command(term, "nodeCor 86753F9 WM125255140 affTree.setAff 3")
-
-    # $ term.set_input("nodeCor 86753F9 WM125255140 affTree.setAff 3")
-    # $ renpy.ui.interact(mouse="screen", type="screen")
     $mref()
     show monika forward ldown rdown e1a ma b2a n1 at i11
     call test_prompt_button("Query affection") from _call_test_prompt_button_174

@@ -69,7 +69,7 @@ label script7_m():
     show monika e1
     mc "Can you describe what you see?"
     show monika e3 m2 n3
-    m "Oh, this is–"
+    m "Oh, this is-"
     show monika forward ma e2c
     pause(0.5)
     show monika e2b
@@ -270,7 +270,7 @@ label script7_s():
     show sayori b1a lup
     s "But...I'd be willing to give it a go with you!"
     show sayori mc
-    s "Maybe we could go on the ferris wheel, or–"
+    s "Maybe we could go on the ferris wheel, or-"
     show sayori mk e1c b1c rdown
     s "Eek, maybe not. That's like, dizzyingly high!"
     show sayori e2a mb b1a at h11
@@ -452,7 +452,7 @@ label script7_n():
     show natsuki b1f e1b n2
     mc "Can you describe what you see?"
     show natsuki e1c mk
-    n "Whuh–...."
+    n "Whuh-...."
     show natsuki e1a mc b1a n3
     n "Oh man, you know me too well."
     show natsuki mb b1c
@@ -734,25 +734,25 @@ label script7_y():
     show yuri lup mb e4b
     y "Ahaha!"
     show yuri e1d mc b1c
-    y "$EMPLOYEE_NAME, that–that really-{i}ahaha{/i}-tickles!!"
+    y "$EMPLOYEE_NAME, that-that really-{i}ahaha{/i}-tickles!!"
     show yuri mo e4b
     y "Ahahaha!"
     show yuri b1e mc
-    y "This is so–{i}ehe{/i}--embara-{i}hahaha!!{/i}"
+    y "This is so-{i}ehe{/i}--embara-{i}hahaha!!{/i}"
     show yuri e1d ldown
-    y "I can barely–{i}aha{/i}--even–{i}ahaha{/i}--get a word out!!"
+    y "I can barely-{i}aha{/i}--even-{i}ahaha{/i}--get a word out!!"
     show yuri mn
     call test_prompt_button("Test further") from _call_test_prompt_button_96
     mc "And now?"
     #starts to hurt now, yuri asks you to let go
     show yuri mb e1a b1b at fc3
-    y "W-well, actually–"
+    y "W-well, actually-"
     show yuri e4b b3a
     y "It's a little--ah!"
     show yuri lup b1b mk
     y "You've such a strong grip, it's actually starting to h-hurt!"
     show yuri ml e1d at fc4
-    y "If you could–please let go!"
+    y "If you could-please let go!"
     show yuri e4d mi
     y "Please..."
     show yuri me
