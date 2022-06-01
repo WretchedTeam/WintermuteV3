@@ -7,9 +7,11 @@ screen desktop():
     on "hide" action Function(execute_callbacks, _wm_manager.desktop_hide_callbacks)
 
     mousearea:
-        area (0, 0.9, 1.0, 1.0)
+        area (0.3, 0.9, 0.4, 1.0)
         hovered Show("dock", _zorder=len(_wm_manager.zorders) + 1)
         unhovered Hide("dock")
+
+    key "K_ESCAPE" action config.quit_action
 
 screen icon_grid():
     frame style "empty":
