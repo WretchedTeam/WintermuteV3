@@ -30,12 +30,12 @@ init python:
         float rain(vec2 uv, vec2 r, float time) {
             uv -= mod(uv, tilesize);
             float offset = sin(uv.x * 10.0);
-            float y = fract(-uv.y / r.y + offset + 0.25 * time);
+            float y = fract(uv.y / r.y + offset + 0.25 * time);
             return clamp(0.0, 1.0, 1.0 / (y * 20.0));
         }
     """,fragment_200="""
-        float text = text(tex0, gl_FragCoord.xy, res0, u_time);
-        float rain = rain(gl_FragCoord.xy, u_model_size, u_time);
+        float text = text(tex0, gl_FragCoord.xy / 2., res0, u_time);
+        float rain = rain(gl_FragCoord.xy / 2., u_model_size, u_time);
         gl_FragColor = vec4(vec3(text * rain), 1.0);
     """
     )

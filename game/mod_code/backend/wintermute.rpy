@@ -81,6 +81,7 @@ label wm_first_console(console):
     $ console.append_history("Accelerator: Turnell Media Accelerator H2")
     $ console.append_history("Chipset: WM203-42")
 
+    pause 0.5
     $ console.append_newline()
 
     $ console.append_history("Connecting to Turnell database{image=terminal_loading_dots}")
