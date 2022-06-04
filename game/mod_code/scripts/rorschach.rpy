@@ -59,7 +59,7 @@ label rorschach():
         for i in range(0, 3):
             _window_hide(None)
             renpy.show("rorschach_slide_%s" % (i + 1), tag="rorschach_slide")
-            # renpy.with_statement(rorschach_fade)
+            renpy.with_statement(rorschach_fade)
 
             renpy.pause(0.5, hard=True)
             _window_show(dissolve)

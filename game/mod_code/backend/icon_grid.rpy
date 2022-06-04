@@ -1,10 +1,13 @@
+default persistent.icon_positions = { }
+
 init -10 python in _wm_icon_grid:
     from store import (
         Fixed,
         Solid,
         Transform,
         Text,
-        _wm_font_lexend
+        _wm_font_lexend,
+        persistent
     )
 
     import pygame_sdl2 as pygame
@@ -29,14 +32,19 @@ init -10 python in _wm_icon_grid:
         drags[0].top()
 
     class GridSnap(object):
+        def __init__(self, title):
+            self.title = title
+
         def check_if_mod_pressed(self):
             return pygame.key.get_mods() & pygame.KMOD_SHIFT
 
         def __call__(self, drags, drop):
+            x, y = drags[0].x, drags[0].y
+
+            persistent.icon_positions[self.title] = (x, y)
+
             if not self.check_if_mod_pressed():
                 return 
-
-            x, y = drags[0].x, drags[0].y
 
             widtho = WIDTH + SPACING[0]
             heighto = HEIGHT + SPACING[1]
@@ -55,20 +63,28 @@ init -10 python in _wm_icon_grid:
 
             drags[0].snap(x, y, 0.1)
 
-    def get_position(xcell, ycell):
-        widtho = WIDTH + SPACING[0]
-        heighto = HEIGHT + SPACING[1]
+    @renpy.curry
+    def set_position(title, drags, drop):
+        persistent.icon_positions[title] = (drags[0].x, drags[0].y)
 
-        x = int(xcell * widtho)
-        y = int(ycell * heighto)
-        return (x, y)
+    def get_position(title, xcell, ycell):
+        if title not in persistent.icon_positions:
+            widtho = WIDTH + SPACING[0]
+            heighto = HEIGHT + SPACING[1]
+
+            x = int(xcell * widtho)
+            y = int(ycell * heighto)
+            persistent.icon_positions[title] = (x, y)
+
+        return persistent.icon_positions[title]
 
 screen desktop_app_icon(title, app, cell=(0, 0)):
-    $ snap = _wm_icon_grid.GridSnap()
+    $ snap = _wm_icon_grid.GridSnap(title)
     drag:
         dragged snap
-        pos _wm_icon_grid.get_position(*cell)
+        pos _wm_icon_grid.get_position(title, *cell)
         draggable True
+        drag_raise True
         idle_child _wm_icon_grid.desktop_icon_image(app.icon, title)
         hover_child _wm_icon_grid.desktop_icon_image(app.icon, title, "#fff3")
 
@@ -78,11 +94,12 @@ screen desktop_app_icon(title, app, cell=(0, 0)):
         focus_mask None
 
 screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
-    $ snap = _wm_icon_grid.GridSnap()
+    $ snap = _wm_icon_grid.GridSnap(title)
     drag:
         dragged snap
-        pos _wm_icon_grid.get_position(*cell)
+        pos _wm_icon_grid.get_position(title, *cell)
         draggable True
+        drag_raise True
         idle_child _wm_icon_grid.desktop_icon_image(icon, title)
         hover_child _wm_icon_grid.desktop_icon_image(icon, title, "#fff3")
 
