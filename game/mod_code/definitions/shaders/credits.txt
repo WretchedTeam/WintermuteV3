@@ -1,0 +1,55 @@
+SHADER-NAME
+CREATOR
+SOURCE
+
+wm.antifisheye
+Q
+N/A
+
+wm.antifisheye_transition
+Q & Pseurae
+N/A
+
+wm.circle_crop
+Pseurae
+N/A
+
+wm.circle_outline, wm.circle_outline_normalized
+Pseurae
+https://gist.github.com/Pseurae/798b32458d03d97f55c61869b4eadec8
+
+wm.circle_stipple
+Pseurae
+N/A
+
+wm.gaussian_v, wm.gaussian_h
+Pseurae
+https://gist.github.com/Pseurae/602aa30a7bba90ccc886159ed0a6929c
+
+wm.gaussian_incre_v, wm.gaussian_incre_h
+Pseurae
+https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-40-incremental-computation-gaussian
+
+wm.genie
+Pseurae
+N/A
+
+wm.reload_glitch
+Q
+N/A
+
+wm.scanlines
+Pseurae
+N/A
+
+wm.gradient
+Pseurae
+N/A
+
+wm.matrix
+Pseurae
+https://medium.com/@clashofcoins/how-to-make-matrix-effect-shader-with-glsl-8e24b6c2f43e
+
+wm.rounded_corners, wm.rounded_corners_normalized
+Pseurae
+N/A
