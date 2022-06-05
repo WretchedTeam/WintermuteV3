@@ -28,7 +28,6 @@ screen mail_notification(just_received, unread):
                 text _("You have {lexend=regular}[unread]{/lexend} unread and {lexend=regular}[just_received]{/lexend} new email(s).") style_suffix "button_text"
 
     on "show" action Function(execute_callbacks, _wm_email.notif_show_callbacks)
-    on "hide" action Function(_wm_email_notifs.pop_notif, "mail_notification")
 
 style mail_notification_button is button
 style mail_notification_button_text is empty
