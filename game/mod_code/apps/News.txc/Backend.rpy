@@ -10,6 +10,7 @@ init python in _wm_news:
     P_DS = "Daily Star"
     P_TS = "The Sun"
     P_TT = "The Times"
+    P_PCG = "PCGamer"
 
     from store import NoRollback
 

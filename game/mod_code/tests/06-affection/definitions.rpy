@@ -13,7 +13,7 @@ define 2 affection_test =  _wm_test.WintermuteTest(
     "Lorem Ipsum",
     datetime.date(year=2029, month=8, day=17),
     "Iwan Green",
-    tuple(),
+    (affection_test_headline_1, affection_test_headline_2, affection_test_headline_3, affection_test_headline_4),
     (affection_main_email, affection_side_email),
     (affection_final_email,),
     affection_main_email,
