@@ -57,4 +57,3 @@ image bg y_ch_2:
 image bg y_ch_3:
     "images/y/y_ch_3.png"
 
-image white = "#ffffff"
