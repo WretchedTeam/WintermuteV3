@@ -14,8 +14,45 @@ python early in _wm_gaussian:
     from renpy.display.accelerator import transform_render
     from math import sqrt
 
-    def gaussian_blur(render, blur):
+    def zoom_render(crend, factor):
+        w, h = crend.get_size()
+        zw, zh = w * factor, h * factor 
 
+        rv = renpy.display.render.Render(zw, zh)
+
+        if zw == 0 or zh == 0 or w == 0 or h == 0:
+            return rv
+
+        rv.forward = renpy.display.render.Matrix2D(1.0 / factor, 0, 0, 1.0 / factor)
+        rv.reverse = renpy.display.render.Matrix2D(factor, 0, 0, factor)
+
+        rv.xclipping = True
+        rv.yclipping = True
+
+        rv.blit(crend, (0, 0))
+
+        return rv
+
+    def box_blur(render, blur, passes):
+        def apply_box_blur(render, blur, direction):
+            cr = render
+            render = renpy.Render(*cr.get_size())
+            render.mesh = True
+            render.blit(cr, (0, 0))
+            render.add_shader("-renpy.texture")
+
+            render.add_shader("wm.box_blur")
+            render.add_uniform("u_radius", blur)
+            render.add_uniform("u_direction", direction)
+
+            return render
+
+        for d in (0.0, 1.0) * passes:
+            render = apply_box_blur(render, blur, d)
+
+        return render
+
+    def gaussian_blur(render, blur, incre=False):
         def apply_gaussian_blur(render, s, blur, sigma, sqr_sigma):
             cr = render
 
@@ -34,8 +71,11 @@ python early in _wm_gaussian:
         sigma = blur / 3.0
         sqr_sigma = sigma ** 2
 
-        shaders = [ "wm.gaussian_h", "wm.gaussian_v" ]
-        # shaders = [ "wm.gaussian_incre_h", "wm.gaussian_incre_v" ]
+        if incre:
+            shaders = [ "wm.gaussian_incre_h", "wm.gaussian_incre_v" ]
+        else:
+            shaders = [ "wm.gaussian_h", "wm.gaussian_v" ]
+
         for s in shaders:
             render = apply_gaussian_blur(render, s, blur, sigma, sqr_sigma)
 

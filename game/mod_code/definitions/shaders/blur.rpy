@@ -1,4 +1,28 @@
 init python:
+    renpy.register_shader("wm.box_blur", variables="""
+        uniform sampler2D tex0;
+        attribute vec2 a_tex_coord;
+        varying vec2 v_tex_coord;
+        uniform vec2 res0;
+
+        uniform float u_radius;
+        uniform float u_direction;
+    """, vertex_200="""
+        v_tex_coord = a_tex_coord;
+    """, fragment_200="""
+        vec4 col = texture2D(tex0, v_tex_coord);
+        float sum = 1.0;
+
+        for (float i=1.0; i <= u_radius; i++) {
+            vec2 offset = u_direction == 0.0 ? vec2(i / res0.x, 0.0) : vec2(0.0, i / res0.y);
+            col += texture2D(tex0, v_tex_coord + offset);
+            col += texture2D(tex0, v_tex_coord - offset);
+            sum += 2.0;
+        }
+
+        gl_FragColor = col / sum;
+    """)
+
     # Normal gaussian
     renpy.register_shader("wm.gaussian_h", variables="""
         uniform sampler2D tex0;

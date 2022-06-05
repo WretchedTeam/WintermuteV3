@@ -4,7 +4,7 @@ screen navigation_pane(options, _xsize):
         xsize _xsize yfill True
 
         vbox xfill True:
-            add "icosahedron" xalign 0.5
+            add "icosahedron" xalign 0.5 nearest False
 
             use navbar_buttons(options)
 
