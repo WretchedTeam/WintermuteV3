@@ -85,15 +85,14 @@ init -100 python in _wm_rounded:
             width, height = cr.get_size()
             adjusted_cr = renpy.Render(width + self.outline_width * 2, height + self.outline_width * 2)
             adjusted_cr.fill(self.outline_color)
-            adjusted_cr.subpixel_blit(cr, (self.outline_width, self.outline_width))
-            adjusted_cr.add_property("texture_scaling", "nearest")
+            adjusted_cr.blit(cr, (self.outline_width, self.outline_width))
 
             rv = renpy.Render(*adjusted_cr.get_size())
             rv.blit(adjusted_cr, (0, 0))
             rv.mesh = True
 
             rv.add_property("gl_pixel_perfect", True)
-            rv.add_property("gl_mipmap", False)
+            rv.add_property("gl_mipmap", True)
 
             if use_normalized_shader:
                 rv.add_shader("wm.rounded_corners_normalized")
