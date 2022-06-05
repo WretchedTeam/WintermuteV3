@@ -1,3 +1,33 @@
+image bg m_ch_1:
+    "images/m/m_ch_1.png"
+image bg m_ch_2:
+    "images/m/m_ch_2.png"
+image bg m_ch_3:
+    "images/m/m_ch_3.png"
+
+image bg s_ch_1:
+    "images/s/s_ch_1.png"
+image bg s_ch_2:
+    "images/s/s_ch_2.png"
+image bg s_ch_3:
+    "images/s/s_ch_3.png"
+
+image bg n_ch_1:
+    "images/n/n_ch_1.png"
+image bg n_ch_2:
+    "images/n/n_ch_2.png"
+image bg n_ch_3:
+    "images/n/n_ch_3.png"
+
+image bg y_ch_1:
+    "images/y/y_ch_1.png"
+image bg y_ch_2:
+    "images/y/y_ch_2.png"
+image bg y_ch_3:
+    "images/y/y_ch_3.png"
+
+image white = "#ffffff"
+
 label script2_main():
     menu(screen="load_doki_choice"):
         "Monika":
@@ -218,132 +248,169 @@ label script2_m():
 
 label script2_s_likes():
     mc "What do you like?"
-    s "Ah...uh…"
-    s "Ehehe~"
-    s "I...don't really know?"
-    s "Sometimes it's hard to remember what I enjoy, y'know?"
-    s "When everything's kinda...cloudy."
-    s "Know what I always like, though?"
+    s e1b mb lup b1b "Ah...uh…"
+    s n2 e1c ldown b2c rup "Ehehe~"
+    s mc "I...don’t really know?"
+    s mb e1a rdown n1 "Sometimes it’s hard to remember what I enjoy, y’know?"
+    s mh b1a "When everything’s kinda...cloudy."
+    s mb "Know what I always like, though?"
+    show sayori e4b rup lup mc at h11
     s "Food!"
-    s "Though I know I can't {i}really{/i} eat any…"
-    s "I can simulate it!"
-    s "Mmm...pancakes."
-    s "I also like the outdoors!"
-    s "But really, I'd like anything with you!"
+    s e1a mi "Though I know I can’t {i}really{/i} eat any…"
+    s mb rdown "I can simulate it!"
+    s e4b mn ldown "Mmm...pancakes."
+    s e1a mc rup "I also like the outdoors!"
+    s mb b1a e1e "But really, I’d like anything with you!"
+    show sayori ma e1a
     return
 
 label script2_s_dislikes():
     mc "What do you dislike?"
-    s "That's not fair!"
-    s "I'm willing to give anything a try!"
-    s "The only thing I hate is when people...look too much into things."
-    s "I hate to say it, but Yuri does this a lot."
-    s "But she's not as bad as most."
-    s "Not everything needs to be looked at under a microscope."
-    s "Just let things exist and enjoy them, you know?"
-    s "Live and let live."
-    s "But you're a great person, $EMPLOYEE_NAME!"
-    s "I'm sure you won't do that!"
-    s "Even if you do, though, it's okay!"
+    s rup b1e e1a mi "That’s not fair!"
+    s b1a "I’m willing to give anything a try!"
+    s b1d rdown e1b mh "The only thing I hate is when people...look too much into things."
+    s b1b e1a "I hate to say it, but Yuri does this a lot."
+    s lup b1a mi "But she’s not as bad as most."
+    s b1b rup "Not everything needs to be looked at under a microscope."
+    s mh rdown "Just let things exist and enjoy them, you know?"
+    s b1a mi "Live and let live."
+    s mb ldown "But you’re a great person, $EMPLOYEE_NAME!"
+    s mc e4b lup rup  "I’m sure you won’t do that!"
+    s mb b1b n2 e1a ldown rdown "Even if you do, though, it’s okay!"
+    show sayori ma b1a
     return
 
 label script2_s_media():
-    mc "What's your favourite piece of media?"
-    s "Piece of media?"
-    s "Like...music and movies and that stuff?"
-    s "I think that's what you meant."
-    s "Anyways…ehehe~"
-    s "I like happy things!"
-    s "Natsuki introduced me to a lot of really cute anime."
-    s "I also like a lot of rad music!"
+    mc "What’s your favourite piece of media?"
+    s b1c e1a rup mi "Piece of media?"
+    s b1f "Like...music and movies and that stuff?"
+    s mi rdown b1a "I think that’s what you meant."
+    s lup e1b b1b mc n2 "Anyways…ehehe~"
+    s n1 b1a e1a rup mb "I like happy things!"
+    s e1a b2a mi "Natsuki introduced me to a lot of really cute anime."
+    s mb b1a "I also like a lot of rad music!"
+    show sayori ldown rdown e4b mc at h11
     s "Like synthwave!"
-    s "Anything that gives good vibes, you know?"
-    s "I also really like atmospheric art."
-    s "Anything fantasy, where the colors are really bright!"
-    s "Something to lose myself in."
-    s "You know...it's okay to forget and escape sometimes."
-    s "It's okay to lose yourself in a dream once in a while."
-    s "It's what keeps us going, right?"
+    s lup mb b1b e1a "Anything that gives good vibes, you know?"
+    s b1a "I also really like atmospheric art."
+    s rup e2a mc "Anything fantasy, where the colors are really bright!"
+    s e1a mb ldown "Something to lose myself in."
+    s mi rdown "You know...it’s okay to forget and escape sometimes."
+    s mb "It’s okay to lose yourself in a dream once in a while."
+    s b1b rup "It’s what keeps us going, right?"
+    show sayori e1b b1b n2 mc at h11
     s "Anyway! Sorry I got so off-track!"
-    s "What were you saying?"
+    s e1a mi rdown b1a n1 "What were you saying?"
+    show sayori ma ldown
     return
 
 label script2_s_ideal_day():
     mc "What is your ideal day?"
-    s "Ooo, ooo! I love this one!"
-    s "I wanna go on an adventure!"
-    s "...ehehe~"
-    s "Sorry, I get excited sometimes."
-    s "But I really do!"
-    s "I wanna pack and plan for a real adventure."
+    show sayori at h11
+    s mb e2a b1a rup lup "Ooo, ooo! I love this one!"
+    s mc e4b "I wanna go on an adventure!"
+    s e1b mb rdown b1b "...ehehe~"
+    s tap b1 e1 m1 "Sorry, I get excited sometimes."
+    s turned b1a mb lup e1a "But I really do!"
+    s ldown mc "I wanna pack and plan for a real adventure."
+
     ##mountains bg
+    show bg s_ch_1 zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
+    show sayori b2a mi rup zorder 1
     s "Somewhere up in the mountains maybe...or even just by a lake."
-    s "Ooo, like that!"
-    s "I'll keep going then!"
+    show sayori at h11
+    s e2a mc b1a lup "Ooo, like that!"
+    s e4b "I’ll keep going then!"
+
     ##after school city bg
+    show bg s_ch_2 zorder 0
+    show white as whiter zorder 0:
+        ease 0.75 alpha 0.0
+    show sayori mb e2a zorder 1
     s "Maybe even a walk in the city?"
+
     ##og em pier bg
-    s "Or by a pier?"
+    show bg s_ch_3 zorder 0
+    show white as whiterer zorder 0:
+        ease 0.75 alpha 0.0
+    show sayori mc zorder 1 at h11
+    s "Or on the beach?"
+    hide white
+
     ##"image "lost_jungle_filled_with_lizard_people" not found
-    s "Maybe hanging upside down in a lost jungle filled with lizard people?"
+    show white as whitest zorder 0:
+        ease 0.75 alpha 0.0
+    hide white
+    show expression Text("{image=lost_jungle_filled_with_lizard_people}") as jungle at topright
+    s e4b "Maybe hanging upside down in a lost jungle filled with lizard people?"
+    show sayori e1f ldown mb at h11
     s "Ha! Got you there!"
-    s "Ehehe~ You're silly."
-    s "Anyway...sorry!"
-    s "I'd just like somewhere new, you know?"
-    s "I wanna see things other people almost never do."
-    s "Maybe afterwards we'd have a nice picnic!"
-    s "Assuming...you'd come with, of course."
-    s "Nobody should adventure alone, after all!"
-    s "But we can have a good picnic lunch, finish out the day looking at the sunset…"
-    s "It sounds so nice."
-    s "...thank you for helping bring my day to life, $EMPLOYEE_NAME~"
-    s "You know exactly how to make me happy!"
-    s "But hey, what about you? What's y{nw}"
+    s e1a rdown "Ehehe~ You’re silly."
+    show expression Text("{image=lost_jungle_filled_with_lizard_people}") as jungle at topright:
+        ease 0.75 alpha 0.0
+    hide bg s_ch_1
+    hide bg s_ch_2
+    hide bg s_ch_3
+    show white as whitestest zorder 0:
+        ease 0.75 alpha 0.0
+    s mc e1b b1b n2 "Anyway...sorry!"
+    hide jungle
+    s e1a mh rup n1 b1a "I’d just like somewhere new, you know?"
+    s b1b mi "I wanna see things other people almost never do."
+    s mc b1a rdown "Maybe afterwards we’d have a nice picnic!"
+    s tap m1 e1 b1 "Assuming...you’d come with, of course."
+    s turned e1b mc lup b1b n2 "Nobody should adventure alone, after all!"
+    s e1a b1a n1 mb "But we can have a good picnic lunch, finish out the day looking at the sunset…"
+    s e4a b2a "It sounds so nice."
+    s b1b e1a "...thank you for helping bring my day to life, $EMPLOYEE_NAME~"
+    show sayori at h11
+    s e4b b1a mc"You know exactly how to make me happy!"
+    s e1a ldown mb "But hey, what about you? What’s y{nw}"
+    show sayori ma
     return
 
 label script2_s_attractions():
     mc "What are some traits you consider attractive?"
-    s "Uh...ehehe~"
-    s  "I could talk about it, yeah."
-    s  "I don't really have a preference."
-    s  "As long as I like the person, I can...see myself being with them."
-    s  "I really admire someone's heart, not necessarily their appearance."
-    s  "If someone makes me laugh, makes me happy, makes me feel safe..."
-    s  "Then it doesn't matter."
-    s  "Boy, girl, or whichever."
-    s  "I...need some trust before I would go, eh..."
-    s "{i}All-the-way{/i}."
-    s "But...yeah!"
-    s  "That's how I'd know."
+    s b1b e1b rup mc n4 "Uh...ehehe~"
+    s e1a mb b1a n1 "I could talk about it, yeah."
+    s mi "I don’t really have a preference."
+    s rdown mb "As long as I like the person, I can...see myself being with them."
+    s mh b2a "I really admire someone’s heart, not necessarily their appearance."
+    s e1b mb "If someone makes me laugh, makes me happy, makes me feel safe..."
+    s e1a b1a lup "Then it doesn’t matter."
+    s mi "Boy, girl, or whichever."
+    s e1b b2a mb "I...need some trust before I would go, eh..."
+    s b1b mc n4 ldown "{i}All-the-way{/i}."
+    s mb e1a n2 b2a "But...yeah!"
+    s n1 mi b1a "That’s how I’d know."
     ##visible blush
-    s  "That kinda reminds me of how I feel about you, $EMPLOYEE_NAME"
-    s "I hope that's not weird!"
-    s "Anywaaaaaay..."
-    s "Could...we talk about something else?"
+    s b1b mb n4 "That kinda reminds me of how I feel about you, $EMPLOYEE_NAME."
+    show sayori at h11
+    s e2b b2c mc rup lup "I hope that’s not weird!"
+    s n3 e1b b1b rdown "Anywaaaaaay..."
+    s e1a mb "Could...we talk about something else?"
+    show sayori ldown ma n1
     return
 
 label script2_s():
+    show sayori turned ma e1a b1a at t11
     mc "Hello, Sayori."
+    show sayori mc e4b rup lup at h11
     s "Oh, $EMPLOYEE_NAME! Hiii!!"
-    s "What's up?"
-
+    s ldown e1a mb "What’s up?"
+    show sayori ma
     ##BUTTON
     # Ask Sayori about herself
     call test_prompt_button("Ask Sayori about herself") from _call_test_prompt_button_3
     mc "Can you tell me about yourself?"
-    s "Oh! Sure thing!"
-    s "Though...I don't really like talking about myself, ehehe~"
-    s "I'm much more interested in you."
-    s "But...you can ask me anything you'd like!"
-    s "What'd you like to know?"
-
-    ##CHOICE:
-    # Likes?
-    # Dislikes?
-    # Favourite media?
-    # Your ideal day?
-    # Attractions?
-
+    s mi "Oh! Sure thing!"
+    s tap b1 e2 m1 "Though...I don’t really like talking about myself, ehehe~"
+    s turned e1a b1a mh rup "I’m much more interested in you."
+    s rdown mb "But...you can ask me anything you’d like!"
+    s e1e lup "What’d you like to know?"
+    show sayori ma e1a ldown
     call script2_qa("s") from _call_script2_qa_1
 
     # IF LIKES
@@ -354,14 +421,15 @@ label script2_s():
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
     call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_4
-    mc "What are you thinking right now?"
-    s "Right now?"
-    s "I...am still kinda embarrassed over what I said earlier."
-    s "I hope you don't think I'm like...weird or anything."
-    s "I just really like having you around."
-    s "You make the rain-clouds go away."
-    s "So, yeah! That's what my brain is thinking about right now."
-    s "Ehehe~"
+    s b1f mi rup "Right now?"
+    s e1b mc b1b n3 "I...am still kinda embarrassed over what I said earlier."
+    s mi e1a "I hope you don’t think I’m like...weird or anything."
+    s n2 mb rdown "I just really like having you around."
+    s b2a n1 mb "You make the rain-clouds go away."
+    show sayori at h11
+    s rup lup b1a "So, yeah! That’s what my brain is thinking about right now."
+    s mo e4b b1a "Ehehe~"
+    show sayori ma
 
     ##BUTTON:
     # Record Results
@@ -457,7 +525,7 @@ label script2_n_attractions():
     n "As far as, uh, bedroom stuff goes...."
     n "I don't know. I'm not {i}experienced{/i}. Ugh."
     n "But as long as I care about the person...I can't see it mattering too much."
-    n "...yeah. That's it." 
+    n "...yeah. That's it."
     n "Don't know what you were expecting. I'm not exactly Ms. Romance."
     n "But now that you've gotten me all beet-red, can we stop talking about this now?"
     return
@@ -562,6 +630,7 @@ label script2_y_ideal_day():
     y "I'm sorry…"
     y "But if you wanted to say… bring a bottle of wine.. "
     y "I wouldn't be opposed to that."
+    y "But...how about you? Wha{nw}"
     return
 
 label script2_y_attractions():
@@ -570,7 +639,7 @@ label script2_y_attractions():
     y "Someone able to carry on an interesting conversation."
     y "Of course, that's not to say that I don't enjoy just a moment of peaceful silence."
     y "I don't mean an awkward moment. I don't want someone to be pressured into filling every moment with me with needless chit-chat."
-    y "If anything, that's how I know I found someone special. When we can just sit beside each other and enjoy each other's company without saying a word." 
+    y "If anything, that's how I know I found someone special. When we can just sit beside each other and enjoy each other's company without saying a word."
     y "Hehe, I hope I can have a moment like that with you…"
     return
 
