@@ -28,3 +28,33 @@ init python:
     def set_characterization_target(d, a1):
         persistent.t2doki = d
         persistent.d_a1 = a1
+
+image bg m_ch_1:
+    "images/m/m_ch_1.png"
+image bg m_ch_2:
+    "images/m/m_ch_2.png"
+image bg m_ch_3:
+    "images/m/m_ch_3.png"
+
+image bg s_ch_1:
+    "images/s/s_ch_1.png"
+image bg s_ch_2:
+    "images/s/s_ch_2.png"
+image bg s_ch_3:
+    "images/s/s_ch_3.png"
+
+image bg n_ch_1:
+    "images/n/n_ch_1.png"
+image bg n_ch_2:
+    "images/n/n_ch_2.png"
+image bg n_ch_3:
+    "images/n/n_ch_3.png"
+
+image bg y_ch_1:
+    "images/y/y_ch_1.png"
+image bg y_ch_2:
+    "images/y/y_ch_2.png"
+image bg y_ch_3:
+    "images/y/y_ch_3.png"
+
+image white = "#ffffff"
