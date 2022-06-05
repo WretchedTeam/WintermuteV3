@@ -56,7 +56,7 @@ screen dashboard_test_details():
                     if has_email:
                         use padded_button(_("Open Email"), Function(mail_viewer_app.open, current_test.main_email), xysize=(225, 52))
 
-                    use padded_button(_("Begin Test"), Call("wm_start"), xysize=(225, 52), xalign=(1.0 if has_email else 0.0))
+                    use padded_button(_("Begin Test"), [ With(Fade(0.5, 1, 0.5)), Call("wm_start") ], xysize=(225, 52), xalign=(1.0 if has_email else 0.0))
 
 style dashboard_test_details_vbox is empty
 style dashboard_test_details_hbox is empty

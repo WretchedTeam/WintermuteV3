@@ -2,14 +2,18 @@ init -10 python in _wm_email:
     from store import (
         NoRollback, 
         NullAction, 
+        Function,
         persistent, 
         debug, 
         execute_callbacks,
         wm_game_time,
         show_screen_with_delay,
+        run_with_delay,
         Play
     )
+
     from store._wm_manager import desktop_open_callbacks
+    from store._wm_email_notifs import ShowNotification, ShowUnreadNotification
 
     emails = { }
     sender_emails = [ ]
@@ -28,10 +32,10 @@ init -10 python in _wm_email:
         unread_emails_count = len(unread_emails()) - persistent.new_email_count
     
         if persistent.new_email_count > 0:
-            show_screen_with_delay("mail_notification", n=persistent.new_email_count, delay=1.5)
+            run_with_delay(Function(ShowNotification, n=persistent.new_email_count), delay=1.5)
 
         if unread_emails_count > 0:
-            show_screen_with_delay("mail_unread_notification", n=unread_emails_count, delay=1.75)
+            run_with_delay(Function(ShowUnreadNotification, n=unread_emails_count), delay=1.75)
 
     @renpy.pure
     class Email(NoRollback):

@@ -70,8 +70,8 @@ Jez
 """,
         sender=josborne_sender,
         quick_replies=[
-            EmailReply("Sure!", Call("advance_test")),
-            EmailReply("Maybe.", Call("advance_test")),
-            EmailReply("No Thanks.", Call("advance_test")),
+            EmailReply("Sure!", _wm_test.AdvanceTest()),
+            EmailReply("Maybe.", _wm_test.AdvanceTest()),
+            EmailReply("No Thanks.", _wm_test.AdvanceTest()),
         ]
     )

@@ -51,8 +51,8 @@ Thanks.
 """,
         sender=igreen_sender,
         quick_replies=[
-            EmailReply("Sorry.", Call("advance_test")),
-            EmailReply("I won't.", Call("advance_test")),
-            EmailReply("Take care.", Call("advance_test"))
+            EmailReply("Sorry.", _wm_test.AdvanceTest()),
+            EmailReply("I won't.", _wm_test.AdvanceTest()),
+            EmailReply("Take care.", _wm_test.AdvanceTest())
         ]
     )

@@ -12,7 +12,7 @@ define 10 wintermute_tests = [
 default 10 persistent.completed_tests = [ ]
 
 init -10 python in _wm_test:
-    from store import debug, persistent
+    from store import debug, persistent, With, Fade, Call
     from store._wm_email import get_email
 
     def get_current_test():
@@ -25,6 +25,9 @@ init -10 python in _wm_test:
 
     def has_label_and_unseen(label_name):
         return renpy.has_label(label_name) and not renpy.seen_label(label_name)
+
+    def AdvanceTest():
+        return [ With(Fade(0.5, 1, 0.5)), Call("advance_test") ]
 
     class WintermuteTest(object):
         """
@@ -156,6 +159,11 @@ init -10 python in _wm_test:
             self.__call_cb(self.on_advance)
 
 label advance_test():
+    $ renpy.scene("screens")
+    $ renpy.transition(Fade(0.5, 1, 0.5))
+
+    pause 0.75
+
     $ test = _wm_test.get_current_test()
 
     if test is None:
@@ -163,9 +171,6 @@ label advance_test():
 
     $ test.run_advance()
     $ persistent.current_test_no += 1
-
-    $ renpy.transition(Fade(0.5, 1, 0.5))
-    $ _wm_manager.Application.close_all_apps()
 
     python hide:
         test = _wm_test.get_current_test()

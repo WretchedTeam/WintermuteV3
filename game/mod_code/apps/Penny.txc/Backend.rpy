@@ -39,9 +39,11 @@ init python in _wm_penny_images:
 init python in _wm_penny:
     from store import (
         NoRollback,
+        Show,
         persistent, 
         _wm_penny_dialogues,
-        show_screen_with_delay
+        show_screen_with_delay,
+        run_with_delay
     )
     from store._wm_email import (
         email_unlock_callbacks,

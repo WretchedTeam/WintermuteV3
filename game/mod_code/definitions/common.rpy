@@ -2,6 +2,16 @@ init -1400 python:
     def show_screen_with_delay(screen_name, delay, *args, **kwargs):
         ui.timer(delay, Show(screen_name, *args, **kwargs))
 
+    def run_with_delay(func, delay):
+        ui.timer(delay, func)
+
+    def normalize_color(col):
+        a = col[3] / 255.0
+        r = a * col[0] / 255.0
+        g = a * col[1] / 255.0
+        b = a * col[2] / 255.0
+        return (r, g, b, a)
+
     import datetime
     def debug(method):
         def inner(*args, **kwargs):

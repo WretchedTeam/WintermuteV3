@@ -55,6 +55,6 @@ Do not breathe a word of what [persistent.t7doki] said to anybody. Forget you ev
 """,
         sender=josborne_sender,
         quick_replies=[
-            EmailReply("I understand.", Call("advance_test")),
+            EmailReply("I understand.", _wm_test.AdvanceTest()),
         ]
     )

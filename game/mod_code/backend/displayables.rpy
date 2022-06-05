@@ -1,5 +1,5 @@
 init python in _wm_displayables:
-    from store import Color
+    from store import Color, normalize_color
     from renpy.gl2.gl2mesh2 import Mesh2
 
     class SingleShaderDisplayable(renpy.Displayable):
@@ -78,13 +78,6 @@ init python in _wm_displayables:
 
     class Gradient(SingleShaderDisplayable):
         def __init__(self, start_color, end_color, theta=0.0, start_pos=0.0, end_pos=1.0, **kwargs):
-            def normalize_color(col):
-                a = col[3] / 255.0
-                r = a * col[0] / 255.0
-                g = a * col[1] / 255.0
-                b = a * col[2] / 255.0
-                return (r, g, b, a)
-
             uniforms = { 
                 "u_start_pos": start_pos,
                 "u_end_pos": end_pos,

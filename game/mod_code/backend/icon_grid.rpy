@@ -61,6 +61,7 @@ init -10 python in _wm_icon_grid:
             if y > drags[0].parent_height - HEIGHT:
                 y -= heighto
 
+            persistent.icon_positions[self.title] = (x, y)
             drags[0].snap(x, y, 0.1)
 
     @renpy.curry
@@ -103,7 +104,7 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
         idle_child _wm_icon_grid.desktop_icon_image(icon, title)
         hover_child _wm_icon_grid.desktop_icon_image(icon, title, "#fff3")
 
-        clicked [ Play("audio", gui.activate_sound), Call(label_name) ]
+        clicked [ With(Fade(0.5, 1, 0.5)), Call(label_name), Play("audio", gui.activate_sound) ]
         activated _wm_icon_grid.desktop_icon_activated
         hovered Play("audio", gui.hover_sound)
         focus_mask None

@@ -64,7 +64,7 @@ I'm making a note of this for Monday so I can take a crack at fixing it then. In
 """,
         sender=igreen_sender,
         quick_replies=[
-            EmailReply("Be there now!", Call("advance_test")),
-            EmailReply("Goodnight.", Call("advance_test"))
+            EmailReply("Be there now!", _wm_test.AdvanceTest()),
+            EmailReply("Goodnight.", _wm_test.AdvanceTest())
         ]
     )

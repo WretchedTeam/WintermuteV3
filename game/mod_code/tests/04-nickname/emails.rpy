@@ -35,7 +35,7 @@ Jez
 """,
         sender=josborne_sender,
         quick_replies=[
-            EmailReply("Good luck.", Call("advance_test")),
-            EmailReply("Thanks.", Call("advance_test")),
+            EmailReply("Good luck.", _wm_test.AdvanceTest()),
+            EmailReply("Thanks.", _wm_test.AdvanceTest()),
         ]
     )

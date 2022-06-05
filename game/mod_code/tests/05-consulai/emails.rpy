@@ -43,9 +43,9 @@ Quality Assurance Lead
 """,
         sender=rbell_sender,
         quick_replies=[
-            EmailReply("Thank you.", Call("advance_test")),
-            EmailReply("I'm sorry.", Call("advance_test")),
-            EmailReply("RIP.", Call("advance_test")),
+            EmailReply("Thank you.", _wm_test.AdvanceTest()),
+            EmailReply("I'm sorry.", _wm_test.AdvanceTest()),
+            EmailReply("RIP.", _wm_test.AdvanceTest()),
         ],
         receiver="@TurnellQA"
     )

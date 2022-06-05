@@ -1,6 +1,17 @@
-init python in _wm_email_notifs:
+init -100 python in _wm_email_notifs:
+    from store import persistent
     notifs = [ ]
     notif_spacing = 10
+
+    def ShowNotification(n):
+        if not renpy.get_screen("mail_client") and not renpy.store.quick_menu:
+            renpy.show_screen("mail_notification", n=n)
+            renpy.restart_interaction()
+
+    def ShowUnreadNotification(n):
+        if not renpy.get_screen("mail_client") and not renpy.store.quick_menu:
+            renpy.show_screen("mail_unread_notification", n=n)
+            renpy.restart_interaction()
 
     def get_yoffset(scr_name, ysize):
         yoffset = 0
@@ -56,6 +67,7 @@ screen mail_unread_notification(n):
             label _("{lexend=regular}Emails{/lexend}") text_color "#fff"
             text _("You have [n] unread email(s).") style_suffix "button_text"
 
+    on "show" action Function(execute_callbacks, _wm_email.notif_show_callbacks)
     on "hide" action Function(_wm_email_notifs.pop_notif, "mail_unread_notification")
 
 style mail_notification_button is button
