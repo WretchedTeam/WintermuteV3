@@ -111,7 +111,7 @@ init python:
             if not self.keep_visible:
                 if self.hide_update_delay is not None:
                     self.hide_update = at + self.hide_update_delay
-                    self.hide_update_delay = 0
+                    self.hide_update_delay = None
 
                     renpy.redraw(self, 0)
                     renpy.redraw(self.transform, 0)

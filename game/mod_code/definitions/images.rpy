@@ -33,7 +33,11 @@ image icosahedron:
     "mod_assets/os/icosahedron.png"
     zoom 0.5
 
-image dev_bg_open:
+image dev_bg outline:
+    xysize (1920, 1080)
+    "mod_assets/animations/dev_texture_bg/dt_outline.png"
+
+image dev_bg open:
     xysize (1920, 1080)
 
     "mod_assets/animations/dev_texture_bg/dt_outline.png" with dissolve
@@ -71,7 +75,7 @@ image dev_bg_open:
     "mod_assets/animations/dev_texture_bg/dt16.png"
     pause(0.2)
 
-image dev_bg_close:
+image dev_bg close:
     xysize (1920, 1080)
 
     "mod_assets/animations/dev_texture_bg/dt16.png"

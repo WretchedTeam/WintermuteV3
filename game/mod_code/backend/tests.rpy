@@ -160,9 +160,7 @@ init -10 python in _wm_test:
 
 label advance_test():
     $ renpy.scene("screens")
-    $ renpy.transition(Fade(0.5, 1, 0.5))
-
-    pause 0.75
+    # $ renpy.transition(Fade(0.5, 1, 0.5))
 
     $ test = _wm_test.get_current_test()
 
@@ -181,5 +179,5 @@ label advance_test():
     pause 0.75
 
     scene black
-    pause 5.0
+    pause 2.0
     jump start

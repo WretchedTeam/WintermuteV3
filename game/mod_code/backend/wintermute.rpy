@@ -1,9 +1,12 @@
 label wm_start():
     $ renpy.scene("screens")
     $ _wm_manager.Application.close_all_apps()
-    pause 0.75
+
+    pause 1.5
 
     scene black
+    show dev_bg outline
+    with dissolve
 
     $ console = _wm_console.Console()
     show screen interactive_console(console)
@@ -14,7 +17,7 @@ label wm_start():
 
     else:
         call fill_console_and_wmservice(console) from _call_fill_console_and_wmservice
-        scene dev_bg_open
+        show dev_bg open
         pause 1.45
 
     $ quick_menu = True
@@ -69,7 +72,7 @@ label wm_first_console(console):
     $ console.pop_history()
     $ console.append_history("{color=#00d900}Initiated WM Sandbox.{/color}")
 
-    scene dev_bg_open
+    scene dev_bg open
     pause 1.45
 
     pause 0.5
