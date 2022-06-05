@@ -7,7 +7,6 @@ init -100 python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-        uniform vec2 u_resolution;
         uniform vec2 u_model_size;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
@@ -21,8 +20,8 @@ init -100 python:
             return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r.x;
         }
     """, fragment_200="""
-        vec2 center = u_resolution.xy / 2.0;
-        vec2 uv = (v_tex_coord.xy * u_resolution.xy);
+        vec2 center = u_model_size.xy / 2.0;
+        vec2 uv = (v_tex_coord.xy * u_model_size.xy);
         vec2 center_outline = center - u_outline_width;
 
         float crop1 = rounded_rectangle(uv - center, center, vec4(u_radius));
@@ -45,13 +44,12 @@ init -100 python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-        uniform vec2 u_resolution;
         uniform vec2 u_model_size;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
     """, fragment_200="""
-        float aspect = u_resolution.x / u_resolution.y;
+        float aspect = u_model_size.x / u_model_size.y;
         vec2 center = vec2(0.5);
         vec2 uv = v_tex_coord.xy;
 
