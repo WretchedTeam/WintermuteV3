@@ -74,7 +74,7 @@ style mail_notification_button is button
 style mail_notification_button_text is empty
 
 style mail_notification_button:
-    background RoundedFrame("#303030", radius=10.0)
+    background RoundedFrame("#303030", radius=10.0, outline_width=2.0, outline_color="#454545")
     align (1.0, 0.0)
     offset (-25, 25)
 
