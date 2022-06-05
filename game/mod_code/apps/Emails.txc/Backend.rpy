@@ -13,7 +13,7 @@ init -10 python in _wm_email:
     )
 
     from store._wm_manager import desktop_open_callbacks
-    from store._wm_email_notifs import ShowNotification, ShowUnreadNotification
+    from store._wm_email_notifs import ShowNotification
 
     emails = { }
     sender_emails = [ ]
@@ -31,11 +31,9 @@ init -10 python in _wm_email:
     def show_notifs():
         unread_emails_count = len(unread_emails()) - persistent.new_email_count
     
-        if persistent.new_email_count > 0:
-            run_with_delay(Function(ShowNotification, n=persistent.new_email_count), delay=1.5)
-
-        if unread_emails_count > 0:
-            run_with_delay(Function(ShowUnreadNotification, n=unread_emails_count), delay=1.75)
+        if persistent.new_email_count > 0 or unread_emails_count > 0:
+            show_screen = Function(ShowNotification, just_received=persistent.new_email_count, unread=unread_emails_count)
+            run_with_delay(show_screen, delay=1.5)
 
     @renpy.pure
     class Email(NoRollback):
