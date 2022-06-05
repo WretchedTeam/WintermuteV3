@@ -103,7 +103,7 @@ init python in _wm_navbar_buttons:
             cr = renpy.render(self.line, width, height, st, at)
             rv = renpy.Render(width, height)
             yoffset = abs(self.height - self.button_height)
-            rv.blit(cr, (-5, absolute(self.y - yoffset / 2.0)))
+            rv.absolute_blit(cr, (-5, absolute(self.y - yoffset / 2.0)))
 
             return rv
 
