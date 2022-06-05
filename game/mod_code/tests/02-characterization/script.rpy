@@ -51,17 +51,17 @@ label script2_qa(doki):
 
 label script2_m_likes():
     mc "What do you like?"
-    m "Oh! Well…"
+    m "Oh! Well..."
     m "I really like keeping in shape. Some sort of physical activity during the day really perks me up!"
     m "I don't really {i}need{/i} to, of course. But it's nice to think about, you know?"
     m "Ahaha~"
     m "I don't just limit health to physical activity either. Maintaining my mental health has always been a priority of mine."
-    m "Mental health comes in different forms, too. Not just staying positive or such…"
+    m "Mental health comes in different forms, too. Not just staying positive or such..."
     m "But also trying to always learn something new!"
     m "That's why I liked the Debate Club so much...even if you never saw me there."
     #if Dislikes was chosen
     if characterization_monika_open_minded:
-        m "As I said before, I'd like to think I'm a pretty open-minded person…"
+        m "As I said before, I'd like to think I'm a pretty open-minded person..."
     #else
     else:
         m "I'd like to think I'm a pretty open-minded person..."
@@ -82,14 +82,14 @@ label script2_m_dislikes():
     else:
         m "To be honest, I like to think I'm pretty open-minded, and willing to give most things a try."
     #Converge
-    m "But if I had to say I disliked something...it would probably be…"
+    m "But if I had to say I disliked something...it would probably be..."
     m "Stagnation."
-    m "I need to stay occupied to remain engaged…"
+    m "I need to stay occupied to remain engaged..."
     m "...so if I'm just doing one thing over and over, it gets tiring."
     m "I really don't like it when people are closed-minded, too."
     m "It's one thing to be opinionated - I'm pretty opinionated myself."
-    m "But if someone isn't even willing to try to see the other side of something…"
-    m "Or hates somebody, someone, without even trying to understand…"
+    m "But if someone isn't even willing to try to see the other side of something..."
+    m "Or hates somebody, someone, without even trying to understand..."
     m "It makes me really angry."
     m "But I can tell you're a sweet person, $EMPLOYEE_NAME!"
     m "You'd never be like that."
@@ -99,25 +99,25 @@ label script2_m_dislikes():
 label script2_m_media():
     mc "What would you say your favorite piece of media is?"
     m "My favorite media?"
-    m "I don't mean to toot my own horn here, but…"
+    m "I don't mean to toot my own horn here, but..."
     m "Doki Doki Literature Club!"
     m "A predictable choice, I'm sure, aha~"
     m "But, I have a good reason for it!"
-    m "It's because it took something that a lot of people saw as \"inferior\" fiction…"
-    m "Analyzed the concept…"
+    m "It's because it took something that a lot of people saw as \"inferior\" fiction..."
+    m "Analyzed the concept..."
     m "...and flipped it on it's head!"
     m "I absolutely love when a creator takes stale tropes and turns it into something completely new."
     m "It puts a whole new perspective on the genre."
     m "If you liked that...you should also watch {i}Puella Magi Madoka Magica{/i}."
     m "I'm not usually a fan of anime...that's more for Natsuki, ahaha~"
     m "But it's really different! You should give it a try."
-    m "But...as far as the Literature Club…"
-    m "While it was horrible seeing my friends treated as they were - by myself, no less…"
+    m "But...as far as the Literature Club..."
+    m "While it was horrible seeing my friends treated as they were - by myself, no less..."
     m "I feel like not only did {i}I{/i} learn a valuable lesson from it, but that many others did too!"
     m "Plus...you have to remember that it's fiction!"
     m "We're like actors, you know?"
     m "I still love my club members, and I'm sure they feel the same."
-    m "Anyway…"
+    m "Anyway..."
     m "I...got a little sidetracked there, haha~."
     m "What were you going to say?"
     return
@@ -127,22 +127,35 @@ label script2_m_ideal_day():
     m "Oh, what an interesting question!"
     m "Well, I {i}love{/i} waking up early in the morning."
     #forest trail bg
-    m "Getting a nice run in before the morning heat picks up…"
+    show bg m_ch_1 zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
+    m "Getting a nice run in before the morning heat picks up..."
     m "Oh! Is this a walking trail?"
     m "You're so nice, $EMPLOYEE_NAME."
-    m "Anyway…"
+    m "Anyway..."
     m "There's nothing quite like coming home to a hot shower and a good breakfast."
     m "Maybe some pancakes and juice?"
     m "But overall...after that, I'm not really sure."
     #exit music bridge bg
+    show bg m_ch_2 zorder 0
+    show white as whiter zorder 0:
+        ease 0.75 alpha 0.0
     m "I think I'd love a road trip with my friends."
-    m "Only the road and us, traveling somewhere new…"
+    m "Only the road and us, traveling somewhere new..."
     m "Seeing all sorts of sights."
     #after school nighttime bar ext bg
+    show bg m_ch_3 zorder 0
+    show white as whiterer zorder 0:
+        ease 0.75 alpha 0.0
     m "Maybe even a night on the town to cap off the day!"
     m "A sensible one, of course."
     m "That would be absolutely perfect."
-    ##normal bg
+    hide bg m_ch_1
+    hide bg m_ch_2
+    hide bg m_ch_3
+    show white as whitest zorder 0:
+        ease 0.75 alpha 0.0
     m "Thank you for the environments, by the way!"
     m "You're really sweet, you know that?"
     m "What about you? What's {i}your{/i} perfect d{nw}"
@@ -150,7 +163,7 @@ label script2_m_ideal_day():
 
 label script2_m_attractions():
     mc "What are some traits you consider attractive?"
-    m "That's...a forward question, $EMPLOYEE_NAME…"
+    m "That's...a forward question, $EMPLOYEE_NAME..."
     m "But I don't mind sharing, ahaha~"
     m "I'm very open about my preferences."
     ##If Likes or Dislikes
@@ -161,14 +174,14 @@ label script2_m_attractions():
     m "I guess by modern terminology, I'd be...pansexual?"
     m "I guess I just don't really mind who the person is, as long as they're a sweetheart on the inside."
     m "That's what I value the most, you know?"
-    m "Looks aren't everything, and I think as long as the attraction is there, the love is there…"
+    m "Looks aren't everything, and I think as long as the attraction is there, the love is there..."
     m "Then it doesn't matter."
     m "That...probably didn't answer much of your question."
     m "But that's really the truth."
     m "If I connect with somebody special...that's how I know."
     ##visible blush
-    m "Maybe we'll end up having a strong connection, ahaha…"
-    m "Anyways…"
+    m "Maybe we'll end up having a strong connection, ahaha..."
+    m "Anyways..."
     m "Was there anything else you wanted to ask?"
     return
 
@@ -204,8 +217,8 @@ label script2_m():
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
     call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_1
     mc "What are you thinking right now?"
-    m "Hmm…"
-    m "I'm thinking of that day I described, how it'd be nice to do that every day…"
+    m "Hmm..."
+    m "I'm thinking of that day I described, how it'd be nice to do that every day..."
     m "And...I'm picturing just how much fun it would be with you."
     m "Just us, you know?"
     m "That'd be wonderful."
@@ -218,7 +231,7 @@ label script2_m():
 
 label script2_s_likes():
     mc "What do you like?"
-    s e1b mb lup b1b "Ah...uh…"
+    s e1b mb lup b1b "Ah...uh..."
     s n2 e1c ldown b2c rup "Ehehe~"
     s mc "I...don’t really know?"
     s mb e1a rdown n1 "Sometimes it’s hard to remember what I enjoy, y’know?"
@@ -226,7 +239,7 @@ label script2_s_likes():
     s mb "Know what I always like, though?"
     show sayori e4b rup lup mc at h11
     s "Food!"
-    s e1a mi "Though I know I can’t {i}really{/i} eat any…"
+    s e1a mi "Though I know I can’t {i}really{/i} eat any..."
     s mb rdown "I can simulate it!"
     s e4b mn ldown "Mmm...pancakes."
     s e1a mc rup "I also like the outdoors!"
@@ -255,7 +268,7 @@ label script2_s_media():
     s b1c e1a rup mi "Piece of media?"
     s b1f "Like...music and movies and that stuff?"
     s mi rdown b1a "I think that’s what you meant."
-    s lup e1b b1b mc n2 "Anyways…ehehe~"
+    s lup e1b b1b mc n2 "Anyways...ehehe~"
     s n1 b1a e1a rup mb "I like happy things!"
     s e1a b2a mi "Natsuki introduced me to a lot of really cute anime."
     s mb b1a "I also like a lot of rad music!"
@@ -332,7 +345,7 @@ label script2_s_ideal_day():
     s mc b1a rdown "Maybe afterwards we’d have a nice picnic!"
     s tap m1 e1 b1 "Assuming...you’d come with, of course."
     s turned e1b mc lup b1b n2 "Nobody should adventure alone, after all!"
-    s e1a b1a n1 mb "But we can have a good picnic lunch, finish out the day looking at the sunset…"
+    s e1a b1a n1 mb "But we can have a good picnic lunch, finish out the day looking at the sunset..."
     s e4a b2a "It sounds so nice."
     s b1b e1a "...thank you for helping bring my day to life, $EMPLOYEE_NAME~"
     show sayori at h11
@@ -412,7 +425,7 @@ label script2_n_likes():
     n "As much as I hate to say it...I like cute things."
     n "They're comforting."
     n "I can feel your judgment from here, you know."
-    n "But yeah, apart from that…"
+    n "But yeah, apart from that..."
     n "Manga, too."
     n "It {i}is{/i} literature, by the way. People call graphic novels literature, too."
     return
@@ -427,7 +440,7 @@ label script2_n_dislikes():
     n "Something something brevity something something wit."
     n "If someone can get an idea across in a few words...what's wrong with that?"
     n "You don't need to sound like some old-fashioned geezer to have a valid thought."
-    n "Anyway...it doesn't seem like you're the type to do that, so…"
+    n "Anyway...it doesn't seem like you're the type to do that, so..."
     n "Yeah."
     return
 
@@ -456,18 +469,23 @@ label script2_n_ideal_day():
     n "Well...actually."
     n "I think lying on the couch would be nice."
     n "Some dumb romance movie on as background noise."
-    ##show nice living room
+    show bg n_ch_1 zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
     n "Yeah, like that. Nice touch."
     n "Maybe with some blankets over me."
     n "Manga in my hands, more volumes on the floor."
     n "Cookies fresh from the oven, cooling on the rack."
-    n "Taking a glance from my reading to see the snow falling outside…"
+    n "Taking a glance from my reading to see the snow falling outside..."
     n "And...uh."
     n "I'd...want someone with me."
     n "None of that would be as good as it would be with somebody I cared about."
     n "..."
+    hide bg n_ch_1
+    show white as whiter zorder 0:
+        ease 0.75 alpha 0.0
     n "What're you staring at? You asked, okay?!"
-    n "Well, since I've indulged you up to this point…"
+    n "Well, since I've indulged you up to this point..."
     n "What's {i}yo{/i}{nw}"
     return
 
@@ -476,18 +494,18 @@ label script2_n_attractions():
     n "..."
     n "You have a dirty mind, you know that?"
     n "Ugh, fine."
-    n "I like…"
+    n "I like..."
     n "..."
     n "What're you looking at me like that for?"
     n "Nnnnnn...."
-    n "I, uh…"
+    n "I, uh..."
     n "I like...friends. Okay?"
     n "I know you probably think that's weird and I don't really care."
     n "When I want a romantic partner, I want somebody who I can play a game with."
     n "Banter with, laugh at weird stuff together, yadda yadda."
     n "I'm one of those girls, yeah. Sue me."
-    n "Anyway...if they're nice to me…"
-    n "If I can feel safe around them…"
+    n "Anyway...if they're nice to me..."
+    n "If I can feel safe around them..."
     n "Then I don't care if they're a dude or a chick or somewhere in between or neither."
     n "I'll like them."
     n "...I see the look you're giving me. You're gross."
@@ -510,8 +528,8 @@ label script2_n():
     # Ask Natsuki about herself
     call test_prompt_button("Ask Natsuki about herself") from _call_test_prompt_button_6
     mc "Can you tell me about yourself?"
-    n "Uhhh…"
-    n "Bit of a weird one, but…"
+    n "Uhhh..."
+    n "Bit of a weird one, but..."
     n "I mean, I don't really have a whole lot else to do, sooo...shoot."
 
     ##CHOICE:
@@ -552,10 +570,10 @@ label script2_y_likes():
     y "But, I suppose virtual reality is comparable in some ways."
 
     y "But there's just...something to a book."
-    y "The ability to create a world with nothing but words…"
+    y "The ability to create a world with nothing but words..."
     y "There's just something unique about the written word, that I can't get anywhere else."
     y "I suppose I also fancy myself as a knife collector."
-    y "I hope that doesn't bother you…"
+    y "I hope that doesn't bother you..."
     y "I've amassed quite the collection. From dirks and daggers to just simple multi-tools."
     y "I...like the danger."
     y "..."
@@ -565,8 +583,8 @@ label script2_y_likes():
 
 label script2_y_dislikes():
     mc "What do you dislike?"
-    y "D-dislike…?"
-    y "I...don't have many of them…"
+    y "D-dislike...?"
+    y "I...don't have many of them..."
     y "You'll find that I'm quite easygoing."
     y "However, I can't stand ignorance."
     y "Willful non-education about a subject."
@@ -574,14 +592,14 @@ label script2_y_dislikes():
     y "Or to think deeply about certain things."
     y "There's a shallowness to ignorance, I think."
     y "A desire to not confront a complex truth but to accept a simple lie."
-    y "Not...that I would think you are like that…"
-    y "Sorry, I tend to go off on tangents…"
-    y "I can...stay quiet if you like…"
+    y "Not...that I would think you are like that..."
+    y "Sorry, I tend to go off on tangents..."
+    y "I can...stay quiet if you like..."
     return
 
 label script2_y_media():
     mc "What's your favourite piece of media?"
-    y "My favorite…?"
+    y "My favorite...?"
     y "Oh, it's definitely Portrait of Markov! No doubt about it."
     y "It's truly a fascinating read. It's about this religious camp converted into a prison where a fanatical cult is conducting human experiments. All in the name of reaching the heights of human evolution."
     y "However, things quickly deteriorate once selective breeding takes place. The cult quickly loses control as subjects of these experiments develop a crazed bloodlust. This is when they begin cutting off limbs and affixing them to--"
@@ -595,11 +613,17 @@ label script2_y_ideal_day():
     mc "What is your ideal day?"
     y "My ideal day?"
     y "Well, I wish I could say it were a bit more exciting. However, I don't require much."
-    y "I could curl up in a blanket next to the fire and read a good book while sipping a hot cup of tea."
+    show bg y_ch_1 zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
+    y "I could curl up in a blanket next to the radiator and read a good book while sipping a hot cup of tea."
     y "Erm, is that a tad too predictable? I'm not too basic am I?"
-    y "I'm sorry…"
-    y "But if you wanted to say… bring a bottle of wine.. "
+    y "I'm sorry..."
+    y "But if you wanted to say...bring a bottle of wine..."
     y "I wouldn't be opposed to that."
+    hide bg y_ch_1
+    show white as whiter zorder 0:
+        ease 0.75 alpha 0.0
     y "But...how about you? Wha{nw}"
     return
 
@@ -610,7 +634,7 @@ label script2_y_attractions():
     y "Of course, that's not to say that I don't enjoy just a moment of peaceful silence."
     y "I don't mean an awkward moment. I don't want someone to be pressured into filling every moment with me with needless chit-chat."
     y "If anything, that's how I know I found someone special. When we can just sit beside each other and enjoy each other's company without saying a word."
-    y "Hehe, I hope I can have a moment like that with you…"
+    y "Hehe, I hope I can have a moment like that with you..."
     return
 
 label script2_y():
@@ -622,15 +646,15 @@ label script2_y():
     # Ask Yuri about herself
     call test_prompt_button("Ask Yuri about herself") from _call_test_prompt_button_9
     mc "Can you tell me about yourself?"
-    y "A-about myself…?"
-    y "Uuuu…."
-    y "Well, um…"
-    y "I…"
+    y "A-about myself...?"
+    y "Uuuu...."
+    y "Well, um..."
+    y "I..."
     y "...sorry."
     y "I guess I just...have a hard time expressing myself."
-    y "There's a surfeit of knowledge tidbits...but I can't condense them…"
-    y "I guess...I like to keep to myself…"
-    y "And...I like a variety of things…"
+    y "There's a surfeit of knowledge tidbits...but I can't condense them..."
+    y "I guess...I like to keep to myself..."
+    y "And...I like a variety of things..."
     y "..."
     y "...was there anything else?"
 
