@@ -75,7 +75,7 @@ screen mc_email_entry(email, bg=None):
 
         action [ 
             Function(mail_viewer_app.open, email=email),
-            Play("audio", gui.hover_sound)
+            Play("audio", gui.activate_sound)
         ]
 
         padding (20, 20)
