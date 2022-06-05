@@ -12,16 +12,21 @@ init -100 python:
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
+        // https://www.iquilezles.org/www/articles/distfunctions/distfunctions2d.htm
+        float rounded_rectangle(in vec2 p, in vec2 b, in vec4 r)
+        {
+            r.xy = (p.x > 0.0) ? r.xy : r.zw;
+            r.x  = (p.y > 0.0) ? r.x  : r.y;
+            vec2 q = abs(p) - b + r.x;
+            return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r.x;
+        }
     """, fragment_200="""
         vec2 center = u_resolution.xy / 2.0;
-        vec2 uv = v_tex_coord.xy * u_resolution.xy;
+        vec2 uv = (v_tex_coord.xy * u_resolution.xy);
         vec2 center_outline = center - u_outline_width;
 
-        // https://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm
-        #define ROUNDED_RECT(p, b, r) (length(max(abs(p) - b + r, 0.0)) - r)
-
-        float crop1 = ROUNDED_RECT(uv - center, center, u_radius);
-        float crop2 = ROUNDED_RECT(uv - center, center_outline, u_radius);
+        float crop1 = rounded_rectangle(uv - center, center, vec4(u_radius));
+        float crop2 = rounded_rectangle(uv - center, center_outline, vec4(u_radius - u_outline_width));
 
         vec4 color = texture2D(tex0, v_tex_coord);
 
@@ -59,7 +64,7 @@ init -100 python:
         #define ROUNDED_RECT(p, b, r) (length(max(abs(p) - b + r, 0.0)) - r)
 
         float crop1 = ROUNDED_RECT(uv - center, center, u_radius);
-        float crop2 = ROUNDED_RECT(uv - center, center_outline, u_radius);
+        float crop2 = ROUNDED_RECT(uv - center, center_outline, u_radius - u_outline_width);
 
         vec4 color = texture2D(tex0, v_tex_coord);
 

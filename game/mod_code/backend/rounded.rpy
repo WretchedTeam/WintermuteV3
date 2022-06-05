@@ -85,7 +85,8 @@ init -100 python in _wm_rounded:
             width, height = cr.get_size()
             adjusted_cr = renpy.Render(width + self.outline_width * 2, height + self.outline_width * 2)
             adjusted_cr.fill(self.outline_color)
-            adjusted_cr.blit(cr, (self.outline_width, self.outline_width))
+            adjusted_cr.subpixel_blit(cr, (self.outline_width, self.outline_width))
+            adjusted_cr.add_property("texture_scaling", "nearest")
 
             rv = renpy.Render(*adjusted_cr.get_size())
             rv.blit(adjusted_cr, (0, 0))
