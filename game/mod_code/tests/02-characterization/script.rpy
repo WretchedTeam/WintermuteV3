@@ -51,75 +51,87 @@ label script2_qa(doki):
 
 label script2_m_likes():
     mc "What do you like?"
-    m "Oh! Well..."
-    m "I really like keeping in shape. Some sort of physical activity during the day really perks me up!"
+    pause 0.5
+    show monika forward neut mf
+    m nerv cm oe ldown rhip "Oh!{w=0.2} Well..."
+    m happ om oe "I really like keeping in shape. Some sort of physical activity during the day really perks me up!"
     m "I don't really {i}need{/i} to, of course. But it's nice to think about, you know?"
-    m "Ahaha~"
-    m "I don't just limit health to physical activity either. Maintaining my mental health has always been a priority of mine."
-    m "Mental health comes in different forms, too. Not just staying positive or such..."
-    m "But also trying to always learn something new!"
-    m "That's why I liked the Debate Club so much...even if you never saw me there."
+    m laug cm ce "Ahaha~"
+    m happ om oe rdown lpoint "I don't just limit health to physical activity either. Maintaining my mental health has always been a priority of mine."
+    m happ mg oe "Mental health comes in different forms, too. Not just staying positive or such..."
+    m happ om oe "But also trying to always learn something new!"
+    m e1b om ldown "That's why I liked the Debate Club so much... even if you never saw me there."
+    $ characterization_monika_open_minded = True
     #if Dislikes was chosen
     if characterization_monika_open_minded:
+        show monika e4a mb
         m "As I said before, I'd like to think I'm a pretty open-minded person..."
     #else
     else:
+        show monika e4a mb
         m "I'd like to think I'm a pretty open-minded person..."
     #Converge
-    m "So, if you ever want to do something, let me know! I'd love to spend time with you~"
-    $ characterization_monika_open_minded = True
+    m lean happ om oe "So, if you ever want to do something, let me know! I'd love to spend time with you~"
+    # $ characterization_monika_open_minded = True
+    show monika cm
     return
 
 label script2_m_dislikes():
     mc "What do you dislike?"
-    m "Oh...ahaha~"
-    m "That's...a question."
-    m "To be honest, I don't really have many dislikes."
+    m forward nerv om oe "Oh...ahaha~"
+    m nerv mg oe "That's...a question."
+    m neut mh oe ldown "To be honest, I don't really have many dislikes."
+    $ characterization_monika_open_minded = True
     #if Likes was chosen
     if characterization_monika_open_minded:
+        show monika e1b mb
         m "Like I said before, I like to think I'm pretty open-minded about most things!"
     #Else
     else:
+        show monika e1a mb
         m "To be honest, I like to think I'm pretty open-minded, and willing to give most things a try."
     #Converge
-    m "But if I had to say I disliked something...it would probably be..."
-    m "Stagnation."
-    m "I need to stay occupied to remain engaged..."
-    m "...so if I'm just doing one thing over and over, it gets tiring."
-    m "I really don't like it when people are closed-minded, too."
-    m "It's one thing to be opinionated - I'm pretty opinionated myself."
-    m "But if someone isn't even willing to try to see the other side of something..."
-    m "Or hates somebody, someone, without even trying to understand..."
-    m "It makes me really angry."
-    m "But I can tell you're a sweet person, $EMPLOYEE_NAME!"
-    m "You'd never be like that."
+    m dist mg oe "But if I had to say I disliked something...it would probably be..."
+    m dist e1d mh "Stagnation."
+    m b1a e1a mg lpoint "I need to stay occupied to remain engaged..."
+    m e4a b1c mh ldown "...so if I'm just doing one thing over and over, it gets tiring."
+    m neut om oe "I really don't like it when people are closed-minded, too."
+    m b1a mg "It's one thing to be opinionated - I'm pretty opinionated myself."
+    m rhip b1d e1d "But if someone isn't even willing to try to see the other side of something..."
+    m e4a b1b "Or hates somebody, someone, without even trying to understand..."
+    m dist mg oe "It makes me really, irrationally angry."
+    m happ mb oe b1a rdown "But I can tell you're a sweet person, $EMPLOYEE_NAME!"
+    m lean happ om ce "You'd never be like that."
     $ characterization_monika_open_minded = True
+    show monika cm
     return
 
 label script2_m_media():
     mc "What would you say your favorite piece of media is?"
+    show monika forward neut om oe lpoint at t11
     m "My favorite media?"
-    m "I don't mean to toot my own horn here, but..."
-    m "Doki Doki Literature Club!"
-    m "A predictable choice, I'm sure, aha~"
-    m "But, I have a good reason for it!"
-    m "It's because it took something that a lot of people saw as \"inferior\" fiction..."
-    m "Analyzed the concept..."
-    m "...and flipped it on it's head!"
-    m "I absolutely love when a creator takes stale tropes and turns it into something completely new."
-    m "It puts a whole new perspective on the genre."
-    m "If you liked that...you should also watch {i}Puella Magi Madoka Magica{/i}."
-    m "I'm not usually a fan of anime...that's more for Natsuki, ahaha~"
-    m "But it's really different! You should give it a try."
-    m "But...as far as the Literature Club..."
-    m "While it was horrible seeing my friends treated as they were - by myself, no less..."
-    m "I feel like not only did {i}I{/i} learn a valuable lesson from it, but that many others did too!"
-    m "Plus...you have to remember that it's fiction!"
-    m "We're like actors, you know?"
-    m "I still love my club members, and I'm sure they feel the same."
-    m "Anyway..."
-    m "I...got a little sidetracked there, haha~."
-    m "What were you going to say?"
+    m nerv om oe ldown "I don't mean to toot my own horn here, but..."
+    m happ mb ce "Doki Doki Literature Club!"
+    m laug om oe "A predictable choice, I'm sure, aha~"
+    m neut mh "But, I have a good reason for it!"
+    m lpoint "It's because it took something that a lot of people saw as \"inferior\" fiction..."
+    m neut om oe "Analyzed the concept..."
+    m e4b mo "...and flipped it on it's head!"
+    m mb "I absolutely love when a creator takes stale tropes and turns it into something completely new."
+    m ldown rhip e1a "It puts a whole new perspective on the genre."
+    m happ mh oe "If you liked that... you should also watch {i}Puella Magi Madoka Magica{/i}."
+    m nerv mg oe rdown "I'm not usually a fan of anime...that's more for Natsuki, ahaha~"
+    m neut mb lpoint  "But it's really different! You should give it a try."
+    m neut om oe ldown "But...as far as the Literature Club..."
+    m lpoint b1b mh "While it was horrible seeing my friends treated as they were - by myself, no less..."
+    m neut e1a b1a mb "I feel like not only did {i}I{/i} learn a valuable lesson from it, but that many others did too!"
+    m e4a rhip "Plus...you have to remember that it's fiction!"
+    m neut om oe "We're like actors, you know?"
+    m happ mb oe ldown b1b "I still love my club members, and I'm sure they feel the same."
+    m nerv mg oe "Anyway..."
+    m nerv om oe "I...got a little sidetracked there, haha~."
+    m happ om oe "What were you going to say?"
+    show monika ma
     return
 
 label script2_m_ideal_day():
@@ -186,18 +198,19 @@ label script2_m_attractions():
     return
 
 label script2_m():
+    show monika forward happ cm oe at t11
     mc "Hello, Monika."
-    m "Why hello, $EMPLOYEE_NAME!"
-    m "I hope you're doing well today!"
-    m "How can I help you?"
-
+    m lean happ om oe "Why hello, $EMPLOYEE_NAME!"
+    m happ "I hope you're doing well today!"
+    m happ ce "How can I help you?"
+    show monika cm
     call test_prompt_button("Ask Monika about herself") from _call_test_prompt_button
     ##BUTTON
     # Ask Monika about herself
 
     mc "Can you tell me about yourself?"
-    m "Oh! Certainly!"
-    m "What do you want to know?"
+    m forward happ rhip om oe "Oh! Certainly!"
+    m happ rdown lpoint om oe "What do you want to know?"
 
     ##CHOICE:
     # Likes?
@@ -217,15 +230,16 @@ label script2_m():
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
     call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_1
     mc "What are you thinking right now?"
-    m "Hmm..."
-    m "I'm thinking of that day I described, how it'd be nice to do that every day..."
-    m "And...I'm picturing just how much fun it would be with you."
-    m "Just us, you know?"
-    m "That'd be wonderful."
-    m "So, that's what I'm thinking about."
+    m forward neut b1a om oe rhip "Hmm..."
+    m rdown mh "I'm thinking of that day I described, how it'd be nice to do that every day..."
+    m happ mb oe b1b "And...I'm picturing just how much fun it would be with you."
+    m e4a rhip "Just us, you know?"
+    m happ om oe "That'd be wonderful."
+    m happ om oe b1a "So, that's what I'm thinking about."
 
     ##BUTTON:
     # Record Results
+    show monika ma
     call test_prompt_button("Record Results") from _call_test_prompt_button_2
     return True
 
