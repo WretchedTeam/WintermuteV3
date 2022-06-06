@@ -74,6 +74,8 @@ init -100 python in _wm_rounded:
                 (height + self.outline_width * 2))
 
             adjusted_cr.fill(self.outline_color)
+            adjusted_cr.xclipping = True
+            adjusted_cr.yclipping = True
             adjusted_cr.blit(cr, (self.outline_width, self.outline_width))
 
             rv = renpy.Render(*adjusted_cr.get_size())

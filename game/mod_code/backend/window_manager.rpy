@@ -121,7 +121,7 @@ screen program_base(app, **props):
         draggable True
 
         vbox properties props:
-            at RoundedWindows(radius=10.0, outline_width=3.0, outline_color="#828282")
+            at RoundedWindows(radius=10.0, outline_width=2.0, outline_color="#828282")
             use program_header(app.name, Function(app.close))
 
             transclude
