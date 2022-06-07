@@ -104,7 +104,7 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
         idle_child _wm_icon_grid.desktop_icon_image(icon, title)
         hover_child _wm_icon_grid.desktop_icon_image(icon, title, "#fff3")
 
-        clicked [ With(Fade(0.5, 1, 0.5)), Call(label_name), Play("audio", gui.activate_sound) ]
+        clicked [ Call(label_name), Play("audio", gui.activate_sound) ]
         activated _wm_icon_grid.desktop_icon_activated
         hovered Play("audio", gui.hover_sound)
         focus_mask None
