@@ -81,6 +81,7 @@ init -10 python in _wm_icon_grid:
 
 screen desktop_app_icon(title, app, cell=(0, 0)):
     $ snap = _wm_icon_grid.GridSnap(title)
+
     drag:
         dragged snap
         pos _wm_icon_grid.get_position(title, *cell)
@@ -92,10 +93,12 @@ screen desktop_app_icon(title, app, cell=(0, 0)):
         clicked [ Play("audio", gui.activate_sound), Function(app.open) ]
         activated _wm_icon_grid.desktop_icon_activated
         hovered Play("audio", gui.hover_sound)
-        focus_mask None
+        focus_mask _wm_icon_grid.desktop_icon_image(app.icon, "")
 
 screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
     $ snap = _wm_icon_grid.GridSnap(title)
+    $ f_icon = renpy.displayable(icon)
+
     drag:
         dragged snap
         pos _wm_icon_grid.get_position(title, *cell)
@@ -107,6 +110,4 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
         clicked [ Call(label_name), Play("audio", gui.activate_sound) ]
         activated _wm_icon_grid.desktop_icon_activated
         hovered Play("audio", gui.hover_sound)
-        focus_mask None
-
-
+        focus_mask _wm_icon_grid.desktop_icon_image(icon, "")
