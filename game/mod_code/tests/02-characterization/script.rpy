@@ -78,9 +78,8 @@ label script2_m_likes():
 
 label script2_m_dislikes():
     mc "What do you dislike?"
-    m forward nerv om oe "Oh...ahaha~"
-    m nerv mg oe "That's...a question."
-    m neut mh oe ldown "To be honest, I don't really have many dislikes."
+    m forward b1b nerv om oe "That's...a question, ahaha~"
+    m neut mh oe b1a ldown "To be honest, I don't really have many dislikes."
     $ characterization_monika_open_minded = True
     #if Likes was chosen
     if characterization_monika_open_minded:
@@ -108,10 +107,10 @@ label script2_m_dislikes():
 
 label script2_m_media():
     mc "What would you say your favorite piece of media is?"
-    show monika forward neut om oe lpoint at t11
+    show monika forward neut om oe b1f lpoint at t11
     m "My favorite media?"
     m nerv om oe ldown "I don't mean to toot my own horn here, but..."
-    m happ mb ce "Doki Doki Literature Club!"
+    m happ b1a mb ce "Doki Doki Literature Club!"
     m laug om oe "A predictable choice, I'm sure, aha~"
     m neut mh "But, I have a good reason for it!"
     m lpoint "It's because it took something that a lot of people saw as \"inferior\" fiction..."
@@ -119,10 +118,10 @@ label script2_m_media():
     m e4b mo "...and flipped it on it's head!"
     m mb "I absolutely love when a creator takes stale tropes and turns it into something completely new."
     m ldown rhip e1a "It puts a whole new perspective on the genre."
-    m happ mh oe "If you liked that... you should also watch {i}Puella Magi Madoka Magica{/i}."
+    m happ mh oe "If you liked that...you should also watch {i}Puella Magi Madoka Magica{/i}."
     m nerv mg oe rdown "I'm not usually a fan of anime...that's more for Natsuki, ahaha~"
     m neut mb lpoint  "But it's really different! You should give it a try."
-    m neut om oe ldown "But...as far as the Literature Club..."
+    m neut om oe ldown "Anyway...as far as the Literature Club..."
     m lpoint b1b mh "While it was horrible seeing my friends treated as they were - by myself, no less..."
     m neut e1a b1a mb "I feel like not only did {i}I{/i} learn a valuable lesson from it, but that many others did too!"
     m e4a rhip "Plus...you have to remember that it's fiction!"
@@ -136,65 +135,68 @@ label script2_m_media():
 
 label script2_m_ideal_day():
     mc "What is your ideal day?"
-    m "Oh, what an interesting question!"
-    m "Well, I {i}love{/i} waking up early in the morning."
+    m forward neut mb e2a ldown "Oh, what an interesting question!"
+    m happ om oe rhip "Well, I {i}love{/i} waking up early in the morning."
     #forest trail bg
+    show monika zorder 1
     show bg m_ch_1 zorder 0
     show white zorder 0:
         ease 0.75 alpha 0.0
-    m "Getting a nice run in before the morning heat picks up..."
-    m "Oh! Is this a walking trail?"
-    m "You're so nice, $EMPLOYEE_NAME."
-    m "Anyway..."
-    m "There's nothing quite like coming home to a hot shower and a good breakfast."
-    m "Maybe some pancakes and juice?"
-    m "But overall...after that, I'm not really sure."
+    m e1d b2a mb "Getting a nice run in before the morning heat picks up..."
+    m neut e1a b1f mf rdown "Oh! Is this a walking trail?"
+    m happ om ce "You're so nice, $EMPLOYEE_NAME."
+    m happ om oe "Anyway..."
+    m e1b lpoint "There's nothing quite like coming home to a hot shower and a good breakfast."
+    m happ om oe b1a ldown "Maybe some pancakes and juice?"
+    m nerv om oe b2a "But overall...after that, I'm not really sure."
     #exit music bridge bg
     show bg m_ch_2 zorder 0
     show white as whiter zorder 0:
         ease 0.75 alpha 0.0
-    m "I think I'd love a road trip with my friends."
-    m "Only the road and us, traveling somewhere new..."
-    m "Seeing all sorts of sights."
+    m happ om oe "I think I'd love a road trip with my friends."
+    m happ mn ce "Only the road and us, traveling somewhere new..."
+    m happ mh oe lpoint "Seeing all sorts of sights."
     #after school nighttime bar ext bg
     show bg m_ch_3 zorder 0
     show white as whiterer zorder 0:
         ease 0.75 alpha 0.0
-    m "Maybe even a night on the town to cap off the day!"
-    m "A sensible one, of course."
-    m "That would be absolutely perfect."
+    m happ mo oe "Maybe even a night on the town to cap off the day!"
+    m nerv om oe ldown "A sensible one, of course."
+    m happ mb e1c rhip "That would be absolutely perfect."
     hide bg m_ch_1
     hide bg m_ch_2
     hide bg m_ch_3
     show white as whitest zorder 0:
         ease 0.75 alpha 0.0
-    m "Thank you for the environments, by the way!"
-    m "You're really sweet, you know that?"
-    m "What about you? What's {i}your{/i} perfect d{nw}"
+    m happ om oe rdown "Thank you for the environments, by the way!"
+    m lean om ce "You're really sweet, you know that?"
+    m lean om oe "What about you? What's {i}your{/i} perfect d{nw}"
+    show monika forward happ cm oe at t11 zorder 0
     return
 
 label script2_m_attractions():
     mc "What are some traits you consider attractive?"
-    m "That's...a forward question, $EMPLOYEE_NAME..."
-    m "But I don't mind sharing, ahaha~"
-    m "I'm very open about my preferences."
+    m forward n2 b1b e1b mb ldown "That's...a forward question, $EMPLOYEE_NAME..."
+    m e1a "But I don't mind sharing, ahaha~"
+    m b1a n1 "I'm very open about my preferences."
+    $ characterization_monika_open_minded = True
     ##If Likes or Dislikes
     if characterization_monika_open_minded:
-        m "As I've said before, I'm very open-minded."
-
+        m happ oe lpoint  "As I've said before, I'm very open-minded."
     ##Converge
-    m "I guess by modern terminology, I'd be...pansexual?"
-    m "I guess I just don't really mind who the person is, as long as they're a sweetheart on the inside."
-    m "That's what I value the most, you know?"
-    m "Looks aren't everything, and I think as long as the attraction is there, the love is there..."
-    m "Then it doesn't matter."
-    m "That...probably didn't answer much of your question."
-    m "But that's really the truth."
-    m "If I connect with somebody special...that's how I know."
+    m neut om oe "I guess by modern terminology, I'd be...pansexual?"
+    m nerv om oe ldown n2 "I guess I just don't really mind who the person is, as long as they're a sweetheart on the inside."
+    m happ om oe rhip "That's what I value the most, you know?"
+    m mh "Looks aren't everything, and I think as long as the attraction is there, the love is there..."
+    m happ mg oe rdown "Then it doesn't matter."
+    m nerv om oe "That...probably didn't answer much of your question."
+    m neut mg "But that's really the truth."
+    m happ om oe b1b "If I connect with somebody special...that's how I know."
     ##visible blush
-    m "Maybe we'll end up having a strong connection, ahaha..."
-    m "Anyways..."
-    m "Was there anything else you wanted to ask?"
+    m laug om oe n4 "Maybe we'll end up having a strong connection, ahaha..."
+    m nerv om oe "Anyways..."
+    m happ om oe n1 "Was there anything else you wanted to ask?"
+    show monika ma
     return
 
 label script2_m():
@@ -211,6 +213,7 @@ label script2_m():
     mc "Can you tell me about yourself?"
     m forward happ rhip om oe "Oh! Certainly!"
     m happ rdown lpoint om oe "What do you want to know?"
+    show monika ma
 
     ##CHOICE:
     # Likes?
@@ -659,15 +662,26 @@ label script2_y():
     ##BUTTON
     # Ask Yuri about herself
     call test_prompt_button("Ask Yuri about herself") from _call_test_prompt_button_9
+    show yuri turned neut n1 cm oe at t11
     mc "Can you tell me about yourself?"
-    y "A-about myself...?"
-    y "Uuuu...."
-    y "Well, um..."
-    y "I..."
+    show yuri turned nerv lup rup e1a at t11
+    y "A-about myself…?"
+    show yuri turned awk mg e2b b2b at t11
+    y "Uuuu…."
+    show yuri turned blus mh e1c b2c at t11
+    y "Well, um…"
+    show yuri turned blaw mh e2a b2c at t11
+    y "I…"
+    show yuri turned worr blus cm ce at t11
+    pause 1.0
+    show yuri turned worr mg blus ce at t11
     y "...sorry."
+    show yuri turned e1d mg blus b2b at t11
     y "I guess I just...have a hard time expressing myself."
-    y "There's a surfeit of knowledge tidbits...but I can't condense them..."
-    y "I guess...I like to keep to myself..."
+    show yuri turned e1d mh blus b1c at t11
+    y "There’s a surfeit of knowledge tidbits...but I can’t condense them…"
+    show yuri turned e1b me blus b1a at t11
+    y "I guess...I like to keep to myself…"
     y "And...I like a variety of things..."
     y "..."
     y "...was there anything else?"
