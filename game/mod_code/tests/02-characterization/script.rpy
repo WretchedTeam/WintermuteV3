@@ -580,21 +580,36 @@ label script2_n():
 
 label script2_y_likes():
     mc "What do you like?"
+    show yuri turned e1a mg b2a rup at t11
     y "Well, I suppose I can begin with something I'm sure you're aware of."
+    show yuri turned e1d mb b1a rup at t11
     y "As you probably know... I like to read."
+    show yuri turned e4a mb b1a lup rup at t11
     y  "You can easily immerse yourself and escape to another dimension while you're reading a good story."
+    show yuri turned e1b mb b1c lup rup at t11
     y "There's hardly anything that can truly match the experience. Using nothing but your imagination to create vivid imagery based on words on the page. It's remarkable."
-    y "But, I suppose virtual reality is comparable in some ways."
-
-    y "But there's just...something to a book."
-    y "The ability to create a world with nothing but words..."
-    y "There's just something unique about the written word, that I can't get anywhere else."
+    show yuri turned e1d mh b1c rup at t11
+    y "I suppose virtual reality is comparable in some ways."
+    show yuri turned e4a mb b2a lup rup at t11
+    y "But there’s just...something to a book."
+    show yuri turned e1a mb b2a lup rup at t11
+    y "The ability to create a world with nothing but words…"
+    show yuri turned e1b mb b2a lup rup at t11
+    y "There’s just something unique about the written word, that I can't get anywhere else."
+    show yuri turned n3 e1c mh b3c rup at t11
     y "I suppose I also fancy myself as a knife collector."
-    y "I hope that doesn't bother you..."
+    show yuri turned n4 e2a mg b3c rup at t11
+    y "I hope that doesn’t bother you…"
+    show yuri turned n3 e2a mc b3c lup rup at t11
     y "I've amassed quite the collection. From dirks and daggers to just simple multi-tools."
+    show yuri turned n3 e2b mc b3c lup rup at t11
     y "I...like the danger."
+    show yuri turned n3 e2a ma b3c lup rup at t11
     y "..."
+    pause 1.0
+    show yuri turned n4 e2a mk b2c rup at h11
     y "Oh god, I'm not coming across as some sort of lunatic!"
+    show yuri turned n4 e1b mg b2b rup at t11
     y "This is just something I'm passionate about, I suppose. It's good to have a hobby, right?"
     return
 
@@ -656,31 +671,32 @@ label script2_y_attractions():
 
 label script2_y():
     # Address Yuri
+    show yuri turned neut n1 cm oe at t11
     mc "Hello, Yuri."
     y "Oh, um...hi."
 
     ##BUTTON
     # Ask Yuri about herself
     call test_prompt_button("Ask Yuri about herself") from _call_test_prompt_button_9
-    show yuri turned neut n1 cm oe at t11
+    show yuri turned neut n1 cm oe
     mc "Can you tell me about yourself?"
-    show yuri turned nerv lup rup e1a at t11
+    show yuri turned nerv lup rup e1a
     y "A-about myself…?"
-    show yuri turned awk mg e2b b2b at t11
+    show yuri turned awk mg e2b b2b
     y "Uuuu…."
-    show yuri turned blus mh e1c b2c at t11
+    show yuri turned blus mh e1c b2c
     y "Well, um…"
-    show yuri turned blaw mh e2a b2c at t11
+    show yuri turned blaw mh e2a b2c
     y "I…"
-    show yuri turned worr blus cm ce at t11
+    show yuri turned worr blus cm ce
     pause 1.0
-    show yuri turned worr mg blus ce at t11
+    show yuri turned worr mg blus ce
     y "...sorry."
-    show yuri turned e1d mg blus b2b at t11
+    show yuri turned e1d mg blus b2b
     y "I guess I just...have a hard time expressing myself."
-    show yuri turned e1d mh blus b1c at t11
+    show yuri turned e1d mh blus b1c
     y "There’s a surfeit of knowledge tidbits...but I can’t condense them…"
-    show yuri turned e1b me blus b1a at t11
+    show yuri turned e1b me blus b1a
     y "I guess...I like to keep to myself…"
     y "And...I like a variety of things..."
     y "..."
