@@ -148,7 +148,7 @@ init -1500 python:
                 **properties):
 
             if kind is None:
-                kind = store.terminal
+                kind = store.terminal_char
 
             ADVCharacter.__init__(
                 self,
@@ -216,7 +216,7 @@ init -1500 python:
             type="nvl",
         )
     
-    terminal = TerminalCharacter(
+    terminal_char = TerminalCharacter(
         who_style="terminal_entry_text",
         what_style="terminal_entry_text",
         window_style='empty',

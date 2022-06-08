@@ -19,6 +19,10 @@ init python in _wm_console:
             self.__history = list(args)
             self.__current_command = None
 
+        def clear(self):
+            self.__history.clear()
+            self.__current_command = None
+
         def append_newline(self):
             self.__history.append("")
 

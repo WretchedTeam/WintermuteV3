@@ -1,3 +1,6 @@
+define 2 wm_console = _wm_console.Console()
+define 2 wm_terminal = _wm_terminal.Terminal()
+
 label wm_start():
     $ renpy.scene("screens")
     $ _wm_manager.Application.close_all_apps()
@@ -8,19 +11,23 @@ label wm_start():
     show dev_bg outline
     with dissolve
 
-    $ console = _wm_console.Console()
-    show screen interactive_console(console)
+    $ wm_console.clear()
+    show screen interactive_console(wm_console)
 
     if not persistent.seen_wm_program:
-        call wm_first_console(console) from _call_wm_first_console
+        call wm_first_console(wm_console) from _call_wm_first_console
         $ persistent.seen_wm_program = True
 
     else:
-        call fill_console_and_wmservice(console) from _call_fill_console_and_wmservice
+        call fill_console_and_wmservice(wm_console) from _call_fill_console_and_wmservice
         show dev_bg open
         pause 1.45
 
-    show screen terminal(_wm_terminal.Terminal())
+    $ wm_terminal.clear_terminal()
+    show screen terminal(wm_terminal)
+
+    $ _wm_wmservice.clear_log()
+    show screen wmservice()
 
     $ quick_menu = True
 

@@ -21,14 +21,6 @@ init python in _wm_music_player_app:
         DictEquality
     )
 
-    def open_music_player():
-        if not renpy.store.quick_menu:
-            return
-
-        renpy.run(ToggleScreen("mini_player", Dissolve(0.25, time_warp=_warper.ease_cubic)))
-
-    _default_keymap.keymap["shift_K_m"] = open_music_player
-
     category_playlist_key = {
         1: "favorite",
         2: "playlist",
