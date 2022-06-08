@@ -97,7 +97,6 @@ screen desktop_app_icon(title, app, cell=(0, 0)):
 
 screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
     $ snap = _wm_icon_grid.GridSnap(title)
-    $ f_icon = renpy.displayable(icon)
 
     drag:
         dragged snap
