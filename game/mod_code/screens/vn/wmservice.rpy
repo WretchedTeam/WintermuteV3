@@ -40,7 +40,7 @@ init -10 python in _wm_wmservice:
         if ev == "begin":
             log_entries.append("listener>> start speech recognition polling.")
 
-        elif ev == "slow_done":
+        elif ev == "end":
             log_entries.append("listener>> stop speech recognition polling.")
 
         if len(log_entries) > 50:

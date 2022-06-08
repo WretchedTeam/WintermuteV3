@@ -85,6 +85,7 @@ init -10 python in _wm_font_jb_mono:
     regular = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Regular.ttf"
     medium = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Medium.ttf"
     semibold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-SemiBold.ttf"
+    extrabold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraBold.ttf"
 
-    register_font_tag("jb_mono", { "light": light, "regular": regular, "medium": medium, "semibold": semibold })
+    register_font_tag("jb_mono", { "light": light, "regular": regular, "medium": medium, "semibold": semibold, "extrabold": extrabold })
 
