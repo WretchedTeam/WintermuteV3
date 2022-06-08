@@ -5,10 +5,12 @@ screen mini_player():
 
     $ track = mpp.get_current_track()
 
-    frame xalign 1.0:
+    frame ypos (400 + 20):
         has vbox:
             spacing 20
             xfill True
+
+        use overlay_header("Mini Player")
 
         python:
             if track is None:
@@ -53,6 +55,13 @@ screen mini_player():
             textbutton _("{forward}") action mpp.mp.Forward()
             textbutton _("{next}") action mpp.mp.Next()
 
+            null width 5
+
+            hbox yalign 0.5:
+                spacing 10
+                text _("{volume}") size 24
+                bar value MixerValue(mpp.mp.channel) yalign 0.5
+
         side "l c r":
             spacing 30
 
@@ -73,11 +82,12 @@ style mini_player_label_frame is empty
 style mini_player_text is empty
 style mini_player_button_text is empty
 style mini_player_bar is empty
+style mini_player_slider is mini_player_bar
 
 style mini_player_frame:
-    background "#5050509f"
-    padding (30, 30)
-    xsize 500
+    background RoundedFrame("#505050b6", outline_width=2, outline_color="#626262")
+    padding (20, 20)
+    xysize (400, None)
 
 style mini_player_label_frame:
     xsize 40

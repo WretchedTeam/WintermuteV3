@@ -14,6 +14,7 @@ init python in _wm_terminal:
 
             self.show_caret = False
             self.show_shell = True
+            self.yadj = ui.adjustment()
 
         def set_caret(self, v):
             self.show_caret = v
@@ -78,19 +79,28 @@ image terminal_caret:
 screen terminal(term):
     style_prefix "console"
 
-    frame xalign 1.0:
-        has viewport:
-            xysize (700, 700)
+    python:
+        term.yadj.value = float('inf')
 
+    frame xalign 1.0:
         has vbox
 
-        $ history = term.get_history_string()
-        if history:
-            text history
+        use overlay_header("Terminal")
+        null height 20
 
-        if term.input_text is not None:
-            text term.shell_symbol + term.input_text[:term.input_idx] + "{image=terminal_caret}"
-        elif term.show_shell:
-            text term.shell_symbol + ("{image=terminal_caret}" if term.show_caret else "")
+        viewport:
+            yadjustment term.yadj
+            mousewheel True
 
-        add term.event_handler
+            has vbox
+
+            $ history = term.get_history_string()
+            if history:
+                text history
+
+            if term.input_text is not None:
+                text term.shell_symbol + term.input_text[:term.input_idx] + "{image=terminal_caret}"
+            elif term.show_shell:
+                text term.shell_symbol + ("{image=terminal_caret}" if term.show_caret else "")
+
+            add term.event_handler

@@ -63,7 +63,11 @@ screen interactive_console(con):
     style_prefix "console"
 
     frame:
-        has vbox 
+        has vbox
+
+        use overlay_header("Console")
+
+        null height 20
 
         for t in con.history:
             text t
@@ -75,9 +79,10 @@ style console_frame is empty
 style console_text is empty
 
 style console_frame:
-    background "#5050509f"
-    padding (30, 30)
-    xsize 520
+    # background "#505050"
+    background RoundedFrame("#505050b6", outline_width=2, outline_color="#626262")
+    padding (20, 20)
+    xysize (400, 400)
 
 style console_text:
     font _wm_font_jb_mono.regular

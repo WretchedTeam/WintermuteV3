@@ -20,6 +20,8 @@ label wm_start():
         show dev_bg open
         pause 1.45
 
+    show screen terminal(_wm_terminal.Terminal())
+
     $ quick_menu = True
 
     $ test = _wm_test.get_current_test()
