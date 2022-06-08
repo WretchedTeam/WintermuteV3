@@ -108,6 +108,10 @@ screen input(prompt):
     style_prefix "input"
 
     window:
+        has vbox
+        use overlay_header("Input")
+
+        null height 20
 
         vbox spacing 10:
             xalign gui.dialogue_text_xalign

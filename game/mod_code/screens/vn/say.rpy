@@ -66,7 +66,7 @@ style window:
     ysize gui.textbox_height
 
     padding (20, 20)
-    background RoundedFrame("#505050e0", outline_width=2, outline_color="#626262")
+    background RoundedFrame("#505050b6", outline_width=2, outline_color="#626262")
 
 style namebox:
     xpos gui.name_xpos
