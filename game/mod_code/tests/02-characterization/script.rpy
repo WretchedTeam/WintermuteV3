@@ -61,7 +61,6 @@ label script2_m_likes():
     m happ mg oe "Mental health comes in different forms, too. Not just staying positive or such..."
     m happ om oe "But also trying to always learn something new!"
     m e1b om ldown "That's why I liked the Debate Club so much... even if you never saw me there."
-    $ characterization_monika_open_minded = True
     #if Dislikes was chosen
     if characterization_monika_open_minded:
         show monika e4a mb
@@ -72,7 +71,7 @@ label script2_m_likes():
         m "I'd like to think I'm a pretty open-minded person..."
     #Converge
     m lean happ om oe "So, if you ever want to do something, let me know! I'd love to spend time with you~"
-    # $ characterization_monika_open_minded = True
+    $ characterization_monika_open_minded = True
     show monika cm
     return
 
@@ -80,7 +79,6 @@ label script2_m_dislikes():
     mc "What do you dislike?"
     m forward b1b nerv om oe "That's...a question, ahaha~"
     m neut mh oe b1a ldown "To be honest, I don't really have many dislikes."
-    $ characterization_monika_open_minded = True
     #if Likes was chosen
     if characterization_monika_open_minded:
         show monika e1b mb
@@ -179,7 +177,6 @@ label script2_m_attractions():
     m forward n2 b1b e1b mb ldown "That's...a forward question, $EMPLOYEE_NAME..."
     m e1a "But I don't mind sharing, ahaha~"
     m b1a n1 "I'm very open about my preferences."
-    $ characterization_monika_open_minded = True
     ##If Likes or Dislikes
     if characterization_monika_open_minded:
         m happ oe lpoint  "As I've said before, I'm very open-minded."
