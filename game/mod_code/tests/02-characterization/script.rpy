@@ -579,6 +579,7 @@ label script2_n():
     return True
 
 label script2_y_likes():
+    show yuri turned neut n1 cm oe at t11
     mc "What do you like?"
     show yuri turned e1a mg b2a rup at t11
     y "Well, I suppose I can begin with something I'm sure you're aware of."
@@ -608,99 +609,151 @@ label script2_y_likes():
     y "..."
     pause 1.0
     show yuri turned n4 e2a mk b2c rup at h11
-    y "Oh god, I'm not coming across as some sort of lunatic!"
+    y "Oh god, I hope I'm not coming across as some sort of lunatic!"
     show yuri turned n4 e1b mg b2b rup at t11
     y "This is just something I'm passionate about, I suppose. It's good to have a hobby, right?"
+    show yuri md
     return
 
 label script2_y_dislikes():
     mc "What do you dislike?"
-    y "D-dislike...?"
-    y "I...don't have many of them..."
-    y "You'll find that I'm quite easygoing."
-    y "However, I can't stand ignorance."
+    show yuri turned lsur om oe
+    y "D-dislike…?"
+    show yuri turned e1b mh b1c rup at t11
+    y "I...don’t have many of them…"
+    show yuri turned e1d mg b1a at t11
+    y "You’ll find that I’m quite easygoing."
+    show yuri turned e1a mg b1d at t11
+    y "However, I can’t stand ignorance."
+    show yuri turned e4a mg b1d rdown at t11
     y "Willful non-education about a subject."
+    show yuri turned e2b mh b1a at t11
     y "At the very least, one can try to broaden their horizons..."
+    show yuri turned e1c mg b1a at t11
     y "Or to think deeply about certain things."
-    y "There's a shallowness to ignorance, I think."
+    show yuri turned e1d mi b2a lup at t11
+    y "There’s a shallowness to ignorance, I think."
+    show yuri turned anno om oe at t11
     y "A desire to not confront a complex truth but to accept a simple lie."
-    y "Not...that I would think you are like that..."
-    y "Sorry, I tend to go off on tangents..."
-    y "I can...stay quiet if you like..."
+    show yuri turned anno e2a mb lup rup at t11
+    y "Not...that I would think you are like that…"
+    show yuri turned neut mf at t11
+    pause 1.0
+    show yuri shy angr cm ce at s11
+    pause 0.5
+    show yuri shy angr om ce
+    y "Sorry, I tend to go off on tangents…"
+    show yuri shy neut om oe
+    y "I can...stay quiet if you'd like…"
+    show yuri cm
     return
 
 label script2_y_media():
-    mc "What's your favourite piece of media?"
-    y "My favorite...?"
+    show yuri turned neut n1 cm oe at t11
+    mc "What’s your favourite piece of media?"
+    show yuri turned flus mh oe lup
+    y "My favorite…?"
+    show yuri turned mb e1d b3c ldown
     y "Oh, it's definitely Portrait of Markov! No doubt about it."
+    show yuri turned e4b mb b1c rup
     y "It's truly a fascinating read. It's about this religious camp converted into a prison where a fanatical cult is conducting human experiments. All in the name of reaching the heights of human evolution."
+    show yuri turned n3 mb e2a rup lup
     y "However, things quickly deteriorate once selective breeding takes place. The cult quickly loses control as subjects of these experiments develop a crazed bloodlust. This is when they begin cutting off limbs and affixing them to--"
+    show yuri turned e1d mg b2c ldown at h11
     y "Oh, that actually might be a bit of a spoiler."
+    show yuri turned n1 e4a mg ldown at s11
     y "I'm sorry."
+    show yuri turned n3 dist om e1a
     y "But you know, if you'd like to read it yourself, a new limited edition hardcover release is on sale now through Amazon..."
-    y "It would make for a nice little present for... someone special."
+    show yuri turned n3 dist om oe
+    y "It would make for a nice present for...someone special."
+    show yuri ma
     return
 
 label script2_y_ideal_day():
+    show yuri turned neut n1 cm oe at t11
     mc "What is your ideal day?"
+    show yuri turned neut mh e1b
     y "My ideal day?"
+    show yuri turned e1d mg lup
     y "Well, I wish I could say it were a bit more exciting. However, I don't require much."
     show bg y_ch_1 zorder 0
     show white zorder 0:
         ease 0.75 alpha 0.0
-    y "I could curl up in a blanket next to the radiator and read a good book while sipping a hot cup of tea."
+    show yuri turned n3 mb e1a zorder 1
+    y "I could curl up in a blanket next to the fire and read a good book while sipping a hot cup of tea."
+    show yuri turned n4 b2b e1c mk rup lup
     y "Erm, is that a tad too predictable? I'm not too basic am I?"
-    y "I'm sorry..."
-    y "But if you wanted to say...bring a bottle of wine..."
-    y "I wouldn't be opposed to that."
+    show yuri turned n1 e4a at s11
+    y "I'm sorry…"
+    show yuri turned n3 mg b1a ldown at t11
+    y "But if you wanted to say… bring a bottle of wine.. "
+    show yuri turned e1e mb
+    y "I wouldn't be opposed to that. "
     hide bg y_ch_1
     show white as whiter zorder 0:
         ease 0.75 alpha 0.0
+    show yuri curi om oe
     y "But...how about you? Wha{nw}"
+    show yuri neut oe ma
     return
 
 label script2_y_attractions():
+    show yuri turned neut n1 cm oe at t11
     mc "What are some traits you consider attractive?"
+    show yuri turned e1b b1c mh lup
     y "Oh, well that's easy. I like someone who's well read, and intelligent."
+    show yuri turned e4a b1c mh lup
     y "Someone able to carry on an interesting conversation."
+    show yuri turned e1d b1a mg ldown
     y "Of course, that's not to say that I don't enjoy just a moment of peaceful silence."
+    show yuri turned e1d b1b mh
     y "I don't mean an awkward moment. I don't want someone to be pressured into filling every moment with me with needless chit-chat."
+    show yuri turned e1a b1c mb rup
     y "If anything, that's how I know I found someone special. When we can just sit beside each other and enjoy each other's company without saying a word."
+    show yuri turned e4b mb b1a rup lup
     y "Hehe, I hope I can have a moment like that with you..."
+    show yuri ma
     return
 
 label script2_y():
     # Address Yuri
-    show yuri turned neut n1 cm oe at t11
+    show yuri turned neut cm oe at t11
     mc "Hello, Yuri."
-    y "Oh, um...hi."
-
-    ##BUTTON
-    # Ask Yuri about herself
+    show yuri lsur om oe at h11
+    y "O-oh!"
+    show yuri turned nerv n2 e1a mh at t11
+    y "Um...hi."
+    show yuri turned neut n1 cm oe at t11
     call test_prompt_button("Ask Yuri about herself") from _call_test_prompt_button_9
-    show yuri turned neut n1 cm oe
     mc "Can you tell me about yourself?"
-    show yuri turned nerv lup rup e1a
+    show yuri turned nerv lup rup e1a at t11
     y "A-about myself…?"
-    show yuri turned awk mg e2b b2b
+    show yuri turned awk mg e2b b2b at t11
     y "Uuuu…."
-    show yuri turned blus mh e1c b2c
+    show yuri turned blus mh e1c b2c at t11
     y "Well, um…"
-    show yuri turned blaw mh e2a b2c
+    show yuri turned blaw mh e2a b2c at t11
     y "I…"
-    show yuri turned worr blus cm ce
+    show yuri turned worr blus cm ce at t11
     pause 1.0
-    show yuri turned worr mg blus ce
+    show yuri turned worr mg blus ce at t11
     y "...sorry."
-    show yuri turned e1d mg blus b2b
+    show yuri turned e1d mg blus b2b at t11
     y "I guess I just...have a hard time expressing myself."
-    show yuri turned e1d mh blus b1c
+    show yuri turned e1d mh blus b1c at t11
     y "There’s a surfeit of knowledge tidbits...but I can’t condense them…"
-    show yuri turned e1b me blus b1a
+    show yuri turned e1b mh blus b1a at t11
     y "I guess...I like to keep to myself…"
-    y "And...I like a variety of things..."
+    show yuri turned e1d mg blus b1c at t11
+    y "And...I like a variety of things…"
+    pause 1.0
+    show yuri turned e1d md blus b1c at t11
+    pause 1.0
     y "..."
+    show yuri turned e2b mg lup rup at t11
     y "...was there anything else?"
+    show yuri turned neut n1 cm oe at t11
 
     ##CHOICE:
     # Likes?
@@ -719,11 +772,17 @@ label script2_y():
 
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
     call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_10
+    show yuri turned neut n1 cm oe at t11
     mc "What are you thinking right now?"
+    show yuri turned n3 mb e4b lup rup
     y "Oh, well I'm just hoping to get the chance to read with you."
+    show yuri turned e1a
     y "I'd love nothing more than to share some great stories with you, and immerse ourselves in a captivating fantasy world."
-    y "Then perhaps... discuss the story afterwards?"
+    show yuri turned n4 e1b rdown
+    y "Then perhaps...discuss the story afterwards?"
+    show yuri turned e4b ldown
     y "Hehe, sorry. I'm just a little giddy at the idea. I'm sure once you've downloaded a few books, we'll be able to share some wonderful experiences together."
+    show yuri e1b ma
 
     ##BUTTON:
     # Record Results
