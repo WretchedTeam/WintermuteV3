@@ -6,7 +6,9 @@ define 10 wintermute_tests = [
     nickname_test,
     consulai_test,
     affection_test,
-    sensory_test
+    sensory_test,
+    stress_test,
+    neural_test,
 ]
 
 default 10 persistent.completed_tests = [ ]
@@ -79,8 +81,8 @@ init -10 python in _wm_test:
             Label to be called on advancing to another test.
         """
 
-        def __init__(self, key, name, description, final_report, assigned_on, assigner=None, 
-                headlines=None, start_emails=None, complete_emails=None, main_email=None, 
+        def __init__(self, key, name, description, final_report, assigned_on, assigner=None,
+                headlines=None, start_emails=None, complete_emails=None, main_email=None,
                 main_label="start", on_start=None, on_complete=None, on_advance=None):
 
             self.key = key
@@ -148,7 +150,7 @@ init -10 python in _wm_test:
 
             self.__call_cb(self.on_start)
 
-        def run_complete(self): 
+        def run_complete(self):
             if self.complete_emails is not None:
                 for email in self.complete_emails:
                     email.unlock()

@@ -1,3 +1,6 @@
+define sensory_test_report = """
+Lorem Ipsum"""
+
 define 2 sensory_test =  _wm_test.WintermuteTest(
     "sensory_test",
     "Sensory Emulation",

@@ -3,13 +3,13 @@ init python:
         unique_id="sensory_main_email",
         subject="Sensory emulation",
         contents="""
-Hi mate know its normally iwan giving u your instructions but hes taken some time off today for the funeral. James and him was close so the recent news was a bit of a shitter 
+Hi mate know its normally iwan giving u your instructions but hes taken some time off today for the funeral. James and him was close so the recent news was a bit of a shitter
 
 Anyway onto bizness, got another test for you if you don't mind
 
 So basically people are dicks and we have to account for that, so over the past few months greg and I have been working on the negative responses side of things (iwan refused to on "moral grounds")
 
-What I want you to do when you boot up the program this time is to get them in a good mood with doing something youll know they like (this may require having a look at our ddlc bible document if you need to get to know the characters properly, it has info about them from ddlc, plus and LIBITINA) 
+What I want you to do when you boot up the program this time is to get them in a good mood with doing something youll know they like (this may require having a look at our ddlc bible document if you need to get to know the characters properly, it has info about them from ddlc, plus and LIBITINA)
 
 We have options for simulating taste touch smell etc etc and a selection of things to apply to that, so let natsuki taste a cupcake or smth like that, get them all happy
 
@@ -34,7 +34,7 @@ Jez
         contents="""
 Hey team!
 
-I'm really sorry to be the bringer of bad news here, but I have to announce that our annual company trip to New York City for the 'Turnell International Team Meetup' has been postponed. No more Central Park Luxury & drinks with the NY guys for us, unfortunately. 
+I'm really sorry to be the bringer of bad news here, but I have to announce that our annual company trip to New York City for the 'Turnell International Team Meetup' has been postponed. No more Central Park Luxury & drinks with the NY guys for us, unfortunately.
 
 As I've been told, it has come to William's attention that there are some urgent matters that need attending alongside the PR Department. Something about another Vox Populi \"\"\"hacker\"\"\" looking for his cash-out with phony "leaks". So there you are, at least there's someone to blame for all the commotion. Full refunds will be issued for employee deposits in the coming days.
 
@@ -56,5 +56,6 @@ Do not breathe a word of what [persistent.t7doki] said to anybody. Forget you ev
         sender=josborne_sender,
         quick_replies=[
             EmailReply("I understand.", _wm_test.AdvanceTest()),
+            EmailReply("Why not?", _wm_test.AdvanceTest()),
         ]
     )
