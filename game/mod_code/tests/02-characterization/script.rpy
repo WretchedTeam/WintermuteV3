@@ -434,118 +434,229 @@ label script2_s():
     return True
 
 label script2_n_likes():
+    show natsuki turned
     mc "What do you like?"
-    n "Oh, okay."
-    n "As much as I hate to say it...I like cute things."
+    n mg b1c lhip "Oh,{w=0.8}{nw}{done}"
+    show natsuki md e1b
+    pause 1
+    show natsuki e4a n1:
+        ease .8 yoffset -4
+    pause 1.3
+    show natsuki me:
+        ease .6 yoffset 0
+    pause 1
+    show natsuki mh ldown
+    m "Oh,{fast} okay."
+    n "As much as I hate to say it...{done}"
+    show natsuki e1b
+    n "As much as I hate to say it...{fast}I like cute things."
+    show natsuki e1a
     n "They're comforting."
-    n "I can feel your judgment from here, you know."
-    n "But yeah, apart from that..."
-    n "Manga, too."
-    n "It {i}is{/i} literature, by the way. People call graphic novels literature, too."
+    n e1d lhip rhip b1d "I can feel your judgment from here, you know."
+    n ldown e1a b1a "But yeah, apart from that..."
+    n e1b "Manga, too."
+    n e1d b1e "It {i}is{/i} literature, by the way. People call graphic novels literature, too."
+    show natsuki md
     return
 
 label script2_n_dislikes():
     mc "What do you dislike?"
+    show natsuki turned e1d b1c mb
     n "You."
+    show natsuki mn
+    pause 1.5
+    show natsuki e4b mn lhip n1:
+        linear 0.1 yoffset -3
+        pause 0.1
+        linear 0.1 yoffset 0
+        pause 0.1
+        linear 0.1 yoffset -3
+        pause 0.1
+        linear 0.1 yoffset 0
+        pause 0.1
+        linear 0.1 yoffset -3
+        pause 0.1
+        linear 0.1 yoffset 0
+        pause 0.1
+        linear 0.1 yoffset -3
+        pause 0.1
+        linear 0.1 yoffset 0
+        pause 0.1
+    pause 2
+    show natsuki mb e1d
     n "...that was a joke, dummy."
+    show natsuki ma
+    pause 1.15
+    show natsuki md
+    pause 1.35
+    show natsuki mh
     n "I guess I just don't like anything pretentious."
-    n "Just irks me."
-    n "Nobody has to pretend to use big words to show their point, you know."
-    n "Something something brevity something something wit."
-    n "If someone can get an idea across in a few words...what's wrong with that?"
-    n "You don't need to sound like some old-fashioned geezer to have a valid thought."
-    n "Anyway...it doesn't seem like you're the type to do that, so..."
-    n "Yeah."
+    n b1d "Just irks me."
+    n rhip "Nobody has to pretend to use big words to show their point, you know."
+    show natsuki e1b
+    n "Something something brevity{w=0.45}{nw}{done}"
+    show natsuki e1c
+    n "Something something brevity{fast} something something wit."
+    n e1a b1e "If someone can get an idea across in a few words...{done}"
+    show natsuki e2a
+    n "If someone can get an idea across in a few words...{fast}what's wrong with that?"
+    n mi "You don't need to sound like some old-fashioned geezer to have a valid thought."
+    n ldown e4a b1a mh "Anyway...{done}"
+    show natsuki e1a
+    n "Anyway...{fast}it doesn't seem like you're the type to do that, so..."
+    n rdown e1b "Yeah."
+    show natsuki md e1a
     return
 
 label script2_n_media():
     mc "What's your favourite piece of media?"
+    show natsuki turned rhip mh e1d
     n "Doesn't take a detective to figure {i}that{/i} one out."
+    show natsuki md
     n "..."
-    n "Oh come on! Parfait Girls?"
-    n "I mean, I'll explain anyway, but I'm surprised you don't know this already."
-    n "Slice-of-life manga. Follows Minori, Alice, Sara, and Ichika as they run a bakery together."
+    pause 1.5
+    n mi e2a b1d lhip n1 "Oh come on! Parfait Girls?"
+    n mh e1b "I mean, I'll explain anyway, but I'm surprised you don't know this already."
+    n e1a b1a rdown "Slice-of-life manga. Follows Minori, Alice, Sara, and Ichika as they run a bakery together."
     n "Funny bakery antics ensue."
-    n "I honestly don't know {i}why{/i} I like it so much, but I do, and that should be reason enough."
-    n "Actually, I take that back. Had I not read it, I probably would've never taken up baking."
-    n "...hmph."
-    n "I can tell you're brimming with excitement."
-    n "Y'know...we should read it together."
-    n "I've got a copy somewhere."
-    n "You're lucky that came with the bundle, otherwise you'd have to buy it yourself."
-    n "If you do, though...let me know, okay?"
+    n e4a b1c "I honestly don't know {i}why{/i} I like it so much, but I do, and that should be reason enough."
+    n ldown e1b b1a "Actually, I take that back. Had I not read it, I probably would've never taken up baking."
+    n cross me "...hmph."
+    pause 1.15
+    show natsuki b1c e1a
+    pause 1.35
+    n turned e1d b1d mh "I can tell you're brimming with excitement."
+    n e1b mb b1a "Y'know...{done}"
+    show natsuki e1a
+    n "Y'know...{fast}we should read it together."
+    n rhip "I've got a copy somewhere."
+    n e4b b1c "You're lucky that came with the bundle, otherwise you'd have to buy it yourself."
+    n e1a b1d "If you do, though...{done}"
+    show natsuki e1f
+    n "If you do, though...{fast}let me know, okay?"
+    show natsuki ma e1a
     return
 
 label script2_n_ideal_day():
     mc "What is your ideal day?"
+    show natsuki turned rhip mh b1f
     n "My ideal day?"
-    n "I don't see why this matters, but you're the boss."
-    n "Well...actually."
-    n "I think lying on the couch would be nice."
-    n "Some dumb romance movie on as background noise."
+    n lhip b1c "I don't see why this matters,{w=0.63}{nw}{done}"
+    show natsuki e4a b2a n1
+    n "I don't see why this matters,{fast} but you're the boss."
+    n b1a e1b rdown "Well...actually."
+    n e1a mb "I think lying on the couch would be nice."
+    n e4b "Some dumb romance movie on as background noise."
+    show natsuki ma zorder 1
     show bg n_ch_1 zorder 0
     show white zorder 0:
         ease 0.75 alpha 0.0
-    n "Yeah, like that. Nice touch."
-    n "Maybe with some blankets over me."
-    n "Manga in my hands, more volumes on the floor."
-    n "Cookies fresh from the oven, cooling on the rack."
-    n "Taking a glance from my reading to see the snow falling outside..."
-    n "And...uh."
-    n "I'd...want someone with me."
-    n "None of that would be as good as it would be with somebody I cared about."
-    n "..."
+    pause 0.6
+    show natsuki e1a
+    pause 0.7
+    n mc b1c ldown "Yeah, like that. Nice touch."
+    n b1a "Maybe with some blankets over me."
+    n e1b "Manga in my hands, more volumes on the floor."
+    n e4b b3c "Cookies fresh from the oven, cooling on the rack."
+    n e1a b1a "Taking a glance from my reading to see the snow falling outside..."
+    n b1c "And...{done}"
+    show natsuki me
+    pause 1
+    show natsuki e1b
+    pause 1.1
+    show natsuki me e1b rhip
+    n "And...{fast}uh."
+    n n3 mh e1a "I'd...want someone with me."
+    n e1b "None of that would be as good as it would be with somebody I cared about."
+    n cross md "..."
     hide bg n_ch_1
     show white as whiter zorder 0:
         ease 0.75 alpha 0.0
+    pause 0.75
+    show natsuki e1a
+    pause 1.1
+    show natsuki mi e4a b3a n4
     n "What're you staring at? You asked, okay?!"
-    n "Well, since I've indulged you up to this point..."
-    n "What's {i}yo{/i}{nw}"
+    show natsuki md
+    pause 1
+    show natsuki e1a b1d
+    pause 1
+    n mh b1a n1 "Well,{w=0.5}{nw}{done}"
+    show natsuki turned
+    n "Well,{fast} since I've indulged you up to this point..."
+    n e1a "What's {i}yo{/i}{nw}"
+    show natsuki md
     return
 
 label script2_n_attractions():
     mc "What are some traits you consider attractive?"
+    show natsuki turned e1a b1d n4 ml rhip
     n "..."
-    n "You have a dirty mind, you know that?"
-    n "Ugh, fine."
+    n mh "You have a dirty mind, you know that?"
+    show natsuki md
+    pause 1
+    show natsuki me e4a b3b:
+        easein .55 yoffset 6
+    n "Ugh,{w=0.9}{nw}{done}"
+    show natsuki mh b1d:
+        ease .2 yoffset 0
+    n "Ugh,{fast} fine."
+    show natsuki e1b b1a mh
     n "I like..."
-    n "..."
-    n "What're you looking at me like that for?"
-    n "Nnnnnn...."
-    n "I, uh..."
-    n "I like...friends. Okay?"
-    n "I know you probably think that's weird and I don't really care."
-    n "When I want a romantic partner, I want somebody who I can play a game with."
-    n "Banter with, laugh at weird stuff together, yadda yadda."
-    n "I'm one of those girls, yeah. Sue me."
-    n "Anyway...if they're nice to me..."
-    n "If I can feel safe around them..."
-    n "Then I don't care if they're a dude or a chick or somewhere in between or neither."
-    n "I'll like them."
-    n "...I see the look you're giving me. You're gross."
-    n "Fine."
-    n "As far as, uh, bedroom stuff goes...."
-    n "I don't know. I'm not {i}experienced{/i}. Ugh."
-    n "But as long as I care about the person...I can't see it mattering too much."
-    n "...yeah. That's it."
-    n "Don't know what you were expecting. I'm not exactly Ms. Romance."
-    n "But now that you've gotten me all beet-red, can we stop talking about this now?"
+    n e1a md "..."
+    n n3 mi b1d lhip "What're you looking at me like that for?"
+    n mm e1b n4 "Nnnnnn...."
+    n mh "I,{w=0.6}{nw}{done}"
+    show natsuki me rdown
+    n "I,{fast} uh..."
+    pause 1
+    n mh e4a "I like...friends. Okay?"
+    n e1d n1 b1a "I know you probably think that's weird and I don't really care."
+    n ldown e1a "When I want a romantic partner, I want somebody who I can play a game with."
+    n e1b lhip "Banter with,{w=0.3}{nw}{done}"
+    n e1c rhip "Banter with,{fast} laugh at weird stuff together,{w=0.35}{nw}{done}"
+    n e4a "Banter with, laugh at weird stuff together,{fast} yadda yadda."
+    n b1c "I'm one of those girls, yeah. Sue me."
+    n ldown "Anyway...{done}"
+    n e1a "Anyway...{fast}if they're nice to me..."
+    n e1b b1a "If I can feel safe around them..."
+    n e4a rdown "Then I don't care if they're a dude or a chick or somewhere in between or neither."
+    n e1a "I'll like them."
+    show natsuki md
+    pause 1.1
+    n cross mh e1d b1d "...I see the look you're giving me. You're gross."
+    show natsuki md
+    pause 1.1
+    n e4a mh "Fine."
+    n turned mh e1a "As far as,{w=0.5}{nw}{done}"
+    n e1b me "As far as,{fast} uh,{w=0.9}{nw}{done}"
+    n mh n3 e1c "As far as, uh,{fast} bedroom stuff goes..."
+    n cross mi e4a b3b "I don't know. I'm not {i}experienced{/i}. Ugh."
+    n mh e1b b1d "But as long as I care about the person...I can't see it mattering too much."
+    n e1a b1a "...yeah. That's it."
+    n b1c e4a "Don't know what you were expecting. I'm not exactly Ms. Romance."
+    n e1b "But now that you've got your kicks,{w=0.7}{nw}{done}"
+    n b1f e1a "But now that you've got your kicks,{fast} can we stop talking about this now?"
+    show natsuki md
     return
 
 label script2_n():
+    show natsuki turned md e1b b1a at t11 zorder 2
     # Address Natsuki
     mc "Hello, Natsuki."
-    n "Yo."
-    n "'Sup?"
+    n e1a mh rhip "Yo."
+    n b1c "'Sup?"
+    show natsuki md
 
     ##BUTTON
     # Ask Natsuki about herself
     call test_prompt_button("Ask Natsuki about herself") from _call_test_prompt_button_6
     mc "Can you tell me about yourself?"
-    n "Uhhh..."
-    n "Bit of a weird one, but..."
-    n "I mean, I don't really have a whole lot else to do, sooo...shoot."
-
+    show natsuki me rdown
+    n e1b b1a "Uhhh..."
+    n mh "Bit of a weird one, but..."
+    n e1a "I mean, I don't really have a whole lot else to do, sooo...shoot."
+    show natsuki md
     ##CHOICE:
     # Likes?
     # Dislikes?
@@ -563,13 +674,17 @@ label script2_n():
     ##CONVERGE ON "WHAT ARE YOU THINKING RIGHT NOW?"
     call test_prompt_button("What are you thinking right now?") from _call_test_prompt_button_7
     mc "What are you thinking right now?"
-    n "The best way to get out of this conversation as quickly as possible."
-    n "{i}Exit game.{/i}"
-    n "Ugh."
-    n "You do it."
-    n "..."
-    n "Pretty please, with a cherry on top?"
-
+    n turned e1d b1c n1 mh "The best way to get out of this conversation as quickly as possible."
+    n b1d "{i}Exit game.{/i}"
+    show natsuki md
+    pause 1.5
+    n e4a b3b rhip me "Ugh."
+    n e1a b1d mg "You do it."
+    show natsuki md
+    pause 1.5
+    n e1d md "..."
+    n b1c mh "Pretty please, with a cherry on top?"
+    show natsuki md
     ##BUTTON:
     # Record Results
     call test_prompt_button("Record Results") from _call_test_prompt_button_8
