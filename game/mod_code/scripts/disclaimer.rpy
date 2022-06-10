@@ -5,12 +5,12 @@ default persistent.shown_disclaimer = False
 # "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
 # "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
 
-define wm_ascii = """ __          ___       _                            _          ____   _____ 
+define wm_ascii = """ __          ___       _                            _          ____   _____
  \ \        / (_)     | |                          | |        / __ \ / ____|
-  \ \  /\  / / _ _ __ | |_ ___ _ __ _ __ ___  _   _| |_ ___  | |  | | (___  
-   \ \/  \/ / | | '_ \| __/ _ \ '__| '_ ` _ \| | | | __/ _ \ | |  | |\___ \ 
+  \ \  /\  / / _ _ __ | |_ ___ _ __ _ __ ___  _   _| |_ ___  | |  | | (___
+   \ \/  \/ / | | '_ \| __/ _ \ '__| '_ ` _ \| | | | __/ _ \ | |  | |\___ \
     \  /\  /  | | | | | ||  __/ |  | | | | | | |_| | ||  __/ | |__| |____) |
-     \/  \/   |_|_| |_|\__\___|_|  |_| |_| |_|\__,_|\__\___|  \____/|_____/ 
+     \/  \/   |_|_| |_|\__\___|_|  |_| |_| |_|\__,_|\__\___|  \____/|_____/
 ----------------------------------------------------------------------------"""
 
 define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
@@ -76,11 +76,13 @@ label disclaimer():
 
     term_echo "[wm_ascii]{fast}{nw}\n"
 
-    term_echo_caret "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
+    term_echo_caret "Project WINTERMUTE is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
     term_echo "{nw}"
     term_echo_caret "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
     term_echo "{nw}"
     term_echo_caret "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
+    term_echo "{nw}"
+    term_echo_caret "To fully simulate the desktop experience, it is recommended that Project WINTERMUTE is played in fullscreen."
     term_echo "{nw}"
     term_echo_caret "By playing [config.name], you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within.{nw}"
 
