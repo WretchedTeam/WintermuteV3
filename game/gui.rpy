@@ -73,7 +73,7 @@ define gui.text_size = 22
 define gui.name_text_size = 28
 
 ## The size of dialogue text.
-define gui.dialogue_text_size = 24
+define gui.dialogue_text_size = 22
 
 ## The size of text in the game's user interface.
 define gui.interface_text_size = 30

@@ -81,7 +81,7 @@ label wm_first_console(console):
     $ console.pop_history()
     $ console.append_history("{color=#00d900}Initiated WM Sandbox.{/color}")
 
-    scene dev_bg open
+    show dev_bg open
     pause 1.45
 
     pause 0.5

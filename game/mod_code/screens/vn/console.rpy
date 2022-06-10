@@ -55,6 +55,8 @@ image terminal_loading:
     repeat
 
 image terminal_loading_dots:
+    Text("", style="console_text")
+    0.5
     Text(".", style="console_text")
     0.5
     Text("..", style="console_text")
@@ -84,7 +86,7 @@ style console_text is empty
 
 style console_frame:
     # background "#505050"
-    background RoundedFrame("#505050b6", outline_width=2, outline_color="#626262")
+    background RoundedFrame("#505050f5", outline_width=2, outline_color="#626262")
     padding (20, 20)
     xysize (400, 400)
 

@@ -8,7 +8,7 @@ default persistent.shown_disclaimer = False
 define wm_ascii = """
 Turnell OS Bootloader
 =====================
-"""
+""".strip()
 
 define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
 define audio.foley_enter_key = [ "<silence 0.01>", "mod_assets/audio/foley/enter_key.ogg" ]
@@ -40,6 +40,8 @@ image startup_terminal_progress:
     DynamicDisplayable(terminal_progress_bar_dd_func, style="terminal_entry_text", length=50)
 
 image startup_terminal_dot_loading:
+    Text("", style="terminal_entry_text")
+    0.25
     Text(".", style="terminal_entry_text")
     0.25
     Text("..", style="terminal_entry_text")

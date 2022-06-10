@@ -17,6 +17,28 @@ screen say(who, what):
     window:
         id "window"
 
+        if who is not None:
+
+            window:
+                id "namebox"
+                style "namebox"
+                text who id "who"
+
+            null height 10
+
+        text what id "what"
+
+    ## If there's a side image, display it above the text. Do not display on the
+    ## phone variant - there's no room.
+    if not renpy.variant("small"):
+        add SideImage() xalign 0.0 yalign 1.0
+
+screen voice_recog_say(who, what):
+    style_prefix "say"
+
+    window:
+        id "window"
+
         has vbox
 
         use overlay_header("Voice Recognition")
@@ -45,7 +67,6 @@ screen say(who, what):
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
 
-
 ## Make the namebox available for styling through the Character object.
 init python:
     config.character_id_prefixes.append('namebox')
@@ -66,7 +87,7 @@ style window:
     ysize gui.textbox_height
 
     padding (20, 20)
-    background RoundedFrame("#505050b6", outline_width=2, outline_color="#626262")
+    background RoundedFrame("#505050f5", outline_width=2, outline_color="#626262")
 
 style namebox:
     xpos gui.name_xpos
