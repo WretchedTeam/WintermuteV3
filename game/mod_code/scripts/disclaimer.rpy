@@ -5,13 +5,10 @@ default persistent.shown_disclaimer = False
 # "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
 # "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
 
-define wm_ascii = """ __          ___       _                            _          ____   _____
- \ \        / (_)     | |                          | |        / __ \ / ____|
-  \ \  /\  / / _ _ __ | |_ ___ _ __ _ __ ___  _   _| |_ ___  | |  | | (___
-   \ \/  \/ / | | '_ \| __/ _ \ '__| '_ ` _ \| | | | __/ _ \ | |  | |\___ \
-    \  /\  /  | | | | | ||  __/ |  | | | | | | |_| | ||  __/ | |__| |____) |
-     \/  \/   |_|_| |_|\__\___|_|  |_| |_| |_|\__,_|\__\___|  \____/|_____/
-----------------------------------------------------------------------------"""
+define wm_ascii = """
+Turnell OS Bootloader
+=====================
+"""
 
 define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
 define audio.foley_enter_key = [ "<silence 0.01>", "mod_assets/audio/foley/enter_key.ogg" ]

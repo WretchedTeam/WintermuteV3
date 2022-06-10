@@ -116,8 +116,8 @@ image dev_bg close:
     alpha 1.0
     linear 0.5 alpha 0.0
 
-image wintermute_os_mark:
-    Text("{lexend=light}wintermute{/lexend} {lexend=semibold}OS{/lexend}", size=40)
+image turnell_os_mark:
+    Text("{lexend=light}Turnell{/lexend} {lexend=semibold}OS{/lexend}", size=40)
 
 image monika_thumb = "mod_assets/os/icons/dashboard/monika_thumb.png"
 image sayori_thumb = "mod_assets/os/icons/dashboard/sayori_thumb.png"

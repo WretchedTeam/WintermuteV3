@@ -25,7 +25,7 @@ screen register():
 
     add "desktop_background"
 
-    add "wintermute_os_mark" offset (50, 50)
+    add "turnell_os_mark" offset (50, 50)
 
     frame xalign 1.0:
         offset (-50, 50)
