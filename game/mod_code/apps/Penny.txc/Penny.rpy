@@ -22,6 +22,8 @@ style penny_idle_text is penny_text
 screen penny(t, i=0):
     style_prefix "penny"
     layer "penny"
+    modal True
+
     tag penny
 
     if t:
@@ -47,6 +49,12 @@ screen penny(t, i=0):
                     text penny_txt
 
                 add penny_img zoom 0.8
+
+    on "show" action _wm_penny.BlurEaseIn()
+    on "hide" action _wm_penny.BlurEaseOut()
+
+    on "replace" action _wm_penny.BlurEaseIn()
+    on "replaced" action _wm_penny.BlurEaseOut()
 
 style penny_button is empty
 

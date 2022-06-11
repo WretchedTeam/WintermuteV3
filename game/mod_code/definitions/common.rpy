@@ -97,3 +97,11 @@ label nodecor_command(term, t, completed=None):
     $ term.set_shell(True)
 
     return
+
+transform -10 easein_blur():
+    blur 0.0
+    easein_quad 0.5 blur 16.0
+
+transform -10 easeout_blur():
+    blur 16.0
+    easein_quad 0.5 blur 0.0

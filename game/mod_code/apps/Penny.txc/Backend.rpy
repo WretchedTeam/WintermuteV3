@@ -40,6 +40,9 @@ init python in _wm_penny:
     from store import (
         NoRollback,
         Show,
+        Function,
+        easein_blur,
+        easeout_blur,
         persistent, 
         _wm_penny_dialogues,
         show_screen_with_delay,
@@ -121,3 +124,17 @@ init python in _wm_penny:
         elif not persistent.penny_flags["first_spam_email"] and mail.is_spam:
             unlock_email_queue = _wm_penny_dialogues.first_spam_email
             persistent.penny_flags["first_spam_email"] = True
+
+    blur_layers = [ "master", "screens" ]
+
+    def BlurEaseIn():
+        return [
+            Function(renpy.show_layer_at, [ easein_blur ], layer)
+            for layer in blur_layers
+        ]
+
+    def BlurEaseOut():
+        return [
+            Function(renpy.show_layer_at, [ easeout_blur ], layer)
+            for layer in blur_layers
+        ]

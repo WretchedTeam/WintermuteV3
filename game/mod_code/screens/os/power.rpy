@@ -3,21 +3,21 @@ define config.quit_action = Show("power_off_prompt", _layer="power_off")
 init python in _wm_power_service:
     from store import (
         Function,
-        power_off_prompt_easein_blur,
-        power_off_prompt_easeout_blur
+        easein_blur,
+        easeout_blur
     )
 
     blur_layers = [ "master", "screens", "penny" ]
 
     def BlurEaseIn():
         return [
-            Function(renpy.show_layer_at, [ power_off_prompt_easein_blur ], layer)
+            Function(renpy.show_layer_at, [ easein_blur ], layer)
             for layer in blur_layers
         ]
 
     def BlurEaseOut():
         return [
-            Function(renpy.show_layer_at, [ power_off_prompt_easeout_blur ], layer)
+            Function(renpy.show_layer_at, [ easeout_blur ], layer)
             for layer in blur_layers
         ]
 
@@ -58,11 +58,3 @@ transform power_off_prompt_animation():
     on hide:
         alpha 1.0 yoffset 0
         ease_cubic 0.5 alpha 0.0 yoffset 15
-
-transform -10 power_off_prompt_easein_blur():
-    blur 0.0
-    easein_quad 0.5 blur 16.0
-
-transform -10 power_off_prompt_easeout_blur():
-    blur 16.0
-    easein_quad 0.5 blur 0.0
