@@ -75,6 +75,7 @@ screen mc_email_entry(email, bg=None):
 
         action [ 
             Function(mail_viewer_app.open, email=email),
+            Function(email.mark_read),
             Play("audio", gui.activate_sound)
         ]
 
@@ -91,7 +92,11 @@ screen mc_email_entry(email, bg=None):
 
             vbox xsize 320:
                 label email.subject style_suffix "subject":
-                    at renpy.partial(AlphaMask, mask=_wm_displayables.Gradient("#fff", "#fff0", start_pos=0.9))
+                    at [ 
+                        renpy.partial(AlphaMask, mask=_wm_displayables.Gradient("#fff", "#fff0", start_pos=0.92)), 
+                        Transform(nearest=True) 
+                    ]
+
                     if not email.is_read:
                         text_font _wm_font_ubuntu.medium
 

@@ -83,8 +83,6 @@ screen mail_viewer(email):
 
             vbar value YScrollValue("mail_viewer_vp") xalign 1.0 xoffset 30
 
-    on "show" action Function(email.mark_read)
-
 style mail_viewer_label is empty
 style mail_viewer_label_text is empty
 
@@ -160,7 +158,7 @@ style attachment_hbox:
 
 style attachment_button:
     padding (15, 10)
-    idle_background RoundedFrame("#fff", radius=10.0)
+    idle_background RoundedFrame("#fff", radius=10.0, outline_width=1.0, outline_color="#d5d5d5")
     hover_background RoundedFrame("#d5d5d5", radius=10.0)
 
 style attachment_button_text:
