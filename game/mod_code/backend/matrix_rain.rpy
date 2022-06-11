@@ -7,6 +7,9 @@ init python in _wm_matrix_rain:
             super(MatrixRain, self).__init__(**kwargs)
             self.font_map = renpy.displayable("mod_assets/images/fontmap.png")
 
+        def visit(self):
+            return [ self.font_map ]
+
         def render(self, width, height, st, at):
             rv = renpy.Render(width, height)
             fr = renpy.render(self.font_map, width, height, st, at)

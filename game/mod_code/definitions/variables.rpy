@@ -20,7 +20,7 @@ define 2 m = DynamicCharacter('m_name', image='monika', kind=doki, callback=_wm_
 define 2 n = DynamicCharacter('n_name', image='natsuki', kind=doki, callback=_wm_wmservice.doki_callback)
 define 2 y = DynamicCharacter('y_name', image='yuri', kind=doki, callback=_wm_wmservice.doki_callback)
 define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc_position="fixed")
-define 2 wm = Character("Wintermute", kind=doki)
+define 2 wm = Character("{glitchy=say_label:10:0.1}", kind=doki)
 
 default persistent.seen_wm_program = False
 

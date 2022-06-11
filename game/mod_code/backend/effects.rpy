@@ -98,5 +98,3 @@ init -100 python:
                 self.spawn_at(Text("{heart}", size=48, color="#ff4c4c"), x, y, 5)
             elif ev.type == pygame_sdl2.MOUSEBUTTONUP:
                 self.spawn_at(Text("{heart}", size=48, color="#4ce1ff"), x, y, 5)
-
-image test_particles = ParticleBurstOnClick(True)
