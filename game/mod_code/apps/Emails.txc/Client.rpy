@@ -90,11 +90,16 @@ screen mc_email_entry(email, bg=None):
                     xalign 0.5 yalign 0.5
 
             vbox xsize 320:
-                text _("[email.subject]") style_suffix "subject":
+                label email.subject style_suffix "subject":
+                    at renpy.partial(AlphaMask, mask=_wm_displayables.Gradient("#fff", "#fff0", start_pos=0.9))
                     if not email.is_read:
-                        font _wm_font_ubuntu.medium
+                        text_font _wm_font_ubuntu.medium
 
-                text _("by [email.sender.name]") style_suffix "sender"
+                # text email.subject style_suffix "subject":
+                #     if not email.is_read:
+                #         font _wm_font_ubuntu.medium
+
+                text ("by " + email.sender.name) style_suffix "sender"
 
                 $ date_received = persistent.email_dates.get(email.unique_id)
                 if date_received is not None:
@@ -107,7 +112,8 @@ screen mc_email_entry(email, bg=None):
 style mc_email_entry_button is empty
 style mc_email_entry_text is empty
 
-style mc_email_entry_subject is mc_email_entry_text
+style mc_email_entry_subject is empty
+style mc_email_entry_subject_text is mc_email_entry_text
 style mc_email_entry_sender is mc_email_entry_text
 style mc_email_entry_date is mc_email_entry_text
 
@@ -119,6 +125,9 @@ style mc_email_entry_text:
     color "#000" size 24
 
 style mc_email_entry_subject:
+    xfill True
+
+style mc_email_entry_subject_text:
     layout "nobreak"
 
 style mc_email_entry_sender:

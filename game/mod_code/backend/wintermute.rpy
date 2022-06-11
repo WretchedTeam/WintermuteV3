@@ -39,7 +39,7 @@ label wm_start():
             $ test.mark_complete()
             $ test.run_complete()
 
-    scene dev_bg_close
+    scene dev_bg close
     pause 1.45
 
     $ quick_menu = False
