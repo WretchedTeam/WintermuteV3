@@ -21,7 +21,7 @@ init python:
 init python:
     class BackgroundBlur(renpy.Container):
         def __init__(self, child, background, **kwargs):
-            super(DualFilter, self).__init__(**kwargs)
+            super(BackgroundBlur, self).__init__(**kwargs)
             self.background = renpy.displayable(background)
             self.add(self.background)
             self.add(child)

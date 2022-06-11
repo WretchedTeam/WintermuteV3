@@ -110,3 +110,19 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
         activated _wm_icon_grid.desktop_icon_activated
         hovered Play("audio", gui.hover_sound)
         focus_mask _wm_icon_grid.desktop_icon_image(icon, "")
+
+screen desktop_action_icon(title, icon, action, cell=(0, 0)):
+    $ snap = _wm_icon_grid.GridSnap(title)
+
+    drag:
+        dragged snap
+        pos _wm_icon_grid.get_position(title, *cell)
+        draggable True
+        drag_raise True
+        idle_child _wm_icon_grid.desktop_icon_image(icon, title)
+        hover_child _wm_icon_grid.desktop_icon_image(icon, title, "#fff3")
+
+        clicked [ action, Play("audio", gui.activate_sound) ]
+        activated _wm_icon_grid.desktop_icon_activated
+        hovered Play("audio", gui.hover_sound)
+        focus_mask _wm_icon_grid.desktop_icon_image(icon, "")

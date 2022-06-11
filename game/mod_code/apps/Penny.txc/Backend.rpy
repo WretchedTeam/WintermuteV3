@@ -103,6 +103,7 @@ init python in _wm_penny:
     @desktop_hide_callbacks.append
     def hide_penny():
         renpy.hide_screen("penny", "penny")
+        renpy.hide_screen("penny_idle", "penny")
 
     def wm_open():
         if persistent.penny_flags["first_wm_open"]:

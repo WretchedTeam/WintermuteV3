@@ -4,6 +4,10 @@ image wintermute icon:
     "mod_assets/os/icons/wintermute.png"
     zoom 0.25
 
+image settings icon:
+    "mod_assets/os/icons/settings.png"
+    zoom 0.25
+
 image mail_client icon:
     "mod_assets/os/icons/mail_client.png"
     zoom 0.25

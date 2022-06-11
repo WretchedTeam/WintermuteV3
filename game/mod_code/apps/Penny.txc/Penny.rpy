@@ -5,10 +5,9 @@ screen penny_idle():
     style_prefix "penny_idle"
     layer "penny"
 
-    tag penny
-
     button:
         action [ 
+            Hide("penny_idle"),
             Show("penny", t=[ renpy.random.choice(_wm_penny_dialogues.click_response_pre_sensory) ]), 
             Play("sound", gui.activate_sound)
         ]
@@ -24,14 +23,12 @@ screen penny(t, i=0):
     layer "penny"
     modal True
 
-    tag penny
-
     if t:
         button:
             keysym "K_SPACE"
 
             action [ 
-                If(i + 1 < len(t), Show("penny", t=t, i=i+1), Show("penny_idle")), 
+                If(i + 1 < len(t), Show("penny", t=t, i=i+1), [ Hide("penny"), Show("penny_idle") ]), 
                 Play("sound", gui.activate_sound) 
             ]
 
@@ -52,9 +49,6 @@ screen penny(t, i=0):
 
     on "show" action _wm_penny.BlurEaseIn()
     on "hide" action _wm_penny.BlurEaseOut()
-
-    on "replace" action _wm_penny.BlurEaseIn()
-    on "replaced" action _wm_penny.BlurEaseOut()
 
 style penny_button is empty
 
