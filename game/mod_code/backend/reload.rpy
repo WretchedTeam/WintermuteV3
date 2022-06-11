@@ -52,7 +52,7 @@ init python in _wm_reload:
                 return top
 
             complete = min(self.st / self.val, 1.0)
-            renpy.redraw(self, delta * renpy.random.random())
+            renpy.redraw(self, 0.0)
 
             self.text.set_text("Reloading\n{:.0%}".format(complete))
 
