@@ -4,13 +4,13 @@ define sayori_transforms = [ Flatten, _wm_breathing.BreathingCurried("sayori") ]
 layeredimage sayori turned: #turned definitions.
     at sayori_transforms
     always "mod_assets/MPT/sayori/sayori_turned_facebase.png" #Always need this face.
-    
+
     group outfit: #These attributes are here only to determine which set of "body" sprites to use later.  "null" is what lets us just use these attributes as logic and nothing else.
         attribute uniform default null
         attribute casual null
-    
-    
-    
+
+
+
     group mood: #Mood determines what the defaults images are for the following attributes:
         #"oe", "ce", "om", "cm", "brow".
         #By changing what the "mood" attribute is, you can easily switch between premade sets of expressions that work well together, speeding up your workflow.
@@ -37,49 +37,49 @@ layeredimage sayori turned: #turned definitions.
         attribute worr null #worried
         attribute yand null #yandere
         #attribute xxxx null #xxxx #Do you want to define a new mood?  Here, have a template!
-    
-    
-    
+
+
+
     group blush: #Have to separate these out, they can't share moods.
         attribute nobl null #No blush.
         attribute awkw null #awkward.  defaults for n
         attribute blus null #blushing.  defaults for n
         attribute blaw null #blushing and awkward.  defaults for n
-    
-    
-    
+
+
+
     #Left arm variants
     group left if_any(["uniform"]):
         attribute ldown default:
             "mod_assets/MPT/sayori/sayori_turned_uniform_left_down.png"
         attribute lup:
             "mod_assets/MPT/sayori/sayori_turned_uniform_left_up.png"
-    
+
     group left if_any(["casual"]):
         attribute ldown default:
             "mod_assets/MPT/sayori/sayori_turned_casual_left_down.png"
         attribute lup:
             "mod_assets/MPT/sayori/sayori_turned_casual_left_up.png"
-    
-    
-    
+
+
+
     #Right arm variants
     group right if_any(["uniform"]):
         attribute rdown default:
             "mod_assets/MPT/sayori/sayori_turned_uniform_right_down.png"
         attribute rup:
             "mod_assets/MPT/sayori/sayori_turned_uniform_right_up.png"
-    
+
     group right if_any(["casual"]):
         attribute rdown default:
             "mod_assets/MPT/sayori/sayori_turned_casual_right_down.png"
         attribute rup:
             "mod_assets/MPT/sayori/sayori_turned_casual_right_up.png"
-    
-    
-    
+
+
+
     group nose:
-        
+
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):#default nose
             "mod_assets/MPT/sayori/sayori_turned_nose_n1.png"
@@ -89,8 +89,8 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_nose_n3.png"
         attribute nose default if_any(["blaw"]):#default nose when "blushing and awkward"
             "mod_assets/MPT/sayori/sayori_turned_nose_n4.png"
-        
-        
+
+
         #All noses - truncated tags:
         attribute n1:
             "mod_assets/MPT/sayori/sayori_turned_nose_n1.png"
@@ -102,11 +102,11 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_nose_n4.png"
         attribute nl:
             "mod_assets/MPT/sayori/sayori_turned_nose_nl.png"
-    
-    
-    
+
+
+
     group mouth:
-        
+
         #Default Closed Mouths:
         attribute cm default if_any(["happ","sedu","nerv"]):
             "mod_assets/MPT/sayori/sayori_turned_mouth_ma.png"
@@ -126,7 +126,7 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_mouth_mn.png"
         attribute cm default if_any(["yand"]):
             "mod_assets/MPT/sayori/sayori_turned_mouth_mo.png"
-        
+
         #Open Mouths:
         attribute om if_any(["happ","laug"]):
             "mod_assets/MPT/sayori/sayori_turned_mouth_mb.png"
@@ -146,8 +146,8 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_mouth_ml.png"
         attribute om if_any(["angr","pani","vang"]):
             "mod_assets/MPT/sayori/sayori_turned_mouth_mq.png"
-        
-        
+
+
         ###All mouths - truncated tags:
         attribute ma:
             "mod_assets/MPT/sayori/sayori_turned_mouth_ma.png"
@@ -185,11 +185,11 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_mouth_mq.png"
         attribute mr:
             "mod_assets/MPT/sayori/sayori_turned_mouth_mr.png"
-    
-    
-    
+
+
+
     group eyes:
-        
+
         #Default Opened eyes:
         attribute oe default if_any(["neut","angr","happ","laug","sad"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e1a.png"
@@ -200,14 +200,14 @@ layeredimage sayori turned: #turned definitions.
         attribute oe default if_any(["cry"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e1g.png"
         attribute oe default if_any(["lsur","flus","vsur","curi"]):
-            "mod_assets/MPT/sayori/sayori_turned_eyes_e2a.png"
+            "mod_assets/MPT/sayori/sayori_turned_eyes_e2e.png"
         attribute oe default if_any(["nerv"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e2b.png"
         attribute oe default if_any(["pani","vang","shoc"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e2d.png"
         attribute oe default if_any(["yand"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e3a.png"
-        
+
         #Default Closed eyes:
         attribute ce if_any(["sad","anno","angr","dist","shoc","worr","nerv","curi","doub"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e4a.png"
@@ -217,8 +217,8 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_eyes_e4c.png"
         attribute ce if_any(["cry"]):
             "mod_assets/MPT/sayori/sayori_turned_eyes_e4d.png"
-        
-        
+
+
         ###All eyes - truncated tags:
         attribute e1a:
             "mod_assets/MPT/sayori/sayori_turned_eyes_e1a.png"
@@ -244,6 +244,8 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_eyes_e2c.png"
         attribute e2d:
             "mod_assets/MPT/sayori/sayori_turned_eyes_e2d.png"
+        attribute e2e:
+            "mod_assets/MPT/sayori/sayori_turned_eyes_e2e.png"
         attribute e3a:
             "mod_assets/MPT/sayori/sayori_turned_eyes_e3a.png"
         attribute e3b:
@@ -262,11 +264,11 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_eyes_e0a.png"
         attribute e0b:
             "mod_assets/MPT/sayori/sayori_turned_eyes_e0b.png"
-    
-    
-    
+
+
+
     group eyebrows:
-        
+
         #Default Eyebrows:
         attribute brow default if_any(["neut","happ","lsur","flus","shoc"]):
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b1a.png"
@@ -280,14 +282,14 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b1e.png"
         attribute brow default if_any(["curi","doub"]):
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b1f.png"
-        
+
         #The following brows are for moods that differ between open and closed eyes:
         attribute brow default if_any(["dist"]) if_all(["oe"]) if_not(["ce"]):
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b2a.png"
         attribute brow default if_any(["dist"]) if_all(["ce"]) if_not(["oe"]):
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b3c.png"
-        
-        
+
+
         ###All eyebrows - truncated tags:
         attribute b1a:
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b1a.png"
@@ -313,12 +315,12 @@ layeredimage sayori turned: #turned definitions.
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b3b.png"
         attribute b3c if_any(["e1d","e4a","e4b","e4c","e4d","e4e","ce"]):
             "mod_assets/MPT/sayori/sayori_turned_eyebrows_b3c.png"
-    
-    
-    
+
+
+
     #This group is intentionally last on this list, so it will render over top of every other thing on the face.
     group special:
-        
+
         attribute s_scream:
             "mod_assets/MPT/sayori/sayori_turned_special_scream.png"
 
@@ -331,11 +333,11 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_uniform_bodybase.png"
         attribute casual:
             "mod_assets/MPT/sayori/sayori_tapping_casual_bodybase.png"
-    
+
     always "mod_assets/MPT/sayori/sayori_tapping_facebase.png"
-    
-    
-    
+
+
+
     group mood: #Mood determines what the defaults images are for the following attributes:
         #"oe", "ce", "om", "cm", "brow".
         #By changing what the "mood" attribute is, you can easily switch between premade sets of expressions that work well together, speeding up your workflow.
@@ -345,20 +347,20 @@ layeredimage sayori tap: #tapping definitions.
         attribute dist null #distant
         attribute neut null #neutral
         attribute pout null #pouting
-    
-    
-    
+
+
+
     group blush: #Have to separate these out, they can't share moods.
         attribute nobl default null #no blush applied.
         attribute awkw null #awkward.  defaults for n
         attribute blus null #blushing.  defaults for n
         attribute blaw null #blushing AND awkward.  defaults for n
         attribute bful null #full face blush.
-    
-    
-    
+
+
+
     group nose:
-        
+
         #Default nose/blush.
         attribute nose default if_any(["nobl"]):#default nose
             "mod_assets/MPT/sayori/sayori_tapping_nose_n1.png"
@@ -370,7 +372,7 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_nose_n4.png"
         attribute nose default if_any(["bful"]):#default nose when "blushing" and "awkward"
             "mod_assets/MPT/sayori/sayori_tapping_nose_n5.png"
-        
+
         #All noses - truncated tags:
         attribute n1:
             "mod_assets/MPT/sayori/sayori_tapping_nose_n1.png"
@@ -382,24 +384,24 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_nose_n4.png"
         attribute n5:
             "mod_assets/MPT/sayori/sayori_tapping_nose_n5.png"
-    
-    
-    
+
+
+
     group mouth:
-        
+
         #Default Closed Mouths:
         attribute cm default if_any(["pout"]):
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m2.png"
         attribute cm default if_any(["neut","nerv","angr","dist"]):
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m3.png"
-        
+
         #Open Mouths:
         attribute om if_any(["nerv"]):
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m1.png"
         attribute om if_any(["neut","pout","angr","dist"]):
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m4.png"
-        
-        
+
+
         #All mouths - truncated tags:
         attribute m1:
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m1.png"
@@ -409,11 +411,11 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m3.png"
         attribute m4:
             "mod_assets/MPT/sayori/sayori_tapping_mouth_m4.png"
-    
-    
-    
+
+
+
     group eyes if_not(["n5","bful"]):
-        
+
         #Default Opened eyes:
         attribute oe default if_any(["neut","nerv"]):
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e1.png"
@@ -421,12 +423,12 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e2.png"
         attribute oe default if_any(["angr"]):
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e5.png"
-        
+
         #Default Closed eyes:
         attribute ce if_any(["neut","nerv","pout","angr","dist"]):
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e6.png"
-        
-        
+
+
         #All eyes - truncated tags:
         attribute e1:
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e1.png"
@@ -440,11 +442,11 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e5.png"
         attribute e6:
             "mod_assets/MPT/sayori/sayori_tapping_eyes_e6.png"
-    
-    
-    
+
+
+
     group eyebrows if_not(["n5","bful"]):
-        
+
         #Default Eyebrows:
         attribute brow default if_any(["neut"]):
             "mod_assets/MPT/sayori/sayori_tapping_eyebrows_b3.png"
@@ -452,8 +454,8 @@ layeredimage sayori tap: #tapping definitions.
             "mod_assets/MPT/sayori/sayori_tapping_eyebrows_b1.png"
         attribute brow default if_any(["pout","angr"]):
             "mod_assets/MPT/sayori/sayori_tapping_eyebrows_b2.png"
-        
-        
+
+
         #All eyebrows - truncated tags:
         attribute b1:
             "mod_assets/MPT/sayori/sayori_tapping_eyebrows_b1.png"
