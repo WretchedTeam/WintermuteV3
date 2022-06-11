@@ -65,7 +65,9 @@ label script7_m():
     show monika e4 b1 m1 at h11
     m "Aha~"
     call test_prompt_button("Test environment recognition") from _call_test_prompt_button_49
-    show bg m_sensory_location zorder 0 with Dissolve(1.0)
+    show bg m_sensory_location zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
     show monika e1
     mc "Can you describe what you see?"
     show monika e3 m2 n3
@@ -255,7 +257,9 @@ label script7_s():
     s "Thanks!"
     show sayori ma at t11
     call test_prompt_button("Test environment recognition") from _call_test_prompt_button_63
-    show bg s_sensory_location zorder 0 with Dissolve(1.0)
+    show bg s_sensory_location zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
     mc "Can you describe what you see?"
     show sayori e2a ml rup at h11
     s "Whaaa??"
@@ -448,7 +452,9 @@ label script7_n():
     n "Cause truth be told, I'd kill for one of those right now."
     show natsuki cm
     call test_prompt_button("Test environment recognition") from _call_test_prompt_button_78
-    show bg n_sensory_location zorder 0 with Dissolve(1.0)
+    show bg n_sensory_location zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
     show natsuki b1f e1b n2
     mc "Can you describe what you see?"
     show natsuki e1c mk
@@ -499,7 +505,7 @@ label script7_n():
     n "But just this once, 'cause I'm in a good mood."
     show natsuki md
     call test_prompt_button("Test further") from _call_test_prompt_button_80
-    show natsuki e1a
+    show natsuki e1a b1a
     mc "How about now?"
     show natsuki turned laug mb at fc2
     n "O-okay, that--hey!"
@@ -547,8 +553,8 @@ label script7_n():
     n "Come on, answer me!"
     show natsuki mm
     call test_prompt_button("Reset memory") from _call_test_prompt_button_84
-    show natsuki e3a mp
-    n "If you don't tell me what the hell you just did to me {i}right now{/i}, I swear to God I'm gonna reach through that headset and---{nw}"
+    show natsuki mp
+    n "If you don't tell me what the hell you just did to me {i}right now{/i}, I swear to God I'm gonna reach through that headset and I'm gonna kill you!!"
     show natsuki turned wmflicker
     pause(4.0)
     $nref()
@@ -675,7 +681,9 @@ label script7_y():
     y "I-I mean, thank you, of course..!"
     show yuri me
     call test_prompt_button("Test environment recognition") from _call_test_prompt_button_93
-    show bg y_sensory_location zorder 0 with Dissolve(1.0)
+    show bg y_sensory_location zorder 0
+    show white zorder 0:
+        ease 0.75 alpha 0.0
     show yuri b1f mf n2
     mc "Can you describe what you see?"
     show yuri e1b b1a

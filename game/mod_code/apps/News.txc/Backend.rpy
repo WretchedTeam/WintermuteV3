@@ -2,7 +2,7 @@ init python in _wm_news:
     import random
     THUMBNAILS_PATH = "mod_assets/news_thumbnails/"
 
-    P_NS = "New Scientist"
+    P_NS = "New Statesman"
     P_YT = "YouTube"
     P_BBC = "Big Black Cock News" if random.randint(0, 1000000) == 0 else "BBC News"
     P_I = "i News"
@@ -10,6 +10,7 @@ init python in _wm_news:
     P_DS = "Daily Star"
     P_TS = "The Sun"
     P_TT = "The Times"
+    P_FT = "Financial Times"
     P_PCG = "PCGamer"
 
     from store import NoRollback

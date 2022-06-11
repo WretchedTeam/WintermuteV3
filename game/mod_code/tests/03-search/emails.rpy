@@ -16,7 +16,7 @@ Record the results as usual, and you should be done for the day. Any complicatio
     )
 
     search_side_email1 = Email(
-        unique_id="search_side_email",
+        unique_id="search_side_email1",
         subject="Email bug URGENT",
         contents="""
 Just so everyone's aware, Greg reported a bug within the application's email system today. Rarely, some emails are being sent to incorrect recipients, but only showing up in the application install directories (so not within the application itself). This is only affecting the Quality Assurance division as of right now, the developer group hasn't reported this.
@@ -35,8 +35,8 @@ Quality Assurance Lead
     )
 
     search_side_email2 = Email(
-        unique_id="search_side_email",
-        subject="🐍",
+        unique_id="search_side_email2",
+        subject="Hisssssssss {font=gui/font/NotoEmoji-Bold.ttf}🐍{/font}",
         contents="""
 Hello again mate just wanted to let you know
 

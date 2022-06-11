@@ -14,9 +14,9 @@ init python:
     )
 
     nickname_test_headline_3 = _wm_news.News(
-        "Turnell Technologies rated \"Most Innovative\" by Scientific American",
+        "Lightning Strikes Twice: Turnell and Turing, two masterminds of computing",
         "t4a3.png",
-        _wm_news.P_TG,
+        _wm_news.P_NS,
         _wm_indian_names.get_indian_name()
     )
 
