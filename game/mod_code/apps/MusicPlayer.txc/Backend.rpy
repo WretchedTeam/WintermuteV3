@@ -69,6 +69,7 @@ init -10 python in _wm_music_player:
 
     tracks = { }
 
+    @renpy.pure
     class Track(object):
         _tags = None
         _cover_art = None
