@@ -39,7 +39,7 @@ screen say(who, what):
 screen voice_recog_say(who, what):
     style_prefix "say"
 
-    window at blur_background:
+    window:
         id "window"
 
         has vbox

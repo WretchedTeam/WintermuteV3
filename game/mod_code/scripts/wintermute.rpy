@@ -1,23 +1,3 @@
-define 2 wm_console = None
-define 2 wm_terminal = None
-
-screen vn_overlay():
-    frame style "empty":
-        at blur_background
-
-        use interactive_console(wm_console)
-        use mini_player()
-        use wmservice()
-        use terminal(wm_terminal)
-
-init python:
-    def init_term_console():
-        global wm_console, wm_terminal
-        wm_console = _wm_console.Console()
-        wm_terminal = _wm_terminal.Terminal()
-
-    config.start_callbacks.append(init_term_console)
-
 label wm_start():
     $ renpy.scene("screens")
     $ _wm_manager.Application.close_all_apps()

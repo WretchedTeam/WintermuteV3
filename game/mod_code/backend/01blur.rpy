@@ -103,6 +103,25 @@ python early in _wm_gaussian:
 
         return render
 
+    def kawase_blur(render, blur):
+        def apply_kawase_blur(render, i):
+            cr = render
+
+            render = renpy.Render(*cr.get_size())
+            render.mesh = True
+            render.blit(cr, (0, 0))
+            render.add_shader("-renpy.texture")
+
+            render.add_shader("wm.kawase_pass")
+            render.add_uniform("u_iteration", i)
+            
+            return render
+
+        for i in range(int(blur)):
+            render = apply_kawase_blur(render, i)
+
+        return render
+
     def new_transform_render(self, width, height, st, at):
         rv = transform_render(self, width, height, st, at)
 
