@@ -1,5 +1,5 @@
 
-define yuri_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("yuri"), _wm_breathing.BreathingCurried("yuri") ]
+define yuri_transforms = [ Flatten, _wm_breathing.BreathingCurried("yuri") ]
 
 image _yur_blink_a:
     alpha 0.0

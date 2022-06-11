@@ -1,4 +1,4 @@
-define monika_transforms = [ Flatten, _wm_autofocus.AutofocusCurried("monika"), _wm_breathing.BreathingCurried("monika") ]
+define monika_transforms = [ Flatten, _wm_breathing.BreathingCurried("monika") ]
 image _mon_blink_a:
     alpha 0.0
     renpy.random.randint(20, 100)*0.1
