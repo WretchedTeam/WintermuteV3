@@ -127,7 +127,7 @@ style quick_reply_hbox:
 
 style quick_reply_button:
     padding (15, 10)
-    idle_background RoundedFrame("#fff", radius=10.0)
+    idle_background RoundedFrame("#fff", radius=10.0, outline_width=1.0, outline_color="#d5d5d5")
     hover_background RoundedFrame("#d5d5d5", radius=10.0)
 
 style quick_reply_button_text:
