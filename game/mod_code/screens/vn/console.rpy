@@ -69,6 +69,7 @@ screen interactive_console(con):
     style_prefix "console"
 
     frame:
+        at blur_background
         has vbox
 
         use overlay_header("Console")
@@ -86,7 +87,7 @@ style console_text is empty
 
 style console_frame:
     # background "#505050"
-    background RoundedFrame("#505050f5", outline_width=2, outline_color="#626262")
+    background RoundedFrame("#505050b9", outline_width=2, outline_color="#626262")
     padding (20, 20)
     xysize (400, 400)
 

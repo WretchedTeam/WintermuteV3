@@ -102,6 +102,8 @@ screen wmservice():
         _wm_wmservice.wmservice_yadj.value = float('inf')
 
     frame xalign 0.0 yalign 1.0 ysize 342:
+        at blur_background
+
         has vbox
         use overlay_header("WMService")
         null height 20

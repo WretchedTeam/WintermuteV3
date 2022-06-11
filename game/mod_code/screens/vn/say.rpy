@@ -39,7 +39,7 @@ screen say(who, what):
 screen voice_recog_say(who, what):
     style_prefix "say"
 
-    window:
+    window at blur_background:
         id "window"
 
         has vbox
@@ -93,7 +93,7 @@ style window:
     ysize gui.textbox_height
 
     padding (20, 20)
-    background RoundedFrame("#505050f5", outline_width=2, outline_color="#626262")
+    background RoundedFrame("#505050b9", outline_width=2, outline_color="#626262")
 
 style namebox:
     xpos gui.name_xpos

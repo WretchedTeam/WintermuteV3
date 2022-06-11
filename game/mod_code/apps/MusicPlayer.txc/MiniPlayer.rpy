@@ -6,6 +6,8 @@ screen mini_player():
     $ track = mpp.get_current_track()
 
     frame ypos (400 + 20):
+        at blur_background
+
         has vbox:
             spacing 20
             xfill True
@@ -85,7 +87,7 @@ style mini_player_bar is empty
 style mini_player_slider is mini_player_bar
 
 style mini_player_frame:
-    background RoundedFrame("#505050f5", outline_width=2, outline_color="#626262")
+    background RoundedFrame("#505050b9", outline_width=2, outline_color="#626262")
     padding (20, 20)
     xysize (400, None)
 

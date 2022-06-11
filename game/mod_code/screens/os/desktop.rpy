@@ -25,11 +25,11 @@ screen icon_grid():
         else:
             use desktop_app_icon("Email", mail_client_app)
 
-            use desktop_app_icon("News", news_client_app, (0, 2))
-            use desktop_app_icon("Music Player", music_player_app, (0, 3))
+            use desktop_app_icon("News", news_client_app, (0, 1))
+            use desktop_app_icon("Music Player", music_player_app, (0, 2))
 
             if persistent.wm_received:
-                use desktop_app_icon("Wintermute", dashboard_app, (0, 4))
+                use desktop_app_icon("Wintermute", dashboard_app, (0, 3))
 
             if persistent.snake_received:
-                use desktop_app_icon("Snake", snake_app, (0, 5))
+                use desktop_app_icon("Snake", snake_app, (0, 4))

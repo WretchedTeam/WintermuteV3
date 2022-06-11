@@ -66,6 +66,18 @@ init -1400 python:
         renpy.ui.pausebehavior(0.01, True)
         renpy.restart_interaction()
 
+    def blur_background(d):
+        d = Fixed(d)
+        scene_lists = renpy.game.context().scene_lists
+        layer_properties = renpy.display.interface.layer_properties
+
+        bg = scene_lists.make_layer("master", layer_properties["master"])
+        bg = Transform(AlphaMask(bg, d), blur=24.0)
+
+        return Fixed(
+            bg, d, fit_first=True
+        )
+
 label test_prompt_button(t):
     $ renpy.mode("test_prompt")
 
