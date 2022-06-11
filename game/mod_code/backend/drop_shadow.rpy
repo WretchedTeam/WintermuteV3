@@ -5,31 +5,43 @@ init -100 python in _wm_shadow:
         BrightnessMatrix,
         At,
         Transform,
-        Fixed
+        Fixed,
+        Window
     )
 
     class DropShadowCore(renpy.Container):
-        def __init__(self, child=None, color="#000", xoff=0, yoff=0, blur_r=5.0, **kwargs):
+        def __init__(self, child, color="#000", xoff=0, yoff=0, blur_r=5.0, **kwargs):
             super(DropShadowCore, self).__init__(**kwargs)
             self.recolor_matrix = TintMatrix(color) * BrightnessMatrix(1.0)
             self.blur_r = blur_r
             self.xoff = xoff
             self.yoff = yoff
 
-            if child is not None:
-                self.add(Transform(child, offset=(self.xoff, self.yoff), matrixcolor=self.recolor_matrix, blur=blur_r))
+            blur_r = absolute(blur_r)
 
-        def __call__(self, child):
-            self.add(Transform(child, offset=(self.xoff, self.yoff), matrixcolor=self.recolor_matrix, blur=self.blur_r))
-            return self
+            self.shadow = Window(
+                Transform(child, matrixcolor=self.recolor_matrix, offset=(self.xoff, self.yoff)), 
+                style="empty", margin=(blur_r, blur_r))
+
+            self.add(self.shadow)
+            self.add(child)
 
         def render(self, width, height, st, at):
-            cr = super(DropShadowCore, self).render(width, height, st, at)
+            cr = renpy.render(self.child, width, height, st, at)
+            sr = renpy.render(self.shadow, width, height, st, at)
+            sr = _wm_gaussian.box_blur(sr, self.blur_r, 1)
+
             cw, ch = cr.get_size()
-            rv = renpy.Render(cw + self.blur_r * 2, ch + self.blur_r * 2)
-            cr = _wm_gaussian.box_blur(cr, self.blur_r, 1)
-            rv.blit(cr, (self.blur_r, self.blur_r))
+            sw, sh = sr.get_size()
+
+            rv = renpy.Render(cw, ch)
+            rv.blit(sr, (-self.blur_r, -self.blur_r))
+            rv.blit(cr, (0, 0))
+
             return rv
+
+        def event(self, ev, x, y, st):
+            return self.child.event(ev, x - self.blur_r, y - self.blur_r, st)
 
     class DropShadow(object):
         def __init__(self, color="#000", xoff=0, yoff=0, blur_r=5.0, **kwargs):
@@ -44,8 +56,4 @@ init -100 python in _wm_shadow:
         def drop_shadow_function(color, xoff, yoff, blur_r, child, **properties):
             recolorMatrix = TintMatrix(color) * BrightnessMatrix(1.0)
 
-            return Fixed(
-                At(child, Transform(matrixcolor=recolorMatrix, xoffset=xoff, yoffset=yoff, blur=blur_r)),
-                At(child, Transform(xoffset=0, yoffset=0)),
-                fit_first=True,
-                **properties)
+            return DropShadowCore(child, color=color, xoffset=xoff, yoffset=yoff, blur_r=blur_r)

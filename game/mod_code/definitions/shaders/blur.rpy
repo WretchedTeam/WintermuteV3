@@ -11,7 +11,6 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
         vec4 col = texture2D(tex0, v_tex_coord);
-        if (col.a == 0) discard;
 
         float sum = 1.0;
 
@@ -39,7 +38,6 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
         vec4 col = texture2D(tex0, v_tex_coord);
-        if (col.a == 0) discard;
 
         float sum = 1.0;
 
@@ -67,7 +65,6 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
         vec4 col = texture2D(tex0, v_tex_coord);
-        if (col.a == 0) discard;
 
         float sum = 1.0;
 

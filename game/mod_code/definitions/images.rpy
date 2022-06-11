@@ -1,4 +1,33 @@
-image desktop_background = "mod_assets/os/background.png"
+# image desktop_background = "mod_assets/os/background.png"
+image desktop_background = _wm_live_background.TimeTintBackground(
+    "mod_assets/os/grey_background.jpg",
+    [
+        "#FCF8E8",
+        "#94B49F",
+        "#ECB390",
+        "#DF7861",
+        "#D3EBCD",
+        "#AEDBCE",
+        "#839AA8",
+        "#F24C4C",
+        "#EC9B3B",
+        "#DEB6AB",
+        "#9ADCFF",
+        "#6a35a6",
+        "#51557E",
+        "#2D4263",
+        "#334756",
+        "#444444",
+        "#1597BB",
+        "#F05454",
+        "#4B5D67",
+        "#827397",
+        "#3A3845",
+        "#395B64",
+        "#577BC1",
+        "#D4ECDD"
+    ]
+)
 
 image wintermute icon:
     "mod_assets/os/icons/wintermute.png"
