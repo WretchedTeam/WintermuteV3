@@ -320,7 +320,7 @@ transform r11:
     rightin(calculate_position(1, 1))
 
 # When MC opens his eyes to Sayori's face
-transform face(z=0.80, y=500):
+transform face(z=0.80, y=750):
     subpixel True
     xcenter calculate_position(1, 1)
     yanchor 1.0 ypos 1.03
