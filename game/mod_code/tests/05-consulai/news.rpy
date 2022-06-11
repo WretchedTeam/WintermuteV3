@@ -2,7 +2,7 @@ init python:
     consulai_test_headline_1 = _wm_news.News(
         "Turnell Technologies reassures impatient investors with tighter release schedules after disappointing fiscal year",
         "t5a1.png",
-        _wm_news.P_NS,
+        _wm_news.P_FT,
         _wm_indian_names.get_indian_name()
     )
 

@@ -36,7 +36,6 @@ label script4_m():
     # Monika
     ##BUTTON:
     # Address Monika
-    scene black
     show monika forward happ cm e1c at t11
     call test_prompt_button("Address Monika") from _call_test_prompt_button_144
     mc "Hello, Monika."
@@ -58,7 +57,7 @@ label script4_m():
     # Give Monika a nickname:
     $ persistent.t4nick = renpy.input("Give Monika a nickname:")
     mc "I just wanted to say hi, [persistent.t4nick]."
-    m b1f "Oh…[persistent.t4nick]?"
+    m b1f "Oh...[persistent.t4nick]?"
     m mi "Who's that?"
     m "A friend, or--?{w=0.5}{nw}"
     m b1b mh "Is, um…is that…"
@@ -144,7 +143,6 @@ label script4_s():
     # Sayori
     ##BUTTON:
     # Address Sayori
-    scene black
     show sayori turned ma e4b b1a lup rup at t11
     call test_prompt_button("Address Sayori") from _call_test_prompt_button_146
     mc "Hello, Sayori."
@@ -167,7 +165,7 @@ label script4_s():
     # Give Sayori a nickname:
     $ persistent.t4nick = renpy.input("Give Sayori a nickname:")
     mc "That's good, [persistent.t4nick]."
-    s b1f e2a rup lup mh "Huh? [persistent.t4nick]??"
+    s b1f e2a rup lup mh "Huh? [persistent.t4nick!c]??"
     s e1a mi "Who's that?"
     s ldown e1a mb b1a "It's just us, silly!"
     s md rdown "..."
@@ -253,7 +251,6 @@ label script4_n():
     # Natsuki
     ##BUTTON:
     # Address Natsuki
-    scene black
     show natsuki cross e1b mj b1a at t11
     call test_prompt_button("Address Natsuki") from _call_test_prompt_button_148
     mc "Hello, Natsuki."
@@ -272,7 +269,7 @@ label script4_n():
     # Give Natsuki a nickname:
     $ persistent.t4nick = renpy.input("Give Natsuki a nickname:")
     mc "I'm glad to hear that, [persistent.t4nick]."
-    n e1a b1a mh "[persistent.t4nick]?"
+    n e1a b1a mh "[persistent.t4nick!c]?"
     n turned lhip "That's…who's that supposed to be?"
     n b1b mg "Is that me..?"
     n b2c "But I'm…"
@@ -355,7 +352,6 @@ label script4_y:
     # Yuri
     ##BUTTON
     # Address Yuri
-    scene black
     show yuri turned ma b1a e1b lup rup at t11
     call test_prompt_button("Address Yuri") from _call_test_prompt_button_150
     mc "Hello, Yuri."

@@ -19,7 +19,7 @@ define 2 search_test =  _wm_test.WintermuteTest(
     "Iwan Green",
     (search_test_headline_1, search_test_headline_2, search_test_headline_3, search_test_headline_4),
     (search_main_email, search_side_email1),
-    (search_final_email,),
+    (search_side_email2, search_final_email),
     search_main_email,
     "script3_main"
 )
