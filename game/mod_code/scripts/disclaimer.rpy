@@ -6,8 +6,8 @@ default persistent.shown_disclaimer = False
 # "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
 
 define wm_ascii = """
-Turnell OS Bootloader
-=====================
+Turnell OS Installation Script
+------------------------------
 """.strip()
 
 define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
