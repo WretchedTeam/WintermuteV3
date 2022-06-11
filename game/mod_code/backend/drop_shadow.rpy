@@ -1,5 +1,6 @@
 init -100 python in _wm_shadow:
     from store import (
+        _wm_gaussian,
         TintMatrix,
         BrightnessMatrix,
         At,
@@ -26,6 +27,7 @@ init -100 python in _wm_shadow:
             cr = super(DropShadowCore, self).render(width, height, st, at)
             cw, ch = cr.get_size()
             rv = renpy.Render(cw + self.blur_r * 2, ch + self.blur_r * 2)
+            cr = _wm_gaussian.box_blur(cr, self.blur_r, 1)
             rv.blit(cr, (self.blur_r, self.blur_r))
             return rv
 
@@ -43,7 +45,7 @@ init -100 python in _wm_shadow:
             recolorMatrix = TintMatrix(color) * BrightnessMatrix(1.0)
 
             return Fixed(
-                At(child, DropShadowCore(color=color, xoff=xoff, yoff=yoff, blur_r=blur_r)),
+                At(child, Transform(matrixcolor=recolorMatrix, xoffset=xoff, yoffset=yoff, blur=blur_r)),
                 At(child, Transform(xoffset=0, yoffset=0)),
                 fit_first=True,
                 **properties)

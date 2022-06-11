@@ -30,9 +30,10 @@ style dock_frame:
 
 transform dock_frame_trans:
     perspective True
-    matrixtransform RotateMatrix(60.0, 0.0, 0.0) * OffsetMatrix(0.0, 0.0, -30.0)
+    matrixtransform RotateMatrix(60.0, 0.0, 0.0) * OffsetMatrix(0.0, 0.0, -25.0)
 
 screen dock_app_icon(app):
-    button action Function(app.raise_window):
+    button action Function(app.raise_window) at _wm_shadow.DropShadow(yoff=4.0, blur_r=20.0, color="#2228"):
+        xysize (100, 100)
         padding (10, 10)
         add app.icon fit "contain"
