@@ -1,6 +1,15 @@
 define 2 wm_console = None
 define 2 wm_terminal = None
 
+screen vn_overlay():
+    frame style "empty":
+        at blur_background
+
+        use interactive_console(wm_console)
+        use mini_player()
+        use wmservice()
+        use terminal(wm_terminal)
+
 init python:
     def init_term_console():
         global wm_console, wm_terminal
@@ -19,8 +28,11 @@ label wm_start():
     show dev_bg outline
     with dissolve
 
+    show screen vn_overlay()
+
     $ wm_console.clear()
-    show screen interactive_console(wm_console)
+    $ wm_terminal.clear_terminal()
+    $ _wm_wmservice.clear_log()
 
     if not persistent.seen_wm_program:
         call wm_first_console(wm_console) from _call_wm_first_console
@@ -30,12 +42,6 @@ label wm_start():
         call fill_console_and_wmservice(wm_console) from _call_fill_console_and_wmservice
         show dev_bg open
         pause 1.45
-
-    $ wm_terminal.clear_terminal()
-    show screen terminal(wm_terminal)
-
-    $ _wm_wmservice.clear_log()
-    show screen wmservice()
 
     $ quick_menu = True
 

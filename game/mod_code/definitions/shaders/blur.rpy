@@ -11,6 +11,8 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
         vec4 col = texture2D(tex0, v_tex_coord);
+        if (col.a == 0) discard;
+
         float sum = 1.0;
 
         for (float i=1.0; i <= u_radius; i++) {
@@ -37,6 +39,8 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
         vec4 col = texture2D(tex0, v_tex_coord);
+        if (col.a == 0) discard;
+
         float sum = 1.0;
 
         for (float i=1.0; i <= u_radius; i++) {
@@ -63,6 +67,8 @@ init python:
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
         vec4 col = texture2D(tex0, v_tex_coord);
+        if (col.a == 0) discard;
+
         float sum = 1.0;
 
         for (float i=1.0; i <= u_radius; i++) {
@@ -84,16 +90,11 @@ init python:
         uniform vec2 res0;
 
         uniform float u_radius;
-        uniform float u_sigma;
-        uniform float u_sqr_sigma;
+        uniform vec3 u_incre_gauss;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
-        vec3 incre_gauss;
-        incre_gauss.x = 1.0 / (sqrt(2.0 * 3.14) * u_sigma);
-        incre_gauss.y = exp(-0.5 / u_sqr_sigma);
-        incre_gauss.z = incre_gauss.y * incre_gauss.y;
-
+        vec3 incre_gauss = u_incre_gauss;
         vec4 col = texture2D(tex0, v_tex_coord) * incre_gauss.x;
         float sum = incre_gauss.x;
         incre_gauss.xy *= incre_gauss.yz;
@@ -115,16 +116,11 @@ init python:
         uniform vec2 res0;
 
         uniform float u_radius;
-        uniform float u_sigma;
-        uniform float u_sqr_sigma;
+        uniform vec3 u_incre_gauss;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_200="""
-        vec3 incre_gauss;
-        incre_gauss.x = 1.0 / (sqrt(2.0 * 3.14) * u_sigma);
-        incre_gauss.y = exp(-0.5 / u_sqr_sigma);
-        incre_gauss.z = incre_gauss.y * incre_gauss.y;
-
+        vec3 incre_gauss = u_incre_gauss;
         vec4 col = texture2D(tex0, v_tex_coord) * incre_gauss.x;
         float sum = incre_gauss.x;
         incre_gauss.xy *= incre_gauss.yz;

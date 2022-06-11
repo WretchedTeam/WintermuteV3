@@ -12,7 +12,7 @@ python early in _wm_gaussian:
     """)
 
     from renpy.display.accelerator import transform_render
-    from math import sqrt
+    from math import sqrt, exp
 
     def zoom_render(crend, factor):
         w, h = crend.get_size()
@@ -68,16 +68,38 @@ python early in _wm_gaussian:
             
             return render
 
+        def apply_incre_gaussian_blur(render, s, blur, sigma, sqr_sigma):
+            cr = render
+
+            render = renpy.Render(*cr.get_size())
+            render.mesh = True
+            render.blit(cr, (0, 0))
+            render.add_shader("-renpy.texture")
+
+            render.add_shader(s)
+            render.add_uniform("u_radius", blur)
+
+            ycomp = exp(-0.5 / sqr_sigma)
+            incre_gauss = (
+                1.0 / (sqrt(2.0 * 3.14) * sigma),
+                ycomp,
+                ycomp * ycomp
+            )
+
+            render.add_uniform("u_incre_gauss", incre_gauss)
+            
+            return render
+
         sigma = blur / 3.0
         sqr_sigma = sigma ** 2
 
         if incre:
-            shaders = [ "wm.gaussian_incre_h", "wm.gaussian_incre_v" ]
-        else:
-            shaders = [ "wm.gaussian_h", "wm.gaussian_v" ]
+            for s in ("wm.gaussian_incre_h", "wm.gaussian_incre_v"):
+                render = apply_incre_gaussian_blur(render, s, blur, sigma, sqr_sigma)
 
-        for s in shaders:
-            render = apply_gaussian_blur(render, s, blur, sigma, sqr_sigma)
+        else:
+            for s in ("wm.gaussian_h", "wm.gaussian_v"):
+                render = apply_gaussian_blur(render, s, blur, sigma, sqr_sigma)
 
         return render
 

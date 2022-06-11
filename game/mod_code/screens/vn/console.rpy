@@ -69,7 +69,6 @@ screen interactive_console(con):
     style_prefix "console"
 
     frame:
-        at blur_background
         has vbox
 
         use overlay_header("Console")

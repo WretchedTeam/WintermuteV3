@@ -83,7 +83,6 @@ screen terminal(term):
         term.yadj.value = float('inf')
 
     frame xalign 1.0:
-        at blur_background
 
         has vbox
 

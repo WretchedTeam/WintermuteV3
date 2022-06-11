@@ -6,7 +6,6 @@ screen mini_player():
     $ track = mpp.get_current_track()
 
     frame ypos (400 + 20):
-        at blur_background
 
         has vbox:
             spacing 20

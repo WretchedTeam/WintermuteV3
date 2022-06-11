@@ -72,7 +72,7 @@ init -1400 python:
         layer_properties = renpy.display.interface.layer_properties
 
         bg = scene_lists.make_layer("master", layer_properties["master"])
-        bg = Transform(AlphaMask(bg, d), blur=24.0)
+        bg = Transform(AlphaMask(bg, d), blur=24.0, nearest=True)
 
         return Fixed(
             bg, d, fit_first=True
