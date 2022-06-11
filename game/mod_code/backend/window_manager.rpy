@@ -30,13 +30,14 @@ init -1000 python in _wm_manager:
             return positions[screen_id]
 
         p = 100
-        for i in range(1, len(open_apps) + 1):
+        for i in range(len(positions) + 1):
+            i += 1
             p = i * 100
 
-            if not any([ (p, p) == v for v in positions.values()]):
+            if not any([ (p, 100) == v for v in positions.values()]):
                 break
 
-        new_pos = positions[screen_id] = (p, p)
+        new_pos = positions[screen_id] = (p, 100)
         return new_pos
 
     class Application(object):
