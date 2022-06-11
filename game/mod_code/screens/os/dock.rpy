@@ -22,8 +22,15 @@ transform dock_animation:
 style dock_frame:
     xalign 0.5 yalign 0.99
     ysize 120
-    background RoundedFrame(Solid("#fff5"), radius=20.0, outline_width=1.5, outline_color="#fff8")
+    background At(
+        RoundedFrame(Solid("#fff5"), radius=20.0, outline_width=1.5, outline_color="#fff8"),
+        dock_frame_trans
+    )
     padding (10, 10)
+
+transform dock_frame_trans:
+    perspective True
+    matrixtransform RotateMatrix(60.0, 0.0, 0.0) * OffsetMatrix(0.0, 0.0, -30.0)
 
 screen dock_app_icon(app):
     button action Function(app.raise_window):
