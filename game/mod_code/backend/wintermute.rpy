@@ -1,5 +1,13 @@
-define 2 wm_console = _wm_console.Console()
-define 2 wm_terminal = _wm_terminal.Terminal()
+define 2 wm_console = None
+define 2 wm_terminal = None
+
+init python:
+    def init_term_console():
+        global wm_console, wm_terminal
+        wm_console = _wm_console.Console()
+        wm_terminal = _wm_terminal.Terminal()
+
+    config.start_callbacks.append(init_term_console)
 
 label wm_start():
     $ renpy.scene("screens")

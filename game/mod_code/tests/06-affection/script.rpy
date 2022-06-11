@@ -21,28 +21,6 @@ label script6_main():
 
     return True
 
-label nodecor_command(term, t, completed=None):
-    $ term.set_caret(True)
-    $ term.set_input(t)
-    $ renpy.ui.interact(mouse="screen", type="screen")
-    $ term.set_shell(False)
-
-    pause 0.1
-
-    $ term.append_history("Processing {image=terminal_loading}", False)
-
-    pause renpy.random.uniform(0.75, 3.0)
-
-    $ term.pop_history()
-    $ term.append_history("{color=#6f6}Processing complete.{/color}", False)
-    if completed is not None:
-        $ term.append_history(completed, False)
-
-    $ term.set_caret(False)
-    $ term.set_shell(True)
-
-    return
-
 label script6_m:
 
     show monika forward e1a ma b2a at i11

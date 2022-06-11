@@ -35,7 +35,6 @@ init -10 python in _wm_email:
             show_screen = Function(ShowNotification, just_received=persistent.new_email_count, unread=unread_emails_count)
             run_with_delay(show_screen, delay=1.5)
 
-    @renpy.pure
     class Email(NoRollback):
         """
         Representation of an email in WM's desktop.
@@ -146,7 +145,6 @@ init -10 python in _wm_email:
             if not renpy.get_screen(self.mail_client_screen_name):
                 persistent.new_email_count += 1
 
-    @renpy.pure
     class EmailSender(NoRollback):
         def __init__(self, name, email_id, append_turnell_domain=True):
             self.name = name
@@ -158,13 +156,11 @@ init -10 python in _wm_email:
             global sender_emails
             if email_id not in sender_emails: sender_emails.append(email_id)
 
-    @renpy.pure
     class EmailReply(NoRollback):
         def __init__(self, reply, action=NullAction(), condition=True):
             self.reply = reply
             self.action = action
 
-    @renpy.pure
     class EmailAttachment(NoRollback):
         def __init__(self, icon, title, action=NullAction(), condition=True):
             self.icon = renpy.displayable(icon)

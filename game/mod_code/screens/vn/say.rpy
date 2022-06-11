@@ -33,6 +33,9 @@ screen say(who, what):
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
 
+    if quick_menu:
+        use quick_menu
+
 screen voice_recog_say(who, what):
     style_prefix "say"
 
@@ -66,6 +69,9 @@ screen voice_recog_say(who, what):
     ## phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
+
+    if quick_menu:
+        use quick_menu
 
 ## Make the namebox available for styling through the Character object.
 init python:

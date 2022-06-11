@@ -28,7 +28,6 @@ init python in _wm_news:
 
         return t # Let renpy.easy.displayable deal with this.
 
-    @renpy.pure
     class News(NoRollback):
         """
         Representation of a News headline.

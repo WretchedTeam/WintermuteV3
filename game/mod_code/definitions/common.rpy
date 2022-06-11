@@ -67,9 +67,33 @@ init -1400 python:
         renpy.restart_interaction()
 
 label test_prompt_button(t):
+    $ renpy.mode("test_prompt")
+
     menu:
         "[t]":
             pass
 
     return
 
+label nodecor_command(term, t, completed=None):
+    $ term.set_caret(True)
+    $ term.set_input(t)
+    $ renpy.mode("wm_terminal")
+    $ renpy.ui.interact(mouse="screen", type="screen")
+    $ term.set_shell(False)
+
+    pause 0.1
+
+    $ term.append_history("Processing {image=terminal_loading}", False)
+
+    pause renpy.random.uniform(0.75, 3.0)
+
+    $ term.pop_history()
+    $ term.append_history("{color=#6f6}Processing complete.{/color}", False)
+    if completed is not None:
+        $ term.append_history(completed, False)
+
+    $ term.set_caret(False)
+    $ term.set_shell(True)
+
+    return
