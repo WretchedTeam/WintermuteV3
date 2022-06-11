@@ -46,7 +46,11 @@ init -10 python in _wm_music_player:
         return re.sub(r'<.*?>', '', x)
 
     def get_music_filelist():
-        return [ i for i in os.listdir(music_folder_path) if i.endswith(supported_extensions) ]
+        try:
+            l = os.listdir(music_folder_path)
+            return [ i for i in l if i.endswith(supported_extensions) ]
+        except OSError:
+            return [ ]
 
     def filter_valid_files(x):
         return Track.get(x).is_valid_file
