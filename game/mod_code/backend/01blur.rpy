@@ -1,4 +1,5 @@
 python early in _wm_gaussian:
+    from renpy.config import gl_lod_bias
     # Override renpy's default blur
     renpy.register_shader("renpy.blur", variables="""
         uniform sampler2D tex0;
@@ -65,7 +66,7 @@ python early in _wm_gaussian:
 
         return rv
 
-    def box_blur(render, blur, passes):
+    def box_blur(render, blur, passes, lod=gl_lod_bias):
         def apply_box_blur(render, blur, direction):
             cr = render
             render = renpy.Render(*cr.get_size())
@@ -76,6 +77,7 @@ python early in _wm_gaussian:
             render.add_shader("wm.box_blur")
             render.add_uniform("u_radius", blur)
             render.add_uniform("u_direction", direction)
+            render.add_uniform("u_lod_bias", lod)
 
             return render
 
@@ -95,6 +97,7 @@ python early in _wm_gaussian:
             render.add_shader("wm.weighted_blur")
             render.add_uniform("u_radius", blur)
             render.add_uniform("u_direction", direction)
+            render.add_uniform("u_lod_bias", lod)
 
             return render
 
@@ -103,7 +106,7 @@ python early in _wm_gaussian:
 
         return render
 
-    def gaussian_blur(render, blur, incre=False):
+    def gaussian_blur(render, blur, incre=False, lod=gl_lod_bias):
         def apply_gaussian_blur(render, s, blur, sigma, sqr_sigma):
             cr = render
 
@@ -116,6 +119,7 @@ python early in _wm_gaussian:
             render.add_uniform("u_radius", blur)
             render.add_uniform("u_sigma", sigma)
             render.add_uniform("u_sqr_sigma", sqr_sigma)
+            render.add_uniform("u_lod_bias", lod)
             
             return render
 
@@ -129,6 +133,7 @@ python early in _wm_gaussian:
 
             render.add_shader(s)
             render.add_uniform("u_radius", blur)
+            render.add_uniform("u_lod_bias", lod)
 
             ycomp = exp(-0.5 / sqr_sigma)
             incre_gauss = (
@@ -154,7 +159,7 @@ python early in _wm_gaussian:
 
         return render
 
-    def kawase_blur(render, blur):
+    def kawase_blur(render, blur, lod=gl_lod_bias):
         def apply_kawase_blur(render, i):
             cr = render
 
@@ -165,6 +170,7 @@ python early in _wm_gaussian:
 
             render.add_shader("wm.kawase_pass")
             render.add_uniform("u_iteration", i)
+            render.add_uniform("u_lod_bias", lod)
             
             return render
 
@@ -173,7 +179,7 @@ python early in _wm_gaussian:
 
         return render
 
-    def default_blur(render, blur):
+    def default_blur(render, blur, lod=gl_lod_bias):
         def apply_default_blur(render, i):
             cr = render
 
@@ -184,13 +190,14 @@ python early in _wm_gaussian:
 
             render.add_shader("wm.default_blur")
             render.add_uniform("u_renpy_blur_log2", log(i, 2))
+            render.add_uniform("u_lod_bias", lod)
             
             return render
 
         render = apply_default_blur(render, blur)
         return render
 
-    def shadow_blur(render, blur):
+    def shadow_blur(render, blur, lod):
         def apply_shadow_blur(render, i):
             cr = render
 
@@ -201,6 +208,7 @@ python early in _wm_gaussian:
 
             render.add_shader("wm.shadow_blur")
             render.add_uniform("u_radius", i)
+            render.add_uniform("u_lod_bias", lod)
             
             return render
 
@@ -213,7 +221,7 @@ python early in _wm_gaussian:
         blur = (self.state.blur or None)
 
         if blur is not None:
-            rv = gaussian_blur(rv, blur)
+            rv = gaussian_blur(rv, blur, lod=0.0)
 
         return rv
 

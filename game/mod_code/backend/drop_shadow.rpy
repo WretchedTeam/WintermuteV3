@@ -30,20 +30,20 @@ init -100 python in _wm_shadow:
         def shadow_render(self, width, height, st, at):
             cr = renpy.render(self.shadow, width, height, st, at)
             cw, ch = cr.get_size()
-            rv = renpy.Render(cw + self.blur_r * 2 * 3, ch + self.blur_r * 2 * 3)
-            rv.absolute_blit(cr, (self.blur_r * 3, self.blur_r * 3))
+            rv = renpy.Render(cw + self.blur_r * 2 * 10, ch + self.blur_r * 2 * 10)
+            rv.absolute_blit(cr, (self.blur_r * 10, self.blur_r * 10))
             return rv
 
         def render(self, width, height, st, at):
             cr = renpy.render(self.child, width, height, st, at)
             sr = self.shadow_render(width, height, st, at)
-            sr = _wm_gaussian.shadow_blur(sr, self.blur_r)
+            sr = _wm_gaussian.shadow_blur(sr, self.blur_r, 4.0)
 
             cw, ch = cr.get_size()
             sw, sh = sr.get_size()
 
             rv = renpy.Render(cw, ch)
-            rv.blit(sr, (-self.blur_r * 3, -self.blur_r * 3))
+            rv.blit(sr, (-self.blur_r * 10, -self.blur_r * 10))
             rv.blit(cr, (0, 0))
 
             return rv

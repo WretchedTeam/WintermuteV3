@@ -28,6 +28,7 @@ init python:
         uniform sampler2D tex0;
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
+        uniform float u_lod_bias;
         uniform vec2 res0;
 
         uniform float u_radius;
@@ -63,7 +64,7 @@ init python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-
+        uniform float u_lod_bias;
         uniform float u_radius;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
@@ -76,17 +77,12 @@ init python:
             float weight = 1.0 - i / u_radius;
             vec2 pixel_offset = vec2(i / res0.x, i / res0.y);
 
-            col += texture2D(tex0, v_tex_coord + vec2(pixel_offset.x, 0), 3.0) * weight;
-            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, 0), 3.0) * weight;
-            col += texture2D(tex0, v_tex_coord + vec2(0, pixel_offset.y), 3.0) * weight;
-            col += texture2D(tex0, v_tex_coord - vec2(0, pixel_offset.y), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord + vec2(pixel_offset.x, 0), u_lod_bias) * weight;
+            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, 0), u_lod_bias) * weight;
+            col += texture2D(tex0, v_tex_coord + vec2(0, pixel_offset.y), u_lod_bias) * weight;
+            col += texture2D(tex0, v_tex_coord - vec2(0, pixel_offset.y), u_lod_bias) * weight;
 
-            col += texture2D(tex0, v_tex_coord + vec2(pixel_offset.x, pixel_offset.y), 3.0) * weight;
-            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, pixel_offset.y), 3.0) * weight;
-            col += texture2D(tex0, v_tex_coord + vec2(-pixel_offset.x, pixel_offset.y), 3.0) * weight;
-            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, -pixel_offset.y), 3.0) * weight;
-
-            sum += 8.0 * weight;
+            sum += 4.0 * weight;
         }
 
         gl_FragColor = col / sum;
@@ -98,7 +94,7 @@ init python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-
+        uniform float u_lod_bias;
         uniform float u_radius;
         uniform float u_sigma;
         uniform float u_sqr_sigma;
@@ -112,8 +108,8 @@ init python:
         for (float i=1.0; i <= u_radius; i++) {
             float weight = exp(-i * i / (2.0 * u_sqr_sigma));
             vec2 offset = vec2(i / res0.x, 0.0);
-            col += texture2D(tex0, v_tex_coord + offset) * weight;
-            col += texture2D(tex0, v_tex_coord - offset) * weight;
+            col += texture2D(tex0, v_tex_coord + offset, u_lod_bias) * weight;
+            col += texture2D(tex0, v_tex_coord - offset, u_lod_bias) * weight;
             sum += weight * 2.0;
         }
 
@@ -125,7 +121,7 @@ init python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-
+        uniform float u_lod_bias;
         uniform float u_radius;
         uniform float u_sigma;
         uniform float u_sqr_sigma;
@@ -139,8 +135,8 @@ init python:
         for (float i=1.0; i <= u_radius; i++) {
             float weight = exp(-i * i / (2.0 * u_sqr_sigma));
             vec2 offset = vec2(0.0, i / res0.y);
-            col += texture2D(tex0, v_tex_coord + offset) * weight;
-            col += texture2D(tex0, v_tex_coord - offset) * weight;
+            col += texture2D(tex0, v_tex_coord + offset, u_lod_bias) * weight;
+            col += texture2D(tex0, v_tex_coord - offset, u_lod_bias) * weight;
             sum += weight * 2.0;
         }
 
@@ -153,7 +149,7 @@ init python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-
+        uniform float u_lod_bias;
         uniform float u_radius;
         uniform vec3 u_incre_gauss;
     """, vertex_200="""
@@ -166,8 +162,8 @@ init python:
 
         for (float i=1.0; i <= u_radius; i++) {
             vec2 offset = vec2(i / res0.x, 0.0);
-            col += texture2D(tex0, v_tex_coord + offset) * incre_gauss.x;
-            col += texture2D(tex0, v_tex_coord - offset) * incre_gauss.x;
+            col += texture2D(tex0, v_tex_coord + offset, u_lod_bias) * incre_gauss.x;
+            col += texture2D(tex0, v_tex_coord - offset, u_lod_bias) * incre_gauss.x;
             sum += incre_gauss.x * 2.0;
             incre_gauss.xy *= incre_gauss.yz;
         }
@@ -179,7 +175,7 @@ init python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-
+        uniform float u_lod_bias;
         uniform float u_radius;
         uniform vec3 u_incre_gauss;
     """, vertex_200="""
@@ -192,8 +188,8 @@ init python:
 
         for (float i=1.0; i <= u_radius; i++) {
             vec2 offset = vec2(0.0, i / res0.y);
-            col += texture2D(tex0, v_tex_coord + offset) * incre_gauss.x;
-            col += texture2D(tex0, v_tex_coord - offset) * incre_gauss.x;
+            col += texture2D(tex0, v_tex_coord + offset, u_lod_bias) * incre_gauss.x;
+            col += texture2D(tex0, v_tex_coord - offset, u_lod_bias) * incre_gauss.x;
             sum += incre_gauss.x * 2.0;
             incre_gauss.xy *= incre_gauss.yz;
         }
@@ -205,7 +201,7 @@ init python:
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
         uniform vec2 res0;
-
+        uniform float u_lod_bias;
         uniform float u_iteration;
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
@@ -222,24 +218,24 @@ init python:
             texCoordSample.x = texCoord.x - dUV.x;
             texCoordSample.y = texCoord.y + dUV.y;
             
-            cOut = texture2D(tex, texCoordSample);
+            cOut = texture2D(tex, texCoordSample, u_lod_bias);
 
             // Sample top right pixel
             texCoordSample.x = texCoord.x + dUV.x;
             texCoordSample.y = texCoord.y + dUV.y;
 
-            cOut += texture2D(tex, texCoordSample);
+            cOut += texture2D(tex, texCoordSample, u_lod_bias);
 
             // Sample bottom right pixel
             texCoordSample.x = texCoord.x + dUV.x;
             texCoordSample.y = texCoord.y - dUV.y;
-            cOut += texture2D( tex, texCoordSample );
+            cOut += texture2D(tex, texCoordSample, u_lod_bias);
 
             // Sample bottom left pixel
             texCoordSample.x = texCoord.x - dUV.x;
             texCoordSample.y = texCoord.y - dUV.y;
 
-            cOut += texture2D(tex, texCoordSample);
+            cOut += texture2D(tex, texCoordSample, u_lod_bias);
 
             // Average 
             cOut *= 0.25f;

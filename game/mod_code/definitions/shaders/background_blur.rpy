@@ -3,6 +3,7 @@ init python:
         uniform sampler2D tex0;
         uniform sampler2D tex1;
 
+        uniform float u_lod_bias;
         attribute vec2 a_tex_coord;
         varying vec2 v_tex_coord;
 
@@ -24,24 +25,24 @@ init python:
             texCoordSample.x = texCoord.x - dUV.x;
             texCoordSample.y = texCoord.y + dUV.y;
             
-            cOut = texture2D(tex, texCoordSample);
+            cOut = texture2D(tex, texCoordSample, u_lod_bias);
 
             // Sample top right pixel
             texCoordSample.x = texCoord.x + dUV.x;
             texCoordSample.y = texCoord.y + dUV.y;
 
-            cOut += texture2D(tex, texCoordSample);
+            cOut += texture2D(tex, texCoordSample, u_lod_bias);
 
             // Sample bottom right pixel
             texCoordSample.x = texCoord.x + dUV.x;
             texCoordSample.y = texCoord.y - dUV.y;
-            cOut += texture2D( tex, texCoordSample);
+            cOut += texture2D(tex, texCoordSample, u_lod_bias);
 
             // Sample bottom left pixel
             texCoordSample.x = texCoord.x - dUV.x;
             texCoordSample.y = texCoord.y - dUV.y;
 
-            cOut += texture2D(tex, texCoordSample);
+            cOut += texture2D(tex, texCoordSample, u_lod_bias;
 
             // Average 
             cOut *= 0.25;
