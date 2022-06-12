@@ -29,7 +29,7 @@ init -100 python in _wm_shadow:
         def render(self, width, height, st, at):
             cr = renpy.render(self.child, width, height, st, at)
             sr = renpy.render(self.shadow, width, height, st, at)
-            sr = _wm_gaussian.box_blur(sr, self.blur_r, 1)
+            sr = _wm_gaussian.gaussian_blur(sr, self.blur_r)
 
             cw, ch = cr.get_size()
             sw, sh = sr.get_size()
