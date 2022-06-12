@@ -52,6 +52,6 @@ init python:
         vec4 foreground = texture2D(tex1, v_tex_coord);
         if (foreground.a == 0.0) discard;
 
-        vec4 background = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0, u_iteration * 2.);
+        vec4 background = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0, u_iteration * 2.0 + 1.0);
         gl_FragColor = mix(background, foreground, foreground.a);
     """)

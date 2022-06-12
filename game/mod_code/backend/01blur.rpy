@@ -11,8 +11,40 @@ python early in _wm_gaussian:
         gl_FragColor = texture2D(tex0, v_tex_coord);
     """)
 
+    renpy.register_shader("wm.default_blur", variables="""
+        uniform sampler2D tex0;
+        attribute vec2 a_tex_coord;
+        varying vec2 v_tex_coord;
+        uniform float u_renpy_blur_log2;
+    """, vertex_200="""
+        v_tex_coord = a_tex_coord;
+    """, fragment_200="""
+        gl_FragColor = vec4(0.);
+        float renpy_blur_norm = 0.;
+
+        for (float i = -5.; i < 1.; i += 1.) {
+            float renpy_blur_weight = exp(-0.5 * pow(u_renpy_blur_log2 - i, 2.));
+            renpy_blur_norm += renpy_blur_weight;
+        }
+
+        gl_FragColor += renpy_blur_norm * texture2D(tex0, v_tex_coord.xy, 0.);
+
+        for (float i = 1.; i < 14.; i += 1.) {
+
+            if (i >= u_renpy_blur_log2 + 5.) {
+                break;
+            }
+
+            float renpy_blur_weight = exp(-0.5 * pow(u_renpy_blur_log2 - i, 2.));
+            gl_FragColor += renpy_blur_weight * texture2D(tex0, v_tex_coord.xy, i);
+            renpy_blur_norm += renpy_blur_weight;
+        }
+
+        gl_FragColor /= renpy_blur_norm;
+    """)
+
     from renpy.display.accelerator import transform_render
-    from math import sqrt, exp
+    from math import sqrt, exp, log
 
     def zoom_render(crend, factor):
         w, h = crend.get_size()
@@ -49,6 +81,25 @@ python early in _wm_gaussian:
 
         for d in (0.0, 1.0) * passes:
             render = apply_box_blur(render, blur, d)
+
+        return render
+
+    def weighted_blur(render, blur):
+        def apply_weighted_blur(render, blur, direction):
+            cr = render
+            render = renpy.Render(*cr.get_size())
+            render.mesh = True
+            render.blit(cr, (0, 0))
+            render.add_shader("-renpy.texture")
+
+            render.add_shader("wm.weighted_blur")
+            render.add_uniform("u_radius", blur)
+            render.add_uniform("u_direction", direction)
+
+            return render
+
+        for d in (0.0, 1.0):
+            render = apply_weighted_blur(render, blur, d)
 
         return render
 
@@ -120,6 +171,40 @@ python early in _wm_gaussian:
         for i in range(int(blur)):
             render = apply_kawase_blur(render, i)
 
+        return render
+
+    def default_blur(render, blur):
+        def apply_default_blur(render, i):
+            cr = render
+
+            render = renpy.Render(*cr.get_size())
+            render.mesh = True
+            render.blit(cr, (0, 0))
+            render.add_shader("-renpy.texture")
+
+            render.add_shader("wm.default_blur")
+            render.add_uniform("u_renpy_blur_log2", log(i, 2))
+            
+            return render
+
+        render = apply_default_blur(render, blur)
+        return render
+
+    def shadow_blur(render, blur):
+        def apply_shadow_blur(render, i):
+            cr = render
+
+            render = renpy.Render(*cr.get_size())
+            render.mesh = True
+            render.blit(cr, (0, 0))
+            render.add_shader("-renpy.texture")
+
+            render.add_shader("wm.shadow_blur")
+            render.add_uniform("u_radius", i)
+            
+            return render
+
+        render = apply_shadow_blur(render, blur)
         return render
 
     def new_transform_render(self, width, height, st, at):

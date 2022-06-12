@@ -13,29 +13,37 @@ init -100 python in _wm_shadow:
         def __init__(self, child, color="#000", xoff=0, yoff=0, blur_r=5.0, **kwargs):
             super(DropShadowCore, self).__init__(**kwargs)
             self.recolor_matrix = TintMatrix(color)
-            self.blur_r = blur_r
+            self.blur_r = absolute(blur_r)
             self.xoff = xoff
             self.yoff = yoff
 
-            blur_r = absolute(blur_r)
-
-            self.shadow = Window(
-                Transform(child, gl_color_mask=(False, False, False, True), matrixcolor=self.recolor_matrix, offset=(self.xoff, self.yoff)), 
-                style="empty", margin=(blur_r, blur_r))
+            self.shadow = Transform(
+                child, 
+                gl_color_mask=(False, False, False, True),
+                matrixcolor=self.recolor_matrix, 
+                offset=(self.xoff, self.yoff)
+            )
 
             self.add(self.shadow)
             self.add(child)
 
+        def shadow_render(self, width, height, st, at):
+            cr = renpy.render(self.shadow, width, height, st, at)
+            cw, ch = cr.get_size()
+            rv = renpy.Render(cw + self.blur_r * 2 * 3, ch + self.blur_r * 2 * 3)
+            rv.absolute_blit(cr, (self.blur_r * 3, self.blur_r * 3))
+            return rv
+
         def render(self, width, height, st, at):
             cr = renpy.render(self.child, width, height, st, at)
-            sr = renpy.render(self.shadow, width, height, st, at)
-            sr = _wm_gaussian.gaussian_blur(sr, self.blur_r)
+            sr = self.shadow_render(width, height, st, at)
+            sr = _wm_gaussian.shadow_blur(sr, self.blur_r)
 
             cw, ch = cr.get_size()
             sw, sh = sr.get_size()
 
             rv = renpy.Render(cw, ch)
-            rv.blit(sr, (-self.blur_r, -self.blur_r))
+            rv.blit(sr, (-self.blur_r * 3, -self.blur_r * 3))
             rv.blit(cr, (0, 0))
 
             return rv

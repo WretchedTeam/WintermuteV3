@@ -24,6 +24,74 @@ init python:
         gl_FragColor = col / sum;
     """)
 
+    renpy.register_shader("wm.weighted_blur", variables="""
+        uniform sampler2D tex0;
+        attribute vec2 a_tex_coord;
+        varying vec2 v_tex_coord;
+        uniform vec2 res0;
+
+        uniform float u_radius;
+        uniform float u_direction;
+    """, vertex_200="""
+        v_tex_coord = a_tex_coord;
+    """, fragment_functions="""
+        float calc_weight(float x)
+        {
+            return pow((cos(x * 3.14) + 1.0) * 0.5, 2.0);
+        }
+    """, fragment_200="""
+        vec2 pixeloffset = u_direction == 0.0 ? vec2(0.0, 1.0 / res0.y) : vec2(1.0 / res0.x, 0.0);
+
+        vec4 color = texture2D(tex0, v_tex_coord);
+        float sum = 1.0;
+
+        for (float i = 1.0; i <= u_radius; i++)
+        {
+            float weight = calc_weight((i / 20.0));
+
+            color += texture2D(tex0, v_tex_coord + pixeloffset * i) * weight;
+            color += texture2D(tex0, v_tex_coord - pixeloffset * i) * weight;
+
+            sum += 2.0 * weight;
+        }
+
+        gl_FragColor = color / sum;
+    """)
+
+    renpy.register_shader("wm.shadow_blur", variables="""
+        uniform sampler2D tex0;
+        attribute vec2 a_tex_coord;
+        varying vec2 v_tex_coord;
+        uniform vec2 res0;
+
+        uniform float u_radius;
+    """, vertex_200="""
+        v_tex_coord = a_tex_coord;
+    """, fragment_200="""
+        vec4 col = texture2D(tex0, v_tex_coord);
+
+        float sum = 1.0;
+
+        for (float i=1.0; i <= u_radius; i++) {
+            float weight = 1.0 - i / u_radius;
+            vec2 pixel_offset = vec2(i / res0.x, i / res0.y);
+
+            col += texture2D(tex0, v_tex_coord + vec2(pixel_offset.x, 0), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, 0), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord + vec2(0, pixel_offset.y), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord - vec2(0, pixel_offset.y), 3.0) * weight;
+
+            col += texture2D(tex0, v_tex_coord + vec2(pixel_offset.x, pixel_offset.y), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, pixel_offset.y), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord + vec2(-pixel_offset.x, pixel_offset.y), 3.0) * weight;
+            col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, -pixel_offset.y), 3.0) * weight;
+
+            sum += 4.0 * weight;
+        }
+
+        gl_FragColor = col / sum;
+    """)
+
     # Normal gaussian
     renpy.register_shader("wm.gaussian_h", variables="""
         uniform sampler2D tex0;
