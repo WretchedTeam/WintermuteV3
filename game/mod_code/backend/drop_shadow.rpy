@@ -12,7 +12,7 @@ init -100 python in _wm_shadow:
     class DropShadowCore(renpy.Container):
         def __init__(self, child, color="#000", xoff=0, yoff=0, blur_r=5.0, **kwargs):
             super(DropShadowCore, self).__init__(**kwargs)
-            self.recolor_matrix = TintMatrix(color) * BrightnessMatrix(1.0)
+            self.recolor_matrix = TintMatrix(color)
             self.blur_r = blur_r
             self.xoff = xoff
             self.yoff = yoff
@@ -20,7 +20,7 @@ init -100 python in _wm_shadow:
             blur_r = absolute(blur_r)
 
             self.shadow = Window(
-                Transform(child, matrixcolor=self.recolor_matrix, offset=(self.xoff, self.yoff)), 
+                Transform(child, gl_color_mask=(False, False, False, True), matrixcolor=self.recolor_matrix, offset=(self.xoff, self.yoff)), 
                 style="empty", margin=(blur_r, blur_r))
 
             self.add(self.shadow)
@@ -54,6 +54,4 @@ init -100 python in _wm_shadow:
 
         @staticmethod
         def drop_shadow_function(color, xoff, yoff, blur_r, child, **properties):
-            recolorMatrix = TintMatrix(color) * BrightnessMatrix(1.0)
-
             return DropShadowCore(child, color=color, xoffset=xoff, yoffset=yoff, blur_r=blur_r)

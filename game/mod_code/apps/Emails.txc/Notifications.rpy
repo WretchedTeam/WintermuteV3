@@ -9,23 +9,28 @@ screen mail_notification(just_received, unread):
 
     button ysize 120:
         at window_animation
+
         action [ Function(mail_client_app.open), Hide("mail_notification") ]
-        padding (20, 20)
 
-        has hbox:
-            spacing 20
+        frame style "empty":
+            padding (20, 20)
+            background RoundedFrame("#303030", radius=10.0, outline_width=2.0, outline_color="#454545")
+            at _wm_shadow.DropShadow(yoff=2.0, blur_r=10.0, color="#2222")
 
-        add "mail_client icon" fit "contain"
+            has hbox:
+                spacing 20
 
-        vbox yalign 0.5:
-            label _("{lexend=medium}Emails{/lexend}") text_color "#fff"
+            add "mail_client icon" fit "contain"
 
-            if just_received and not unread:
-                text _("You have {lexend=regular}[just_received]{/lexend} new email(s).") style_suffix "button_text"
-            elif not just_received and unread:
-                text _("You have {lexend=regular}[unread]{/lexend} unread email(s).") style_suffix "button_text"
-            else:
-                text _("You have {lexend=regular}[unread]{/lexend} unread and {lexend=regular}[just_received]{/lexend} new email(s).") style_suffix "button_text"
+            vbox yalign 0.5:
+                label _("{lexend=medium}Emails{/lexend}") text_color "#fff"
+
+                if just_received and not unread:
+                    text _("You have {lexend=regular}[just_received]{/lexend} new email(s).") style_suffix "button_text"
+                elif not just_received and unread:
+                    text _("You have {lexend=regular}[unread]{/lexend} unread email(s).") style_suffix "button_text"
+                else:
+                    text _("You have {lexend=regular}[unread]{/lexend} unread and {lexend=regular}[just_received]{/lexend} new email(s).") style_suffix "button_text"
 
     on "show" action Function(execute_callbacks, _wm_email.notif_show_callbacks)
 
@@ -33,7 +38,7 @@ style mail_notification_button is button
 style mail_notification_button_text is empty
 
 style mail_notification_button:
-    background RoundedFrame("#303030", radius=10.0, outline_width=2.0, outline_color="#454545")
+    background None
     align (1.0, 0.0)
     offset (-25, 25)
 

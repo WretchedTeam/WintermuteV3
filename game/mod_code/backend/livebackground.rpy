@@ -25,5 +25,6 @@ init python in _wm_live_background:
             next_matrix = TintMatrix(self.tints[(hour + 1) % 24])
             
             rv.add_uniform("u_renpy_matrixcolor", next_matrix(matrix, minute / 60.0))
+            renpy.redraw(self, 0.5)
 
             return rv

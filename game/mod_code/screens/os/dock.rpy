@@ -4,7 +4,7 @@ screen dock():
     if _wm_manager.open_apps:
         frame at dock_animation:
             has hbox:
-                spacing 10
+                spacing 5
 
             for app in _wm_manager.open_apps:
                 use dock_app_icon(app)
@@ -30,10 +30,11 @@ style dock_frame:
 
 transform dock_frame_trans:
     perspective True
-    matrixtransform RotateMatrix(60.0, 0.0, 0.0) * OffsetMatrix(0.0, 0.0, -25.0)
+    matrixtransform RotateMatrix(60.0, 0.0, 0.0) * OffsetMatrix(0.0, 0.0, -30.0)
 
 screen dock_app_icon(app):
-    button action Function(app.raise_window) at _wm_shadow.DropShadow(yoff=4.0, blur_r=20.0, color="#2228"):
+    button action Function(app.raise_window):
+        at _wm_shadow.DropShadow(yoff=2.0, blur_r=4.0, color="#2222")
         xysize (100, 100)
         padding (10, 10)
         add app.icon fit "contain"

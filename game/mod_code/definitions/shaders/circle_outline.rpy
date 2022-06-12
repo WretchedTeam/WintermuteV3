@@ -63,7 +63,7 @@ init python:
         }
 
         float circle(float radius, float d) {
-            return smoothstep(radius * 1.01, radius * 0.99, d);
+            return smoothstep(radius * 1.003, radius * 0.997, d);
         }
     """, fragment_200="""
         float aspect = res0.x / res0.y;
@@ -86,5 +86,5 @@ init python:
         float coeff = clamp(circle1 - circle2 - dash, 0.0, 1.0);
 
         vec4 color = mix(vec4(0.0), u_color, coeff);
-        gl_FragColor = vec4(color.rgb * color.a, color.a);
+        gl_FragColor = vec4(color.rgb, color.a) * coeff;
     """)
