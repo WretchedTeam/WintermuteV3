@@ -37,6 +37,9 @@ I'm off to enjoy an upcoming vacation with my family to balmy, wonderful Venezue
 With regards,
 
 William J. Turnell
+Former CEO of Turnell Technologies
+-----------------------------
+"The only way to do great work is to love what you do." – Steve Jobs
 """,
         sender=wturnell_sender,
         receiver="@Turnell"
