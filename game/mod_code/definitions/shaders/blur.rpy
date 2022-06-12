@@ -86,7 +86,7 @@ init python:
             col += texture2D(tex0, v_tex_coord + vec2(-pixel_offset.x, pixel_offset.y), 3.0) * weight;
             col += texture2D(tex0, v_tex_coord - vec2(pixel_offset.x, -pixel_offset.y), 3.0) * weight;
 
-            sum += 4.0 * weight;
+            sum += 8.0 * weight;
         }
 
         gl_FragColor = col / sum;
