@@ -114,7 +114,7 @@ label script8_m():
     call test_prompt_button("Continue")
     mc "It’s over."
 
-    show monika at wmflicker
+    show monika wmflicker
     pause(6.0)
 
     wm "Your relationship with \"WINTERMUTE™ Companion ‘Doki Doki Literature Club, Monika’\", UPC code 5063011898375 has formally ended."

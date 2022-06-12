@@ -841,7 +841,7 @@ label script2_y():
     mc "Can you tell me about yourself?"
     show yuri turned nerv lup rup e1a at t11
     y "A-about myself…?"
-    show yuri turned awk mg e2b b2b at t11
+    show yuri turned awkw mg e2b b2b at t11
     y "Uuuu…."
     show yuri turned blus mh e1c b2c at t11
     y "Well, um…"

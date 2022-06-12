@@ -91,5 +91,6 @@ style console_frame:
     xysize (400, 400)
 
 style console_text:
+    hinting "none"
     font _wm_font_jb_mono.regular
     size 18

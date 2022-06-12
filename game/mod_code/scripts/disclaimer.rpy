@@ -70,8 +70,6 @@ image startup_terminal_caret:
 
 label disclaimer():
     $ menu = terminal_menu
-    # show expression _wm_matrix_rain.MatrixRain() as matrix_rain:
-    #     alpha 0.5
 
     term_echo "[wm_ascii]{fast}{nw}\n"
 
@@ -90,7 +88,6 @@ label disclaimer():
             pass
 
     call installation_script
-    hide matrix_rain
     return
 
 label installation_script():

@@ -13,7 +13,7 @@ init python:
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
-        vec4 KawaseBlurFilter(sampler2D tex, vec2 texCoord, vec2 pixelSize, float iteration)
+        vec4 KawaseBlurFilter(sampler2D tex, vec2 texCoord, vec2 pixelSize, float iteration, float u_lod_bias)
         {
             vec2 texCoordSample;
             vec2 halfPixelSize = pixelSize / 2.0f;
@@ -42,7 +42,7 @@ init python:
             texCoordSample.x = texCoord.x - dUV.x;
             texCoordSample.y = texCoord.y - dUV.y;
 
-            cOut += texture2D(tex, texCoordSample, u_lod_bias;
+            cOut += texture2D(tex, texCoordSample, u_lod_bias);
 
             // Average 
             cOut *= 0.25;
@@ -53,6 +53,6 @@ init python:
         vec4 foreground = texture2D(tex1, v_tex_coord);
         if (foreground.a == 0.0) discard;
 
-        vec4 background = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0, u_iteration * 2.0 + 1.0);
+        vec4 background = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0, u_iteration * 2.0 - 1.0, u_lod_bias);
         gl_FragColor = mix(background, foreground, foreground.a);
     """)

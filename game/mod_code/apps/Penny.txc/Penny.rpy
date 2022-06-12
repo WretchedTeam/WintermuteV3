@@ -11,7 +11,7 @@ screen penny_idle():
             Show("penny", t=[ renpy.random.choice(_wm_penny_dialogues.click_response_pre_sensory) ]), 
             Play("sound", gui.activate_sound)
         ]
-        add "penny neutral" zoom 0.8 at _wm_shadow.DropShadow(yoff=2.0, blur_r=10.0, color="#1115")
+        add "penny neutral" zoom 0.8 at _wm_shadow.DropShadow(yoff=2.0, blur=10.0, color="#1116")
 
 style penny_idle_button is penny_button
 
@@ -45,7 +45,7 @@ screen penny(t, i=0):
                 frame:
                     text penny_txt
 
-                add penny_img zoom 0.8 at _wm_shadow.DropShadow(yoff=2.0, blur_r=10.0, color="#1115")
+                add penny_img zoom 0.8 at _wm_shadow.DropShadow(yoff=2.0, blur=10.0, color="#1116")
 
     on "show" action _wm_penny.BlurEaseIn()
     on "hide" action _wm_penny.BlurEaseOut()
