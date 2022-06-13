@@ -43,6 +43,7 @@ init python:
             rv.mesh = True
             rv.shaders = None
             rv.add_shader("wm.kawase_background")
+            rv.add_uniform("u_lod_bias", 2.0)
             rv.add_uniform("u_iteration", 1.0)
 
             self.offsets = [ (0, 0), (0, 0) ]
