@@ -206,7 +206,7 @@ init python:
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
-        vec4 KawaseBlurFilter(sampler2D tex, vec2 texCoord, vec2 pixelSize, float iteration, , float u_lod_bias)
+        vec4 KawaseBlurFilter(sampler2D tex, vec2 texCoord, vec2 pixelSize, float iteration, float u_lod_bias)
         {
             vec2 texCoordSample;
             vec2 halfPixelSize = pixelSize / 2.0f;
@@ -243,5 +243,5 @@ init python:
             return cOut;
         } 
     """, fragment_200="""
-        gl_FragColor = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0.xy, u_iteration * 2.0 + 1.0, u_lod_bias);
+        gl_FragColor = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0.xy, u_iteration, u_lod_bias);
     """)

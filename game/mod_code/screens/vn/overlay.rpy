@@ -10,6 +10,12 @@ screen vn_overlay():
         use wmservice()
         use terminal(wm_terminal)
 
+        # Dirty hack, I'll consider removing it if someone actually 
+        # notices the difference of 1/255th of alpha. 
+        if renpy.get_screen("voice_recog_say") or renpy.get_screen("input"):
+            window:
+                background "#00000001"
+
 init python:
     def init_term_console():
         global wm_console, wm_terminal
@@ -27,8 +33,6 @@ init python:
             self.add(child)
 
         def render(self, width, height, st, at):
-            blur = _wm_blur_funcs.kawase_blur
-
             cr = renpy.render(self.child, width, height, st, at)
             br = renpy.render(self.background, width, height, st, at)
 
@@ -37,6 +41,7 @@ init python:
             rv.blit(cr, (0, 0))
 
             rv.mesh = True
+            rv.shaders = None
             rv.add_shader("wm.kawase_background")
             rv.add_uniform("u_iteration", 1.0)
 
