@@ -7,7 +7,7 @@ init python:
     )
 
     search_test_headline_2 = _wm_news.News(
-        "UNMASKED: Vox Populi cyber-terrorist Isaac Moran arrested in Islington",
+        "UNMASKED: Vox Populi cyber-terrorist & white supremacist Isaac Moran arrested in Islington",
         "t3a2.png",
         _wm_news.P_TS,
         _wm_indian_names.get_indian_name()
