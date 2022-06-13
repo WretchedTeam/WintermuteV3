@@ -29,8 +29,8 @@ init -100 python in _wm_shadow:
             cr = renpy.render(self.child, width, height, st, at)
             cw, ch = cr.get_size()
 
-            rv = renpy.Render(cw + self.blur * 2 * 10, ch + self.blur * 2 * 10)
-            rv.blit(cr, (self.blur * 10, self.blur * 10))
+            rv = renpy.Render(cw + self.blur * 2 * 40, ch + self.blur * 2 * 40)
+            rv.absolute_blit(cr, (self.blur * 40, self.blur * 40))
 
             rv.add_shader("wm.silhouette")
             rv.add_uniform("u_color", normalize_color(self.color))
@@ -40,13 +40,13 @@ init -100 python in _wm_shadow:
         def render(self, width, height, st, at):
             cr = renpy.render(self.child, width, height, st, at)
             sr = self.shadow_render(width, height, st, at)
-            sr = _wm_gaussian.shadow_blur(sr, self.blur, 4.0)
+            sr = _wm_gaussian.shadow_blur(sr, self.blur, 1.0)
 
             cw, ch = cr.get_size()
             sw, sh = sr.get_size()
 
             rv = renpy.Render(cw, ch)
-            rv.blit(sr, (-self.blur * 10, -self.blur * 10))
+            rv.absolute_blit(sr, (-self.blur * 40 + self.xoff, -self.blur * 40 + self.yoff))
             rv.blit(cr, (0, 0))
 
             return rv

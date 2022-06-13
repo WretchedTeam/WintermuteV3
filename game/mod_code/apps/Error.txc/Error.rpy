@@ -12,6 +12,7 @@ define audio.error = "mod_assets/audio/os/wnerrorsound.ogg"
 screen error_dialog(msg, sc_name="error_dialog"):
     layer "errors"
     style_prefix "error_dialog"
+    modal True
 
     drag at window_animation:
         align (0.5, 0.5)
@@ -19,7 +20,7 @@ screen error_dialog(msg, sc_name="error_dialog"):
             xsize 700
             at [ 
                 RoundedWindows(radius=10.0, outline_width=2.0, outline_color="#828282"), 
-                _wm_shadow.DropShadow(yoff=2.0, blur=10.0, color="#1116") 
+                _wm_shadow.DropShadow(yoff=32.0, blur=8.0, color="#1116") 
             ]
 
             use program_header("Error", Hide("error_dialog"))
