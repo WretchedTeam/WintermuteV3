@@ -27,7 +27,7 @@ init python:
             self.add(child)
 
         def render(self, width, height, st, at):
-            blur = _wm_gaussian.kawase_blur
+            blur = _wm_blur_funcs.kawase_blur
 
             cr = renpy.render(self.child, width, height, st, at)
             br = renpy.render(self.background, width, height, st, at)

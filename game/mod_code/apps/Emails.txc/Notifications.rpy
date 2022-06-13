@@ -15,7 +15,7 @@ screen mail_notification(just_received, unread):
         frame style "empty":
             padding (20, 20)
             background RoundedFrame("#303030", radius=10.0, outline_width=2.0, outline_color="#454545")
-            at _wm_shadow.DropShadow(yoff=32.0, blur=8.0, color="#1116")
+            at _wm_shadow.DropShadow(blur=8.0, color="#1116")
 
             has hbox:
                 spacing 20

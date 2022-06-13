@@ -124,7 +124,7 @@ screen program_base(app, **props):
         vbox properties props:
             at [ 
                 RoundedWindows(radius=10.0, outline_width=2.0, outline_color="#828282"), 
-                _wm_shadow.DropShadow(yoff=32.0, blur=8.0, color="#1116")
+                _wm_shadow.DropShadow(blur=8.0, color="#1116")
             ]
 
             use program_header(app.name, Function(app.close))

@@ -1,4 +1,4 @@
-python early in _wm_gaussian:
+python early in _wm_blur_funcs:
     from renpy.config import gl_lod_bias
     # Override renpy's default blur
     renpy.register_shader("renpy.blur", variables="""
@@ -44,7 +44,6 @@ python early in _wm_gaussian:
         gl_FragColor /= renpy_blur_norm;
     """)
 
-    from renpy.display.accelerator import transform_render
     from math import sqrt, exp, log
 
     def zoom_render(crend, factor):
@@ -214,6 +213,10 @@ python early in _wm_gaussian:
 
         render = apply_shadow_blur(render, blur)
         return render
+
+python early in _wm_replace_transform_blur:
+    from store._wm_blur_funcs import gaussian_blur
+    from renpy.display.accelerator import transform_render
 
     def new_transform_render(self, width, height, st, at):
         rv = transform_render(self, width, height, st, at)

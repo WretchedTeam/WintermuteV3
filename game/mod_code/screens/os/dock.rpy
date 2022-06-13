@@ -34,7 +34,7 @@ transform dock_frame_trans:
 
 screen dock_app_icon(app):
     button action Function(app.raise_window):
-        at _wm_shadow.DropShadow(yoff=32.0, blur=8.0, color="#1116")
+        at _wm_shadow.DropShadow(blur=8.0, color="#1116")
         xysize (100, 100)
         padding (10, 10)
         add app.icon fit "contain"

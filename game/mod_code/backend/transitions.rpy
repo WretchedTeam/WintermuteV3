@@ -207,8 +207,8 @@ init python:
             rv.add_uniform("u_renpy_dissolve", complete)
             rv.add_property("mipmap", renpy.config.mipmap_dissolves if (self.style.mipmap is None) else self.style.mipmap)
 
-            bottom = _wm_gaussian.gaussian_blur(bottom, self.blur * complete)
-            top = _wm_gaussian.gaussian_blur(top, self.blur * (1.0 - complete))
+            bottom = _wm_blur_funcs.gaussian_blur(bottom, self.blur * complete)
+            top = _wm_blur_funcs.gaussian_blur(top, self.blur * (1.0 - complete))
 
             rv.blit(bottom, (0, 0), focus=False, main=False)
             rv.blit(top, (0, 0), focus=True, main=True)
