@@ -223,16 +223,20 @@ label script9_main:
             hide sayori
             hide yuri
 
-            menu:
+            menu (screen="load_doki_choice"):
                 "Load Monika":
                     jump script9_m
+
                 "Load Sayori":
                     jump script9_s
+
                 "Load Natsuki":
                     jump script9_n
+
                 "Load Yuri":
                     jump script9_y
 
+    return
 
 label script9_m():
 

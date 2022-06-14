@@ -42,9 +42,9 @@ label ending_script_destroy:
     pause(5.0)
 
     wm "haha bitch you got the good ending"
-    $ renpy.quit
+    $ renpy.quit()
 
 label ending_script_test:
     scene black
     wm "haha bitch you got the bad ending"
-    $ renpy.quit
+    $ renpy.quit()
