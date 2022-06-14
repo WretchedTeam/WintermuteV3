@@ -78,7 +78,7 @@ python early in _wm_blur_funcs:
         RECI_SQRT_2PI = 1.0 / 2.50662827463
 
         def apply_gaussian_blur(render, blur, direction, incre=False):
-            sigma = blur / 4.0
+            sigma = blur / 2.0
             shader = "wm.gaussian_blur_incre" if incre else "wm.gaussian_blur"
 
             render = new_render(render, shader)

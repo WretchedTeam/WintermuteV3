@@ -1,3 +1,58 @@
+# Types of Blurs
+# --------------
+#
+# Default "Blur" (wm.default_blur)
+# --------------------------------
+# The default weird ass low quality blur/level-of-detail hack which RenPy ships with.
+#
+# Box Blur (wm.box_blur)
+# ----------------------
+# It's an actual convolution blur with all the kernel values set to 1 (each pixel 
+# within the radius has constant weight). Even has the weird artifacts which are 
+# characteristic for a box blur.
+#
+# Weighted Blur (wm.weighted_blur)
+# --------------------------------
+# Convolution blur with a kernel calculated using a cosine curve and the distance
+# from the origin pixel.
+#
+# The curve equation is `((cos(x * 3.14) + 1.0) * 0.5) ^ 2` or 
+# `cos^2(x * 3.14 * 0.5) ^ 2` where `x` is the pixel offset divided by the radius.
+#
+# This was made to be used instead of `wm.gaussian_blur`, but there wasn't much 
+# of a difference in performance between the two, with the gaussian being faster
+# in some cases on my MBP.
+#
+# "Shadow" Blur (wm.shadow_blur)
+# ------------------------------
+# Blur which just samples the edges and uses LOD to fill in the gaps. 
+# Just used for the drop shadow where quality isn't a main priority (Thus the 
+# shader name).
+#
+# Gaussian Blur (wm.gaussian_blur)
+# --------------------------------
+# Convolution blur with a kernel calculated using the gaussian function. Sigma is 
+# taken to be half the radius.
+#
+# Gaussian Blur with Incremental Gaussian Computation (wm.gaussian_blur_incre):
+# Same as `wm.gaussian_blur` but instead of performing a exponential function
+# for each sample, it uses a polynomial approximation which just needs a vector
+# multiplication per sample.
+#
+# Not much performance difference here either (on my MBP).
+#
+# Refer:
+# https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-40-incremental-computation-gaussian
+#
+# Kawase Blur (wm.kawase_blur)
+# ----------------------------
+# Multipass blur which samples the corners at increasing distance per pass 
+# and averages them to produce a effect identical to a gaussian blur.
+#
+# Refer:
+# https://community.arm.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-20-66/siggraph2015_2D00_mmg_2D00_marius_2D00_notes.pdf
+# https://www.intel.com/content/www/us/en/developer/articles/technical/an-investigation-of-fast-real-time-gpu-based-image-blur-algorithms.html
+
 init python:
     renpy.register_shader("wm.default_blur", variables="""
         uniform sampler2D tex0;
