@@ -23,6 +23,8 @@ label script3_main():
     return True
 
 label script3_m():
+    show monika forward at i11
+    call show_monika_reload()
     show monika forward e1a b1a ma at t11 zorder 1
     mc "Hey,{w=0.2} Monika?"
     m mb "Hey!{w=0.7} What can I do for you?"
@@ -49,6 +51,8 @@ label script3_m():
     return
 
 label script3_s():
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned e1a b1a ma at t11 zorder 1
     mc "Hey,{w=0.2} Sayori?"
     s mb "Hi!"
@@ -73,6 +77,8 @@ label script3_s():
     return
 
 label script3_n():
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki turned e1a b1a ma at t11 zorder 1
     mc "Hey,{w=0.2} Natsuki?"
     n mh "Yo."
@@ -115,6 +121,8 @@ label script3_n():
     return
 
 label script3_y():
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned e1a b1c ma at t11 zorder 1
     # Load Yuri
     mc "Hey,{w=0.2} Yuri?"

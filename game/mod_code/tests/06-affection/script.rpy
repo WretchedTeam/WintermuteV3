@@ -21,8 +21,10 @@ label script6_main():
 
     return True
 
-label script6_m:
+label script6_m():
 
+    show monika forward at i11
+    call show_monika_reload()
     show monika forward e1a ma b2a at i11
     mc "Hello, {w=0.2}Monika."
     show monika mb b1a
@@ -137,7 +139,8 @@ label script6_m:
     return
 
 label script6_s():
-
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned ma e1a b2a at i11
     mc "Hello, {w=0.2}Sayori."
     show sayori e4b mc b1a rup
@@ -249,6 +252,8 @@ label script6_s():
 
 label script6_n():
 
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki turned md e1b b1a at t11
     mc "Hello, {w=0.2}Natsuki."
     show natsuki cross b1d mi e1d
@@ -391,6 +396,8 @@ label script6_n():
 
 label script6_y():
 
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned e1a md b1c at i11
     mc "Hello, {w=0.2}Yuri."
     show yuri e1d mg

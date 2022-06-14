@@ -33,9 +33,8 @@ label script4_finished():
 
 label script4_m():
 
-    # Monika
-    ##BUTTON:
-    # Address Monika
+    show monika forward at i11
+    call show_monika_reload()
     show monika forward happ cm e1c at t11
     call test_prompt_button("Address Monika") from _call_test_prompt_button_144
     mc "Hello, Monika."
@@ -140,9 +139,8 @@ label script4_m():
 
 label script4_s():
 
-    # Sayori
-    ##BUTTON:
-    # Address Sayori
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned ma e4b b1a lup rup at t11
     call test_prompt_button("Address Sayori") from _call_test_prompt_button_146
     mc "Hello, Sayori."
@@ -248,9 +246,8 @@ label script4_s():
 
 label script4_n():
 
-    # Natsuki
-    ##BUTTON:
-    # Address Natsuki
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki cross e1b mj b1a at t11
     call test_prompt_button("Address Natsuki") from _call_test_prompt_button_148
     mc "Hello, Natsuki."
@@ -349,9 +346,8 @@ label script4_n():
 
 label script4_y:
 
-    # Yuri
-    ##BUTTON
-    # Address Yuri
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned ma b1a e1b lup rup at t11
     call test_prompt_button("Address Yuri") from _call_test_prompt_button_150
     mc "Hello, Yuri."

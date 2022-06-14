@@ -23,7 +23,9 @@ label script1_main():
     return True
 
 label script1_m():
-    show monika forward e1a b1a mb rhip at t11 
+    show monika forward at i11
+    call show_monika_reload()
+    show monika forward e1a b1a mb rhip at t11
     m "Hello! I'm Monika, your local Literature Club president, ahaha~."
     m e4b "It's great to meet you."
     m e1a rdown "Let's do a brief introduction, if you have time."
@@ -45,6 +47,8 @@ label script1_m():
     return
 
 label script1_s():
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned e1a b1a mb at t11
     s "Hi! I'm Sayori, Vice President of the Literature Club!"
     s rup e1f "But I bet you already knew that."
@@ -70,8 +74,10 @@ label script1_s():
     show sayori at thide
     hide sayori
     return
-    
+
 label script1_y():
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned e1a mh b1a at t11
     y "Oh...hi..."
     y b1b mg "Did I startle you?"
@@ -98,6 +104,8 @@ label script1_y():
     return
 
 label script1_n():
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki turned rhip b1a e1a mh at t11
     n "Well, I've got a script to recite and I'd rather not bore us both, so…"
     n e1b "{i}\"Hi, I'm Natsuki, part of the Literature Club.\"{/i}"

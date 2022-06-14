@@ -197,6 +197,8 @@ label script2_m_attractions():
     return
 
 label script2_m():
+    show monika forward at i11
+    call show_monika_reload()
     show monika forward happ cm oe at t11
     mc "Hello, Monika."
     m lean happ om oe "Why hello, $EMPLOYEE_NAME!"
@@ -392,6 +394,8 @@ label script2_s_attractions():
     return
 
 label script2_s():
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned ma e1a b1a at t11
     mc "Hello, Sayori."
     show sayori mc e4b rup lup at h11
@@ -641,6 +645,8 @@ label script2_n_attractions():
     return
 
 label script2_n():
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki turned md e1b b1a at t11 zorder 2
     # Address Natsuki
     mc "Hello, Natsuki."
@@ -829,7 +835,8 @@ label script2_y_attractions():
     return
 
 label script2_y():
-    # Address Yuri
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned neut cm oe at t11
     mc "Hello, Yuri."
     show yuri lsur om oe at h11

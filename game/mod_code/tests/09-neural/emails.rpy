@@ -5,7 +5,7 @@ init python:
         contents="""
 I find it funny that despite the abundance of CCTV in the building, bugged headset microphones, social engineering, and whatever-the-fuck-else they use to keep eyes and ears trained on us...they can’t read the email drafts. Lmao.
 
-I appreciate you doing this for me. I can’t do it. All this shit about Turnell in the news, I can’t stand by it. I’m taking a step back until I can get a new job lined up. Nobody knows I’m doing this right now, so you need to keep hush-hush about it.
+I appreciate you doing this for me. I can’t do it. All the shit I know about Turnell, and the pressure in the news, I can’t stand by it. I’m taking a step back for the foreseeable future. Nobody knows I’m not here right now, so you need to keep hush-hush about it.
 
 To keep things brief, they want "me" to test the program’s use of restore points to jump back to a previous point in time - intended use case is, if you mess up your relationship with your e-GF so bad that things are basically unrecoverable, you can set yourself back to an autosaved restore point (at a hefty price - think of it as an ‘arsehole fee’). You can also revert the changes if you want to.
 
@@ -21,7 +21,7 @@ Anyway. Thanks again. Meet me down the Swan & Prince later, and I’ll get you a
 
 - IG
 
-PS: DELTE THIS DRAFT AS SOON AS YOU’VE READ IT.
+PS: DELETE THIS DRAFT AS SOON AS YOU’VE READ IT.
 """,
         sender=igreen_sender
     )

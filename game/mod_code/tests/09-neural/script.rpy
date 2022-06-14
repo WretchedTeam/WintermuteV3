@@ -14,10 +14,12 @@ label disable_vn_overlay:
     return
 
 label script9_main:
-    stop music
-    scene black
-
+    show monika forward at i11
+    call show_monika_reload()
+    show monika forward neut cm oe
     pause(1.0)
+    show monika wmflicker
+    pause(2.0)
     show monika forward wmflicker e4a mj b2b zorder 2 at i11
     show sayori turned wmflicker e4a mj b2b zorder 2 at i11
     show natsuki turned wmflicker e4a mj b2b zorder 2 at i11
@@ -167,9 +169,9 @@ label script9_main:
 
     menu:
         "Input command":
-            call nodecor_command(wm_terminal, "deletion command 1", "donezo")
-            call nodecor_command(wm_terminal, "deletion command 2", "donezo-er")
-            call nodecor_command(wm_terminal, "deletion command 3", "donezo-est")
+            call nodecor_command(wm_terminal, "shred -n 9 -z 'trnl_wm'", "administrator privileges required to execute command. please confirm your administrator credentials:")
+            call nodecor_command(wm_terminal, "****************", "are you sure you want to continue? y/n")
+            call nodecor_command(wm_terminal, "y")
             show sayori mb e4e b2c
             show natsuki mb e4e b2c
             show yuri mb e4e b2c
@@ -195,6 +197,8 @@ label script9_main:
             show yuri e6
             show monika e5
             pause(3.0)
+            $ config.keymap['game_menu'] = []
+            $ config.keymap['hide_windows'] = []
             $ persistent.ending_obtained = 1
             window hide None
             call disable_vn_overlay
@@ -224,16 +228,16 @@ label script9_main:
             hide yuri
 
             menu (screen="load_doki_choice"):
-                "Load Monika":
+                "Monika":
                     jump script9_m
 
-                "Load Sayori":
+                "Sayori":
                     jump script9_s
 
-                "Load Natsuki":
+                "Natsuki":
                     jump script9_n
 
-                "Load Yuri":
+                "Yuri":
                     jump script9_y
 
     return

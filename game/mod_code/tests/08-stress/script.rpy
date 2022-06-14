@@ -22,7 +22,9 @@ label script8_main:
     return True
 
 label script8_m():
-    show monika forward happ om at t11 zorder 1
+    show monika forward at i11
+    call show_monika_reload()
+    show monika forward happ om at i11 zorder 1
     m "Oh, hey $EMPLOYEE_NAME!"
     m e4a lpoint "How can I help you?"
     show monika e1a ma
@@ -152,6 +154,8 @@ label script8_m():
     return
 
 label script8_s():
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned happ mb zorder 1 at t11
     s "Oh, what’s up, $EMPLOYEE_NAME?"
     show sayori ma
@@ -407,7 +411,9 @@ label script8_s():
 
 label script8_n():
 
-    show natsuki turned happ mh oe zorder 1 at t11
+    show natsuki turned at i11
+    call show_natsuki_reload()
+    show natsuki turned happ mh oe zorder 1 at i11
     n "$EMPLOYEE_NAME?"
     show natsuki b1f rhip
     n "What’s...up?"
@@ -678,6 +684,8 @@ label script8_n():
     return
 
 label script8_y():
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned happ b2a mb oe zorder 1 at t11
     y "Oh, hello, $EMPLOYEE_NAME?"
     y "What can I do for you?"

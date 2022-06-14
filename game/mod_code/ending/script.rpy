@@ -12,6 +12,8 @@ image p5:
     "mod_assets/ending/bsod/percent_5.png"
 image p6:
     "mod_assets/ending/bsod/percent_6.png"
+image good_email:
+    "mod_assets/ending/good/email.png"
 
 label ending_script_destroy:
 
@@ -40,9 +42,20 @@ label ending_script_destroy:
     $ renpy.movie_cutscene("mod_assets/ending/end_video_beta.webm")
     scene black
     pause(5.0)
-
-    wm "haha bitch you got the good ending"
-    $ renpy.quit()
+    play audio "mod_assets/audio/os/emailget.ogg"
+    pause(2.0)
+    show good_email
+    with Dissolve(1.0)
+    label post_good_ending_loop:
+        $ persistent.autoload = "post_good_ending_loop"
+        $ quick_menu = False
+        $ config.skipping = False
+        $ config.allow_skipping = False
+        scene black
+        show good_email
+        with Dissolve(1.0)
+        $ renpy.pause()
+        $ renpy.quit()
 
 label ending_script_test:
     scene black

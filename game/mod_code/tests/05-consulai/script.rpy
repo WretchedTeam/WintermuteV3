@@ -190,7 +190,9 @@ label script5_m_you(last=False):
         mc "But..."
     return
 
-label script5_m:
+label script5_m():
+    show monika forward at i11
+    call show_monika_reload()
     show monika forward e1a b1a ma at t11 zorder 1
     mc "Hello, Monika."
     m mb "Hey, $EMPLOYEE_NAME!"
@@ -414,6 +416,8 @@ label script5_s_you(last=False):
 
 label script5_s:
 
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned happ cm oe at t11
     mc "Hello, Sayori."
     s om ce "Hi, $EMPLOYEE_NAME!"
@@ -710,6 +714,8 @@ label script5_n_you(last=False):
 
 label script5_n:
 
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki turned e1a b1a ma at t11 zorder 1
     mc "Hello, Natsuki."
     n mg "Oh, hey $EMPLOYEE_NAME."
@@ -956,6 +962,8 @@ label script5_y_you(last=False):
 
 label script5_y:
 
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned neut me oe at t11
 
     mc "Hello, Yuri."

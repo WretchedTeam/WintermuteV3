@@ -22,6 +22,8 @@ label script7_main:
     return True
 
 label script7_m():
+    show monika forward at i11
+    call show_monika_reload()
     show monika forward happ om at t11 zorder 1
     m "Oh, $EMPLOYEE_NAME?"
     show monika forward rhip ce
@@ -205,6 +207,8 @@ label script7_m():
 
 label script7_s():
 
+    show sayori turned at i11
+    call show_sayori_reload()
     show sayori turned happ mb zorder 1 at t11
     s "Oh hey, $EMPLOYEE_NAME!"
     show sayori e4b
@@ -389,6 +393,8 @@ label script7_s():
 
 label script7_n():
 
+    show natsuki turned at i11
+    call show_natsuki_reload()
     show natsuki cross happ mh oe zorder 1 at t11
     n "Oh, $EMPLOYEE_NAME?"
     show natsuki mb
@@ -633,6 +639,8 @@ label script7_n():
 
 label script7_y():
 
+    show yuri turned at i11
+    call show_yuri_reload()
     show yuri turned happ b2a mb oe zorder 1 at t11
     y "Hello, $EMPLOYEE_NAME."
     show yuri e1a
