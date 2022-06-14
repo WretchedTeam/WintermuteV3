@@ -1,4 +1,9 @@
 init python:
+    # By Pseurae & Intel lmao
+    
+    # Source Material:
+    # https://www.intel.com/content/www/us/en/developer/articles/technical/an-investigation-of-fast-real-time-gpu-based-image-blur-algorithms.html
+
     renpy.register_shader("wm.kawase_background", variables="""
         uniform sampler2D tex0;
         uniform sampler2D tex1;
@@ -13,46 +18,23 @@ init python:
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
-        vec4 KawaseBlurFilter(sampler2D tex, vec2 texCoord, vec2 pixelSize, float iteration, float u_lod_bias)
+        vec4 kawase_pass(sampler2D tex, vec2 uv, vec2 pixel_size, float iteration, float u_lod_bias)
         {
-            vec2 texCoordSample;
-            vec2 halfPixelSize = pixelSize / 2.0f;
-            vec2 dUV = (pixelSize.xy * vec2(iteration)) + halfPixelSize.xy;
+            vec2 off = (pixel_size.xy * vec2(iteration + 0.5));
 
-            vec4 cOut;
+            vec4 color = texture2D(tex, uv + vec2(-off.x, off.y), u_lod_bias); // Sample top left pixel
+            color += texture2D(tex, uv + off, u_lod_bias); // Sample top right pixel
+            color += texture2D(tex, uv + vec2(off.x, -off.y), u_lod_bias); // Sample bottom right pixel
+            color += texture2D(tex, uv - off, u_lod_bias); // Sample bottom left pixel
 
-            // Sample top left pixel
-            texCoordSample.x = texCoord.x - dUV.x;
-            texCoordSample.y = texCoord.y + dUV.y;
+            color *= 0.25; // Average 
             
-            cOut = texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Sample top right pixel
-            texCoordSample.x = texCoord.x + dUV.x;
-            texCoordSample.y = texCoord.y + dUV.y;
-
-            cOut += texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Sample bottom right pixel
-            texCoordSample.x = texCoord.x + dUV.x;
-            texCoordSample.y = texCoord.y - dUV.y;
-            cOut += texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Sample bottom left pixel
-            texCoordSample.x = texCoord.x - dUV.x;
-            texCoordSample.y = texCoord.y - dUV.y;
-
-            cOut += texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Average 
-            cOut *= 0.25;
-            
-            return cOut;
+            return color;
         } 
     """, fragment_200="""
         vec4 foreground = texture2D(tex1, v_tex_coord);
         if (foreground.a == 0.0) discard;
 
-        vec4 background = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0, u_iteration * 2.0, u_lod_bias);
+        vec4 background = kawase_pass(tex0, v_tex_coord, 1.0 / res0, u_iteration * 2.0, u_lod_bias);
         gl_FragColor = mix(background, foreground, foreground.a);
     """)

@@ -236,42 +236,19 @@ init python:
     """, vertex_200="""
         v_tex_coord = a_tex_coord;
     """, fragment_functions="""
-        vec4 KawaseBlurFilter(sampler2D tex, vec2 texCoord, vec2 pixelSize, float iteration, float u_lod_bias)
+        vec4 kawase_pass(sampler2D tex, vec2 uv, vec2 pixel_size, float iteration, float u_lod_bias)
         {
-            vec2 texCoordSample;
-            vec2 halfPixelSize = pixelSize / 2.0f;
-            vec2 dUV = (pixelSize.xy * vec2(iteration)) + halfPixelSize.xy;
+            vec2 off = (pixel_size.xy * vec2(iteration + 0.5));
 
-            vec4 cOut;
+            vec4 color = texture2D(tex, uv + vec2(-off.x, off.y), u_lod_bias); // Sample top left pixel
+            color += texture2D(tex, uv + off, u_lod_bias); // Sample top right pixel
+            color += texture2D(tex, uv + vec2(off.x, -off.y), u_lod_bias); // Sample bottom right pixel
+            color += texture2D(tex, uv - off, u_lod_bias); // Sample bottom left pixel
 
-            // Sample top left pixel
-            texCoordSample.x = texCoord.x - dUV.x;
-            texCoordSample.y = texCoord.y + dUV.y;
+            color *= 0.25; // Average 
             
-            cOut = texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Sample top right pixel
-            texCoordSample.x = texCoord.x + dUV.x;
-            texCoordSample.y = texCoord.y + dUV.y;
-
-            cOut += texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Sample bottom right pixel
-            texCoordSample.x = texCoord.x + dUV.x;
-            texCoordSample.y = texCoord.y - dUV.y;
-            cOut += texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Sample bottom left pixel
-            texCoordSample.x = texCoord.x - dUV.x;
-            texCoordSample.y = texCoord.y - dUV.y;
-
-            cOut += texture2D(tex, texCoordSample, u_lod_bias);
-
-            // Average 
-            cOut *= 0.25f;
-            
-            return cOut;
+            return color;
         } 
     """, fragment_200="""
-        gl_FragColor = KawaseBlurFilter(tex0, v_tex_coord, 1.0 / res0.xy, u_iteration, u_lod_bias);
+        gl_FragColor = kawase_pass(tex0, v_tex_coord, 1.0 / res0.xy, u_iteration, u_lod_bias);
     """)
