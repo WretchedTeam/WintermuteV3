@@ -34,7 +34,8 @@
 # Convolution blur with a kernel calculated using the gaussian function. Sigma is 
 # taken to be half the radius.
 #
-# Gaussian Blur with Incremental Gaussian Computation (wm.gaussian_blur_incre):
+# Gaussian Blur with Incremental Gaussian Computation (wm.gaussian_blur_incre)
+# ----------------------------------------------------------------------------
 # Same as `wm.gaussian_blur` but instead of performing a exponential function
 # for each sample, it uses a polynomial approximation which just needs a vector
 # multiplication per sample.
@@ -43,6 +44,16 @@
 #
 # Refer:
 # https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-40-incremental-computation-gaussian
+#
+# Gaussian Blur with Linear Sampling (wm.gaussian_blur_linear)
+# ------------------------------------------------------------
+# Same as `wm.gaussian_blur` but uses this iteration uses linear sampling to 
+# effectively half the number of pixels sampled by using the GPU's sampler.
+
+# Performance increases significantly, but has more GPU usage.
+
+# Refer:
+# https://www.rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
 #
 # Kawase Blur (wm.kawase_blur)
 # ----------------------------
@@ -223,6 +234,42 @@ init python:
             sum += incre_gauss.x * 2.0;
             incre_gauss.xy *= incre_gauss.yz;
         }
+        gl_FragColor = col / sum;
+    """)
+
+    renpy.register_shader("wm.gaussian_blur_linear", variables="""
+        uniform sampler2D tex0;
+        attribute vec2 a_tex_coord;
+        varying vec2 v_tex_coord;
+        uniform vec2 res0;
+        uniform float u_lod_bias;
+        uniform float u_radius;
+        uniform float u_sigma;
+        uniform float u_sqr_sigma;
+        uniform vec2 u_direction;
+    """, vertex_200="""
+        v_tex_coord = a_tex_coord;
+    """, fragment_200="""
+        vec4 col = texture2D(tex0, v_tex_coord, u_lod_bias);
+
+        float sum = 1.0;
+
+        for (float i=1.0; i <= (u_radius - 1.0) / 2.0; i+=2.0) {
+            float weight1 = exp(-i * i / (2.0 * u_sqr_sigma));
+            float i2 = (i + 1.0);
+            float weight2 = exp(-i2 * i2 / (2.0 * u_sqr_sigma));
+
+            vec2 offset1 = u_direction * (vec2(i) / res0.xy);
+            vec2 offset2 = u_direction * (vec2(i2) / res0.xy);
+
+            float weight = weight1 + weight2;
+            vec2 offset = (offset1 * weight1 + offset2 * weight2) / weight;
+
+            col += texture2D(tex0, v_tex_coord + offset, u_lod_bias) * weight;
+            col += texture2D(tex0, v_tex_coord - offset, u_lod_bias) * weight;
+            sum += weight * 2.0;
+        }
+
         gl_FragColor = col / sum;
     """)
 
