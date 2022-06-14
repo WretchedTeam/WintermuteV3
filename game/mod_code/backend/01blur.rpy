@@ -12,39 +12,15 @@ python early in _wm_blur_funcs:
         gl_FragColor = texture2D(tex0, v_tex_coord);
     """)
 
-    renpy.register_shader("wm.default_blur", variables="""
-        uniform sampler2D tex0;
-        attribute vec2 a_tex_coord;
-        varying vec2 v_tex_coord;
-        uniform float u_renpy_blur_log2;
-    """, vertex_200="""
-        v_tex_coord = a_tex_coord;
-    """, fragment_200="""
-        gl_FragColor = vec4(0.);
-        float renpy_blur_norm = 0.;
-
-        for (float i = -5.; i < 1.; i += 1.) {
-            float renpy_blur_weight = exp(-0.5 * pow(u_renpy_blur_log2 - i, 2.));
-            renpy_blur_norm += renpy_blur_weight;
-        }
-
-        gl_FragColor += renpy_blur_norm * texture2D(tex0, v_tex_coord.xy, 0.);
-
-        for (float i = 1.; i < 14.; i += 1.) {
-
-            if (i >= u_renpy_blur_log2 + 5.) {
-                break;
-            }
-
-            float renpy_blur_weight = exp(-0.5 * pow(u_renpy_blur_log2 - i, 2.));
-            gl_FragColor += renpy_blur_weight * texture2D(tex0, v_tex_coord.xy, i);
-            renpy_blur_norm += renpy_blur_weight;
-        }
-
-        gl_FragColor /= renpy_blur_norm;
-    """)
-
     from math import sqrt, exp, log
+
+    def new_render(crend, shader):
+        rv = renpy.Render(*crend.get_size())
+        rv.mesh = True
+        rv.blit(crend, (0, 0))
+        rv.shaders = None
+        rv.add_shader(shader)
+        return rv
 
     def zoom_render(crend, factor):
         w, h = crend.get_size()
@@ -67,129 +43,95 @@ python early in _wm_blur_funcs:
 
     def box_blur(render, blur, passes, lod=gl_lod_bias):
         def apply_box_blur(render, blur, direction):
-            cr = render
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
-
-            render.add_shader("wm.box_blur")
-            render.add_uniform("u_radius", blur)
-            render.add_uniform("u_direction", direction)
-            render.add_uniform("u_lod_bias", lod)
+            render = new_render(render, "wm.box_blur")
+            add_uniform = render.add_uniform
+            
+            add_uniform("u_radius", blur)
+            add_uniform("u_direction", direction)
+            add_uniform("u_lod_bias", lod)
 
             return render
 
-        for d in (0.0, 1.0) * passes:
-            render = apply_box_blur(render, blur, d)
+        for d in range(int(passes)):
+            render = apply_box_blur(render, blur, (0.0, 1.0))
+            render = apply_box_blur(render, blur, (1.0, 0.0))
 
         return render
 
-    def weighted_blur(render, blur):
+    def weighted_blur(render, blur, lod=gl_lod_bias):
         def apply_weighted_blur(render, blur, direction):
-            cr = render
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
+            render = new_render(render, "wm.weighted_blur")
+            add_uniform = render.add_uniform
 
-            render.add_shader("wm.weighted_blur")
-            render.add_uniform("u_radius", blur)
-            render.add_uniform("u_direction", direction)
-            render.add_uniform("u_lod_bias", lod)
+            add_uniform("u_radius", blur)
+            add_uniform("u_direction", direction)
+            add_uniform("u_lod_bias", lod)
 
             return render
 
-        for d in (0.0, 1.0):
-            render = apply_weighted_blur(render, blur, d)
+        render = apply_weighted_blur(render, blur, (0.0, 1.0))
+        render = apply_weighted_blur(render, blur, (1.0, 0.0))
 
         return render
 
     def gaussian_blur(render, blur, incre=False, lod=gl_lod_bias):
-        def apply_gaussian_blur(render, s, blur, sigma, sqr_sigma):
-            cr = render
+        RECI_SQRT_2PI = 1.0 / 2.50662827463
 
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
+        def apply_gaussian_blur(render, blur, direction, incre=False):
+            sigma = blur / 4.0
+            shader = "wm.gaussian_blur_incre" if incre else "wm.gaussian_blur"
 
-            render.add_shader(s)
-            render.add_uniform("u_radius", blur)
-            render.add_uniform("u_sigma", sigma)
-            render.add_uniform("u_sqr_sigma", sqr_sigma)
-            render.add_uniform("u_lod_bias", lod)
-            
+            render = new_render(render, shader)
+            add_uniform = render.add_uniform
+
+            add_uniform("u_radius", blur)
+            add_uniform("u_lod_bias", lod)
+            add_uniform("u_direction", direction)
+
+            if incre:
+                ycomp = exp(-0.5 / (sigma * sigma))
+
+                incre_gauss = (
+                    RECI_SQRT_2PI / sigma,
+                    ycomp,
+                    ycomp * ycomp
+                )
+
+                add_uniform("u_incre_gauss", incre_gauss)
+
+            else:
+                add_uniform("u_sigma", sigma)
+                add_uniform("u_sqr_sigma", sigma * sigma)
+
             return render
 
-        def apply_incre_gaussian_blur(render, s, blur, sigma, sqr_sigma):
-            cr = render
-
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
-
-            render.add_shader(s)
-            render.add_uniform("u_radius", blur)
-            render.add_uniform("u_lod_bias", lod)
-
-            ycomp = exp(-0.5 / sqr_sigma)
-            incre_gauss = (
-                1.0 / (sqrt(2.0 * 3.14) * sigma),
-                ycomp,
-                ycomp * ycomp
-            )
-
-            render.add_uniform("u_incre_gauss", incre_gauss)
-            
-            return render
-
-        sigma = blur / 3.0
-        sqr_sigma = sigma ** 2
-
-        if incre:
-            for s in ("wm.gaussian_incre_h", "wm.gaussian_incre_v"):
-                render = apply_incre_gaussian_blur(render, s, blur, sigma, sqr_sigma)
-
-        else:
-            for s in ("wm.gaussian_h", "wm.gaussian_v"):
-                render = apply_gaussian_blur(render, s, blur, sigma, sqr_sigma)
+        render = apply_gaussian_blur(render, blur, (0.0, 1.0), incre)
+        render = apply_gaussian_blur(render, blur, (1.0, 0.0), incre)
 
         return render
 
-    def kawase_blur(render, blur, lod=gl_lod_bias):
+    def kawase_blur(render, passes, lod=gl_lod_bias):
         def apply_kawase_blur(render, i):
-            cr = render
+            render = new_render(render, "wm.kawase_blur")
+            add_uniform = render.add_uniform
 
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
-
-            render.add_shader("wm.kawase_pass")
-            render.add_uniform("u_iteration", i)
-            render.add_uniform("u_lod_bias", lod)
+            add_uniform("u_iteration", i)
+            add_uniform("u_lod_bias", lod)
             
             return render
 
-        for i in range(int(blur)):
+        for i in range(int(passes)):
             render = apply_kawase_blur(render, i)
 
         return render
 
     def default_blur(render, blur, lod=gl_lod_bias):
         def apply_default_blur(render, i):
-            cr = render
+            render = new_render(render, "wm.default_blur")
+            add_uniform = render.add_uniform
 
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
-
-            render.add_shader("wm.default_blur")
-            render.add_uniform("u_renpy_blur_log2", log(i, 2))
-            render.add_uniform("u_lod_bias", lod)
+            add_uniform("u_renpy_blur_log2", log(i, 2))
+            add_uniform("u_lod_bias", lod)
             
             return render
 
@@ -198,16 +140,11 @@ python early in _wm_blur_funcs:
 
     def shadow_blur(render, blur, lod):
         def apply_shadow_blur(render, i):
-            cr = render
+            render = new_render(render, "wm.shadow_blur")
+            add_uniform = render.add_uniform
 
-            render = renpy.Render(*cr.get_size())
-            render.mesh = True
-            render.blit(cr, (0, 0))
-            render.add_shader("-renpy.texture")
-
-            render.add_shader("wm.shadow_blur")
-            render.add_uniform("u_radius", i)
-            render.add_uniform("u_lod_bias", lod)
+            add_uniform("u_radius", i)
+            add_uniform("u_lod_bias", lod)
             
             return render
 
@@ -224,7 +161,7 @@ python early in _wm_replace_transform_blur:
         blur = (self.state.blur or None)
 
         if blur is not None:
-            rv = gaussian_blur(rv, blur, lod=0.0)
+            rv = gaussian_blur(rv, blur, lod=0.5)
 
         return rv
 

@@ -43,8 +43,3 @@ Singleton
 ---------
 Creator: PyContribs
 Link: https://github.com/pycontribs/tendo/blob/master/tendo/singleton.py
-
-Discord RPC
------------
-Creator: somberdemise
-Link: https://gitlab.com/somberdemise/discord-rpc.py
