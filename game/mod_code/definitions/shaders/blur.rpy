@@ -49,9 +49,9 @@
 # ------------------------------------------------------------
 # Same as `wm.gaussian_blur` but uses this iteration uses linear sampling to 
 # effectively half the number of pixels sampled by using the GPU's sampler.
-
+#
 # Performance increases significantly, but has more GPU usage.
-
+#
 # Refer:
 # https://www.rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
 #

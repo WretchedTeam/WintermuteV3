@@ -1,9 +1,4 @@
 init python:
-    # By Pseurae & Intel lmao
-    
-    # Source Material:
-    # https://www.intel.com/content/www/us/en/developer/articles/technical/an-investigation-of-fast-real-time-gpu-based-image-blur-algorithms.html
-
     renpy.register_shader("wm.kawase_background", variables="""
         uniform sampler2D tex0;
         uniform sampler2D tex1;
