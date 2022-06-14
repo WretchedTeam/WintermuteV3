@@ -7,7 +7,7 @@ init python:
     )
 
     sensory_test_headline_2 = _wm_news.News(
-        "\"F***ed me out of a chance to change the course of human history\": Ruben Barber, ex-partner, lashes out against Turnell Technologies for \"leaving him in the dust\"",
+        "\"F***ed me out of a chance to change the course of history\": Ruben Barber lashes out against Turnell for \"leaving him in the dust\"",
         "t7a2.png",
         _wm_news.P_TG,
         _wm_indian_names.get_indian_name()

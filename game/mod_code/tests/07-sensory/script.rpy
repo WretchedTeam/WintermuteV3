@@ -146,11 +146,10 @@ label script7_m():
     m "You didn't have to..."
     show monika mk
     m "If there's something you need to let off your chest, there are better ways than...this..."
-    show monika e4e
-    call test_prompt_button("Reset memory") from _call_test_prompt_button_55
-    show monika forward wmflicker at i11
-    pause(4.0)
-    $mref()
+    show monika e4e mj
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 sensTree.sensNode memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
+
+    call show_monika_reload()
     show monika forward dist at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_56
@@ -183,10 +182,9 @@ label script7_m():
     show monika me b1c
     m "Please...tell me what happened."
     show monika mj
-    call test_prompt_button("Reset memory") from _call_test_prompt_button_57
-    show monika forward wmflicker at i11
-    pause(4.0)
-    $mref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 sensTree.sensNode memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
+
+    call show_monika_reload()
     show monika forward neut at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_58
@@ -336,10 +334,9 @@ label script7_s():
     show sayori ml
     s "Did I do something wro---"
     show sayori mj
-    call test_prompt_button("Reset memory") from _call_test_prompt_button_69
-    show sayori turned wmflicker
-    pause(4.0)
-    $sref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
+
+    call show_sayori_reload()
     show sayori turned dist at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_70
@@ -371,10 +368,9 @@ label script7_s():
     show sayori mh
     s "Why am I-...?"
     show sayori mj
-    call test_prompt_button("Reset memory") from _call_test_prompt_button_71
-    show sayori turned wmflicker
-    pause(4.0)
-    $sref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
+
+    call show_sayori_reload()
     show sayori turned neut at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_72
@@ -555,9 +551,9 @@ label script7_n():
     call test_prompt_button("Reset memory") from _call_test_prompt_button_84
     show natsuki mp
     n "If you don't tell me what the hell you just did to me {i}right now{/i}, I swear to God I'm gonna reach through that headset and I'm gonna kill you!!"
-    show natsuki turned wmflicker
-    pause(4.0)
-    $nref()
+    show natsuki mm
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
+    call show_natsuki_reload()
     show natsuki turned dist at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_85
@@ -603,10 +599,9 @@ label script7_n():
     n "What the hell is happening to me?"
     show natsuki ce m2
     n "What did you..?"
-    call test_prompt_button("Reset memory") from _call_test_prompt_button_87
-    show natsuki turned wmflicker
-    pause(4.0)
-    $nref()
+    show natsuki cm
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
+    call show_natsuki_reload()
     show natsuki turned neut at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_88
@@ -784,10 +779,9 @@ label script7_y():
     show yuri e4e me
     y "I don't understand..."
     show yuri mj
-    call test_prompt_button("Reset memory") from _call_test_prompt_button_99
-    show yuri turned wmflicker at t11
-    pause(4.0)
-    $yref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
+
+    call show_yuri_reload()
     show yuri turned dist e1b at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_100
@@ -823,9 +817,9 @@ label script7_y():
     show yuri e6
     y "What happened to me?"
     show yuri m2
-    show yuri shy wmflicker at t11
-    pause(4.0)
-    $yref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
+
+    call show_yuri_reload()
     show yuri turned neut at i11
     pause(3.0)
     call test_prompt_button("Inquire") from _call_test_prompt_button_102

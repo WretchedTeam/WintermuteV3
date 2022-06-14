@@ -1,6 +1,6 @@
 define 2 mail_viewer_app = _wm_manager.Application(
-    "Turnell Mail Viewer", 
-    "mail_viewer icon", 
+    "Turnell Mail Viewer",
+    "mail_viewer icon",
     "mail_viewer"
 )
 
@@ -33,7 +33,7 @@ screen mail_viewer(email):
                     vbox yfill True:
                         if email.receiver is None:
                             text "[persistent.firstname] [persistent.lastname]" size 24
-                            text "{ubuntu=light}(" + persistent.username + "@turnell.co.uk){/ubuntu}" size 16
+                            text "{ubuntu=light}(" + persistent.username + "@turnelltech.co.uk){/ubuntu}" size 16
                         else:
                             text email.receiver size 24 yalign 0.5
 
@@ -104,7 +104,7 @@ screen mail_context_button(_action=NullAction(), _style_prefix="mail_context"):
 
     button:
         action _action
-        
+
         frame:
             transclude
 

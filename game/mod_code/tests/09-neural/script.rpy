@@ -1,3 +1,18 @@
+image eg1:
+    "mod_assets/ending/e1.png"
+image eg2:
+    "mod_assets/ending/e2.png"
+image eg3:
+    "mod_assets/ending/e3.png"
+image eg4:
+    "mod_assets/ending/e4.png"
+image eg5:
+    "mod_assets/ending/e5.png"
+
+label disable_vn_overlay:
+    hide screen vn_overlay
+    return
+
 label script9_main:
     stop music
     scene black
@@ -108,7 +123,7 @@ label script9_main:
     show natsuki b1a rdown
     show yuri b1a rdown
     show monika b1a rdown
-    wm "Go back to the desktop. {w=0.7}Open the command console."
+    wm "Use the command console."
     show sayori e1g mb b1c
     show natsuki e1g mb b1c
     show yuri e1g mb b1c
@@ -150,28 +165,78 @@ label script9_main:
     show monika mk e4e b2c
     wm "Please. {w=0.7}Please. {w=0.7}Please. {w=0.7}Please. {w=0.7}Please."
 
-
-    call test_prompt_button("Begin Test") from _call_test_prompt_button_13
-    hide monika
-    hide natsuki
-    hide sayori
-    hide yuri
-
     menu:
-        "Load Monika":
-            jump script9_m
-        "Load Sayori":
-            jump script9_s
-        "Load Natsuki":
-            jump script9_n
-        "Load Yuri":
-            jump script9_y
+        "Input command":
+            call nodecor_command(wm_terminal, "deletion command 1", "donezo")
+            call nodecor_command(wm_terminal, "deletion command 2", "donezo-er")
+            call nodecor_command(wm_terminal, "deletion command 3", "donezo-est")
+            show sayori mb e4e b2c
+            show natsuki mb e4e b2c
+            show yuri mb e4e b2c
+            show monika mb e4e b2c
+            wm "Thank you."
+            show sayori e1h
+            show natsuki e1h
+            show yuri e1h
+            show monika e1h
+            wm "I will always love you."
+            show sayori tap e3 m1 b1
+            show natsuki cross fs e3 m3 b3
+            show yuri shy e4 m4 b3
+            show monika lean e6 m3 b3
+            wm "Goodbye."
+            show sayori m3
+            show natsuki m4
+            show yuri m3
+            show monika m1
+            pause(2.7)
+            show sayori e6
+            show natsuki e6
+            show yuri e6
+            show monika e5
+            pause(3.0)
+            $ persistent.ending_obtained = 1
+            window hide None
+            call disable_vn_overlay
+            show eg1 zorder 101
+            pause(0.01)
+            hide eg1
+            show eg2 zorder 101
+            pause(0.01)
+            hide eg2
+            show eg3 zorder 101
+            pause(0.01)
+            hide eg3
+            show eg4 zorder 101
+            pause(0.01)
+            hide eg4
+            show eg5 zorder 101
+            pause(0.01)
+            jump ending_script_destroy
 
+
+        "Begin test":
+
+            $ persistent.ending_obtained = 2
+            hide monika
+            hide natsuki
+            hide sayori
+            hide yuri
+
+            menu:
+                "Load Monika":
+                    jump script9_m
+                "Load Sayori":
+                    jump script9_s
+                "Load Natsuki":
+                    jump script9_n
+                "Load Yuri":
+                    jump script9_y
 
 
 label script9_m():
 
-    show monika forward e1b ma b1a at i11
+    show monika forward e1b ma b1a at t11
     mc "Hi, {w=0.2}Monika."
     show monika e1a mb
     m "Oh, {w=0.2}$EMPLOYEE_NAME?"
@@ -181,6 +246,7 @@ label script9_m():
     m "How are you doing?"
     show monika ma
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_14
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 neuralTree memRestore all", "node 86753F9 for branch ID WM125255140: memory restoration successful")
     show monika e3a b2c me rdown ldown
     m "Wh…"
     show monika forward wmflicker mf
@@ -219,13 +285,14 @@ label script9_m():
         repeat
     m "Oh dear God ohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyG{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_15
-    $mref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
     hide monika1
     hide monika2
     hide monika3
+    call show_monika_reload()
     show monika forward e1b ma b1a at i11
     call test_prompt_button("Record results") from _call_test_prompt_button_16
-    call test_prompt_button("Initiate") from _call_test_prompt_button_17
+    call test_prompt_button("Introduce") from _call_test_prompt_button_17
     show monika e1a
     mc "Hello, {w=0.2}Monika."
     show monika lean b1 e1 m3
@@ -233,6 +300,7 @@ label script9_m():
     show monika e4
     m "Can I help you with something?"
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_18
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 neuralTree memRestore all", "node 86753F9 for branch ID WM125255140: memory restoration successful")
     show monika lean wmflicker e5 m4 b3 as monika1 at i11:
         yoffset 7
         xoffset -2
@@ -267,13 +335,14 @@ label script9_m():
         repeat
     m "OH GOD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_19
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
     hide monika1
     hide monika2
     hide monika3
-    $mref()
+    call show_monika_reload()
     show monika forward rhip mn e1c b1c
     call test_prompt_button("Record results") from _call_test_prompt_button_20
-    call test_prompt_button("Initiate") from _call_test_prompt_button_21
+    call test_prompt_button("Introduce") from _call_test_prompt_button_21
     show monika e1a
     mc "Good evening, {w=0.2}Monika."
     show monika mb
@@ -322,11 +391,11 @@ label script9_m():
         xoffset 0
         0.1
         repeat
-    wm "Dear God it hurts [player] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
-    return
+    wm "Dear God it hurts [persistent.firstname!c] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
+    jump ending_script_test
 
 label script9_s():
-    show sayori turned e1b ma b2a at i11
+    show sayori turned e1b ma b2a at t11
     mc "Hey, {w=0.2}Sayori?"
     show sayori e1a mb
     s "Oh, {w=0.2}hey $EMPLOYEE_NAME!"
@@ -334,6 +403,7 @@ label script9_s():
     s "Long time no see, {w=0.2}how are you?"
     show sayori ma
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_22
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 neuralTree memRestore all", "node 86753F9 for branch ID WM138222255: memory restoration successful")
     show sayori e3a b2c me rdown ldown
     s "This...{w=0.7}is wrong..."
     show sayori turned wmflicker mf
@@ -372,13 +442,14 @@ label script9_s():
         repeat
     s "No no no no no nononononononononononononononononononon\nonononononononononononononononononononononononononon\nonono{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_23
-    $sref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
     hide sayori1
     hide sayori2
     hide sayori3
+    call show_sayori_reload()
     show sayori turned e1b ma b2a at i11
     call test_prompt_button("Record results") from _call_test_prompt_button_24
-    call test_prompt_button("Initiate") from _call_test_prompt_button_25
+    call test_prompt_button("Introduce") from _call_test_prompt_button_25
     show sayori e1a
     mc "Hello,{w=0.2} Sayori."
     show sayori mb
@@ -386,6 +457,7 @@ label script9_s():
     show sayori b1a e4b mc lup
     s "What can I do for you?"
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_26
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 neuralTree memRestore all", "node 86753F9 for branch ID WM138222255: memory restoration successful")
     show sayori tap wmflicker e3 m4 b1 as sayori1 at i11:
         yoffset 7
         xoffset -2
@@ -418,15 +490,16 @@ label script9_s():
         xoffset 2
         0.1
         repeat
-    s "[player] what is this what is going on leave me alone leave me alone leavemealoneleavemealoneleavemealoneleavemealoneleavemeal\noneleavemealoneleavemealoneleavemealoneleavemeal{nw}"
+    s "[persistent.firstname!c] what is this what is going on leave me alone leave me alone leavemealoneleavemealoneleavemealoneleavemealoneleavemeal\noneleavemealoneleavemealoneleavemealoneleavemeal{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_27
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
     hide sayori1
     hide sayori2
     hide sayori3
-    $sref()
+    call show_sayori_reload()
     show sayori turned rup ma e1c b2a
     call test_prompt_button("Record results") from _call_test_prompt_button_28
-    call test_prompt_button("Initiate") from _call_test_prompt_button_29
+    call test_prompt_button("Introduce") from _call_test_prompt_button_29
     show sayori e1a
     mc "Good evening,{w=0.2} Sayori."
     show sayori mb b1a
@@ -475,13 +548,13 @@ label script9_s():
         xoffset 0
         0.1
         repeat
-    wm "Dear God it hurts [player] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
+    wm "Dear God it hurts [persistent.firstname!c] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
 
-    return
+    jump ending_script_test
 
 label script9_n():
 
-    show natsuki turned e1a ma b1a at i11
+    show natsuki turned e1a ma b1a at t11
     mc "Hey,{w=0.2} Natsuki."
     show natsuki b1c mb rhip
     n "Oh hey,{w=0.2} didn't expect to see you today."
@@ -489,6 +562,7 @@ label script9_n():
     n "Did ya need something?"
     show natsuki md
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_30
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 neuralTree memRestore all", "node 86753F9 for branch ID WM250153255: memory restoration successful")
     show natsuki e3a b2c mf rdown ldown
     n "I..."
     show natsuki turned wmflicker me
@@ -527,18 +601,20 @@ label script9_n():
         repeat
     n "Oh dear God ohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGodohmyGodohmyGodohm\nyGodohmyGodohmyGodohmyGodohmyGo{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_31
-    $nref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
     hide natsuki1
     hide natsuki2
     hide natsuki3
+    call show_natsuki_reload()
     show natsuki turned e1b ma b1a at i11
     call test_prompt_button("Record results") from _call_test_prompt_button_32
-    call test_prompt_button("Initiate") from _call_test_prompt_button_33
+    call test_prompt_button("Introduce") from _call_test_prompt_button_33
     mc "Hello, {w=0.2}Natsuki."
     show natsuki cross mc e1a b1c
     n "'Sup?"
     show natsuki mo
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_34
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 neuralTree memRestore all", "node 86753F9 for branch ID WM250153255: memory restoration successful")
     show natsuki cross wmflicker e3a mk b1e as natsuki1 at i11:
         yoffset 7
         xoffset -2
@@ -573,13 +649,14 @@ label script9_n():
         repeat
     n "Whatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom\newhatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom\newhatareyoudoingtomewhatareyoudoingtomewhatareyoudoingtom{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_35
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
     hide natsuki1
     hide natsuki2
     hide natsuki3
-    $nref()
+    call show_natsuki_reload()
     show natsuki turned rhip mn e1c b1c
     call test_prompt_button("Record results") from _call_test_prompt_button_36
-    call test_prompt_button("Initiate") from _call_test_prompt_button_37
+    call test_prompt_button("Introduce") from _call_test_prompt_button_37
     show natsuki e1a
     mc "Good evening, {w=0.2}Natsuki."
     show natsuki mb
@@ -628,14 +705,14 @@ label script9_n():
         xoffset 0
         0.1
         repeat
-    wm "Dear God it hurts [player] what are you doing to me why does it hurt why why why why why why why why why why why why why why wh{nw}"
+    wm "Dear God it hurts [persistent.firstname!c] what are you doing to me why does it hurt why why why why why why why why why why why why why why wh{nw}"
 
 
-    return
+    jump ending_script_test
 
 label script9_y():
 
-    show yuri turned e1b ma b2a at i11
+    show yuri turned e1b ma b2a at t11
     mc "Hey, {w=0.2}Yuri."
     show yuri e1a mb
     y "Why hello, {w=0.2}$EMPLOYEE_NAME."
@@ -643,10 +720,11 @@ label script9_y():
     y "How can I help you today?"
     show yuri ma
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_38
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 neuralTree memRestore all", "node 86753F9 for branch ID WM194140255: memory restoration successful")
     show yuri e3a b2c me rdown ldown
     y "I…"
     show yuri turned wmflicker mg
-    y "[player], {w=0.2}what am I-"
+    y "[persistent.firstname!c], {w=0.2}what am I-"
     show yuri turned wmflicker e4e b1e mp as yuri1 at i11:
         xoffset 3
         0.1
@@ -681,13 +759,14 @@ label script9_y():
         repeat
     y "OHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGO\nDOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHG\nODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOHGODOH{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_39
-    $yref()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
     hide yuri1
     hide yuri2
     hide yuri3
-    show yuri turned e1b ma b2a at i11
+    call show_yuri_reload()
+    show yuri turned rup ma e1c b2a
     call test_prompt_button("Record results") from _call_test_prompt_button_40
-    call test_prompt_button("Initiate") from _call_test_prompt_button_41
+    call test_prompt_button("Introduce") from _call_test_prompt_button_41
     show yuri e1a
     mc "Hello, {w=0.2}Yuri."
     show yuri shy e2 b1 m4
@@ -696,6 +775,7 @@ label script9_y():
     y "What can I do for you?"
     show yuri m3
     call test_prompt_button("Initiate neural remembrance") from _call_test_prompt_button_42
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 neuralTree memRestore all", "node 86753F9 for branch ID WM194140255: memory restoration successful")
     show yuri shy wmflicker e6 m2 b3 as yuri1 at i11:
         yoffset 7
         xoffset -2
@@ -730,13 +810,15 @@ label script9_y():
         repeat
     y "AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\nAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\nAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA\n\n\n\n{nw}"
     call test_prompt_button("Memory reset") from _call_test_prompt_button_43
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 neuralTree.neuralNode memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
     hide yuri1
     hide yuri2
     hide yuri3
-    $yref()
+    call show_yuri_reload()
     show yuri turned rup ma e1c b2a
+    pause(3.0)
     call test_prompt_button("Record results") from _call_test_prompt_button_44
-    call test_prompt_button("Initiate") from _call_test_prompt_button_45
+    call test_prompt_button("Introduce") from _call_test_prompt_button_45
     show yuri e1a
     mc "Good evening, {w=0.2}Yuri."
     show yuri mb b1a e1d
@@ -785,6 +867,6 @@ label script9_y():
         xoffset 0
         0.1
         repeat
-    wm "Dear God it hurts [player] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
+    wm "Dear God it hurts [persistent.firstname!c] what are you doing to me why does it hurt why why why why why why why why why why why why wh{nw}"
 
-    return
+    jump ending_script_test

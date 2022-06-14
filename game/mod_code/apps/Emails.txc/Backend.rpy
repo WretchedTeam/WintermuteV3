@@ -1,10 +1,10 @@
 init -10 python in _wm_email:
     from store import (
-        NoRollback, 
-        NullAction, 
+        NoRollback,
+        NullAction,
         Function,
-        persistent, 
-        debug, 
+        persistent,
+        debug,
         execute_callbacks,
         wm_game_time,
         show_screen_with_delay,
@@ -30,7 +30,7 @@ init -10 python in _wm_email:
     @desktop_open_callbacks.append
     def show_notifs():
         unread_emails_count = len(unread_emails()) - persistent.new_email_count
-    
+
         if persistent.new_email_count > 0 or unread_emails_count > 0:
             show_screen = Function(ShowNotification, just_received=persistent.new_email_count, unread=unread_emails_count)
             run_with_delay(show_screen, delay=1.5)
@@ -76,8 +76,8 @@ init -10 python in _wm_email:
 
         mail_client_screen_name = "mail_client"
 
-        def __init__(self, unique_id, subject, contents, sender, is_spam=False, 
-                is_important=False, attachments=None, quick_replies=None, 
+        def __init__(self, unique_id, subject, contents, sender, is_spam=False,
+                is_important=False, attachments=None, quick_replies=None,
                 open_callbacks=None, unlock_callbacks=None, receiver=None):
 
             self.unique_id = unique_id
@@ -115,7 +115,7 @@ init -10 python in _wm_email:
         @debug
         def mark_unread(self):
             if not self.is_read():
-                return 
+                return
 
             persistent.read_emails.remove(self.unique_id)
 
@@ -151,7 +151,7 @@ init -10 python in _wm_email:
             self.email_id = email_id
 
             if append_turnell_domain:
-                self.email_id += "@turnell.co.uk"
+                self.email_id += "@turnelltech.co.uk"
 
             global sender_emails
             if email_id not in sender_emails: sender_emails.append(email_id)

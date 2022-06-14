@@ -19,6 +19,23 @@ Jez :)
         is_important=True
     )
 
+    nickname_side_email = Email(
+        unique_id="nickname_side_email",
+        subject="Vox Populi",
+        contents="""
+{i}"It's been five years since New York City's worst terrorist attack since September 11th, 2001, and the most deadly bio-terror event in history. Five years later, wounds are only just beginning to heal.
+
+Turnell stands strong with the United States during this still-ongoing tragic loss. William J. Turnell announced today that Turnell Technologies has since donated over $100 MILLION for anthrax victims since the attack, fuelled almost entirely by employee-related donations, gifts, and our own sponsorship. Our donations go towards research, medical personnel, government & charity programs, and more.
+
+We sincerely thank everybody who's donated to the cause in the last five years."{/i}
+
+
+Bullshit. Wake up, friends. Turncoat Turnell is LYING TO YOU.
+Vox Populi.
+""",
+        sender=hbarkin_sender,
+    )
+
     nickname_final_email = Email(
         unique_id="nickname_final_email",
         subject="What the fuck",

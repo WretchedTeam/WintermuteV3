@@ -17,7 +17,7 @@ define 2 nickname_test =  _wm_test.WintermuteTest(
     "Jeremy Osborne",
     (nickname_test_headline_1, nickname_test_headline_2, nickname_test_headline_3, nickname_test_headline_4),
     (nickname_main_email,),
-    (nickname_final_email,),
+    (nickname_final_email, nickname_side_email,),
     nickname_main_email,
     "script4_main"
 )

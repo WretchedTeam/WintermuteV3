@@ -35,16 +35,16 @@ label title_drop():
     hide startingup
     show wt zorder 0
     show amodby zorder 0
-    pause 0.1
+    pause 0.01
     hide g1
     show g2 zorder 1
-    pause 0.1
+    pause 0.01
     hide g2
     show g3 zorder 1
-    pause 0.1
+    pause 0.01
     hide g3
     show g4 zorder 1
-    pause 0.1
+    pause 0.01
     hide g4
     pause 2.5
     hide wt

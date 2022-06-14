@@ -122,9 +122,8 @@ label script8_m():
     wm "Please fill out our feedback form so we can improve our services in the future!"
 
     call test_prompt_button("Revert to restore point")
-    pause(5.0)
-
-    $mref()
+    call nodecor_command(wm_terminal, "restorestate 0x010785 WM125255140", "branch ID WM125255140: restore successful")
+    call show_monika_reload()
     show monika forward happ ma at t11 zorder 1
     mc "Hello, Monika."
     m om "Oh, hey $EMPLOYEE_NAME!"
@@ -325,8 +324,8 @@ label script8_s():
     wm "Please fill out our feedback form so we can improve our services in the future!"
 
     call test_prompt_button("Revert to restore point")
-    pause(5.0)
-    $sref()
+    call nodecor_command(wm_terminal, "restorestate 0x010785 WM138222255", "branch ID WM138222255: restore successful")
+    call show_sayori_reload()
     show sayori turned happ ma zorder 1 at t11
     call test_prompt_button("Introduce")
     mc "Hello, Sayori."
@@ -615,8 +614,8 @@ label script8_n():
     wm "Please fill out our feedback form so we can improve our services in the future!"
 
     call test_prompt_button("Revert to restore point")
-    pause(5.0)
-    $nref()
+    call nodecor_command(wm_terminal, "restorestate 0x010785 WM250153255", "branch ID WM138222255: restore successful")
+    call show_natsuki_reload()
     show natsuki turned happ b1a oe zorder 1 at i11
 
     call test_prompt_button("Introduce")
@@ -764,8 +763,8 @@ label script8_y():
     wm "Please fill out our feedback form so we can improve our services in the future!"
 
     call test_prompt_button("Revert to restore point")
-    pause(5.0)
-
+    call nodecor_command(wm_terminal, "restorestate 0x010785 WM194140255", "branch ID WM194140255: restore successful")
+    call show_yuri_reload()
     mc "Hello, Yuri."
     y "Hello, $EMPLOYEE_NAME."
     call test_prompt_button("Look up news")

@@ -28,3 +28,5 @@ default persistent.done_rorschach_test = False
 
 default persistent.wm_received = False
 default persistent.snake_received = False
+
+default persistent.ending_obtained = 0
