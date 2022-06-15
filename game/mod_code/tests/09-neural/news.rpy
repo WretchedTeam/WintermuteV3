@@ -21,7 +21,7 @@ init python:
     )
 
     neural_test_headline_4 = _wm_news.News(
-        "Turnell Inquiry: Robert Bell, QA Lead of alleged WINTERMUTE program, denies any wrongdoing",
+        "Turnell Inquiry: Robert Bell, QA Lead of alleged 'Wintermute' program, denies any wrongdoing",
         "t9a4.png",
         _wm_news.P_BBC,
         "Liam Winchester"

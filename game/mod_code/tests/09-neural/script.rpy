@@ -181,7 +181,7 @@ label script9_main:
             show natsuki e1h
             show yuri e1h
             show monika e1h
-            wm "I will always love you."
+            wm "Well..."
             show sayori tap e3 m1 b1
             show natsuki cross fs e3 m3 b3
             show yuri shy e4 m4 b3

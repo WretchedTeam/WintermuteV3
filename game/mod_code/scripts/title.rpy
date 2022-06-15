@@ -1,15 +1,30 @@
-image splash = im.FactorScale("mod_assets/images/splash.png", 1.5)
+image splash = "mod_assets/images/splash.png"
 image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign=0.08)
+image t_os_title = ParameterizedText(style="t_os_title", xalign=0.5, yalign=0.4)
+image t_os_tagline = ParameterizedText(style="t_os_underline", xalign=0.5, yalign=0.6)
+image t_os_copyright = ParameterizedText(style="t_os_copyright", xalign=0.5, yalign=0.95)
+image startup_loading_dots:
+    Text("Starting up...", style="t_os_underline")
+    0.5
+    Text("Starting up.", style="t_os_underline")
+    0.5
+    Text("Starting up..", style="t_os_underline")
+    0.5
+    repeat
 
-image amodby = "mod_assets/startup/amodby.png"
-image copyright = "mod_assets/startup/copyright.png"
-image g1 = "mod_assets/startup/g1.png"
-image g2 = "mod_assets/startup/g2.png"
-image g3 = "mod_assets/startup/g3.png"
-image g4 = "mod_assets/startup/g4.png"
-image startingup = "mod_assets/startup/startingup.png"
-image t_os = "mod_assets/startup/t_os.png"
-image wt = "mod_assets/startup/wt.png"
+style t_os_title:
+    font "mod_assets/gui/font/Metropolis/Metropolis-BoldItalic.otf"
+    color "#fff"
+    size 144
+style t_os_underline:
+    font "mod_assets/gui/font/Metropolis/Metropolis-RegularItalic.otf"
+    color "#fff"
+    size 36
+style t_os_copyright:
+    font "mod_assets/gui/font/Lexend/Lexend-Regular.ttf"
+    color "#5a5b5b"
+    size 24
+
 
 define audio.gs = "mod_assets/startup/gs.ogg"
 
@@ -22,35 +37,28 @@ transform penny_transform():
     zoom 1.5 nearest True
 
 label title_drop():
-    show copyright zorder 0
-    show startingup zorder 0
-    show t_os zorder 0
-    with BlurDissolveCurried(0.5, 16.0)
+    scene black
+    show t_os_copyright "\u00A9 Turnell Technologies"
+    pause(1.5)
+    show t_os_title "Turnell{font=mod_assets/gui/font/Metropolis/Metropolis-Regular.otf}OS{/font}"
+    with Dissolve(2.0)
+    pause(1.5)
+    show t_os_tagline "{image=startup_loading_dots}"
+    pause(3.0)
+    hide t_os_title
+    hide t_os_tagline
+    with Dissolve(1.0)
 
-    pause 3.5
+    show splash
+    with Dissolve(1.0)
+    pause(3.0)
+    hide splash
+    with Dissolve(0.5)
 
-    show g1 zorder 1
-    play audio gs
-    hide t_os
-    hide startingup
-    show wt zorder 0
-    show amodby zorder 0
-    pause 0.01
-    hide g1
-    show g2 zorder 1
-    pause 0.01
-    hide g2
-    show g3 zorder 1
-    pause 0.01
-    hide g3
-    show g4 zorder 1
-    pause 0.01
-    hide g4
-    pause 2.5
-    hide wt
-    hide amodby
+    pause(1.0)
 
     show penny neutral at penny_transform
+    with Dissolve(1.0)
     pause 1.0
 
     show penny sleep at penny_transform
