@@ -55,11 +55,10 @@ screen penny(t, i=0):
 transform -10 penny_shake():
     on show:
         parallel:
-            xoffset 0
-            easein_quad 0.4 xoffset 12
-            easein_quad 0.4 xoffset -12
-            easein_quad 0.4 xoffset 12
-            easein_quad 0.4 xoffset 0
+            easein_quad 0.1 xoffset 4
+            easein_quad 0.1 xoffset -4
+            easein_quad 0.1 xoffset 4
+            easein_quad 0.1 xoffset 0
 
         parallel:
             zoom 1.0
