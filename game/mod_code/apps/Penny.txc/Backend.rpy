@@ -1,10 +1,13 @@
 default persistent.penny_flags = {
-    "first_login": False, 
+    "first_login": False,
     "first_email": False,
     "first_attachment": False,
     "first_wm_open": False,
+    "first_music_open": False,
+    "first_news_open": False,
     "first_email_reply": False,
-    "first_spam_email": False
+    "first_spam_email": False,
+    "first_snake_open": False
 }
 
 init python in _wm_penny_images:
@@ -43,7 +46,7 @@ init python in _wm_penny:
         Function,
         easein_blur,
         easeout_blur,
-        persistent, 
+        persistent,
         _wm_penny_dialogues,
         show_screen_with_delay,
         run_with_delay
@@ -108,9 +111,26 @@ init python in _wm_penny:
     def wm_open():
         if persistent.penny_flags["first_wm_open"]:
             return
-
         show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_wm_open)
         persistent.penny_flags["first_wm_open"] = True
+
+    def music_open():
+        if persistent.penny_flags["first_music_open"]:
+            return
+        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_music_open)
+        persistent.penny_flags["first_music_open"] = True
+
+    def news_open():
+        if persistent.penny_flags["first_news_open"]:
+            return
+        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_news_open)
+        persistent.penny_flags["first_news_open"] = True
+
+    def snake_open():
+        if persistent.penny_flags["first_snake_open"]:
+            return
+        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_snake_open)
+        persistent.penny_flags["first_snake_open"] = True
 
     @email_open_callbacks.append
     def email_open_cb(mail):

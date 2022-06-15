@@ -22,6 +22,7 @@ Jez :)
     nickname_side_email = Email(
         unique_id="nickname_side_email",
         subject="Vox Populi",
+        receiver="@Turnell",
         contents="""
 {i}"It's been five years since New York City's worst terrorist attack since September 11th, 2001, and the most deadly bio-terror event in history. Five years later, wounds are only just beginning to heal.
 

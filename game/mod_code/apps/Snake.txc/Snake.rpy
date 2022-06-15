@@ -1,11 +1,13 @@
 define 2 snake_app = _wm_manager.Application(
-    "Jez's Snake", 
-    "snake icon", 
+    "Jez's Snake",
+    "snake icon",
     "snake"
 )
 
 screen snake_overlay(snake):
     style_prefix "snake_overlay"
+
+    on "show" action Function(_wm_penny.snake_open)
 
     if snake.has_done_start_delay():
         frame:
@@ -25,7 +27,7 @@ screen snake_overlay(snake):
                 text _("GAME OVER") style_suffix "title"
                 $ score = snake.get_score()
                 text _("Score: [score]")
-                text _("Click to restart.") 
+                text _("Click to restart.")
 
     else:
         frame:
@@ -57,7 +59,7 @@ style snake_overlay_title:
 
 screen snake():
     style_prefix "snake"
-    default snake = _wm_snake.SnakeOverlay() 
+    default snake = _wm_snake.SnakeOverlay()
 
     use program_base(snake_app, xysize=(snake.width, snake.height)):
         fixed:

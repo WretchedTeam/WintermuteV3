@@ -1,11 +1,13 @@
 define 2 news_client_app = _wm_manager.Application(
-    "News For You", 
-    "news_client icon", 
+    "News For You",
+    "news_client icon",
     "news_client"
 )
 
 screen news_client():
     style_prefix "news_client"
+
+    on "show" action Function(_wm_penny.news_open)
 
     use program_base(news_client_app, xysize=(800, 850)):
         frame yfill True:
@@ -23,15 +25,16 @@ screen news_client():
             null height 20
 
             use padded_button(
-                "Show More Articles", 
-                _wm_error_dialog.OpenError("This action has been blocked by your network."), 
-                xysize=(225, 52), xalign=0.5, 
+                "Show More Articles",
+                _wm_error_dialog.OpenError("This action has been blocked by your network."),
+                xysize=(225, 52), xalign=0.5,
                 idle_background=Solid("#FF1B1B"),
                 hover_background=Solid("#ff3f3f"),
                 text_font=_wm_font_lexend.regular
             )
 
             null height 20
+
 
 style news_client_frame is empty
 

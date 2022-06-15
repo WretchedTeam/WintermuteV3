@@ -1,8 +1,8 @@
 define music_player_proxy = _wm_music_player_app.MusicPlayerProxy()
 define 2 music_player_app = _wm_manager.Application(
-    "Music Player", 
-    "music_player icon", 
-    "music_player", 
+    "Music Player",
+    "music_player icon",
+    "music_player",
     music_player_proxy
 )
 
@@ -12,7 +12,9 @@ screen music_player():
     use program_base(music_player_app, xysize=(1200, 900)):
         use music_player_base(mpp)
 
+    on "show" action Function(_wm_penny.music_open)
     on "hide" action Function(mpp.on_close)
+
 
 screen music_player_base(mpp):
     frame background "#F0F2F9":
@@ -286,7 +288,7 @@ screen player_track_entry(mpp, i, pk):
             null width 30
 
             $ title = track.tags["title"]
-            text _("[title]") 
+            text _("[title]")
 
         hbox align (1.0, 0.5):
             spacing 10
