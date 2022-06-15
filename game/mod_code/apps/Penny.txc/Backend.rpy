@@ -10,8 +10,6 @@ default persistent.penny_flags = {
     "first_snake_open": False
 }
 
-default persistent.post_test_dialogue = None
-
 init python in _wm_penny_images:
     penny_image_path = "mod_assets/os/penny/"
 
@@ -63,6 +61,7 @@ init python in _wm_penny:
     )
 
     unlock_email_queue = None
+    just_finished_test = False
 
     @email_unlock_callbacks.append
     def email_unlock_cb(mail):
@@ -74,8 +73,26 @@ init python in _wm_penny:
 
     @desktop_open_callbacks.append
     def show_penny_if_needed():
-        global unlock_email_queue
+        global just_finished_test, unlock_email_queue
         renpy.show_screen("penny_idle")
+
+        if just_finished_test:
+            post_test_dialogues = (
+                _wm_penny_dialogues.post_test_dialogue_1,
+                _wm_penny_dialogues.post_test_dialogue_2,
+                _wm_penny_dialogues.post_test_dialogue_3,
+                _wm_penny_dialogues.post_test_dialogue_4,
+                _wm_penny_dialogues.post_test_dialogue_5,
+                _wm_penny_dialogues.post_test_dialogue_6,
+                _wm_penny_dialogues.post_test_dialogue_7,
+                _wm_penny_dialogues.post_test_dialogue_8,
+            )
+
+            if len(post_test_dialogues) > persistent.current_test_no:
+                show_screen_with_delay("penny", delay=1.75, t=post_test_dialogues[persistent.current_test_no])
+
+            just_finished_test = False
+            return
 
         if persistent.post_test_dialogue is not None:
             show_screen_with_delay("penny", delay=1.5, t=persistent.post_test_dialogue)
