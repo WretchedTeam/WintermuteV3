@@ -10,6 +10,8 @@ default persistent.penny_flags = {
     "first_snake_open": False
 }
 
+default persistent.post_test_dialogue = None
+
 init python in _wm_penny_images:
     penny_image_path = "mod_assets/os/penny/"
 
@@ -62,25 +64,6 @@ init python in _wm_penny:
 
     unlock_email_queue = None
 
-    class PennyDialogueEvent(NoRollback):
-        flags = persistent.penny_flags
-
-        def __init__(self, flag_key, dialogues):
-            super(PennyDialogue, self).__init__()
-
-            if isinstance(dialogues, (list, tuple)):
-                dialogues = [ dialogues ]
-
-            self.flag_key = flag_key
-            self.dialogues = dialogues
-
-        def is_done(self):
-            return self.flags[self.flag_key]
-
-        def execute(self):
-            if self.is_done():
-                return
-
     @email_unlock_callbacks.append
     def email_unlock_cb(mail):
         global unlock_email_queue
@@ -93,6 +76,11 @@ init python in _wm_penny:
     def show_penny_if_needed():
         global unlock_email_queue
         renpy.show_screen("penny_idle")
+
+        if persistent.post_test_dialogue is not None:
+            show_screen_with_delay("penny", delay=1.5, t=persistent.post_test_dialogue)
+            persistent.post_test_dialogue = None
+            return
 
         if not persistent.penny_flags["first_login"]:
             show_screen_with_delay("penny", delay=1.5, t=_wm_penny_dialogues.first_login)
