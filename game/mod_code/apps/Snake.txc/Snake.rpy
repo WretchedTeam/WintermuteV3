@@ -7,8 +7,6 @@ define 2 snake_app = _wm_manager.Application(
 screen snake_overlay(snake):
     style_prefix "snake_overlay"
 
-    on "show" action Function(_wm_penny.snake_open)
-
     if snake.has_done_start_delay():
         frame:
             add DynamicDisplayable(_wm_snake_app.score_count, snake=snake)
@@ -60,6 +58,8 @@ style snake_overlay_title:
 screen snake():
     style_prefix "snake"
     default snake = _wm_snake.SnakeOverlay()
+
+    on "show" action Function(_wm_penny.snake_open)
 
     use program_base(snake_app, xysize=(snake.width, snake.height)):
         fixed:
