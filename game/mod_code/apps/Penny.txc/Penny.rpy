@@ -1,11 +1,14 @@
 init 2 python:
     renpy.add_layer("penny", below="power_off")
 
-screen penny_idle():
+screen penny_idle(zoom_out=False):
     style_prefix "penny_idle"
     layer "penny"
 
     button:
+        if zoom_out:
+            at penny_correct_zoom
+
         action [
             Hide("penny_idle"),
             Show("penny", t=[ renpy.random.choice(_wm_penny_dialogues.click_response_pre_sensory) ]),
@@ -24,11 +27,11 @@ screen penny(t, i=0):
     modal True
 
     if t:
-        button:
+        button at penny_shake:
             keysym "K_SPACE"
 
             action [
-                If(i + 1 < len(t), Show("penny", t=t, i=i+1), [ Hide("penny"), Show("penny_idle") ]),
+                If(i + 1 < len(t), Show("penny", t=t, i=i+1), [ Hide("penny"), Show("penny_idle", zoom_out=True) ]),
                 Play("sound", gui.activate_sound)
             ]
 
@@ -41,30 +44,31 @@ screen penny(t, i=0):
                     penny_txt = t[i]
 
             hbox:
-
                 frame:
                     text penny_txt
 
                 add penny_img zoom 0.8 at _wm_shadow.DropShadow(blur=8.0, color="#1116")
 
-    on "show" action _wm_penny.BlurEaseIn(), penny_transform
-    on "hide" action _wm_penny.BlurEaseOut(), penny_transform
+    on "show" action _wm_penny.BlurEaseIn()
+    on "hide" action _wm_penny.BlurEaseOut()
 
-
-transform penny_transform:
+transform -10 penny_shake():
     on show:
-        block:
+        parallel:
             xoffset 0
             easein_quad 0.4 xoffset 12
             easein_quad 0.4 xoffset -12
             easein_quad 0.4 xoffset 12
             easein_quad 0.4 xoffset 0
-        block:
-            zoom 0.8
-            easein_quad 0.2 zoom 0.9
-    on hide:
-        zoom 0.9
-        easein_quad 0.2 zoom 0.8
+
+        parallel:
+            zoom 1.0
+            easein_quad 0.2 zoom 1.05
+
+transform -10 penny_correct_zoom():
+    on show:
+        zoom 1.05
+        easein_quad 0.2 zoom 1.0
 
 style penny_button is empty
 

@@ -32,7 +32,7 @@ style splash_text:
     font _wm_font_lexend.semibold
     size 48
 
-transform penny_transform():
+transform penny_position():
     xalign 0.5 yalign 0.5
     zoom 1.5 nearest True
 
@@ -57,25 +57,25 @@ label title_drop():
 
     pause(1.0)
 
-    show penny neutral at penny_transform
+    show penny neutral at penny_position
     with Dissolve(1.0)
     pause 1.0
 
-    show penny sleep at penny_transform
+    show penny sleep at penny_position
     pause 0.1
-    show penny neutral at penny_transform
+    show penny neutral at penny_position
     pause 0.01
-    show penny sleep at penny_transform
+    show penny sleep at penny_position
 
     pause 0.1
 
-    show penny neutral at penny_transform
+    show penny neutral at penny_position
 
     pause 1.0
 
-    show penny sleep at penny_transform
+    show penny sleep at penny_position
     pause 0.1
-    show penny neutral at penny_transform
+    show penny neutral at penny_position
 
     pause 1.0
 
