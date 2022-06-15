@@ -14,6 +14,9 @@ label splashscreen:
         pause 0.25
 
         call screen assessment with BlurDissolveCurried(0.35, 16.0)
+    else:
+        call title_drop
+        pause 1.0
 
     $ persistent.shown_disclaimer = True
 
