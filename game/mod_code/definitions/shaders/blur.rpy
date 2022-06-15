@@ -254,7 +254,7 @@ init python:
 
         float sum = 1.0;
 
-        for (float i=1.0; i <= (u_radius - 1.0) / 2.0; i+=2.0) {
+        for (float i=1.0; i <= u_radius; i+=2.0) {
             float weight1 = exp(-i * i / (2.0 * u_sqr_sigma));
             float i2 = (i + 1.0);
             float weight2 = exp(-i2 * i2 / (2.0 * u_sqr_sigma));
