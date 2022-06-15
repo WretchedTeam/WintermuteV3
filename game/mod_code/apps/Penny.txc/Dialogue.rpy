@@ -60,6 +60,42 @@ init python in _wm_penny_dialogues:
         ("penny sad", "I {b}need{/b} you!"),
     ]
 
+#### RESPONSES TO EACH TEST
+    post_test_dialogue_1 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Well done{/b} on completing your first test!"),
+        ("penny happy", "But don’t forget, there’s always more {b}work{/b} to do!"),
+    ]
+    post_test_dialogue_2 = [
+        ("penny happier", "Hey [persistent.firstname!c]! Good job on that {b}test{/b}!"),
+        ("penny happy", "I feel like you and I are a regular old {b}Holmes and Watson{/b} together, huh?"),
+        ("penny happier", "Of course, I’m the {b}Holmes{/b} in this situation, haha!"),
+    ]
+    post_test_dialogue_3 = [
+        ("penny happier", "Hey [persistent.firstname!c]! Good job on that {b}test{/b}!"),
+        ("penny flushed", "And good work spotting that irregularity today!"),
+        ("penny happy", "Y’know, attentiveness like that will take you far!"),
+    ]
+    post_test_dialogue_4 = [
+        ("Hey [persistent.firstname!c]! You've completed the {b}test{/b}."),
+        ("penny confused", "I dunno {b}what{/b} happened in there, but hopefully they can {b}fix{/b} that!"),
+    ]
+    post_test_dialogue_5 = [
+        ("penny happier", "Hey [persistent.firstname!c]! Good job on that {b}test{/b}!"),
+        ("penny sad", "I hope you’re feeling {b}okay{/b} after that though, it was pretty {b}rough{/b}!"),
+    ]
+    post_test_dialogue_6 = [
+        ("penny hearteyes", "Hey James! Good job on that {b}test{/b}!"),
+        ("penny hearteyes", "{b}I love you.{/b}"),
+    ]
+    post_test_dialogue_7 = [
+        ("penny cry", "Hey [persistent.firstname!c]! {b}Why{/b}?"),
+    ]
+    post_test_dialogue_8 = [
+        ("penny hearteyes", "Hey [persistent.firstname!c]! You're a {b}cruel{/b} and {b}heartless{/b} person."),
+        ("penny hearteyes", "Do you derive some kind of {b}sick enjoyment{/b} from watching me suffer?"),
+    ]
+
+#### RESPONSES TO BEING CLICKED ON
     click_response_pre_sensory = [
         ("penny happier", "Hey [persistent.firstname!c], that {b}tickles{/b}!!"),
         ("penny hearteyes", "Awww...{b}thanks{/b}, [persistent.firstname!c]."),
@@ -87,7 +123,7 @@ init python in _wm_penny_dialogues:
         ("penny", "Can you help me?"),
         ("penny", "James…where’s James? Are you James?"),
         ("penny", "I’m looking for James Christopher Golf. He lives at 36 Elsham Gardens, Manchester M18 7DJ. Do you know where he is?"),
-        ("penny", "Please don’t leave me."),
+        ("penny", "{i}\u1d16{b}James{/b}, do you like your life? Can you find {b}release{/b}? And will you ever change? Will you ever write your {b}masterpiece{/b}?\u1d16{/i}"),
         ("penny", "Please don’t leave me."),
         ("penny", "Please don’t leave me."),
         ("penny", "Please don’t leave me."),
