@@ -1,4 +1,4 @@
-init python in _wm_penny_dialogues:
+init -1000 python in _wm_penny_dialogues:
     first_login = [
         ("penny happy", "Hi [persistent.firstname!c]! I'm {b}Penny{/b}, your very own TurnellOS {b}personal assistant{/b}!"),
         ("penny happier", "I'm really glad to finally meet you! It's an honour to work with you on this {b}top secret project{/b}!"),

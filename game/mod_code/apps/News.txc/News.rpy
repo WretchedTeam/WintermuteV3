@@ -7,7 +7,7 @@ define 2 news_client_app = _wm_manager.Application(
 screen news_client():
     style_prefix "news_client"
 
-    on "show" action Function(_wm_penny.news_open)
+    on "show" action Function(_wm_penny.emit_event, "news_open", 0.5)
 
     use program_base(news_client_app, xysize=(800, 850)):
         frame yfill True:
