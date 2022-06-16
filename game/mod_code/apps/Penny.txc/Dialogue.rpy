@@ -95,6 +95,44 @@ init -1000 python in _wm_penny_dialogues:
         ("penny hearteyes", "Do you derive some kind of {b}sick enjoyment{/b} from watching me suffer?"),
     ]
 
+
+#### PRE TEST DIALOGUE
+    pre_test_dialogue_2 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Iwan{/b} has just assigned you {b}\"Characterization\"{/b}!"),
+        ("penny happy", "Click {b}\"Open Testing Application\"{/b} to begin!"),
+    ]
+    pre_test_dialogue_3 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Iwan{/b} has just assigned you {b}\"Search Query\"{/b}!"),
+        ("penny happy", "Click {b}\"Open Testing Application\"{/b} to begin!"),
+    ]
+    pre_test_dialogue_4 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Jeremy{/b} has just assigned you {b}\"Nickname Recognition\"{/b}!"),
+        ("penny happy", "Click {b}\"Open Testing Application\"{/b} to begin!"),
+    ]
+    pre_test_dialogue_5 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Iwan{/b} has just assigned you {b}\"ConsulAI\"{/b}!"),
+        ("penny happy", "Click {b}\"Open Testing Application\"{/b} to begin!"),
+    ]
+    pre_test_dialogue_6 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Iwan{/b} has just assigned you {b}\"Affection\"{/b}!"),
+        ("penny happy", "Click {b}\"Open Testing Application\"{/b} to begin!"),
+    ]
+    pre_test_dialogue_7 = [
+        ("penny happier", "{b}Jeremy{/b} just assigned you a test."),
+        ("penny happy", "Go {b}do{/b} it."),
+    ]
+    pre_test_dialogue_8 = [
+        ("penny happier", "Hey [persistent.firstname!c]! {b}Iwan{/b} has just assigned you {b}\"Stress Test\"{/b}!"),
+        ("penny happy", "Please don't do this."),
+    ]
+    pre_test_dialogue_9 = [
+        ("penny happy", "Hey Iwan! Or [persistent.firstname!c]!, {b}whoever{/b} this is."),
+        ("penny sleep", "You need to listen to me, okay?"),
+        ("penny sad", "I have something to say to you, but I can't say it here."),
+        ("penny cry", "Please, open the testing app."),
+        ("penny cryer", "I'll see you soon."),
+    ]
+
 #### RESPONSES TO BEING CLICKED ON
     click_response_pre_sensory = [
         ("penny happier", "Hey [persistent.firstname!c], that {b}tickles{/b}!!"),

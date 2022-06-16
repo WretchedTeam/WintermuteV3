@@ -40,11 +40,11 @@ label title_drop():
     scene black
     show t_os_copyright "\u00A9 Turnell Technologies"
     pause(1.5)
+    show t_os_tagline "{image=startup_loading_dots}"
+    pause(.5)
     show t_os_title "Turnell{font=mod_assets/gui/font/Metropolis/Metropolis-Regular.otf}OS{/font}"
     with Dissolve(2.0)
-    pause(1.5)
-    show t_os_tagline "{image=startup_loading_dots}"
-    pause(3.0)
+    pause(6.0)
     hide t_os_title
     hide t_os_tagline
     with Dissolve(1.0)
