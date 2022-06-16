@@ -10,6 +10,11 @@ TurnellOS Installation Script
 -----------------------------
 """.strip()
 
+define wm_ascii_end = """
+TurnellOS Bootloader
+--------------------
+""".strip()
+
 define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
 define audio.foley_enter_key = [ "<silence 0.01>", "mod_assets/audio/foley/enter_key.ogg" ]
 
@@ -150,6 +155,7 @@ label installation_script():
     term_echo_nocb "Restarting{image=startup_terminal_dot_loading}{fast}{nw}"
     $ terminal_show()
     $ renpy.pause(2.0, hard=True)
+    $ terminal_clear()
 
     $ menu = renpy.display_menu
     return

@@ -14,29 +14,34 @@ image p6:
     "mod_assets/ending/bsod/percent_6.png"
 image good_email:
     "mod_assets/ending/good/email.png"
+init python:
+    import random
+
+    nonunicode = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž"
+
+    def glitchtext(length):
+        output = ""
+        for x in range(length):
+            output += random.choice(nonunicode)
+        return output
 
 label ending_script_destroy:
 
     scene black
     pause(3.5)
-    scene bsod
-    show p1
-    pause(1.2)
-    hide p1
-    show p2
-    pause(0.5)
-    hide p2
-    show p3
-    pause(1.8)
-    hide p3
-    show p4
+
+    $ gtext = glitchtext(12)
+    $ gtext_s1 = glitchtext(8)
+    $ gtext_s2 = glitchtext(8)
+    $ gtext_s3 = glitchtext(8)
+
+    $ terminal_clear()
+    term_echo_nocb "[wm_ascii_end]{fast}{nw}\n"
     pause(0.1)
-    hide p4
-    show p5
-    pause(0.2)
-    hide p5
-    show p6
-    pause(3.1)
+    term_echo_nocb "STOP: [gtext] \{Fatal System Error\}{fast}{nw}\n"
+    term_echo_nocb "The TurnellOS system process terminated unexpectedly with a status of 1�Ђ0�M�b;��sd{fast}{nw}\n"
+    term_echo_nocb "[gtext_s1] ([gtext_s2] [gtext_s3]){fast}{nw}\n"
+    term_echo_nocb "The system has been shut down.{fast}{w=6.1}{nw}"
     scene black
     pause(4.0)
     $ renpy.movie_cutscene("mod_assets/ending/end_video_beta.webm")
