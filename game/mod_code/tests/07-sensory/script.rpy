@@ -19,6 +19,7 @@ label script7_main:
         "Exit" (prepend_load=False):
             return False
 
+    $ persistent.finished_sensory_test = True
     return True
 
 label script7_m():

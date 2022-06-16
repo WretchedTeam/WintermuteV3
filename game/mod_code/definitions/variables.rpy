@@ -30,3 +30,4 @@ default persistent.wm_received = False
 default persistent.snake_received = False
 
 default persistent.ending_obtained = 0
+default persistent.finished_sensory_test = False

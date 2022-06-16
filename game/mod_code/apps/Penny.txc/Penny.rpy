@@ -5,13 +5,16 @@ screen penny_idle(zoom_out=False):
     style_prefix "penny_idle"
     layer "penny"
 
+    python:
+        lst = _wm_penny_dialogues.click_response_post_sensory if persistent.finished_sensory_test else _wm_penny_dialogues.click_response_pre_sensory
+
     button:
         if zoom_out:
             at penny_correct_zoom
 
         action [
             Hide("penny_idle"),
-            Show("penny", t=[ renpy.random.choice(_wm_penny_dialogues.click_response_pre_sensory) ]),
+            Show("penny", t=[ renpy.random.choice(lst) ]),
             Play("sound", gui.activate_sound)
         ]
         add "penny neutral" zoom 0.8 at _wm_shadow.DropShadow(blur=8.0, color="#1116")
