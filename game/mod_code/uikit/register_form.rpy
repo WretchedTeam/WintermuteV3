@@ -45,6 +45,7 @@ style register_form_input_field_button:
     padding (20, 20)
 
 style register_form_input_field_input is register_form_label_text:
+    hinting "none"
     yalign 0.5
 
 style register_form_input_field_text is register_form_input_field_input

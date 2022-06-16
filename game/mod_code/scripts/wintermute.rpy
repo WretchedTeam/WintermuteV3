@@ -30,7 +30,7 @@ label wm_start():
     if test is not None:
         call expression test.main_label from _call_expression_9
         if _return:
-            $ _wm_penny.just_finished_test = True
+            $ _wm_penny.emit_event("test_completed")
             $ test.mark_complete()
             $ test.run_complete()
 

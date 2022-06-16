@@ -26,6 +26,8 @@ screen penny(t, i=0):
     layer "penny"
     modal True
 
+    on "show" action Hide("penny_idle")
+
     if t:
         button at penny_shake:
             keysym "K_SPACE"
@@ -48,9 +50,6 @@ screen penny(t, i=0):
                     text penny_txt
 
                 add penny_img zoom 0.8 at _wm_shadow.DropShadow(blur=8.0, color="#1116")
-
-    on "show" action _wm_penny.BlurEaseIn()
-    on "hide" action _wm_penny.BlurEaseOut()
 
 transform -10 penny_shake():
     on show:

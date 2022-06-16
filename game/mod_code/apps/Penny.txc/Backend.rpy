@@ -1,43 +1,4 @@
-default persistent.penny_flags = {
-    "first_login": False,
-    "first_email": False,
-    "first_attachment": False,
-    "first_wm_open": False,
-    "first_music_open": False,
-    "first_news_open": False,
-    "first_email_reply": False,
-    "first_spam_email": False,
-    "first_snake_open": False
-}
-
-init python in _wm_penny_images:
-    penny_image_path = "mod_assets/os/penny/"
-
-    penny_image_names = {
-        "neutral": "Penny.png",
-        "angry": "PennyAngry.png",
-        "confused": "PennyConfused.png",
-        "cry": "PennyCry.png",
-        "cryer": "PennyCryer.png",
-        "dead": "PennyDead.png",
-        "disappointed": "PennyDisappointed.png",
-        "flushed": "PennyFlushed.png",
-        "happier": "PennyHappier.png",
-        "happy": "PennyHappy.png",
-        "hearteyes": "PennyHeartEyes.png",
-        "pain": "PennyPain.png",
-        "sad": "PennySad.png",
-        "sleep": "PennySleep.png"
-    }
-
-    def register_penny_images():
-        if renpy.is_init_phase():
-            for expr, img in penny_image_names.items():
-                renpy.exports.image("penny " + expr, penny_image_path + img)
-        else:
-            raise Exception("register_penny_images called after init phase.")
-
-    register_penny_images()
+default -100 persistent.penny_dialogue_flags = { }
 
 init python in _wm_penny:
     from store import (
@@ -51,116 +12,133 @@ init python in _wm_penny:
         show_screen_with_delay,
         run_with_delay
     )
-    from store._wm_email import (
-        email_unlock_callbacks,
-        email_open_callbacks
-    )
+
+    dialogue_buffer = None
+
+    def flatten_dialogue_buffer():
+        return [ sentence for dialogues in dialogue_buffer for sentence in dialogues ]
+
+    @renpy.config.start_callbacks.append
+    def __set_dialogue_buffer():
+        global dialogue_buffer
+        dialogue_buffer = [ ]
+
+    def show_penny_if_needed():
+        global dialogue_buffer
+
+        renpy.show_screen("penny_idle")
+
+        if not dialogue_buffer:
+            return
+
+        show_screen_with_delay("penny", 1.5, t=flatten_dialogue_buffer())
+
+    def hide_penny():
+        renpy.hide_screen("penny", "penny")
+        renpy.hide_screen("penny_idle", "penny")
+
+    class IgnorePennyEvent(Exception): pass
+
+    class PennyEvent(object):
+        def __call__(self, *arg, **kwargs):
+            raise Exception("PennyEvent cannot be called.")
+
+    class PennyOneTimeDialogue(PennyEvent):
+        def __init__(self, flag_id, dialogue):
+            self.flag_id = flag_id
+            self.dialogue = dialogue
+
+        def __call__(self):
+            if persistent.penny_dialogue_flags.setdefault(self.flag_id, False):
+                return None
+
+            persistent.penny_dialogue_flags[self.flag_id] = True
+            return self.dialogue
+
+    class PennyPostTestDialogue(PennyEvent):
+        dialogues = (
+            _wm_penny_dialogues.post_test_dialogue_1,
+            _wm_penny_dialogues.post_test_dialogue_2,
+            _wm_penny_dialogues.post_test_dialogue_3,
+            _wm_penny_dialogues.post_test_dialogue_4,
+            _wm_penny_dialogues.post_test_dialogue_5,
+            _wm_penny_dialogues.post_test_dialogue_6,
+            _wm_penny_dialogues.post_test_dialogue_7,
+            _wm_penny_dialogues.post_test_dialogue_8
+        )
+
+        def __call__(self):
+            if len(self.dialogues) > persistent.current_test_no:
+                return self.dialogues[persistent.current_test_no]
+
+            return None
+
+    penny_events = {
+        "login": PennyOneTimeDialogue("first_login", _wm_penny_dialogues.first_login),
+        "email_received": PennyOneTimeDialogue("first_email", _wm_penny_dialogues.first_email),
+        "attached_received": PennyOneTimeDialogue("first_attachment", _wm_penny_dialogues.first_attachment),
+        "wm_open": PennyOneTimeDialogue("first_wm_open", _wm_penny_dialogues.first_wm_open),
+        "music_open": PennyOneTimeDialogue("first_music_open", _wm_penny_dialogues.first_music_open),
+        "news_open": PennyOneTimeDialogue("first_news_open", _wm_penny_dialogues.first_news_open),
+        "replyable_email_received": PennyOneTimeDialogue("first_email_reply", _wm_penny_dialogues.first_email_reply),
+        "spam_received": PennyOneTimeDialogue("first_spam_email", _wm_penny_dialogues.first_spam_email),
+        "snake_open": PennyOneTimeDialogue("first_snake_open", _wm_penny_dialogues.first_snake_open),
+        "test_completed": PennyPostTestDialogue()
+    }
+
+    def emit_event(ev_id):
+        global dialogue_buffer
+
+        if ev_id not in penny_events:
+            print("%s not defined as an event id.")
+            return
+
+        dialogues = penny_events[ev_id]()
+
+        if dialogues is None:
+            return
+
+        if dialogue_buffer is None:
+            dialogue_buffer = [ ]
+
+        if renpy.get_screen("desktop"):
+            show_screen_with_delay("penny", 1.5, t=dialogues)
+
+        else:
+            dialogue_buffer.append(dialogues)
+
+        return
+
+init 2 python in _wm_penny_hooks:
+    from store import Function
+    import store._wm_penny as _wm_penny
+
     from store._wm_manager import (
         desktop_open_callbacks,
         desktop_hide_callbacks
     )
 
-    unlock_email_queue = None
-    just_finished_test = False
+    desktop_open_callbacks.append(_wm_penny.show_penny_if_needed)
+    desktop_hide_callbacks.append(_wm_penny.hide_penny)
+    desktop_open_callbacks.append(Function(_wm_penny.emit_event, "login"))
 
-    @email_unlock_callbacks.append
-    def email_unlock_cb(mail):
-        global unlock_email_queue
+    from store._wm_email import (
+        email_unlock_callbacks,
+        email_open_callbacks
+    )
 
-        if not persistent.penny_flags["first_email"]:
-            unlock_email_queue = _wm_penny_dialogues.first_email
-            persistent.penny_flags["first_email"] = True
+    def cb_unlock_email(mail):
+        _wm_penny.emit_event("email_received")
 
-    @desktop_open_callbacks.append
-    def show_penny_if_needed():
-        global just_finished_test, unlock_email_queue
-        renpy.show_screen("penny_idle")
+    def cb_open_email(mail):
+        if mail.attachments:
+            _wm_penny.emit_event("attached_received")
 
-        if just_finished_test:
-            post_test_dialogues = (
-                _wm_penny_dialogues.post_test_dialogue_1,
-                _wm_penny_dialogues.post_test_dialogue_2,
-                _wm_penny_dialogues.post_test_dialogue_3,
-                _wm_penny_dialogues.post_test_dialogue_4,
-                _wm_penny_dialogues.post_test_dialogue_5,
-                _wm_penny_dialogues.post_test_dialogue_6,
-                _wm_penny_dialogues.post_test_dialogue_7,
-                _wm_penny_dialogues.post_test_dialogue_8,
-            )
+        if mail.quick_replies:
+            _wm_penny.emit_event("replyable_email_received")
 
-            if len(post_test_dialogues) > persistent.current_test_no:
-                show_screen_with_delay("penny", delay=1.75, t=post_test_dialogues[persistent.current_test_no])
+        if mail.is_spam:
+            _wm_penny.emit_event("spam_received")
 
-            just_finished_test = False
-            return
-
-        if persistent.post_test_dialogue is not None:
-            show_screen_with_delay("penny", delay=1.5, t=persistent.post_test_dialogue)
-            persistent.post_test_dialogue = None
-            return
-
-        if not persistent.penny_flags["first_login"]:
-            show_screen_with_delay("penny", delay=1.5, t=_wm_penny_dialogues.first_login)
-            persistent.penny_flags["first_login"] = True
-            return
-
-        if unlock_email_queue is not None:
-            show_screen_with_delay("penny", delay=2.5, t=unlock_email_queue)
-            unlock_email_queue = None
-
-    @desktop_hide_callbacks.append
-    def hide_penny():
-        renpy.hide_screen("penny", "penny")
-        renpy.hide_screen("penny_idle", "penny")
-
-    def wm_open():
-        if persistent.penny_flags["first_wm_open"]:
-            return
-        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_wm_open)
-        persistent.penny_flags["first_wm_open"] = True
-
-    def music_open():
-        if persistent.penny_flags["first_music_open"]:
-            return
-        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_music_open)
-        persistent.penny_flags["first_music_open"] = True
-
-    def news_open():
-        if persistent.penny_flags["first_news_open"]:
-            return
-        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_news_open)
-        persistent.penny_flags["first_news_open"] = True
-
-    def snake_open():
-        if persistent.penny_flags["first_snake_open"]:
-            return
-        show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_snake_open)
-        persistent.penny_flags["first_snake_open"] = True
-
-    @email_open_callbacks.append
-    def email_open_cb(mail):
-        if not persistent.penny_flags["first_attachment"] and mail.attachments:
-            show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_attachment)
-            persistent.penny_flags["first_attachment"] = True
-
-        elif not persistent.penny_flags["first_email_reply"] and mail.quick_replies:
-            show_screen_with_delay("penny", delay=0.5, t=_wm_penny_dialogues.first_email_reply)
-            persistent.penny_flags["first_email_reply"] = True
-
-        elif not persistent.penny_flags["first_spam_email"] and mail.is_spam:
-            unlock_email_queue = _wm_penny_dialogues.first_spam_email
-            persistent.penny_flags["first_spam_email"] = True
-
-    blur_layers = [ "master", "screens" ]
-
-    def BlurEaseIn():
-        return [
-            Function(renpy.show_layer_at, [ easein_blur ], layer)
-            for layer in blur_layers
-        ]
-
-    def BlurEaseOut():
-        return [
-            Function(renpy.show_layer_at, [ easeout_blur ], layer)
-            for layer in blur_layers
-        ]
+    email_unlock_callbacks.append(cb_unlock_email)
+    email_open_callbacks.append(cb_open_email)
