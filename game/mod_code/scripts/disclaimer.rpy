@@ -7,12 +7,12 @@ default persistent.shown_disclaimer = False
 
 define wm_ascii = """
 TurnellOS Installation Script
------------------------------
+{font=mod_assets/gui/font/SourceCodePro-Regular.ttf}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{/font}
 """.strip()
 
 define wm_ascii_end = """
 TurnellOS Bootloader
---------------------
+{font=mod_assets/gui/font/SourceCodePro-Regular.ttf}━━━━━━━━━━━━━━━━━━━━{/font}
 """.strip()
 
 define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
