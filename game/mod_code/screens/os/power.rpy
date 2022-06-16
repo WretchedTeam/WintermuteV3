@@ -40,8 +40,12 @@ screen power_off_prompt():
 
     key "game_menu" action hide_action
 
-    on "show" action _wm_power_service.BlurEaseIn()
-    on "hide" action _wm_power_service.BlurEaseOut()
+    if persistent.blur_effects:
+        on "show" action _wm_power_service.BlurEaseIn()
+        on "hide" action _wm_power_service.BlurEaseOut()
+
+    on "show" action Function(renpy.show, "black", at_list=[ Transform(alpha=0.5), ease_alpha ], layer="penny")
+    on "hide" action Function(renpy.hide, "black", layer="penny")
 
 style power_off_prompt_frame:
     align (0.5, 0.5)

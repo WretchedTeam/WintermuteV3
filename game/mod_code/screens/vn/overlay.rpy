@@ -51,6 +51,9 @@ init python:
             return rv
 
     def blur_background(d):
+        if not persistent.blur_effects:
+            return d
+
         d = Fixed(d)
         scene_lists = renpy.game.context().scene_lists
         layer_properties = renpy.display.interface.layer_properties

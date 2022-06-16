@@ -3,6 +3,7 @@ init -100 python in _wm_shadow:
         _wm_blur_funcs,
         Color,
         normalize_color,
+        persistent
     )
 
     renpy.register_shader("wm.silhouette", variables="""
@@ -54,7 +55,7 @@ init -100 python in _wm_shadow:
             sw, sh = sr.get_size()
 
             rv = renpy.Render(cw, ch)
-            rv.absolute_blit(sr, (-self.blur * 40 + self.xoffset, -self.blur * 40 + self.yoffset))
+            rv.absolute_blit(sr, (-self.blur * 40 + self.xoffset, -self.blur * 40 + self.yoffset), main=False)
             rv.blit(cr, (0, 0))
 
             return rv
@@ -69,4 +70,7 @@ init -100 python in _wm_shadow:
             self.blur = blur
 
         def __call__(self, child):
-            return DropShadowCore(child, color=self.color, xoffset=self.xoff, yoffset=self.yoff, blur=self.blur)
+            if persistent.drop_shadow:
+                return DropShadowCore(child, color=self.color, xoffset=self.xoff, yoffset=self.yoff, blur=self.blur)
+
+            return child

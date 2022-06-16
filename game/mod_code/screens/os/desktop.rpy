@@ -28,7 +28,8 @@ screen icon_grid():
             use desktop_app_icon("News", news_client_app, (0, 1))
             use desktop_app_icon("Music Player", music_player_app, (0, 2))
 
-            use desktop_action_icon("Settings", "settings icon", ShowMenu("preferences"), (0, 3))
+            use desktop_app_icon("Settings", settings_app, (0, 3))
+            # use desktop_action_icon("Settings", "settings icon", ShowMenu("preferences"), (0, 3))
 
             if persistent.wm_received:
                 use desktop_app_icon("Wintermute", dashboard_app, (0, 4))

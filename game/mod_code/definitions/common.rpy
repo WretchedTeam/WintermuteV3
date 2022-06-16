@@ -105,3 +105,11 @@ transform -10 easein_blur():
 transform -10 easeout_blur():
     blur 16.0
     easein_quad 0.5 blur 0.0
+
+transform -10 ease_alpha():
+    on show:
+        alpha 0.0
+        easein_quad 0.5 alpha 1.0
+
+    on hide:
+        easein_quad 0.5 alpha 0.0
