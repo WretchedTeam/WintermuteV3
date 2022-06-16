@@ -31,7 +31,7 @@ init python in _wm_penny:
         if not dialogue_buffer:
             return
 
-        show_screen_with_delay("penny", 1.5, t=flatten_dialogue_buffer())
+        show_screen_with_delay("penny", 2.5, t=flatten_dialogue_buffer())
 
     def hide_penny():
         renpy.hide_screen("penny", "penny")
@@ -86,7 +86,7 @@ init python in _wm_penny:
         "test_completed": PennyPostTestDialogue()
     }
 
-    def emit_event(ev_id):
+    def emit_event(ev_id, delay=1.5):
         global dialogue_buffer
 
         if ev_id not in penny_events:
@@ -102,7 +102,7 @@ init python in _wm_penny:
             dialogue_buffer = [ ]
 
         if renpy.get_screen("desktop"):
-            show_screen_with_delay("penny", 1.5, t=dialogues)
+            show_screen_with_delay("penny", delay, t=dialogues)
 
         else:
             dialogue_buffer.append(dialogues)
@@ -132,13 +132,27 @@ init 2 python in _wm_penny_hooks:
 
     def cb_open_email(mail):
         if mail.attachments:
-            _wm_penny.emit_event("attached_received")
+            _wm_penny.emit_event("attached_received", 0.5)
 
         if mail.quick_replies:
-            _wm_penny.emit_event("replyable_email_received")
+            _wm_penny.emit_event("replyable_email_received", 0.5)
 
         if mail.is_spam:
-            _wm_penny.emit_event("spam_received")
+            _wm_penny.emit_event("spam_received", 0.5)
 
     email_unlock_callbacks.append(cb_unlock_email)
     email_open_callbacks.append(cb_open_email)
+
+    blur_layers = [ "master", "screens" ]
+
+    def BlurEaseIn():
+        return [
+            Function(renpy.show_layer_at, [ easein_blur ], layer)
+            for layer in blur_layers
+        ]
+
+    def BlurEaseOut():
+        return [
+            Function(renpy.show_layer_at, [ easeout_blur ], layer)
+            for layer in blur_layers
+        ]
