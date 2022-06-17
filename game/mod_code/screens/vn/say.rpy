@@ -110,7 +110,7 @@ style say_label:
     font gui.name_text_font
     size gui.name_text_size
     xalign gui.name_xalign
-    yalign 0.5
+    # yalign 0.5
 
 style say_dialogue:
     properties gui.text_properties("dialogue")

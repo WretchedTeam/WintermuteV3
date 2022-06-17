@@ -38,8 +38,6 @@ init python in _wm_penny:
         renpy.hide_screen("penny", "penny")
         renpy.hide_screen("penny_idle", "penny")
 
-    class IgnorePennyEvent(Exception): pass
-
     class PennyEvent(object):
         def __call__(self, *arg, **kwargs):
             raise Exception("PennyEvent cannot be called.")

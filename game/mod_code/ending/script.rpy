@@ -14,26 +14,16 @@ image p6:
     "mod_assets/ending/bsod/percent_6.png"
 image good_email:
     "mod_assets/ending/good/email.png"
-init python:
-    import random
 
-    nonunicode = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž"
-
-    def glitchtext(length):
-        output = ""
-        for x in range(length):
-            output += random.choice(nonunicode)
-        return output
-
-label ending_script_destroy:
+label ending_script_destroy():
 
     scene black
     pause(3.5)
 
-    $ gtext = glitchtext(12)
-    $ gtext_s1 = glitchtext(8)
-    $ gtext_s2 = glitchtext(8)
-    $ gtext_s3 = glitchtext(8)
+    $ gtext = _wm_glitch_text.Generate(12, "nonunicode")
+    $ gtext_s1 = _wm_glitch_text.Generate(8, "nonunicode")
+    $ gtext_s2 = _wm_glitch_text.Generate(8, "nonunicode")
+    $ gtext_s3 = _wm_glitch_text.Generate(8, "nonunicode")
 
     $ terminal_clear()
     term_echo_nocb "[wm_ascii_end]{fast}{nw}\n"
