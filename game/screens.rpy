@@ -108,6 +108,8 @@ screen input(prompt):
     style_prefix "input"
 
     window:
+        if not renpy.get_screen("vn_overlay"):
+            at blur_background
         has vbox
         use overlay_header("Input")
 
@@ -127,15 +129,18 @@ style input_prompt is default
 style input_prompt:
     xalign gui.dialogue_text_xalign
     # properties gui.text_properties("input_prompt")
-    properties gui.text_properties("dialogue")
+    # properties gui.text_properties("dialogue")
+    font _wm_font_lexend.medium
+    size 24
+    color "#dedede"
 
 style input:
     xalign gui.dialogue_text_xalign
     xmaximum gui.dialogue_width
     properties gui.text_properties("dialogue")
-    color "#bbb"
+    color "#fff"
     caret renpy.display.behavior.CaretBlink(
-        Window(Solid("#bbb", xsize=3, yoffset=4), style="empty", left_margin=3), 
+        Window(Solid("#fff", xsize=3, yoffset=4), style="empty", left_margin=3), 
         1.0
     )
 
