@@ -32,6 +32,7 @@ init python in _wm_penny:
             return
 
         show_screen_with_delay("penny", 2.5, t=flatten_dialogue_buffer())
+        dialogue_buffer.clear()
 
     def hide_penny():
         renpy.hide_screen("penny", "penny")
