@@ -82,7 +82,7 @@ init python in _wm_music_player_app:
         FOLDER = 3
 
         def __init__(self):
-            self.mp = MusicPlayer("music_player")
+            self.mp = MusicPlayer("music")
             self.category = self.CURRENT
             self.bar_value = AdjustableAudioPositionValue(self.mp)
             self.yadj = ui.adjustment()

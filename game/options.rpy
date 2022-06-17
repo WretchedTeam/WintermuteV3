@@ -160,7 +160,7 @@ init python:
     config.search_prefixes.append("mod_assets/")
     config.search_prefixes.append("../music/")
 
-    renpy.music.register_channel("music_player", "music_player")
+    # renpy.music.register_channel("music_player", "music_player")
 
     # Force fullscreen by default 
     config.default_fullscreen = True
