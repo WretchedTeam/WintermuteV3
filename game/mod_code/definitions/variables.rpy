@@ -34,3 +34,5 @@ default persistent.finished_sensory_test = False
 
 default persistent.blur_effects = True
 default persistent.drop_shadow = True
+
+default persistent.autoload = None

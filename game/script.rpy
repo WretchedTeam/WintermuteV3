@@ -2,7 +2,10 @@
     import singleton
     me = singleton.SingleInstance()
 
-label splashscreen:
+label splashscreen():
+    if persistent.autoload is not None:
+        jump expression persistent.autoload
+
     if not persistent.shown_disclaimer:
         call disclaimer
         pause 1.0
