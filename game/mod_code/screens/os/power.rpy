@@ -26,7 +26,7 @@ screen power_off_prompt():
         on "show" action _wm_layer_blur.ApplyBlur("power_off_prompt", 16.0, _wm_power_service.blur_layers)
         on "hide" action _wm_layer_blur.RemoveBlur("power_off_prompt", _wm_power_service.blur_layers)
 
-    on "show" action Function(renpy.show, "black", at_list=[ Transform(alpha=0.5), ease_alpha ], layer="penny")
+    on "show" action Function(renpy.show, "black", at_list=[ Transform(alpha=0.5), ease_alpha ], zorder=99, layer="penny")
     on "hide" action Function(renpy.hide, "black", layer="penny")
 
 style power_off_prompt_frame:

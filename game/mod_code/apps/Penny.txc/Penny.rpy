@@ -66,7 +66,7 @@ screen penny(t, i=0):
         on "show" action _wm_layer_blur.ApplyBlur("penny", 16.0, _wm_penny_hooks.blur_layers)
         on "hide" action _wm_layer_blur.RemoveBlur("penny", _wm_penny_hooks.blur_layers)
 
-    on "show" action Function(renpy.show, "black", at_list=[ Transform(alpha=0.5), ease_alpha ], layer="screens")
+    on "show" action Function(renpy.show, "black", zorder=max(len(_wm_manager.zorders), 1), at_list=[ Transform(alpha=0.5), ease_alpha ], layer="screens")
     on "hide" action Function(renpy.hide, "black", layer="screens")
 
 transform -10 penny_shake():

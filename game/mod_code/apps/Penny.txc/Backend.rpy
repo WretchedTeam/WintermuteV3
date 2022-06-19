@@ -31,10 +31,12 @@ init python in _wm_penny:
         if not dialogue_buffer:
             return
 
-        show_screen_with_delay("penny", 2.5, t=flatten_dialogue_buffer())
+        renpy.show_screen("penny_timer", t=flatten_dialogue_buffer(), p=2.5)
+        # show_screen_with_delay("penny", 2.5, t=flatten_dialogue_buffer())
         dialogue_buffer.clear()
 
     def hide_penny():
+        renpy.hide_screen("penny_timer", "penny")
         renpy.hide_screen("penny", "penny")
         renpy.hide_screen("penny_idle", "penny")
 
