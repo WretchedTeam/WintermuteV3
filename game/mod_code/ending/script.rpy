@@ -6,6 +6,18 @@ image p4 = "mod_assets/ending/bsod/percent_4.png"
 image p5 = "mod_assets/ending/bsod/percent_5.png"
 image p6 = "mod_assets/ending/bsod/percent_6.png"
 image good_email = "mod_assets/ending/good/email.png"
+image bad_article:
+    "mod_assets/ending/bad/ns_page_end.png"
+    zoom 0.5
+
+screen article_scroller():
+    viewport id "article_vp":
+        mousewheel True
+        add "bad_article"
+
+    add _wm_assessment.ScrolldownActivateButton(
+        Null(), keysym="K_SPACE", action=Return(), vp="article_vp"
+    )
 
 label ending_script_destroy():
 
@@ -46,7 +58,7 @@ label ending_script_destroy():
     $ renpy.pause()
     $ renpy.quit()
 
-label ending_script_test:
+label ending_script_test():
     scene black
-    wm "haha bitch you got the bad ending"
+    call screen article_scroller with dissolve
     $ renpy.quit()
