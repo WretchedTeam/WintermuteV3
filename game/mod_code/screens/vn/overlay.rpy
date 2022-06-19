@@ -6,7 +6,10 @@ screen vn_overlay():
         at _wm_bg_blur.apply("master")
 
         use interactive_console(wm_console)
-        use mini_player()
+
+        if not persistent.iwan_desktop:
+            use mini_player()
+
         use wmservice()
         use terminal(wm_terminal)
 
