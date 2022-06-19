@@ -21,6 +21,7 @@ screen icon_grid():
 
         if not persistent.done_rorschach_test:
             use desktop_label_icon("Rorschach", "rorschach icon", "rorschach", cell=(0, 0))
+            use desktop_app_icon("Settings", settings_app, (0, 1))
 
         else:
             use desktop_app_icon("Email", mail_client_app)

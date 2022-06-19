@@ -76,4 +76,5 @@ label rorschach():
 
     label .confirmed_end_click:
     $ persistent.done_rorschach_test = True
+    $ persistent.icon_positions.clear()
     return

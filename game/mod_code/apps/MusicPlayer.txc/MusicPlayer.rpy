@@ -12,7 +12,7 @@ screen music_player():
     use program_base(music_player_app, xysize=(1200, 900)):
         use music_player_base(mpp)
 
-    on "show" action Function(_wm_penny.emit_event, "music_open", 0.5)
+    on "show" action Function(_wm_penny.emit_event, "music_open", 0.5, True)
     on "hide" action Function(mpp.on_close)
 
 

@@ -59,7 +59,7 @@ screen snake():
     style_prefix "snake"
     default snake = _wm_snake.SnakeOverlay()
 
-    on "show" action Function(_wm_penny.emit_event, "snake_open", 0.5)
+    on "show" action Function(_wm_penny.emit_event, "snake_open", 0.5, True)
 
     use program_base(snake_app, xysize=(snake.width, snake.height)):
         fixed:

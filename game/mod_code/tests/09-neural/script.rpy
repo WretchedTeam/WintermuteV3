@@ -9,11 +9,11 @@ image eg4:
 image eg5:
     "mod_assets/ending/e5.png"
 
-label disable_vn_overlay:
+label disable_vn_overlay():
     hide screen vn_overlay
     return
 
-label script9_main:
+label script9_main():
     show monika forward at i11
     call show_monika_reload()
     show monika forward neut cm oe

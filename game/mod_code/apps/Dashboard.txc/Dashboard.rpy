@@ -26,7 +26,7 @@ screen dashboard():
                 elif dashboard.display == dashboard.COMPLETED:
                     use dashboard_completed_tests()
 
-    on "show" action Function(_wm_penny.emit_event, "wm_open", 0.5)
+    on "show" action Function(_wm_penny.emit_event, "wm_open", 0.5, True)
 
 style dashboard_frame:
     background dashboard_background

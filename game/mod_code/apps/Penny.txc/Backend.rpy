@@ -1,4 +1,5 @@
 default -100 persistent.penny_dialogue_flags = { }
+default -100 persistent.penny_pre_test_done = { }
 
 init python in _wm_penny:
     from store import (
@@ -31,8 +32,8 @@ init python in _wm_penny:
         if not dialogue_buffer:
             return
 
-        renpy.show_screen("penny_timer", t=flatten_dialogue_buffer(), p=2.5)
-        # show_screen_with_delay("penny", 2.5, t=flatten_dialogue_buffer())
+        # renpy.show_screen("penny_timer", t=flatten_dialogue_buffer(), p=2.5)
+        show_screen_with_delay("penny", 2.5, t=flatten_dialogue_buffer())
         dialogue_buffer.clear()
 
     def hide_penny():
@@ -74,6 +75,28 @@ init python in _wm_penny:
 
             return None
 
+    class PennyPreTestDialogue(PennyEvent):
+        dialogues = (
+            None,
+            _wm_penny_dialogues.pre_test_dialogue_2,
+            _wm_penny_dialogues.pre_test_dialogue_3,
+            _wm_penny_dialogues.pre_test_dialogue_4,
+            _wm_penny_dialogues.pre_test_dialogue_5,
+            _wm_penny_dialogues.pre_test_dialogue_6,
+            _wm_penny_dialogues.pre_test_dialogue_7,
+            _wm_penny_dialogues.pre_test_dialogue_8
+        )
+
+        def __call__(self):
+            if persistent.penny_pre_test_done.setdefault(persistent.current_test_no, False):
+                return
+
+            if len(self.dialogues) > persistent.current_test_no:
+                persistent.penny_pre_test_done[persistent.current_test_no] = True
+                return self.dialogues[persistent.current_test_no]
+
+            return None
+
     penny_events = {
         "login": PennyOneTimeDialogue("first_login", _wm_penny_dialogues.first_login),
         "email_received": PennyOneTimeDialogue("first_email", _wm_penny_dialogues.first_email),
@@ -84,10 +107,11 @@ init python in _wm_penny:
         "replyable_email_received": PennyOneTimeDialogue("first_email_reply", _wm_penny_dialogues.first_email_reply),
         "spam_received": PennyOneTimeDialogue("first_spam_email", _wm_penny_dialogues.first_spam_email),
         "snake_open": PennyOneTimeDialogue("first_snake_open", _wm_penny_dialogues.first_snake_open),
-        "test_completed": PennyPostTestDialogue()
+        "test_completed": PennyPostTestDialogue(),
+        "test_assigned": PennyPreTestDialogue()
     }
 
-    def emit_event(ev_id, delay=1.5):
+    def emit_event(ev_id, delay=1.5, pause=False):
         global dialogue_buffer
 
         if ev_id not in penny_events:
@@ -103,8 +127,10 @@ init python in _wm_penny:
             dialogue_buffer = [ ]
 
         if renpy.get_screen("desktop"):
-            # show_screen_with_delay("penny", delay, t=dialogues)
-            renpy.show_screen("penny_timer", t=dialogues, p=delay)
+            if pause:
+                renpy.show_screen("penny_timer", t=dialogues, p=delay)
+            else:
+                show_screen_with_delay("penny", delay, t=dialogues)
 
         else:
             dialogue_buffer.append(dialogues)
@@ -134,13 +160,13 @@ init 2 python in _wm_penny_hooks:
 
     def cb_open_email(mail):
         if mail.attachments:
-            _wm_penny.emit_event("attached_received", 0.5)
+            _wm_penny.emit_event("attached_received", 0.5, True)
 
         if mail.quick_replies:
-            _wm_penny.emit_event("replyable_email_received", 0.5)
+            _wm_penny.emit_event("replyable_email_received", 0.5, True)
 
         if mail.is_spam:
-            _wm_penny.emit_event("spam_received", 0.5)
+            _wm_penny.emit_event("spam_received", 0.5, True)
 
     email_unlock_callbacks.append(cb_unlock_email)
     email_open_callbacks.append(cb_open_email)

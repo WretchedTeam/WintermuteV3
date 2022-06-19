@@ -19,13 +19,13 @@ init -100 python in _wm_fonts:
 
     def register_font_transform(regular, italic=None, bold=None, italicbold=None):
         if italic:
-            font_replacement_map[regular, True, False] = italic
+            font_replacement_map[regular, False, True] = (italic, False, False)
 
         if bold:
-            font_replacement_map[regular, False, True] = bold
+            font_replacement_map[regular, True, False] = (bold, False, False)
 
         if italicbold:
-            font_replacement_map[regular, True, True] = italicbold
+            font_replacement_map[regular, True, True] = (italicbold, False, False)
 
     renpy.add_to_all_stores("register_font_tag", register_font_tag)
     renpy.add_to_all_stores("register_font_transform", register_font_transform)
