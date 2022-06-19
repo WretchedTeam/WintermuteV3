@@ -3,7 +3,7 @@ define 2 wm_terminal = None
 
 screen vn_overlay():
     frame style "empty":
-        at blur_background
+        at _wm_bg_blur.apply("master")
 
         use interactive_console(wm_console)
         use mini_player()
@@ -24,40 +24,3 @@ init python:
 
     config.start_callbacks.append(init_term_console)
 
-init python:
-    class BackgroundBlur(renpy.Container):
-        def __init__(self, child, background, **kwargs):
-            super(BackgroundBlur, self).__init__(**kwargs)
-            self.background = renpy.displayable(background)
-            self.add(self.background)
-            self.add(child)
-
-        def render(self, width, height, st, at):
-            cr = renpy.render(self.child, width, height, st, at)
-            br = renpy.render(self.background, width, height, st, at)
-
-            rv = renpy.Render(*cr.get_size())
-            rv.blit(br, (0, 0))
-            rv.blit(cr, (0, 0))
-
-            rv.mesh = True
-            rv.shaders = None
-            rv.add_shader("wm.kawase_background")
-            rv.add_uniform("u_lod_bias", 2.0)
-            rv.add_uniform("u_iteration", 1.0)
-
-            self.offsets = [ (0, 0), (0, 0) ]
-
-            return rv
-
-    def blur_background(d):
-        if not persistent.blur_effects:
-            return d
-
-        d = Fixed(d)
-        scene_lists = renpy.game.context().scene_lists
-        layer_properties = renpy.display.interface.layer_properties
-
-        bg = scene_lists.make_layer("master", layer_properties["master"])
-
-        return BackgroundBlur(d, bg)

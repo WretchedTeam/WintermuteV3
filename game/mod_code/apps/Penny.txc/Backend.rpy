@@ -145,15 +145,3 @@ init 2 python in _wm_penny_hooks:
     from store import easein_blur, easeout_blur
 
     blur_layers = [ "master", "screens" ]
-
-    def BlurEaseIn():
-        return [
-            Function(renpy.show_layer_at, [ easein_blur ], layer)
-            for layer in blur_layers
-        ]
-
-    def BlurEaseOut():
-        return [
-            Function(renpy.show_layer_at, [ easeout_blur ], layer)
-            for layer in blur_layers
-        ]

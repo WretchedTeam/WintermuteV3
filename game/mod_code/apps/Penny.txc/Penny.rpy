@@ -55,8 +55,8 @@ screen penny(t, i=0):
                 add penny_img zoom 0.8 at _wm_shadow.DropShadow(blur=8.0, color="#1116")
 
     if persistent.blur_effects:
-        on "show" action _wm_penny_hooks.BlurEaseIn()
-        on "hide" action _wm_penny_hooks.BlurEaseOut()
+        on "show" action _wm_layer_blur.ApplyBlur("penny", 16.0, _wm_penny_hooks.blur_layers)
+        on "hide" action _wm_layer_blur.RemoveBlur("penny", _wm_penny_hooks.blur_layers)
 
     on "show" action Function(renpy.show, "black", at_list=[ Transform(alpha=0.5), ease_alpha ], layer="screens")
     on "hide" action Function(renpy.hide, "black", layer="screens")

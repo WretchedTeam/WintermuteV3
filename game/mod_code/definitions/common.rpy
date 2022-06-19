@@ -60,7 +60,14 @@ init -1400 python:
             i(*args, **kwargs)
 
     def hard_pause():
-        renpy.ui.interact(suppress_overlay=True, suppress_underlay=True)
+        roll_forward = renpy.exports.roll_forward_info()
+        if not isinstance(roll_forward, basestring):
+            roll_forward = None
+
+        renpy.checkpoint(roll_forward, keep_rollback=True, hard=False)
+
+        rv = renpy.ui.interact(suppress_overlay=True, suppress_underlay=True, roll_forward=roll_forward)
+        renpy.checkpoint(rv, hard=False, keep_rollback=True)
 
     def skip_hard_pause():
         renpy.ui.pausebehavior(0.01, True)
@@ -97,14 +104,6 @@ label nodecor_command(term, t, completed=None):
     $ term.set_shell(True)
 
     return
-
-transform -10 easein_blur():
-    blur 0.0
-    easein_quad 0.5 blur 16.0
-
-transform -10 easeout_blur():
-    blur 16.0
-    easein_quad 0.5 blur 0.0
 
 transform -10 ease_alpha():
     on show:

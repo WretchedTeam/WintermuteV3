@@ -109,7 +109,8 @@ screen input(prompt):
 
     window:
         if not renpy.get_screen("vn_overlay"):
-            at blur_background
+            at _wm_bg_blur.apply("master")
+
         has vbox
         use overlay_header("Input")
 

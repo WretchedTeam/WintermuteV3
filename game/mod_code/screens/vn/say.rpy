@@ -40,7 +40,9 @@ screen voice_recog_say(who, what):
     style_prefix "say"
 
     window:
-        # at blur_background
+        if not renpy.get_screen("vn_overlay"):
+            at _wm_bg_blur.apply("master")
+
         id "window"
 
         has vbox

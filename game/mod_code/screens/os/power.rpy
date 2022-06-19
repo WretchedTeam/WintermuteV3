@@ -1,25 +1,7 @@
 define config.quit_action = Show("power_off_prompt", _layer="power_off")
 
 init python in _wm_power_service:
-    from store import (
-        Function,
-        easein_blur,
-        easeout_blur
-    )
-
     blur_layers = [ "master", "screens", "penny" ]
-
-    def BlurEaseIn():
-        return [
-            Function(renpy.show_layer_at, [ easein_blur ], layer)
-            for layer in blur_layers
-        ]
-
-    def BlurEaseOut():
-        return [
-            Function(renpy.show_layer_at, [ easeout_blur ], layer)
-            for layer in blur_layers
-        ]
 
 init -100 python:
     renpy.add_layer("power_off", "screens")
@@ -41,8 +23,8 @@ screen power_off_prompt():
     key "game_menu" action hide_action
 
     if persistent.blur_effects:
-        on "show" action _wm_power_service.BlurEaseIn()
-        on "hide" action _wm_power_service.BlurEaseOut()
+        on "show" action _wm_layer_blur.ApplyBlur("power_off_prompt", 16.0, _wm_power_service.blur_layers)
+        on "hide" action _wm_layer_blur.RemoveBlur("power_off_prompt", _wm_power_service.blur_layers)
 
     on "show" action Function(renpy.show, "black", at_list=[ Transform(alpha=0.5), ease_alpha ], layer="penny")
     on "hide" action Function(renpy.hide, "black", layer="penny")
