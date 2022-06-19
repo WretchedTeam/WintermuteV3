@@ -1,9 +1,17 @@
 init -1000 python in _wm_manager:
     from store import execute_callbacks
 
-    zorders = [ ]
-    positions = { }
-    open_apps = [ ]
+    zorders = None
+    positions = None
+    open_apps = None
+
+    @renpy.config.start_callbacks.append
+    def __set_init_vars():
+        global zorders, positions, open_apps
+
+        zorders = [ ]
+        positions = { }
+        open_apps = [ ]
 
     desktop_open_callbacks = [ ]
     desktop_hide_callbacks = [ ]
