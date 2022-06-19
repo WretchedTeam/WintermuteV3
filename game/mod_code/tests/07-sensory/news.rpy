@@ -24,5 +24,5 @@ init python:
         "Video game company \"Indev\" announces new IP 'Delerium'",
         "t7a4.png",
         _wm_news.P_PCG,
-        _wm_indian_names.get_indian_name()
+        "Julian Dewey"
     )

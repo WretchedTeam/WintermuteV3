@@ -24,5 +24,5 @@ init python:
         "Police given special powers to tackle anti-social behaviour in Manchester",
         "t6a4.png",
         _wm_news.P_BBC,
-        _wm_indian_names.get_indian_name()
+        "Matt McHoniton"
     )
