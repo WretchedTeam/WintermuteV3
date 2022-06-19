@@ -93,6 +93,7 @@ label disclaimer():
             pass
 
     call installation_script
+    $ menu = renpy.display_menu
     return
 
 label installation_script():
@@ -157,5 +158,4 @@ label installation_script():
     $ renpy.pause(2.0, hard=True)
     $ terminal_clear()
 
-    $ menu = renpy.display_menu
     return
