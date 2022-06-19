@@ -15,7 +15,7 @@ screen login():
         frame align (0.5, 0.5):
             use wm_clock_analog()
 
-        text "{lexend=regular}Press Enter or Space to login.{/lexend}" align (0.5, 1.0) yoffset -40 size 24
+        text "{lexend=regular}Press {u}Enter{/u} or {u}Space{/u} to login.{/lexend}" align (0.5, 1.0) yoffset -40 size 24
 
     else:
         frame align (0.5, 0.5):

@@ -6,8 +6,11 @@ init python in _wm_navbar_buttons:
             super(NavButtonText, self).__init__()
             properties.pop("size", None)
 
-            self.icon = Text(icon, style=style, size=24, **properties)
-            self.title = Text(title, style=style, size=18, **properties)
+            cs = renpy.current_screen()
+            scope = cs.scope if cs else None 
+
+            self.icon = Text(icon, style=style, size=24, scope=scope, **properties)
+            self.title = Text(title, style=style, size=18, scope=scope, **properties)
             self.spacing = spacing
 
             self.add(self.icon)
@@ -47,7 +50,7 @@ init python in _wm_navbar_buttons:
 
     class NavigationPiece(renpy.Displayable):
         button_height = 25
-        button_spacing = 38
+        button_spacing = 35
 
         def __init__(self, num, time_warp, **kwargs):
             super(NavigationPiece, self).__init__(**kwargs)
@@ -114,7 +117,7 @@ screen navbar_buttons(options):
     frame:
         padding (30, 30)
 
-        vbox spacing 38:
+        vbox spacing 35:
             for i, (_icon, _text, _action) in enumerate(options):
                 # textbutton _("[_text]") action _action
                 button action [ _action, Function(nav_piece.change_selection, i) ]:

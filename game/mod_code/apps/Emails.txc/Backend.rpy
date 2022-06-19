@@ -95,7 +95,7 @@ init -10 python in _wm_email:
         mail_client_screen_name = "mail_client"
 
         def __init__(self, unique_id, subject, contents, sender, is_spam=False,
-                is_important=False, attachments=None, quick_replies=None,
+                is_important=False, is_draft=False, attachments=None, quick_replies=None,
                 open_callbacks=None, unlock_callbacks=None, receiver=None):
 
             self.unique_id = unique_id
@@ -105,6 +105,7 @@ init -10 python in _wm_email:
             self.sender = sender
             self.is_spam = is_spam
             self.is_important = is_important
+            self.is_draft = is_draft
             self.attachments = attachments
             self.quick_replies = quick_replies
 

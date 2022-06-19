@@ -17,3 +17,4 @@ init python:
     register_feather_icon("spam", "")
     register_feather_icon("star", "")
     register_feather_icon("paperclip", "")
+    register_feather_icon("file_text", "")

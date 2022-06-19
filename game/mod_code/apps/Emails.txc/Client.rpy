@@ -13,9 +13,10 @@ screen mail_client():
     use program_base(mail_client_app, xysize=(695, 630)):
         hbox:
             use navigation_pane([
-                ("{inbox}", "Input", SetField(mail_client, "mailbox", mail_client.INBOX)),
-                ("{spam}", "Spam", SetField(mail_client, "mailbox", mail_client.SPAM)),
-                ("{star}", "Important", SetField(mail_client, "mailbox", mail_client.IMPORTANT)),
+                ("{inbox}", "Input ([mail_client.unlocked_email_num])", SetField(mail_client, "mailbox", mail_client.INBOX)),
+                ("{spam}", "Spam ([mail_client.spam_email_num])", SetField(mail_client, "mailbox", mail_client.SPAM)),
+                ("{star}", "Important ([mail_client.important_email_num])", SetField(mail_client, "mailbox", mail_client.IMPORTANT)),
+                ("{file_text}", "Drafts ([mail_client.draft_email_num])", SetField(mail_client, "mailbox", mail_client.DRAFT)),
             ], 240)
 
             use mc_emails(mail_client)

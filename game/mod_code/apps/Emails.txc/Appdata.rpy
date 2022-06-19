@@ -24,11 +24,28 @@ init python in _wm_email_app:
         INBOX     = 0
         SPAM      = 1
         IMPORTANT = 2
+        DRAFT     = 3
 
         def __init__(self):
             self.mailbox = self.INBOX
             self.current_mail = None
             self._unlocked_emails = None
+
+        @property
+        def unlocked_email_num(self):
+            return len(self.get_emails(self.INBOX))
+
+        @property
+        def spam_email_num(self):
+            return len(self.get_emails(self.SPAM))
+
+        @property
+        def important_email_num(self):
+            return len(self.get_emails(self.IMPORTANT))
+
+        @property
+        def draft_email_num(self):
+            return len(self.get_emails(self.DRAFT))
 
         @property
         def unlocked_emails(self):
@@ -40,11 +57,17 @@ init python in _wm_email_app:
         def update_mails(self):
             self._unlocked_emails = None
 
-        def get_emails(self):
-            if self.mailbox == self.SPAM:
+        def get_emails(self, mail_type=None):
+            if mail_type is None:
+                mail_type = self.mailbox
+
+            if mail_type == self.SPAM:
                 return [ email for email in self.unlocked_emails if email.is_spam ]
 
-            elif self.mailbox == self.IMPORTANT:
+            elif mail_type == self.IMPORTANT:
                 return [ email for email in self.unlocked_emails if email.is_important ]
+
+            elif mail_type == self.DRAFT:
+                return [ email for email in self.unlocked_emails if email.is_draft ]
 
             return self.unlocked_emails
