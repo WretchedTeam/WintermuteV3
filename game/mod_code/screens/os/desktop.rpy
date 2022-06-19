@@ -20,11 +20,16 @@ screen icon_grid():
         has draggroup
 
         if not persistent.done_rorschach_test:
-            use desktop_label_icon("Rorschach", "rorschach icon", "rorschach", cell=(0, 0))
-            use desktop_app_icon("Settings", settings_app, (0, 1))
+            use desktop_label_icon("Rorschach", "rorschach icon", "rorschach", (0, 0), False)
+            use desktop_app_icon("Settings", settings_app, (0, 1), False)
+
+        elif persistent.iwan_desktop:
+            use desktop_app_icon("Email", mail_client_app, (0, 0), False)
+            use desktop_app_icon("Settings", settings_app, (0, 1), False)
+            use desktop_app_icon("Wintermute", dashboard_app, (0, 2), False)
 
         else:
-            use desktop_app_icon("Email", mail_client_app)
+            use desktop_app_icon("Email", mail_client_app, (0, 0))
 
             use desktop_app_icon("News", news_client_app, (0, 1))
             use desktop_app_icon("Music Player", music_player_app, (0, 2))

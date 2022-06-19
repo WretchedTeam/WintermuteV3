@@ -170,7 +170,3 @@ init 2 python in _wm_penny_hooks:
 
     email_unlock_callbacks.append(cb_unlock_email)
     email_open_callbacks.append(cb_open_email)
-
-    from store import easein_blur, easeout_blur
-
-    blur_layers = [ "master", "screens" ]

@@ -3,7 +3,10 @@ screen username_display():
 
     vbox:
         text "Signed in as:" style_suffix "signed_in"
-        text "[persistent.username]" style_suffix "username"
+        if persistent.iwan_desktop:
+            text "i.green" style_suffix "username"
+        else:
+            text "[persistent.username]" style_suffix "username"
 
 style username_display_text:
     size 18

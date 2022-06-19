@@ -66,7 +66,7 @@ screen mail_viewer(email):
                         for attachment in email.attachments:
                             use attachment_button(attachment)
 
-                if email.quick_replies and (email.unique_id not in persistent.replied_emails):
+                if email.quick_replies and (email.unique_id not in _wm_email.replied_emails()):
                     null height 40
                     add "#828282" ysize 2
                     null height 20
@@ -111,7 +111,7 @@ screen mail_context_button(_action=NullAction(), _style_prefix="mail_context"):
 screen quick_reply_button(quick_reply, unique_id):
     style_prefix "quick_reply"
 
-    use mail_context_button([ AddToSet(persistent.replied_emails, unique_id), quick_reply.action ], "quick_reply"):
+    use mail_context_button([ AddToSet(_wm_email.replied_emails(), unique_id), quick_reply.action ], "quick_reply"):
         text quick_reply.reply style "quick_reply_button_text"
 
 style quick_reply_frame is empty

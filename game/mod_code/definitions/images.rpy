@@ -1,7 +1,10 @@
-# image desktop_background = "mod_assets/os/background.png"
-image desktop_background = _wm_live_background.TimeTintBackground(
-    "mod_assets/os/grey_background.jpg",
-    [
+image desktop_background = ConditionSwitch(
+    "persistent.iwan_desktop", "iwan_desktop_background",
+    "True", "player_desktop_background"
+)
+
+image player_desktop_background = _wm_live_background.TimeTintBackground(
+    "mod_assets/os/grey_background.jpg", [
         "#FCF8E8",
         "#94B49F",
         "#ECB390",
@@ -26,8 +29,9 @@ image desktop_background = _wm_live_background.TimeTintBackground(
         "#395B64",
         "#577BC1",
         "#D4ECDD"
-    ]
-)
+    ])
+
+image iwan_desktop_background = "mod_assets/os/ivan_background.jpg"
 
 image wintermute icon:
     "mod_assets/os/icons/wintermute.png"

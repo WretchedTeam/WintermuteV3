@@ -1,5 +1,5 @@
 init python in _wm_email_app:
-    from store._wm_email import emails
+    from store._wm_email import emails, unlocked_emails
     from store import (
         persistent,
         wm_game_time
@@ -33,7 +33,7 @@ init python in _wm_email_app:
         @property
         def unlocked_emails(self):
             if self._unlocked_emails is None:
-                self._unlocked_emails = [ emails[id_] for id_ in persistent.unlocked_emails if id_ in emails ]
+                self._unlocked_emails = [ emails[id_] for id_ in unlocked_emails() if id_ in emails ]
 
             return self._unlocked_emails
 

@@ -68,23 +68,27 @@ init -10 python in _wm_icon_grid:
     def set_position(title, drags, drop):
         persistent.icon_positions[title] = (drags[0].x, drags[0].y)
 
-    def get_position(title, xcell, ycell):
-        if title not in persistent.icon_positions:
-            widtho = WIDTH + SPACING[0]
-            heighto = HEIGHT + SPACING[1]
+    def get_position(title, store, xcell, ycell):
+        widtho = WIDTH + SPACING[0]
+        heighto = HEIGHT + SPACING[1]
 
-            x = int(xcell * widtho)
-            y = int(ycell * heighto)
+        x = int(xcell * widtho)
+        y = int(ycell * heighto)
+
+        if not store:
+            return (x, y)
+
+        if title not in persistent.icon_positions:
             persistent.icon_positions[title] = (x, y)
 
         return persistent.icon_positions[title]
 
-screen desktop_app_icon(title, app, cell=(0, 0)):
+screen desktop_app_icon(title, app, cell=(0, 0), store=False):
     $ snap = _wm_icon_grid.GridSnap(title)
 
     drag:
         dragged snap
-        pos _wm_icon_grid.get_position(title, *cell)
+        pos _wm_icon_grid.get_position(title, store, *cell)
         draggable True
         drag_raise True
         idle_child _wm_icon_grid.desktop_icon_image(app.icon, title)
@@ -95,12 +99,12 @@ screen desktop_app_icon(title, app, cell=(0, 0)):
         hovered Play("audio", gui.hover_sound)
         focus_mask _wm_icon_grid.desktop_icon_image(app.icon, "")
 
-screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
+screen desktop_label_icon(title, icon, label_name, cell=(0, 0), store=False):
     $ snap = _wm_icon_grid.GridSnap(title)
 
     drag:
         dragged snap
-        pos _wm_icon_grid.get_position(title, *cell)
+        pos _wm_icon_grid.get_position(title, store, *cell)
         draggable True
         drag_raise True
         idle_child _wm_icon_grid.desktop_icon_image(icon, title)
@@ -111,12 +115,12 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0)):
         hovered Play("audio", gui.hover_sound)
         focus_mask _wm_icon_grid.desktop_icon_image(icon, "")
 
-screen desktop_action_icon(title, icon, action, cell=(0, 0)):
+screen desktop_action_icon(title, icon, action, cell=(0, 0)store=False):
     $ snap = _wm_icon_grid.GridSnap(title)
 
     drag:
         dragged snap
-        pos _wm_icon_grid.get_position(title, *cell)
+        pos _wm_icon_grid.get_position(title, store, *cell)
         draggable True
         drag_raise True
         idle_child _wm_icon_grid.desktop_icon_image(icon, title)

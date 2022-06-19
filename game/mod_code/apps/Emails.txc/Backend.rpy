@@ -24,15 +24,33 @@ init -10 python in _wm_email:
 
     notif_show_callbacks.append(Play("sound", "mod_assets/audio/os/emailget.ogg"))
 
+    def unlocked_emails():
+        return persistent.iwan_unlocked_emails if persistent.iwan_desktop else persistent.unlocked_emails
+
+    def read_emails():
+        return persistent.iwan_read_emails if persistent.iwan_desktop else persistent.read_emails
+
+    def replied_emails():
+        return persistent.iwan_replied_emails if persistent.iwan_desktop else persistent.replied_emails 
+
     def unread_emails():
-        return list(set(persistent.unlocked_emails) - set(persistent.read_emails))
+        return list(set(unlocked_emails()) - set(read_emails()))
+
+    def get_new_email_count():
+        return persistent.new_iwan_email_count if persistent.iwan_desktop else persistent.new_email_count 
+
+    def set_new_email_count(c):
+        if persistent.iwan_desktop:
+            persistent.new_iwan_email_count = c
+        else: 
+            persistent.new_email_count = c
 
     @desktop_open_callbacks.append
     def show_notifs():
-        unread_emails_count = len(unread_emails()) - persistent.new_email_count
+        unread_emails_count = len(unread_emails()) - get_new_email_count()
 
-        if persistent.new_email_count > 0 or unread_emails_count > 0:
-            show_screen = Function(ShowNotification, just_received=persistent.new_email_count, unread=unread_emails_count)
+        if get_new_email_count() > 0 or unread_emails_count > 0:
+            show_screen = Function(ShowNotification, just_received=get_new_email_count(), unread=unread_emails_count)
             run_with_delay(show_screen, delay=1.5)
 
     class Email(NoRollback):
@@ -99,17 +117,17 @@ init -10 python in _wm_email:
             if unique_id not in emails: emails[unique_id]  = self
 
         def is_unlocked(self):
-            return self.unique_id in persistent.unlocked_emails
+            return self.unique_id in unlocked_emails()
 
         def is_read(self):
-            return self.unique_id in persistent.read_emails
+            return self.unique_id in read_emails()
 
         @debug
         def mark_locked(self):
             if not self.is_unlocked():
                 return
 
-            persistent.unlocked_emails.remove(self.unique_id)
+            unlocked_emails().remove(self.unique_id)
             persistent.email_dates.pop(self.unique_id)
 
         @debug
@@ -117,24 +135,24 @@ init -10 python in _wm_email:
             if not self.is_read():
                 return
 
-            persistent.read_emails.remove(self.unique_id)
+            read_emails().remove(self.unique_id)
 
         def mark_read(self):
             if self.is_read():
                 return
 
-            persistent.read_emails.append(self.unique_id)
+            read_emails().append(self.unique_id)
 
             if self.open_callbacks is not None:
                 execute_callbacks(self.open_callbacks, self)
 
             execute_callbacks(email_open_callbacks, self)
 
-        def unlock(self):
+        def unlock(self, notify=True):
             if self.is_unlocked():
                 return
 
-            persistent.unlocked_emails.insert(0, self.unique_id)
+            unlocked_emails().insert(0, self.unique_id)
             persistent.email_dates[self.unique_id] = wm_game_time.today()
 
             if self.unlock_callbacks is not None:
@@ -142,8 +160,9 @@ init -10 python in _wm_email:
 
             execute_callbacks(email_unlock_callbacks, self)
 
-            if not renpy.get_screen(self.mail_client_screen_name):
-                persistent.new_email_count += 1
+            if notify:
+                if not renpy.get_screen(self.mail_client_screen_name):
+                    set_new_email_count(get_new_email_count() + 1)
 
     class EmailSender(NoRollback):
         def __init__(self, name, email_id, append_turnell_domain=True):

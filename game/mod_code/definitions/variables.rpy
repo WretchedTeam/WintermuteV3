@@ -36,3 +36,5 @@ default persistent.blur_effects = True
 default persistent.drop_shadow = True
 
 default persistent.autoload = None
+
+default -100 persistent.iwan_desktop = False
