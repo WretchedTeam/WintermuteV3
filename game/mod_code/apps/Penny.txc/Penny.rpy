@@ -24,6 +24,14 @@ style penny_idle_button is penny_button
 style penny_idle_frame is penny_frame
 style penny_idle_text is penny_text
 
+screen penny_timer(t, p):
+    modal True
+
+    timer p action [
+        Show("penny", t=t),
+        Hide("penny_timer")
+    ]
+
 screen penny(t, i=0):
     style_prefix "penny"
     layer "penny"

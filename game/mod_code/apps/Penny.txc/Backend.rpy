@@ -101,7 +101,8 @@ init python in _wm_penny:
             dialogue_buffer = [ ]
 
         if renpy.get_screen("desktop"):
-            show_screen_with_delay("penny", delay, t=dialogues)
+            # show_screen_with_delay("penny", delay, t=dialogues)
+            renpy.show_screen("penny_timer", t=dialogues, p=delay)
 
         else:
             dialogue_buffer.append(dialogues)
