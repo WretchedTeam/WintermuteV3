@@ -46,9 +46,10 @@ label ending_script_destroy():
     show good_email
     with Dissolve(1.0)
 
+    $ persistent.autoload = "ending_script_destroy.post_good_ending_loop"
+
     label post_good_ending_loop:
 
-    $ persistent.autoload = "ending_script_destroy.post_good_ending_loop"
     $ quick_menu = False
     $ config.skipping = False
     $ config.allow_skipping = False
@@ -60,5 +61,8 @@ label ending_script_destroy():
 
 label ending_script_test():
     scene black
+    $ persistent.autoload = "ending_script_test.post_bad_ending_loop"
+
+    label post_bad_ending_loop:
     call screen article_scroller with dissolve
     $ renpy.quit()
