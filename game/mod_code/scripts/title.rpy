@@ -13,18 +13,19 @@ image startup_loading_dots:
     repeat
 
 style t_os_title:
-    font "mod_assets/gui/font/Metropolis/Metropolis-BoldItalic.otf"
+    font _wm_font_metropolis.bolditalic
     color "#fff"
     size 144
+
 style t_os_underline:
-    font "mod_assets/gui/font/Metropolis/Metropolis-RegularItalic.otf"
+    font _wm_font_metropolis.italic
     color "#fff"
     size 36
+
 style t_os_copyright:
-    font "mod_assets/gui/font/Lexend/Lexend-Regular.ttf"
+    font _wm_font_lexend.regular
     color "#5a5b5b"
     size 24
-
 
 define audio.gs = "mod_assets/startup/gs.ogg"
 
@@ -42,7 +43,7 @@ label title_drop():
     pause(1.5)
     show t_os_tagline "{image=startup_loading_dots}"
     pause(.5)
-    show t_os_title "Turnell{font=mod_assets/gui/font/Metropolis/Metropolis-Regular.otf}OS{/font}"
+    show t_os_title "Turnell{metropolis=regular}OS{/metropolis}"
     with Dissolve(2.0)
     pause(6.0)
     hide t_os_title

@@ -1,6 +1,6 @@
 init -100 python in _wm_fonts:
     from store import NoRollback
-    from renpy.config import custom_text_tags
+    from renpy.config import custom_text_tags, font_replacement_map
 
     class __FontTag(NoRollback):
         def __init__(self, font):
@@ -17,7 +17,18 @@ init -100 python in _wm_fonts:
     def register_font_tag(tag, font):
         custom_text_tags[tag] = __FontTag(font)
 
+    def register_font_transform(regular, italic=None, bold=None, italicbold=None):
+        if italic:
+            font_replacement_map[regular, True, False] = italic
+
+        if bold:
+            font_replacement_map[regular, False, True] = bold
+
+        if italicbold:
+            font_replacement_map[regular, True, True] = italicbold
+
     renpy.add_to_all_stores("register_font_tag", register_font_tag)
+    renpy.add_to_all_stores("register_font_transform", register_font_transform)
 
 init -100 python in _wm_font_feather:
     from renpy.config import (
@@ -71,21 +82,153 @@ init -10 python in _wm_font_lexend:
     semibold = "mod_assets/gui/font/Lexend/Lexend-SemiBold.ttf"
     bold = "mod_assets/gui/font/Lexend/Lexend-Bold.ttf"
 
-    register_font_tag("lexend", { "light": light, "regular": regular, "medium": medium, "semibold": semibold, "bold": bold })
+    fonts = { 
+        "light": light, 
+        "regular": regular, 
+        "medium": medium, 
+        "semibold": semibold, 
+        "bold": bold 
+    }
+
+    register_font_tag("lexend", fonts)
+
+    register_font_transform(light, None, regular, None)
+    register_font_transform(regular, None, medium, None)
+    register_font_transform(medium, None, semibold, None)
+    register_font_transform(semibold, None, bold, None)
+    register_font_transform(bold, None)
 
 init -10 python in _wm_font_ubuntu:
     light = "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
-    regular = "mod_assets/gui/font/Ubuntu/Ubuntu-Regular.ttf"
-    medium = "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"
+    lightitalic = "mod_assets/gui/font/Ubuntu/Ubuntu-LightItalic.ttf"
 
-    register_font_tag("ubuntu", { "light": light, "regular": regular, "medium": medium })
+    regular = "mod_assets/gui/font/Ubuntu/Ubuntu-Regular.ttf"
+    italic = "mod_assets/gui/font/Ubuntu/Ubuntu-Italic.ttf"
+
+    medium = "mod_assets/gui/font/Ubuntu/Ubuntu-Medium.ttf"
+    mediumitalic = "mod_assets/gui/font/Ubuntu/Ubuntu-MediumItalic.ttf"
+
+    bold = "mod_assets/gui/font/Ubuntu/Ubuntu-Bold.ttf"
+    bolditalic = "mod_assets/gui/font/Ubuntu/Ubuntu-BoldItalic.ttf"
+
+    fonts = { 
+        "light": light, 
+        "lightitalic": lightitalic, 
+        "regular": regular, 
+        "italic": italic, 
+        "medium": medium,
+        "mediumitalic": mediumitalic,
+        "bold": bold,
+        "bolditalic": bolditalic
+    }
+
+    register_font_tag("ubuntu", fonts)
+
+    register_font_transform(light, lightitalic, regular, italic)
+    register_font_transform(regular, italic, medium, mediumitalic)
+    register_font_transform(medium, mediumitalic, bold, bolditalic)
+    register_font_transform(bold, bolditalic)
 
 init -10 python in _wm_font_jb_mono:
+    extrathin = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraThin.ttf"
+    extrathinitalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraThinItalic.ttf"
+
+    thin = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Thin.ttf"
+    thinitalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ThinItalic.ttf"
+
     light = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Light.ttf"
+    lightitalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-LightItalic.ttf"
+
     regular = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Regular.ttf"
+    italic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Italic.ttf"
+
     medium = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Medium.ttf"
+    mediumitalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-MediumItalic.ttf"
+
     semibold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-SemiBold.ttf"
+    semibolditalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-SemiBoldItalic.ttf"
+
+    bold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Bold.ttf"
+    bolditalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-BoldItalic.ttf"
+
     extrabold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraBold.ttf"
+    extrabolditalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraBoldItalic.ttf"
 
-    register_font_tag("jb_mono", { "light": light, "regular": regular, "medium": medium, "semibold": semibold, "extrabold": extrabold })
+    black = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Black.ttf"
+    blackitalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-BlackItalic.ttf"
 
+    fonts = {
+        "extrathin": extrathin,
+        "extrathinitalic": extrathinitalic,
+        "thin": thin,
+        "thinitalic": thinitalic,
+        "light": light,
+        "lightitalic": lightitalic,
+        "regular": regular,
+        "italic": italic,
+        "medium": medium,
+        "mediumitalic": mediumitalic,
+        "semibold": semibold,
+        "semibolditalic": semibolditalic,
+        "bold": bold,
+        "bolditalic": bolditalic,
+        "extrabold": extrabold,
+        "extrabolditalic": extrabolditalic,
+        "black": black,
+        "blackitalic": blackitalic
+    }
+
+    register_font_tag("jb_mono", fonts)
+
+    register_font_transform(extrathin, extrathinitalic, thin, thinitalic)
+    register_font_transform(thin, thinitalic, light, lightitalic)
+    register_font_transform(light, lightitalic, regular, italic)
+    register_font_transform(regular, italic, medium, mediumitalic)
+    register_font_transform(medium, mediumitalic, semibold, semibolditalic)
+    register_font_transform(semibold, semibolditalic, bold, bolditalic)
+    register_font_transform(bold, bolditalic, extrabold, extrabolditalic)
+    register_font_transform(extrabold, extrabolditalic, black, blackitalic)
+    register_font_transform(black, blackitalic)
+
+init -10 python in _wm_font_metropolis:
+    light = "mod_assets/gui/font/Metropolis/Metropolis-Light.otf"
+    lightitalic = "mod_assets/gui/font/Metropolis/Metropolis-LightItalic.otf"
+
+    regular = "mod_assets/gui/font/Metropolis/Metropolis-Regular.otf"
+    italic = "mod_assets/gui/font/Metropolis/Metropolis-RegularItalic.otf"
+
+    medium = "mod_assets/gui/font/Metropolis/Metropolis-Medium.otf"
+    mediumitalic = "mod_assets/gui/font/Metropolis/Metropolis-MediumItalic.otf"
+
+    semibold = "mod_assets/gui/font/Metropolis/Metropolis-SemiBold.otf"
+    semibolditalic = "mod_assets/gui/font/Metropolis/Metropolis-SemiBoldItalic.otf"
+
+    bold = "mod_assets/gui/font/Metropolis/Metropolis-Bold.otf"
+    bolditalic = "mod_assets/gui/font/Metropolis/Metropolis-BoldItalic.otf"
+
+    extrabold = "mod_assets/gui/font/Metropolis/Metropolis-ExtraBold.otf"
+    extrabolditalic = "mod_assets/gui/font/Metropolis/Metropolis-ExtraBoldItalic.otf"
+
+    fonts = { 
+        "light": light, 
+        "lightitalic": lightitalic, 
+        "regular": regular, 
+        "italic": italic, 
+        "medium": medium, 
+        "mediumitalic": mediumitalic, 
+        "semibold": semibold, 
+        "semibolditalic": semibolditalic, 
+        "bold": bold,
+        "bolditalic": bolditalic,
+        "extrabold": extrabold,
+        "extrabolditalic": extrabolditalic 
+    }
+
+    register_font_tag("metropolis", fonts)
+
+    register_font_transform(light, lightitalic, regular, italic)
+    register_font_transform(regular, italic, medium, mediumitalic)
+    register_font_transform(medium, mediumitalic, semibold, semibolditalic)
+    register_font_transform(semibold, semibolditalic, bold, bolditalic)
+    register_font_transform(bold, bolditalic, extrabold, extrabolditalic)
+    register_font_transform(extrabold, extrabolditalic)
