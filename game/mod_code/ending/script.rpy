@@ -6,9 +6,7 @@ image p4 = "mod_assets/ending/bsod/percent_4.png"
 image p5 = "mod_assets/ending/bsod/percent_5.png"
 image p6 = "mod_assets/ending/bsod/percent_6.png"
 image good_email = "mod_assets/ending/good/email.png"
-image bad_article:
-    "mod_assets/ending/bad/ns_page_end.png"
-    zoom 0.5
+image bad_article = "mod_assets/ending/bad/ns_page_end.png"
 
 screen article_scroller():
     viewport id "article_vp":
@@ -50,6 +48,7 @@ label ending_script_destroy():
 
     label post_good_ending_loop:
 
+    $ renpy.config.quit_action = renpy.quit
     $ quick_menu = False
     $ config.skipping = False
     $ config.allow_skipping = False
@@ -64,5 +63,6 @@ label ending_script_test():
     $ persistent.autoload = "ending_script_test.post_bad_ending_loop"
 
     label post_bad_ending_loop:
+    $ renpy.config.quit_action = renpy.quit
     call screen article_scroller with dissolve
     $ renpy.quit()
