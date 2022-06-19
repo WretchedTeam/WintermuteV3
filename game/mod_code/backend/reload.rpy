@@ -74,29 +74,6 @@ init python in _wm_reload:
             rv.blit(mrr, (0, 0))
             return rv
 
-        def event(self, ev, x, y, st):
-            skip_delay = renpy.config.skip_delay / 1000.0
-
-            if renpy.config.skipping and renpy.config.allow_skipping and renpy.store._skipping:
-
-                if ev.type == renpy.display.core.TIMEEVENT and st >= skip_delay:
-
-                    if ev.modal:
-                        renpy.config.skipping = None
-                        renpy.exports.restart_interaction()
-                    elif renpy.game.preferences.skip_unseen:
-                        return True
-                    elif renpy.config.skipping == "fast":
-                        return True
-                    elif renpy.game.context().seen_current(True):
-                        return True
-                    else:
-                        renpy.config.skipping = None
-                        renpy.exports.restart_interaction()
-
-                else:
-                    renpy.game.interface.timeout(skip_delay - st)
-
         def visit(self):
             return [ self.child1, self.child2, self.matrix_rain ]
 

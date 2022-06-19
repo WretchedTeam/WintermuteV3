@@ -61,13 +61,20 @@ init -1400 python:
 
     def hard_pause():
         roll_forward = renpy.exports.roll_forward_info()
-        if not isinstance(roll_forward, basestring):
+
+        if roll_forward not in [ True, False ]:
             roll_forward = None
 
         renpy.checkpoint(roll_forward, keep_rollback=True, hard=False)
 
-        rv = renpy.ui.interact(suppress_overlay=True, suppress_underlay=True, roll_forward=roll_forward)
-        renpy.checkpoint(rv, hard=False, keep_rollback=True)
+        renpy.ui.saybehavior(afm=" ", dismiss='dismiss_hard_pause', dismiss_unfocused=[])
+        rv = renpy.ui.interact(mouse='pause', type='pause', roll_forward=roll_forward, pause=None)
+        renpy.checkpoint(rv, keep_rollback=True, hard=False)
+
+        if renpy.config.implicit_with_none:
+            renpy.game.interface.do_with(None, None)
+
+        return rv
 
     def skip_hard_pause():
         renpy.ui.pausebehavior(0.01, True)
