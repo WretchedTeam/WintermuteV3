@@ -226,3 +226,16 @@ init -10 python in _wm_font_metropolis:
     register_font_transform(semibold, semibolditalic, bold, bolditalic)
     register_font_transform(bold, bolditalic, extrabold, extrabolditalic)
     register_font_transform(extrabold, extrabolditalic)
+
+init -10 python in _wm_font_roboto:
+    regular = "mod_assets/gui/font/Roboto/Roboto-Regular.ttf"
+    medium = "mod_assets/gui/font/Roboto/Roboto-Medium.ttf"
+    bold = "mod_assets/gui/font/Roboto/Roboto-Bold.ttf"
+
+    fonts = { 
+        "regular": regular, 
+        "medium": medium, 
+        "bold": bold
+    }
+
+    register_font_tag("roboto", fonts)
