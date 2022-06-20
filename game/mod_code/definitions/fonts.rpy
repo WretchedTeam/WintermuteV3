@@ -154,9 +154,6 @@ init -10 python in _wm_font_jb_mono:
     extrabold = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraBold.ttf"
     extrabolditalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-ExtraBoldItalic.ttf"
 
-    black = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-Black.ttf"
-    blackitalic = "mod_assets/gui/font/JetBrainsMono/JetBrainsMono-BlackItalic.ttf"
-
     fonts = {
         "extrathin": extrathin,
         "extrathinitalic": extrathinitalic,
@@ -173,9 +170,7 @@ init -10 python in _wm_font_jb_mono:
         "bold": bold,
         "bolditalic": bolditalic,
         "extrabold": extrabold,
-        "extrabolditalic": extrabolditalic,
-        "black": black,
-        "blackitalic": blackitalic
+        "extrabolditalic": extrabolditalic
     }
 
     register_font_tag("jb_mono", fonts)
