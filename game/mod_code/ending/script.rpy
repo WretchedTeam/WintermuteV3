@@ -64,5 +64,8 @@ label ending_script_test():
 
     label .post_bad_ending_loop:
     $ renpy.config.quit_action = renpy.quit
+    $ quick_menu = False
+    $ config.skipping = False
+    $ config.allow_skipping = False
     call screen article_scroller with dissolve
     $ renpy.quit()
