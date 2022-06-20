@@ -1,0 +1,16 @@
+FROM: Iwan Green (i.green@turnelltech.co.uk)
+TO: @WintermuteDev
+DATE: 16/7/2029
+SUBJECT: (no subject)
+
+
+Hey guys, an update about that big software bug:
+
+-- From my research, apparently it can only happen IF done purposefully by deliberately crashing the error checking engine with a stack overflow. While it could happen otherwise, I don't see how.
+-- I was able to grab a quick meeting with OPSEC, then a meeting with the CIO, then a report to the board chair. Simply put: their opinion is that the effort to fix it would be better served by just finishing the product. Once it ships, we'll have time to address it.
+
+I don't like it either since we could lose all our work in an instant, but since fixing it requires almost a complete re-write of our error handling, it'll take us weeks, and that's apparently unacceptable.
+
+Sorry mates.
+
+- IG

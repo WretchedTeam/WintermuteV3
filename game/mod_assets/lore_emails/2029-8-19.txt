@@ -1,0 +1,21 @@
+FROM: Michael Watanabe (m.watanabe@turnelltech.co.uk)
+TO: @TurnellR&D
+DATE: 19/8/2029
+SUBJECT: CEASE USE OF SPECIMEN AF-G
+
+
+Effective immediately, we are ceasing any training data that includes Specimen AF-G. Any training data containing scans of AF-G must be electronically disposed of, following internal TESM-EE guidelines. Direct scans of Specimen AF-G will be disposed of by Turnell Information Security specialists.
+
+Quality Assurance detected unusual behavior with certain neural maps centered around Test Cluster 0x0bf65ad. Quality Assurance made this observation known to the Development team immediately. We would like to thank QA Lead Robert Bell for his haste and diligence in assembling a thorough report. (Don't worry - the QA employee in question has been kept quiet).
+
+The report detailed that branch WM138222255 responded alarmingly to routine testing. The QA employee, at the direction and supervision of Developer Jeremy Osborne, performed a non-standard Voight-Kampff empathic response test. VK results showed an abnormal empathic score, consistent with individuals that demonstrate sociopathic and manipulative behaviour.
+
+Through investigation, it was found that Test Cluster 0x0bf65ad contained high amounts of neural samples derived from Specimen AF-G. Similar tests were conducted in Research-specific test clusters, with identical results. Specimen AF-Gs health screening did not contain any immediate mental health concerns.
+
+With these results, the Research team can conclude that Specimen AF-G likely had undiagnosed Antisocial Personality Disorder, or a similar neurological fault. As such, AF-G is unfit for further scans and use. Continued use represents a massive risk to the project and to the company.
+
+Please have all training data securely wiped by the end of the day, and email all deletion reports to me.
+
+Thanks,
+Michael Watanabe
+Research Lead

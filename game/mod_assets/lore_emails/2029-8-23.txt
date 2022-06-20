@@ -1,0 +1,14 @@
+FROM: Greg Lougher (g.lougher@turnelltech.co.uk)
+TO: Robert Bell (r.bell@turnelltech.co.uk)
+DATE: 13/8/2029
+SUBJECT: Jeremy
+
+Robert,
+
+I think we need to have a chat about Jeremy. As skilled and (begrudgingly, I say) integral to Wintermute as he is, I fear he's getting a little too friendly with the idiots in your department. Sending homemade kid's games to placate the ADHD-riddled messes in QA and inviting them to the pub with us?? I had to sit through **THREE HOURS** of Clive talking about fucking Doki Doki, like I haven't already made that piece of shit my life's work!
+
+And to put it bluntly, I do not trust him with the sensitive information that this project's origins are privy to. If he were to - God forbid - leak it to someone below, even (especially, knowing him) accidentally? Not only would the company go up in flames, but they'd lock us all up and throw away the key.
+
+REIGN HIM IN, or I will speak to Michael and have him removed from the Wintermute team, no matter the delays it'd cause.
+
+Greg
