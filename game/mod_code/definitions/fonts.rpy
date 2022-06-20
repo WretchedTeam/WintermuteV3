@@ -187,8 +187,7 @@ init -10 python in _wm_font_jb_mono:
     register_font_transform(medium, mediumitalic, semibold, semibolditalic)
     register_font_transform(semibold, semibolditalic, bold, bolditalic)
     register_font_transform(bold, bolditalic, extrabold, extrabolditalic)
-    register_font_transform(extrabold, extrabolditalic, black, blackitalic)
-    register_font_transform(black, blackitalic)
+    register_font_transform(extrabold, extrabolditalic)
 
 init -10 python in _wm_font_metropolis:
     light = "mod_assets/gui/font/Metropolis/Metropolis-Light.otf"
