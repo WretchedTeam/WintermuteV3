@@ -129,6 +129,7 @@ style quick_reply_button:
     padding (15, 10)
     idle_background RoundedFrame("#fff", radius=10.0, outline_width=1.0, outline_color="#d5d5d5")
     hover_background RoundedFrame("#d5d5d5", radius=10.0)
+    insensitive_background RoundedFrame("#fff", radius=10.0, outline_width=1.0, outline_color="#d5d5d5")
 
 style quick_reply_button_text:
     font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"
@@ -160,6 +161,7 @@ style attachment_button:
     padding (15, 10)
     idle_background RoundedFrame("#fff", radius=10.0, outline_width=1.0, outline_color="#d5d5d5")
     hover_background RoundedFrame("#d5d5d5", radius=10.0)
+    insensitive_background RoundedFrame("#fff", radius=10.0, outline_width=1.0, outline_color="#d5d5d5")
 
 style attachment_button_text:
     font "mod_assets/gui/font/Ubuntu/Ubuntu-Light.ttf"

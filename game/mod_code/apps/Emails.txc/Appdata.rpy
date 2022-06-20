@@ -61,7 +61,10 @@ init python in _wm_email_app:
             if mail_type is None:
                 mail_type = self.mailbox
 
-            if mail_type == self.SPAM:
+            if mail_type == self.INBOX:
+                return [ email for email in self.unlocked_emails if not email.is_draft ]
+
+            elif mail_type == self.SPAM:
                 return [ email for email in self.unlocked_emails if email.is_spam ]
 
             elif mail_type == self.IMPORTANT:
@@ -70,4 +73,4 @@ init python in _wm_email_app:
             elif mail_type == self.DRAFT:
                 return [ email for email in self.unlocked_emails if email.is_draft ]
 
-            return self.unlocked_emails
+            return [ ]

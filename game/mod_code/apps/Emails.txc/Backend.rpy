@@ -149,7 +149,7 @@ init -10 python in _wm_email:
 
             execute_callbacks(email_open_callbacks, self)
 
-        def unlock(self, notify=True):
+        def unlock(self):
             if self.is_unlocked():
                 return
 
@@ -161,9 +161,9 @@ init -10 python in _wm_email:
 
             execute_callbacks(email_unlock_callbacks, self)
 
-            if notify:
-                if not renpy.get_screen(self.mail_client_screen_name):
-                    set_new_email_count(get_new_email_count() + 1)
+            # Weird to have a draft to appear in a notification or inbox.
+            if not renpy.get_screen(self.mail_client_screen_name) and not self.is_draft:
+                set_new_email_count(get_new_email_count() + 1)
 
     class EmailSender(NoRollback):
         def __init__(self, name, email_id, append_turnell_domain=True):

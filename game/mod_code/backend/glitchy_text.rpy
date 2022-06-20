@@ -69,7 +69,6 @@ init python in _wm_glitch_text:
 
     def glitchy_tag(tag, argument):
         arguments = argument.split(":")
-        print(arguments)
 
         if len(arguments) == 2:
             s, length = arguments

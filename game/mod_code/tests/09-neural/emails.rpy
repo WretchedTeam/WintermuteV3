@@ -23,7 +23,8 @@ Anyway. Thanks again. Meet me down the Swan & Prince later, and I’ll get you a
 
 PS: DELETE THIS DRAFT AS SOON AS YOU’VE READ IT.
 """,
-        sender=igreen_sender
+        sender=igreen_sender,
+        is_draft=True
     )
 
     neural_side_email = Email(

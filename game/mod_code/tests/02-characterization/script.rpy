@@ -21,13 +21,6 @@ label script2_main():
 
     return True
 
-label script2_on_start():
-    return
-
-label script2_finished():
-    $ josborne_email_2.unlock()
-    return
-
 label script2_qa(doki):
     $ menu_set = set()
 

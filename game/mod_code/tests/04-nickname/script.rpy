@@ -21,16 +21,6 @@ label script4_main():
 
     return True
 
-
-label script4_on_start():
-    $ nickname_main_email.unlock()
-    return
-
-label script4_finished():
-    $ nickname_final_email.unlock()
-    return
-
-
 label script4_m():
 
     show monika forward at i11

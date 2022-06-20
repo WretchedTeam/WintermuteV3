@@ -13,7 +13,8 @@ define 2 stress_test =  _wm_test.WintermuteTest(
     (stress_main_email, stress_side_email),
     (stress_final_email,),
     stress_main_email,
-    "script8_main"
+    "script8_main",
+    on_advance="script8_on_advance"
 )
 
 default persistent.t8doki = ""

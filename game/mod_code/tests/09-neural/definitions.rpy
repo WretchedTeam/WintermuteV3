@@ -1,7 +1,6 @@
 define neural_test_report = """
 Lorem Ipsum"""
 
-
 define 2 neural_test =  _wm_test.WintermuteTest(
     "neural_test",
     "Neural Remembrance",
@@ -13,7 +12,8 @@ define 2 neural_test =  _wm_test.WintermuteTest(
     (neural_main_email, neural_side_email),
     (neural_final_email,),
     neural_main_email,
-    "script9_main"
+    "script9_main",
+    "script9_on_start"
 )
 
 default persistent.t9doki = ""

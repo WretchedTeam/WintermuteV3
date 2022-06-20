@@ -44,6 +44,7 @@ label start():
         if persistent.done_rorschach_test:
             python hide:
                 test = _wm_test.get_current_test()
+
                 if test is not None: 
                     _wm_penny.emit_event("test_assigned")
                     test.run_start()

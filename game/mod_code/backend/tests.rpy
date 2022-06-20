@@ -28,6 +28,9 @@ init -10 python in _wm_test:
     def has_label_and_unseen(label_name):
         return renpy.has_label(label_name) and not renpy.seen_label(label_name)
 
+    def __call_cb(cb):
+        if has_label_and_unseen(cb): renpy.call(cb)
+
     def AdvanceTest():
         return [ With(Fade(0.5, 1, 0.5)), Call("advance_test") ]
 
@@ -139,30 +142,27 @@ init -10 python in _wm_test:
         def is_completed(self):
             return self.key in persistent.completed_tests
 
-        @staticmethod
-        def __call_cb(cb):
-            if has_label_and_unseen(cb): renpy.call(cb)
-
         def run_start(self):
             if self.start_emails is not None:
                 for email in self.start_emails:
                     email.unlock()
 
-            self.__call_cb(self.on_start)
+            __call_cb(self.on_start)
 
         def run_complete(self):
             if self.complete_emails is not None:
                 for email in self.complete_emails:
                     email.unlock()
 
-            self.__call_cb(self.on_complete)
+            __call_cb(self.on_complete)
 
         def run_advance(self):
-            self.__call_cb(self.on_advance)
+            __call_cb(self.on_advance)
 
 label advance_test():
     $ renpy.scene("screens")
     # $ renpy.transition(Fade(0.5, 1, 0.5))
+    pause 2.0
 
     $ test = _wm_test.get_current_test()
 

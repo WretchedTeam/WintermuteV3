@@ -21,6 +21,10 @@ label script8_main:
 
     return True
 
+label script8_on_advance():
+    $ persistent.iwan_desktop = True
+    return
+
 label script8_m():
     show monika forward at i11
     call show_monika_reload()

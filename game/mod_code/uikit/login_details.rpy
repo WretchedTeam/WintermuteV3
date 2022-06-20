@@ -4,7 +4,12 @@ screen login_details():
     vbox:
         text "{user}" size 200 xalign 0.5
         null height 20
-        text "[persistent.username]" xalign 0.5
+
+        if persistent.iwan_desktop:
+            text "i.green" xalign 0.5
+        else:
+            text "[persistent.username]" xalign 0.5
+
         null height 40
         textbutton "{login} Login" action Return() xalign 0.5
 

@@ -1,13 +1,8 @@
-image eg1:
-    "mod_assets/ending/e1.png"
-image eg2:
-    "mod_assets/ending/e2.png"
-image eg3:
-    "mod_assets/ending/e3.png"
-image eg4:
-    "mod_assets/ending/e4.png"
-image eg5:
-    "mod_assets/ending/e5.png"
+image eg1 = "mod_assets/ending/e1.png"
+image eg2 = "mod_assets/ending/e2.png"
+image eg3 = "mod_assets/ending/e3.png"
+image eg4 = "mod_assets/ending/e4.png"
+image eg5 = "mod_assets/ending/e5.png"
 
 label disable_vn_overlay():
     hide screen vn_overlay
