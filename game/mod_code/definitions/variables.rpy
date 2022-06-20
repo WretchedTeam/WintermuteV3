@@ -11,10 +11,12 @@ default m_name = "Monika"
 default s_name = "Sayori"
 default n_name = "Natsuki"
 default y_name = "Yuri"
+default i_name = "Iwan"
 
 define narrator = Character(ctc_position="fixed")
 define 2 doki = Character(what_prefix='"', what_suffix='"', ctc_position="fixed", screen="voice_recog_say")
 define 2 mc = DynamicCharacter('player', kind=doki, callback=_wm_wmservice.mc_callback)
+define 2 ig = DynamicCharacter('i_name', kind=doki, callback=_wm_wmservice.iwan_callback)
 define 2 s = DynamicCharacter('s_name', image='sayori', kind=doki, callback=_wm_wmservice.doki_callback)
 define 2 m = DynamicCharacter('m_name', image='monika', kind=doki, callback=_wm_wmservice.doki_callback)
 define 2 n = DynamicCharacter('n_name', image='natsuki', kind=doki, callback=_wm_wmservice.doki_callback)

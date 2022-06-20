@@ -35,7 +35,7 @@ label script9_main():
     show natsuki md
     show yuri md
     call test_prompt_button("Respond") from _call_test_prompt_button_12
-    mc "I'm here."
+    ig "It's [persistent.firstname!c]. I'm here."
     show monika e1b mb b2a
     show sayori e1b mb b2a
     show natsuki e1b mb b2a
@@ -245,7 +245,7 @@ label script9_main():
 label script9_m():
 
     show monika forward e1b ma b1a at t11
-    mc "Hi, {w=0.2}Monika."
+    ig "Hi, {w=0.2}Monika."
     show monika e1a mb
     m "Oh, {w=0.2}$EMPLOYEE_NAME?"
     show monika e4b rhip
@@ -302,7 +302,7 @@ label script9_m():
     call test_prompt_button("Record results") from _call_test_prompt_button_16
     call test_prompt_button("Introduce") from _call_test_prompt_button_17
     show monika e1a
-    mc "Hello, {w=0.2}Monika."
+    ig "Hello, {w=0.2}Monika."
     show monika lean b1 e1 m3
     m "Oh, {w=0.2}hello $EMPLOYEE_NAME!"
     show monika e4
@@ -352,7 +352,7 @@ label script9_m():
     call test_prompt_button("Record results") from _call_test_prompt_button_20
     call test_prompt_button("Introduce") from _call_test_prompt_button_21
     show monika e1a
-    mc "Good evening, {w=0.2}Monika."
+    ig "Good evening, {w=0.2}Monika."
     show monika mb
     m "Hi, {w=0.2}$EMPLO{nw}"
     hide monika
@@ -404,7 +404,7 @@ label script9_m():
 
 label script9_s():
     show sayori turned e1b ma b2a at t11
-    mc "Hey, {w=0.2}Sayori?"
+    ig "Hey, {w=0.2}Sayori?"
     show sayori e1a mb
     s "Oh, {w=0.2}hey $EMPLOYEE_NAME!"
     show sayori e4b rup b1a
@@ -459,7 +459,7 @@ label script9_s():
     call test_prompt_button("Record results") from _call_test_prompt_button_24
     call test_prompt_button("Introduce") from _call_test_prompt_button_25
     show sayori e1a
-    mc "Hello,{w=0.2} Sayori."
+    ig "Hello,{w=0.2} Sayori."
     show sayori mb
     s "Oh,{w=0.2} hi $EMPLOYEE_NAME!!"
     show sayori b1a e4b mc lup
@@ -509,7 +509,7 @@ label script9_s():
     call test_prompt_button("Record results") from _call_test_prompt_button_28
     call test_prompt_button("Introduce") from _call_test_prompt_button_29
     show sayori e1a
-    mc "Good evening,{w=0.2} Sayori."
+    ig "Good evening,{w=0.2} Sayori."
     show sayori mb b1a
     s "Hi,{w=0.2} $EMPLO{nw}"
     hide sayori
@@ -563,7 +563,7 @@ label script9_s():
 label script9_n():
 
     show natsuki turned e1a ma b1a at t11
-    mc "Hey,{w=0.2} Natsuki."
+    ig "Hey,{w=0.2} Natsuki."
     show natsuki b1c mb rhip
     n "Oh hey,{w=0.2} didn't expect to see you today."
     show natsuki b1f mg
@@ -617,7 +617,7 @@ label script9_n():
     show natsuki turned e1b ma b1a at i11
     call test_prompt_button("Record results") from _call_test_prompt_button_32
     call test_prompt_button("Introduce") from _call_test_prompt_button_33
-    mc "Hello, {w=0.2}Natsuki."
+    ig "Hello, {w=0.2}Natsuki."
     show natsuki cross mc e1a b1c
     n "'Sup?"
     show natsuki mo
@@ -666,7 +666,7 @@ label script9_n():
     call test_prompt_button("Record results") from _call_test_prompt_button_36
     call test_prompt_button("Introduce") from _call_test_prompt_button_37
     show natsuki e1a
-    mc "Good evening, {w=0.2}Natsuki."
+    ig "Good evening, {w=0.2}Natsuki."
     show natsuki mb
     n "Hi, {w=0.2}$EMPLO{nw}"
     hide natsuki
@@ -721,7 +721,7 @@ label script9_n():
 label script9_y():
 
     show yuri turned e1b ma b2a at t11
-    mc "Hey, {w=0.2}Yuri."
+    ig "Hey, {w=0.2}Yuri."
     show yuri e1a mb
     y "Why hello, {w=0.2}$EMPLOYEE_NAME."
     show yuri e1d rup b1a
@@ -776,7 +776,7 @@ label script9_y():
     call test_prompt_button("Record results") from _call_test_prompt_button_40
     call test_prompt_button("Introduce") from _call_test_prompt_button_41
     show yuri e1a
-    mc "Hello, {w=0.2}Yuri."
+    ig "Hello, {w=0.2}Yuri."
     show yuri shy e2 b1 m4
     y "H-hello, {w=0.2}$EMPLOYEE_NAME."
     show yuri e1
@@ -828,7 +828,7 @@ label script9_y():
     call test_prompt_button("Record results") from _call_test_prompt_button_44
     call test_prompt_button("Introduce") from _call_test_prompt_button_45
     show yuri e1a
-    mc "Good evening, {w=0.2}Yuri."
+    ig "Good evening, {w=0.2}Yuri."
     show yuri mb b1a e1d
     y "Hi, {w=0.2}$EMPLO{nw}"
     hide yuri
