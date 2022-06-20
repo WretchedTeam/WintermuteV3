@@ -46,7 +46,7 @@ label ending_script_destroy():
 
     $ persistent.autoload = "ending_script_destroy.post_good_ending_loop"
 
-    label post_good_ending_loop:
+    label .post_good_ending_loop:
 
     $ renpy.config.quit_action = renpy.quit
     $ quick_menu = False
@@ -62,7 +62,7 @@ label ending_script_test():
     scene black
     $ persistent.autoload = "ending_script_test.post_bad_ending_loop"
 
-    label post_bad_ending_loop:
+    label .post_bad_ending_loop:
     $ renpy.config.quit_action = renpy.quit
     call screen article_scroller with dissolve
     $ renpy.quit()

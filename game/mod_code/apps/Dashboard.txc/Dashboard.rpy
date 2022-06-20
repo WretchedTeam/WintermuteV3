@@ -24,7 +24,10 @@ screen dashboard():
                 elif dashboard.display == dashboard.SUBJECTS:
                     use dashboard_ai_subjects()
                 elif dashboard.display == dashboard.COMPLETED:
-                    use dashboard_completed_tests()
+                    if persistent.iwan_desktop:
+                        use dashboard_completed_tests_glitch()
+                    else:
+                        use dashboard_completed_tests()
 
     on "show" action Function(_wm_penny.emit_event, "wm_open", 0.5, True)
 
@@ -196,6 +199,8 @@ screen dashboard_completed_tests():
             null height 15
 
             vpgrid cols 1:
+                mousewheel True
+
                 for i in finished_tests:
                     use dashboard_test_entry(i)
 
@@ -326,3 +331,60 @@ style dashboard_test_report_vscrollbar:
 
 style dashboard_test_report_viewport:
     ysize 220
+
+screen dashboard_completed_tests_glitch():
+    style_prefix "dashboard_completed_tests"
+
+    $ dashboard = dashboard_app.userdata    
+    $ finished_tests = [ test for test in wintermute_tests if test.is_completed() ]
+
+    default gtext1 = _wm_glitch_text.Generate(23)
+    default gtext2 = _wm_glitch_text.Generate(15)
+
+    default gtext3 = _wm_glitch_text.Generate(4)
+    default gtext4 = _wm_glitch_text.Generate(6)
+
+    if not finished_tests:
+        text _("[gtext1]") style "dashboard_no_tests"
+
+    elif dashboard.selected_test is not None:
+        use dashboard_test_report()
+
+    else:
+        vbox:
+            label _("[gtext2]")
+            null height 30
+
+            hbox:
+                style_prefix "dashboard_details_bar"
+                label _("[gtext3]") xsize 550
+                label _("[gtext4]")
+
+            null height 10
+
+            add "dashboard_divider"
+
+            null height 15
+
+            vpgrid cols 1:
+                mousewheel True
+
+                for i in finished_tests:
+                    use dashboard_test_entry_glitch(i)
+
+screen dashboard_test_entry_glitch(test):
+    style_prefix "dashboard_test_entry"
+
+    $ dashboard = dashboard_app.userdata
+
+    default gtext5 = _wm_glitch_text.Generate(len(test.name))
+    default gtext6 = _wm_glitch_text.Generate(9)
+
+    vbox:
+        button action NullAction():
+            has hbox
+
+            label _("[gtext5]")
+            text _("[gtext6]")
+
+        add Solid("#C4C4C4") ysize 1

@@ -40,7 +40,7 @@ init python in _wm_glitch_text:
     def applymods(s):
         return [ random.choice(modifiers)(i) for i in s ]
 
-    def Generate(length, pool=all_character, modifiers=False, alpha=False):
+    def Generate(length, pool="all", modifiers=False, alpha=False):
         if pool not in pools:
             raise Exception("Invalid Character Pool ID: %s" % pool)
 

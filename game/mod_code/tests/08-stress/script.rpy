@@ -66,7 +66,7 @@ label script8_m():
     m mi "No, they didn’t!"
     m b1b mg "I-I’m 100 percent sure of it."
     m e2b rhip "I mean, is it even possible to get a calculator {i}wrong{/i} in this day and age?"
-    m e2a "Because–..."
+    m e2a "Because-..."
     m me "Oh, no. I’d never even {i}know{/i} if it was faulty."
     m e4a mk "Oh $EMPLOYEE_NAME, I don’t like this."
     m e2a mg "Every fibre of my being tells me that the answer is 1, but..."
@@ -208,7 +208,7 @@ label script8_s():
     show sayori rup mh e1a b1a
     s "But, it says right here!"
     show sayori e4a
-    s "{i}Knights move in a very different way from the other pieces – going two squares in one direction, and then one more move at a 90-degree angle, just like the shape of an ‘L’.{/i}"
+    s "{i}Knights move in a very different way from the other pieces - going two squares in one direction, and then one more move at a 90-degree angle, just like the shape of an ‘L’.{/i}"
     show sayori md
     call test_prompt_button("Respond")
     mc "Well, you must be reading the rules wrong, or your source is wrong."
@@ -243,7 +243,7 @@ label script8_s():
     show sayori e1c
     s "That’s the last thing I’d ever do!"
     show sayori mg b2b
-    s "Not that I would ever do it, I–..."
+    s "Not that I would ever do it, I-..."
     show sayori me
     call test_prompt_button("Repeat")
     mc "Why are you trying to cheat?"
@@ -273,7 +273,7 @@ label script8_s():
     call test_prompt_button("Initiate break-up")
     mc "Trust is the most important part of a relationship. I can’t trust someone who is trying to get an unfair advantage by making up her own rules."
     show sayori b1b me e2a rup
-    s "[persistent.firstname], you’re not talking about–-"
+    s "[persistent.firstname], you’re not talking about--"
     show sayori b1c mh
     s "Over what, a game of chess?"
     show sayori e4a mf

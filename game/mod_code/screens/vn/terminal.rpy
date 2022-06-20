@@ -1,9 +1,17 @@
 init python in _wm_terminal:
-    from store import Null
+    from store import Null, persistent
     import pygame_sdl2 as pygame
 
     class Terminal(object):
-        shell_symbol = "[persistent.username]> "
+        default_shell_symbol = "[persistent.username]> "
+        iwan_shell_symbol = "i.green> "
+
+        @property
+        def shell_symbol(self):
+            if persistent.iwan_desktop:
+                return self.iwan_shell_symbol
+            
+            return self.default_shell_symbol
 
         def __init__(self):
             self.__history = [ ]

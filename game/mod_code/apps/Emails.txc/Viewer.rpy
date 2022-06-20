@@ -4,6 +4,8 @@ define 2 mail_viewer_app = _wm_manager.Application(
     "mail_viewer"
 )
 
+image mail_viewer_divider = Solid("#828282", ysize=2)
+
 screen mail_viewer(email):
     style_prefix "mail_viewer"
 
@@ -41,7 +43,7 @@ screen mail_viewer(email):
                     text "{ubuntu=regular}" + email.subject + "{/ubuntu}" size 28 yalign 0.5
 
                 null height 40
-                add "#828282" ysize 2
+                add "mail_viewer_divider"
                 null height 40
 
                 $ date_received = persistent.email_dates.get(email.unique_id)
@@ -68,7 +70,7 @@ screen mail_viewer(email):
 
                 if email.quick_replies and (email.unique_id not in _wm_email.replied_emails()):
                     null height 40
-                    add "#828282" ysize 2
+                    add "mail_viewer_divider"
                     null height 20
 
                     label _("Quick Replies:")

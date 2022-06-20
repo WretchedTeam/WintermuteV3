@@ -38,8 +38,10 @@ With regards,
 
 William J. Turnell
 Former CEO of Turnell Technologies
-----------------------------------
-"The only way to do great work is to love what you do." – Steve Jobs
+
+{image=mail_viewer_divider}
+
+"The only way to do great work is to love what you do." - Steve Jobs
 """,
         sender=wturnell_sender,
         receiver="@Turnell"
