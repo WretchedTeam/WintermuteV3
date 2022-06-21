@@ -9,6 +9,46 @@ image p6 = "mod_assets/ending/bsod/percent_6.png"
 image good_email = "mod_assets/ending/good/email.png"
 image bad_article = "mod_assets/ending/bad/ns_page_end.png"
 
+screen email_fill():
+    add "good_email"
+
+    frame background None:
+        padding (0, 0)
+        at renpy.partial(_wm_shadow.DropShadowCore, color="#2228", blur=2.0, subpixel=True)
+
+        python:
+            name = renpy.substitute("[persistent.firstname] [persistent.lastname]")
+
+            if len(name) > 16:
+                name = name[:13] + "..."
+
+        text name:
+
+            font _wm_font_roboto.regular
+            color "#fff"
+            size 22
+            xanchor 0.0 yanchor 0.5
+            xpos 85 ypos 1006
+            hinting "bytecode"
+
+        $ t = persistent.firstname[0]
+
+        text "[t]":
+
+            font _wm_font_roboto.medium
+            size 22
+            xanchor 0.5 yanchor 0.5
+            xpos 43 ypos 1006
+            hinting "none"
+
+        text "[t]":
+
+            font _wm_font_roboto.bold
+            size 26
+            xanchor 0.5 yanchor 0.5
+            xpos absolute(1879.5) ypos 37
+            hinting "none"
+
 screen article_scroller():
     viewport id "article_vp":
         mousewheel True
