@@ -12,6 +12,7 @@ define 2 sensory_test =  _wm_test.WintermuteTest(
     (sensory_main_email, affection_side_email),
     (sensory_final_email,),
     sensory_main_email,
+    ("2029-8-28.txt", "2029-8-30.txt"),
     "script7_main"
 )
 

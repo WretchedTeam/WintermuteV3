@@ -13,6 +13,7 @@ define 2 intro_test = _wm_test.WintermuteTest(
     (intro_main_email, intro_side_email1, intro_side_email2),
     (intro_final_email,),
     intro_main_email,
+    ("2029-7-16.txt", "2029-7-19 a.txt", "2029-7-19 b.txt"),
     "script1_main"
 )
 

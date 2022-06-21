@@ -17,6 +17,7 @@ define 2 characterization_test =  _wm_test.WintermuteTest(
     (characterization_main_email, characterization_side_email),
     (characterization_final_email,),
     characterization_main_email,
+    ("2029-7-20.txt", "2029-7-23.txt", "2029-7-24.txt", "2029-7-24.txt"),
     "script2_main"
 )
 

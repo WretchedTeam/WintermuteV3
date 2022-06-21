@@ -17,6 +17,7 @@ define 2 consulai_test =  _wm_test.WintermuteTest(
     (consulai_main_email,),
     (consulai_final_email,),
     consulai_main_email,
+    ("2029-8-10.txt", "2029-8-13.txt"),
     "script5_main"
 )
 

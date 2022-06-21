@@ -14,7 +14,7 @@ define 10 wintermute_tests = [
 default 10 persistent.completed_tests = [ ]
 
 init -10 python in _wm_test:
-    from store import debug, persistent, With, Fade, Call
+    from store import debug, persistent, With, Fade, Call, _wm_lore_emails
     from store._wm_email import get_email
 
     def get_current_test():
@@ -85,7 +85,7 @@ init -10 python in _wm_test:
         """
 
         def __init__(self, key, name, description, final_report, assigned_on, assigner=None,
-                headlines=None, start_emails=None, complete_emails=None, main_email=None,
+                headlines=None, start_emails=None, complete_emails=None, main_email=None, lore_emails=None,
                 main_label="start", on_start=None, on_complete=None, on_advance=None):
 
             self.key = key
@@ -98,6 +98,8 @@ init -10 python in _wm_test:
             self.start_emails = start_emails
             self.complete_emails = complete_emails
             self.main_email = get_email(main_email)
+
+            self.lore_emails = lore_emails
 
             self.main_label = main_label
             self.on_start = on_start
@@ -153,6 +155,11 @@ init -10 python in _wm_test:
             if self.complete_emails is not None:
                 for email in self.complete_emails:
                     email.unlock()
+
+            if self.lore_emails is not None:
+                print(self.lore_emails)
+                for f in self.lore_emails:
+                    _wm_lore_emails.unlock_email(f)
 
             __call_cb(self.on_complete)
 
