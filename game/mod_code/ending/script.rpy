@@ -54,8 +54,8 @@ label ending_script_destroy():
     $ config.skipping = False
     $ config.allow_skipping = False
     scene black
-    # show good_email
-    show screen email_fill()
+    show good_email
+    # show screen email_fill()
     with Dissolve(1.0)
     $ renpy.pause()
     $ renpy.quit()
