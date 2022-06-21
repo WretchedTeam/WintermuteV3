@@ -70,10 +70,6 @@ screen mc_email_entry(email, bg=None):
         if bg is not None:
             background bg
 
-        # ysize 132
-        hovered SetLocalVariable("do_scroll", True)
-        unhovered SetLocalVariable("do_scroll", False)
-
         action [ 
             Function(mail_viewer_app.open, email=email),
             Function(email.mark_read),
@@ -100,10 +96,6 @@ screen mc_email_entry(email, bg=None):
 
                     if not email.is_read:
                         text_font _wm_font_ubuntu.medium
-
-                # text email.subject style_suffix "subject":
-                #     if not email.is_read:
-                #         font _wm_font_ubuntu.medium
 
                 text ("by " + email.sender.name) style_suffix "sender"
 
