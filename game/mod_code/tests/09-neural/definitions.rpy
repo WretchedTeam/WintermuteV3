@@ -12,6 +12,7 @@ define 2 neural_test =  _wm_test.WintermuteTest(
     (neural_main_email, neural_side_email),
     (neural_final_email,),
     neural_main_email,
+    ("2029-9-2.txt", "2029-9-5.txt"),
     "script9_main",
     "script9_on_start"
 )

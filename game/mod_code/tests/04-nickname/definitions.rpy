@@ -19,7 +19,7 @@ define 2 nickname_test =  _wm_test.WintermuteTest(
     (nickname_main_email,),
     (nickname_final_email, nickname_side_email,),
     nickname_main_email,
-    ("2029-8-3.txt", "2029-8-6.txt", "2029-8-8.txt"),
+    ("2029-7-29.txt", "2029-7-30.txt", "2029-8-1.txt"),
     "script4_main"
 )
 

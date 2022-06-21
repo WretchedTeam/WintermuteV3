@@ -21,7 +21,7 @@ define 2 search_test =  _wm_test.WintermuteTest(
     (search_main_email, search_side_email1),
     (search_side_email2, search_final_email),
     search_main_email,
-    ("2029-7-29.txt", "2029-7-30.txt", "2029-8-1.txt"),
+    ("2029-7-20.txt", "2029-7-23.txt", "2029-7-24.txt"),
     "script3_main"
 )
 

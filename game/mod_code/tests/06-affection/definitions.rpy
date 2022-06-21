@@ -17,7 +17,7 @@ define 2 affection_test =  _wm_test.WintermuteTest(
     (affection_main_email, affection_side_email),
     (affection_final_email,),
     affection_main_email,
-    ("2029-8-19.txt",),
+    ("2029-8-10.txt", "2029-8-13.txt"),
     "script6_main"
 )
 
