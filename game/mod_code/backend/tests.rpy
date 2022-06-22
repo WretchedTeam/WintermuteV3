@@ -85,8 +85,8 @@ init -10 python in _wm_test:
         """
 
         def __init__(self, key, name, description, final_report, assigned_on, assigner=None,
-                headlines=None, start_emails=None, complete_emails=None, main_email=None, lore_emails=None,
-                main_label="start", on_start=None, on_complete=None, on_advance=None):
+                headlines=None,start_emails=None, complete_emails=None, main_email=None, lore_emails=None,
+                main_label="start", on_start=None, on_complete=None, on_advance=None, on_rewind=None):
 
             self.key = key
             self.name = name
@@ -95,29 +95,32 @@ init -10 python in _wm_test:
 
             self.assigned_on = assigned_on
 
-            self.start_emails = start_emails
-            self.complete_emails = complete_emails
+            def seq(s):
+                if s is None:
+                    return tuple()
+
+                elif not isinstance(s, (list, tuple)):
+                    s = [ s ]
+
+                return s
+
+            self.start_emails = seq(start_emails)
+            self.complete_emails = seq(complete_emails)
             self.main_email = get_email(main_email)
 
-            self.lore_emails = lore_emails
+            self.lore_emails = seq(lore_emails)
 
             self.main_label = main_label
             self.on_start = on_start
             self.on_complete = on_complete
             self.on_advance = on_advance
+            self.on_rewind  = on_rewind
 
             if assigner is None:
                 assigner = self.main_email.sender.name
 
             self.assigner = assigner
-
-            if headlines is None:
-                headlines = [ ]
-
-            elif not isinstance(headlines, (list, tuple)):
-                headlines = [ headlines ]
-
-            self.headlines = headlines
+            self.headlines = seq(headlines)
 
         @debug
         def rewind(self):

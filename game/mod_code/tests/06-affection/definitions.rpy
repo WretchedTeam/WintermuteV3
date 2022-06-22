@@ -7,18 +7,18 @@ After raising the affection values further, [persistent.t6doki] seemed to think 
 """
 
 define 2 affection_test =  _wm_test.WintermuteTest(
-    "affection_test",
-    "Affection",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=8, day=17),
-    "Iwan Green",
-    (affection_test_headline_1, affection_test_headline_2, affection_test_headline_3, affection_test_headline_4),
-    (affection_main_email, affection_side_email),
-    (affection_final_email,),
-    affection_main_email,
-    ("2029-8-10.txt", "2029-8-13.txt"),
-    "script6_main"
+    key="affection_test",
+    name="Affection",
+    description="Lorem Ipsum",
+    final_report="Lorem Ipsum",
+    assigned_on=datetime.date(year=2029, month=8, day=17),
+    assigner="Iwan Green",
+    headlines=(affection_test_headline_1, affection_test_headline_2, affection_test_headline_3, affection_test_headline_4),
+    start_emails=(affection_main_email, affection_side_email),
+    complete_emails=(affection_final_email,),
+    main_email=affection_main_email,
+    lore_emails=("2029-8-10.txt", "2029-8-13.txt"),
+    main_label="script6_main"
 )
 
 default persistent.t6doki = ""

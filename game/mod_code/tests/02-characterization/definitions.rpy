@@ -7,18 +7,18 @@ As with the last test, the range of emotions [persistent.t2doki] can show is alm
 """
 
 define 2 characterization_test =  _wm_test.WintermuteTest(
-    "characterization_test",
-    "Characterization",
-    "Lorem Ipsum",
-    characterization_test_report,
-    datetime.date(year=2029, month=7, day=20),
-    "Iwan Green",
-    (characterization_test_headline_1, characterization_test_headline_2, characterization_test_headline_3, characterization_test_headline_4),
-    (characterization_main_email, characterization_side_email),
-    (characterization_final_email,),
-    characterization_main_email,
-    ("2029-7-16.txt", "2029-7-19 a.txt", "2029-7-19 b.txt"),
-    "script2_main"
+    key="characterization_test",
+    name="Characterization",
+    description="Lorem Ipsum",
+    final_report=characterization_test_report,
+    assigned_on=datetime.date(year=2029, month=7, day=20),
+    assigner="Iwan Green",
+    headlines=(characterization_test_headline_1, characterization_test_headline_2, characterization_test_headline_3, characterization_test_headline_4),
+    start_emails=(characterization_main_email, characterization_side_email),
+    complete_emails=(characterization_final_email,),
+    main_email=characterization_main_email,
+    lore_emails=("2029-7-16.txt", "2029-7-19 a.txt", "2029-7-19 b.txt"),
+    main_label="script2_main"
 )
 
 default persistent.t2doki = ""

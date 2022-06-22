@@ -3,17 +3,17 @@ Upon interaction with the WINTERMUTE program, the girls introduced themselves an
 """
 
 define 2 intro_test = _wm_test.WintermuteTest(
-    "intro_test",
-    "Formal Introduction",
-    "Lorem Ipsum",
-    intro_test_final_report,
-    datetime.date(year=2029, month=7, day=13),
-    "Robert Bell",
-    (intro_test_headline_1, intro_test_headline_2, intro_test_headline_3, intro_test_headline_4),
-    (intro_main_email, intro_side_email1, intro_side_email2),
-    (intro_final_email,),
-    intro_main_email,
-    "script1_main"
+    key="intro_test",
+    name="Formal Introduction",
+    description="Lorem Ipsum",
+    final_report=intro_test_final_report,
+    assigned_on=datetime.date(year=2029, month=7, day=13),
+    assigner="Robert Bell",
+    headlines=(intro_test_headline_1, intro_test_headline_2, intro_test_headline_3, intro_test_headline_4),
+    start_emails=(intro_main_email, intro_side_email1, intro_side_email2),
+    complete_emails=(intro_final_email,),
+    main_email=intro_main_email,
+    main_label="script1_main"
 )
 
 default persistent.script1_seen = {

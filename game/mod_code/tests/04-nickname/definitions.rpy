@@ -9,18 +9,18 @@ Almost immediately, Jeremy externally shut down my testing application in order 
 """
 
 define 2 nickname_test =  _wm_test.WintermuteTest(
-    "nickname_test",
-    "Nickname Recognition",
-    "Lorem Ipsum",
-    nickname_test_report,
-    datetime.date(year=2029, month=8, day=3),
-    "Jeremy Osborne",
-    (nickname_test_headline_1, nickname_test_headline_2, nickname_test_headline_3, nickname_test_headline_4),
-    (nickname_main_email,),
-    (nickname_final_email, nickname_side_email,),
-    nickname_main_email,
-    ("2029-7-29.txt", "2029-7-30.txt", "2029-8-1.txt"),
-    "script4_main"
+    key="nickname_test",
+    name="Nickname Recognition",
+    description="Lorem Ipsum",
+    final_report=nickname_test_report,
+    assigned_on=datetime.date(year=2029, month=8, day=3),
+    assigner="Jeremy Osborne",
+    headlines=(nickname_test_headline_1, nickname_test_headline_2, nickname_test_headline_3, nickname_test_headline_4),
+    start_emails=(nickname_main_email,),
+    complete_emails=(nickname_final_email, nickname_side_email,),
+    main_email=nickname_main_email,
+    lore_emails=("2029-7-29.txt", "2029-7-30.txt", "2029-8-1.txt"),
+    main_label="script4_main"
 )
 
 default persistent.t4doki = ""

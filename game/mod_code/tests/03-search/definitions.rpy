@@ -11,18 +11,18 @@ When asked to look up breaking news stories from BBC News, Sayori oddly began to
 """
 
 define 2 search_test =  _wm_test.WintermuteTest(
-    "search_test",
-    "Search Query",
-    "Lorem Ipsum",
-    search_test_report,
-    datetime.date(year=2029, month=7, day=27),
-    "Iwan Green",
-    (search_test_headline_1, search_test_headline_2, search_test_headline_3, search_test_headline_4),
-    (search_main_email, search_side_email1),
-    (search_side_email2, search_final_email),
-    search_main_email,
-    ("2029-7-20.txt", "2029-7-23.txt", "2029-7-24.txt"),
-    "script3_main"
+    key="search_test",
+    name="Search Query",
+    description="Lorem Ipsum",
+    final_report=search_test_report,
+    assigned_on=datetime.date(year=2029, month=7, day=27),
+    assigner="Iwan Green",
+    headlines=(search_test_headline_1, search_test_headline_2, search_test_headline_3, search_test_headline_4),
+    start_emails=(search_main_email, search_side_email1),
+    complete_emails=(search_side_email2, search_final_email),
+    main_email=search_main_email,
+    lore_emails=("2029-7-20.txt", "2029-7-23.txt", "2029-7-24.txt"),
+    main_label="script3_main"
 )
 
 default persistent.script3_seen = {

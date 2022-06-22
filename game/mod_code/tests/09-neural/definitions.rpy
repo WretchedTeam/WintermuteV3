@@ -2,19 +2,19 @@ define neural_test_report = """
 Lorem Ipsum"""
 
 define 2 neural_test =  _wm_test.WintermuteTest(
-    "neural_test",
-    "Neural Remembrance",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    datetime.date(year=2029, month=9, day=7),
-    "yourself",
-    (neural_test_headline_1, neural_test_headline_2, neural_test_headline_3, neural_test_headline_4),
-    (neural_main_email, neural_side_email),
-    (neural_final_email,),
-    neural_main_email,
-    ("2029-9-2.txt", "2029-9-5.txt"),
-    "script9_main",
-    "script9_on_start"
+    key="neural_test",
+    name="Neural Remembrance",
+    description="Lorem Ipsum",
+    final_report="Lorem Ipsum",
+    assigned_on=datetime.date(year=2029, month=9, day=7),
+    assigner="Yourself",
+    headlines=(neural_test_headline_1, neural_test_headline_2, neural_test_headline_3, neural_test_headline_4),
+    start_emails=(neural_main_email, neural_side_email),
+    complete_emails=(neural_final_email,),
+    main_email=neural_main_email,
+    lore_emails=("2029-9-2.txt", "2029-9-5.txt"),
+    main_label="script9_main",
+    on_start="script9_on_start"
 )
 
 default persistent.t9doki = ""

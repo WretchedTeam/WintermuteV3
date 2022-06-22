@@ -7,18 +7,18 @@ However, when faced with the prospect of a customer leaving them, their attitude
 """
 
 define 2 consulai_test =  _wm_test.WintermuteTest(
-    "consulai_test",
-    "ConsulAI",
-    "Lorem Ipsum",
-    consulai_test_report,
-    datetime.date(year=2029, month=8, day=10),
-    "Iwan Green",
-    (consulai_test_headline_1, consulai_test_headline_2, consulai_test_headline_3, consulai_test_headline_4),
-    (consulai_main_email,),
-    (consulai_final_email,),
-    consulai_main_email,
-    ("2029-8-3.txt", "2029-8-6.txt", "2029-8-8.txt"),
-    "script5_main"
+    key="consulai_test",
+    name="ConsulAI",
+    description="Lorem Ipsum",
+    final_report=consulai_test_report,
+    assigned_on=datetime.date(year=2029, month=8, day=10),
+    assigner="Iwan Green",
+    headlines=(consulai_test_headline_1, consulai_test_headline_2, consulai_test_headline_3, consulai_test_headline_4),
+    start_emails=(consulai_main_email,),
+    complete_emails=(consulai_final_email,),
+    main_email=consulai_main_email,
+    lore_emails=("2029-8-3.txt", "2029-8-6.txt", "2029-8-8.txt"),
+    main_label="script5_main"
 )
 
 default persistent.t5doki = ""
