@@ -7,10 +7,10 @@ label splashscreen():
         jump expression persistent.autoload
 
     if not persistent.shown_disclaimer:
-        call disclaimer
+        call disclaimer from _call_disclaimer
         pause 1.0
 
-        call title_drop
+        call title_drop from _call_title_drop
         pause 1.0
 
         show desktop_background
@@ -18,7 +18,7 @@ label splashscreen():
 
         call screen assessment with BlurDissolveCurried(0.35, 16.0)
     else:
-        call title_drop
+        call title_drop from _call_title_drop_1
         pause 1.0
 
     $ persistent.shown_disclaimer = True

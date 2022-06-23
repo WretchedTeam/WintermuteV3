@@ -9,8 +9,8 @@ After raising the affection values further, [persistent.t6doki] seemed to think 
 define 2 affection_test =  _wm_test.WintermuteTest(
     key="affection_test",
     name="Affection",
-    description="Lorem Ipsum",
-    final_report="Lorem Ipsum",
+    description="{i}\"To probe WINTERMUTE with romantically-charged questions, and see how it handles it at different affection levels.\"{/i}",
+    final_report=affection_test_report,
     assigned_on=datetime.date(year=2029, month=8, day=17),
     assigner="Iwan Green",
     headlines=(affection_test_headline_1, affection_test_headline_2, affection_test_headline_3, affection_test_headline_4),

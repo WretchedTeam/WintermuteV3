@@ -1,4 +1,5 @@
 label script3_main():
+    $ config.allow_skipping = True
     while not all(persistent.script3_seen.values()):
         menu (screen="load_doki_choice"):
             "Monika" if not persistent.script3_seen["m"]:
@@ -20,11 +21,13 @@ label script3_main():
             "Exit" (prepend_load=False):
                 return False
 
+    $ config.allow_skipping = False
+    $ del _history_list[-1000:]
     return True
 
 label script3_m():
     show monika forward at i11
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_1
     show monika forward e1a b1a ma at t11 zorder 1
     mc "Hey,{w=0.2} Monika?"
     m mb "Hey!{w=0.7} What can I do for you?"
@@ -52,7 +55,7 @@ label script3_m():
 
 label script3_s():
     show sayori turned at i11
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload_1
     show sayori turned e1a b1a ma at t11 zorder 1
     mc "Hey,{w=0.2} Sayori?"
     s mb "Hi!"
@@ -78,7 +81,7 @@ label script3_s():
 
 label script3_n():
     show natsuki turned at i11
-    call show_natsuki_reload()
+    call show_natsuki_reload() from _call_show_natsuki_reload_1
     show natsuki turned e1a b1a ma at t11 zorder 1
     mc "Hey,{w=0.2} Natsuki?"
     n mh "Yo."
@@ -122,7 +125,7 @@ label script3_n():
 
 label script3_y():
     show yuri turned at i11
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload_1
     show yuri turned e1a b1c ma at t11 zorder 1
     # Load Yuri
     mc "Hey,{w=0.2} Yuri?"

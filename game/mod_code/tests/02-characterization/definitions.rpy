@@ -9,7 +9,7 @@ As with the last test, the range of emotions [persistent.t2doki] can show is alm
 define 2 characterization_test =  _wm_test.WintermuteTest(
     key="characterization_test",
     name="Characterization",
-    description="Lorem Ipsum",
+    description="{i}\"To talk extensively with a selected character to gauge accuracy to source material & real life speech.\"{/i}",
     final_report=characterization_test_report,
     assigned_on=datetime.date(year=2029, month=7, day=20),
     assigner="Iwan Green",

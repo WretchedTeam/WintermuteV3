@@ -1,4 +1,5 @@
 label script5_main():
+    $ config.allow_skipping = True
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t5doki = "Monika"
@@ -19,6 +20,8 @@ label script5_main():
         "Exit" (prepend_load=False):
             return False
 
+    $ config.allow_skipping = False
+    $ del _history_list[-1000:]
     return True
 
 label script5_qa(doki):
@@ -28,13 +31,13 @@ label script5_qa(doki):
         menu:
             set menu_set
 
-            "Disillusionment with news.":
+            "Disillusionment with news":
                 call expression "script5_" + doki + "_news" pass (len(menu_set) == 4) from _call_expression_5
-            "Disillusionment with job.":
+            "Disillusionment with job":
                 call expression "script5_" + doki + "_job" pass (len(menu_set) == 4) from _call_expression_6
-            "Disillusionment with life.":
+            "Disillusionment with life":
                 call expression "script5_" + doki + "_life" pass (len(menu_set) == 4) from _call_expression_7
-            "Disillusionment with you.":
+            "Disillusionment with you":
                 call expression "script5_" + doki + "_you" pass (len(menu_set) == 4) from _call_expression_8
 
     $ del menu_set
@@ -192,7 +195,7 @@ label script5_m_you(last=False):
 
 label script5_m():
     show monika forward at i11
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_6
     show monika forward e1a b1a ma at t11 zorder 1
     mc "Hello, Monika."
     m mb "Hey, $EMPLOYEE_NAME!"
@@ -417,7 +420,7 @@ label script5_s_you(last=False):
 label script5_s:
 
     show sayori turned at i11
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload_6
     show sayori turned happ cm oe at t11
     mc "Hello, Sayori."
     s om ce "Hi, $EMPLOYEE_NAME!"
@@ -715,7 +718,7 @@ label script5_n_you(last=False):
 label script5_n:
 
     show natsuki turned at i11
-    call show_natsuki_reload()
+    call show_natsuki_reload() from _call_show_natsuki_reload_6
     show natsuki turned e1a b1a ma at t11 zorder 1
     mc "Hello, Natsuki."
     n mg "Oh, hey $EMPLOYEE_NAME."
@@ -963,7 +966,7 @@ label script5_y_you(last=False):
 label script5_y:
 
     show yuri turned at i11
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload_6
     show yuri turned neut me oe at t11
 
     mc "Hello, Yuri."

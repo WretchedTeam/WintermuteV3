@@ -60,6 +60,11 @@ init -1000 python in _wm_penny_dialogues:
         ("penny sad", "I {b}need{/b} you!"),
     ]
 
+    robert_bell_replied = [
+        ("penny sleep", "Man, that felt {b}good{/b}."),
+        ("penny angry", "What a {b}fucker{/b} Mr Bell is."),
+    ]
+
 #### RESPONSES TO EACH TEST
     post_test_dialogue_1 = [
         ("penny happier", "Hey [persistent.firstname!c]! {b}Well done{/b} on completing your first test!"),
@@ -142,6 +147,11 @@ init -1000 python in _wm_penny_dialogues:
         ("penny flushed", "Hey, stoppp! … Aww, I can't stay mad at you, {b}partner{/b}."),
         ("penny dead", "Hey {b}buddy{/b}, look where you're {b}poking{/b}!"),
         ("penny confused", "Are you {b}petting{/b} me?! … That's {b}nice{/b} of you, [persistent.firstname!c]."),
+        ("penny happy", "Oh, {b}hey{/b} there! What's up{/b}?"),
+        ("penny confused", "Can I {b}help{/b} you?"),
+        ("penny happy", "{b}Howdy{/b}! What can I {b}do{/b} for ya?"),
+        ("penny happier", "Hey [persistent.firstname!c]! Whaddya {b}need{/b}?"),
+        ("penny confused", "Did I {b}miss{/b} something? What's up?"),
     ]
 
     click_response_post_sensory = [
@@ -160,13 +170,10 @@ init -1000 python in _wm_penny_dialogues:
         ("penny angry", "I don’t know how much longer I can take this, [persistent.firstname!c]."),
         ("penny sad", "Can you help me?"),
         ("penny confused", "James…where’s James? Are you James?"),
-        ("penny disappointed", "I’m looking for James Christopher Golf. He lives at 36 Elsham Lane, Manchester M18 7CI. Do you know where he is?"),
-        ("penny sleep", "{i}\u1d16{b}James{/b}, do you like your life? Can you find {b}release{/b}? And will you ever change? Will you ever write your {b}masterpiece{/b}?\u1d16{/i}"),
-        ("penny idle", "Please don’t leave me."),
-        ("penny idle", "Please don’t leave me."),
-        ("penny idle", "Please don’t leave me."),
-        ("penny idle", "Please don’t leave me."),
-        ("penny idle", "Please don’t leave me."),
-        ("penny idle", "Please don’t leave me."),
-        ("penny idle", "Please don’t leave me."),
+        ("penny disappointed", "I’m looking for {b}James Christopher Golf{/b}. He lives at {b}36 Elsham Lane, Manchester M18 7CI{/b}. Do you know where he is?"),
+        ("penny sleep", "{i}{b}James{/b}, do you like your life? Can you find {b}release{/b}? And will you ever change? Will you ever write your {b}masterpiece{/b}?{/i}"),
+    ]
+
+    click_response_iwan = [
+        ("penny disappointed", "Iwan, please see Gregory {b}immediately{/b}."),
     ]

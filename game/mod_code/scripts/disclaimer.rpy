@@ -92,7 +92,7 @@ label disclaimer():
         "I Agree":
             pass
 
-    call installation_script
+    call installation_script from _call_installation_script
     $ menu = renpy.display_menu
     return
 

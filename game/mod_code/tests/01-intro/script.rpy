@@ -1,4 +1,5 @@
 label script1_main():
+    $ config.allow_skipping = True
     while not all(persistent.script1_seen.values()):
         menu (screen="load_doki_choice"):
             "Monika" if not persistent.script1_seen["m"]:
@@ -20,25 +21,27 @@ label script1_main():
             "Exit" (prepend_load=False):
                 return False
 
+    $ config.allow_skipping = False
+    $ del _history_list[-1000:]
     return True
 
 label script1_m():
     show monika forward at i11
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_15
     show monika forward e1a b1a mb rhip at t11
-    m "Hello! I'm Monika, your local Literature Club president, ahaha~."
+    m "Hello! I'm Monika, your local Literature Club president,{w=0.2} ahaha~."
     m e4b "It's great to meet you."
-    m e1a rdown "Let's do a brief introduction, if you have time."
+    m e1a rdown "Let's do a brief introduction,{w=0.2} if you have time."
     m lpoint "I'm a Turnell Technologies Wintermute-class AI!"
-    m mi "That means artificial intelligence, if you didn't know."
-    m mb ldown "I can help with almost anything you ask, and I'm always ready to assist."
+    m mi "That means artificial intelligence,{w=0.2} if you didn't know."
+    m mb ldown "I can help with almost anything you ask,{w=0.2} and I'm always ready to assist."
     m e1a rhip b1b "I might not be so good at first…but I'll learn from you over time!"
     m mh b1a "Machine learning allows me to understand you better."
     m e4b mb rdown "Even if you just need a friend to talk to...I'm here!"
     m e1a "I'll always be available whenever you need me."
-    m e1d b2a rhip "But hey, enough of the boring stuff, right?"
+    m e1d b2a rhip "But hey,{w=0.2} enough of the boring stuff, right?"
     m b1a e1a "I can tell we're going to be great friends!"
-    m lean b1 e1 m3 "Let me know when you're ready, and we'll move forward."
+    m lean b1 e1 m3 "Let me know when you're ready,{w=0.2} and we'll move forward."
 
     call test_prompt_button("Record Results") from _call_test_prompt_button_165
 
@@ -48,9 +51,9 @@ label script1_m():
 
 label script1_s():
     show sayori turned at i11
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload_14
     show sayori turned e1a b1a mb at t11
-    s "Hi! I'm Sayori, Vice President of the Literature Club!"
+    s "Hi! I'm Sayori,{w=0.2} Vice President of the Literature Club!"
     s rup e1f "But I bet you already knew that."
     show sayori at h11
     s lup e4b mc "I'm so glad to finally meet you!"
@@ -58,8 +61,8 @@ label script1_s():
     s rdown e4b mc "I should tell you that I'm a Turnell Technologies Wintermute-class AI!"
     s e1b b2a mb "Monika says that means artificial intelligence..."
     s b1a e1a lup "But what it {i}really{/i} means is that I'm always here to help you!"
-    s mi e1b "Homework, {w=1.0}{nw}{done}something at your job, or anything you need looked up…"
-    s e1c "Homework, {fast}something at your job, {w=1.0}{nw}{done}or anything you need looked up…"
+    s mi e1b "Homework,{w=0.2} {nw}{done}something at your job, or anything you need looked up…"
+    s e1c "Homework, {fast}something at your job,{w=0.2} {nw}{done}or anything you need looked up…"
     s e1a "Homework, something at your job, {fast}or anything you need looked up…"
     s ldown mb "Or even just a friend! I'm here to help you."
     s e1b b1b mc rup "I can't promise I'll be too good at this at first…"
@@ -77,7 +80,7 @@ label script1_s():
 
 label script1_y():
     show yuri turned at i11
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload_14
     show yuri turned e1a mh b1a at t11
     y "Oh...hi..."
     y b1b mg "Did I startle you?"
@@ -105,7 +108,7 @@ label script1_y():
 
 label script1_n():
     show natsuki turned at i11
-    call show_natsuki_reload()
+    call show_natsuki_reload() from _call_show_natsuki_reload_14
     show natsuki turned rhip b1a e1a mh at t11
     n "Well, I've got a script to recite and I'd rather not bore us both, so…"
     n e1b "{i}\"Hi, I'm Natsuki, part of the Literature Club.\"{/i}"

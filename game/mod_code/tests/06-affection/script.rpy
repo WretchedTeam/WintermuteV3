@@ -1,4 +1,5 @@
 label script6_main():
+    $ config.allow_skipping = True
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t6doki = "Monika"
@@ -19,12 +20,14 @@ label script6_main():
         "Exit" (prepend_load=False):
             return False
 
+    $ config.allow_skipping = False
+    $ del _history_list[-1000:]
     return True
 
 label script6_m():
 
     show monika forward at i11
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_2
     show monika forward e1a ma b2a at i11
     mc "Hello, {w=0.2}Monika."
     show monika mb b1a
@@ -62,9 +65,9 @@ label script6_m():
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_171
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.setAff 2")
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.setAff 2") from _call_nodecor_command
 
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_3
     show monika forward ldown rdown e1a ma b2a n1 at i11
     pause 0.5
 
@@ -79,8 +82,8 @@ label script6_m():
     m "I hope I've been a good friend too."
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_173
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.setAff 3")
-    call show_monika_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.setAff 3") from _call_nodecor_command_1
+    call show_monika_reload() from _call_show_monika_reload_4
     show monika forward ldown rdown e1a ma b2a n1 at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_174
@@ -110,9 +113,9 @@ label script6_m():
     m "I mean, {w=0.2}I..."
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_176
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.affVal memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful")
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.affVal memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful") from _call_nodecor_command_2
 
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_5
     show monika forward ldown rdown e1a ma b2a n1 at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_177
@@ -140,7 +143,7 @@ label script6_m():
 
 label script6_s():
     show sayori turned at i11
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload_2
     show sayori turned ma e1a b2a at i11
     mc "Hello, {w=0.2}Sayori."
     show sayori e4b mc b1a rup
@@ -173,8 +176,8 @@ label script6_s():
     show sayori m2
     call test_prompt_button("Record response") from _call_test_prompt_button_181
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.setAff 2")
-    call show_sayori_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.setAff 2") from _call_nodecor_command_3
+    call show_sayori_reload() from _call_show_sayori_reload_3
     show sayori turned b1a ma e1a at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_182
@@ -188,8 +191,8 @@ label script6_s():
     s "And you know I do my best to be good to you..."
     show sayori ma
     call test_prompt_button("Record response") from _call_test_prompt_button_183
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.setAff 3")
-    call show_sayori_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.setAff 3") from _call_nodecor_command_4
+    call show_sayori_reload() from _call_show_sayori_reload_4
     show sayori turned e1a b1a ma at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_184
@@ -219,9 +222,9 @@ label script6_s():
     s "I'm sorry, {w=0.2}I..."
     show sayori md
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_186
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.affVal memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful")
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.affVal memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful") from _call_nodecor_command_5
 
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload_5
     show sayori turned e1a b1a ma at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_187
@@ -253,7 +256,7 @@ label script6_s():
 label script6_n():
 
     show natsuki turned at i11
-    call show_natsuki_reload()
+    call show_natsuki_reload() from _call_show_natsuki_reload_2
     show natsuki turned md e1b b1a at t11
     mc "Hello, {w=0.2}Natsuki."
     show natsuki cross b1d mi e1d
@@ -313,8 +316,8 @@ label script6_n():
     show natsuki ldown mj e2c
     call test_prompt_button("Record response") from _call_test_prompt_button_191
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 affTree.setAff 2")
-    call show_natsuki_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 affTree.setAff 2") from _call_nodecor_command_6
+    call show_natsuki_reload() from _call_show_natsuki_reload_3
     show natsuki turned e1a ma b1a
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_192
@@ -334,8 +337,8 @@ label script6_n():
     n "I...{w=0.7}I hope you feel that way too."
     show natsuki ma
     call test_prompt_button("Record response") from _call_test_prompt_button_193
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 affTree.setAff 3")
-    call show_natsuki_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 affTree.setAff 3") from _call_nodecor_command_7
+    call show_natsuki_reload() from _call_show_natsuki_reload_4
     show natsuki turned e1a ma b1a n1
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_194
@@ -365,8 +368,8 @@ label script6_n():
     show natsuki me
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_196
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 affTree.affVal memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful")
-    call show_natsuki_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 affTree.affVal memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful") from _call_nodecor_command_8
+    call show_natsuki_reload() from _call_show_natsuki_reload_5
     show natsuki turned e1a b1a ma n1
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_197
@@ -397,7 +400,7 @@ label script6_n():
 label script6_y():
 
     show yuri turned at i11
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload_2
     show yuri turned e1a md b1c at i11
     mc "Hello, {w=0.2}Yuri."
     show yuri e1d mg
@@ -429,8 +432,8 @@ label script6_y():
     show yuri ma
     call test_prompt_button("Record response") from _call_test_prompt_button_201
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 affTree.setAff 2")
-    call show_yuri_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 affTree.setAff 2") from _call_nodecor_command_9
+    call show_yuri_reload() from _call_show_yuri_reload_3
     show yuri turned e1a md b1c at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_202
@@ -444,8 +447,8 @@ label script6_y():
     y "And I...{w=0.7}I only hope that I'm even half as good to you."
     show yuri md
     call test_prompt_button("Record response") from _call_test_prompt_button_203
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 affTree.setAff 3")
-    call show_yuri_reload()
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 affTree.setAff 3") from _call_nodecor_command_10
+    call show_yuri_reload() from _call_show_yuri_reload_4
     show yuri turned e1a md b1c at i11
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_204
@@ -469,9 +472,9 @@ label script6_y():
     show yuri m2
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_206
 
-    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 affTree.affVal memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful")
+    call nodecor_command(wm_terminal, "nodeCor 86753F9 WM194140255 affTree.affVal memReset", "node 86753F9 for branch ID WM194140255: node memory reset successful") from _call_nodecor_command_11
 
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload_5
     show yuri turned e1a md b1c at i11
     pause 0.5
 

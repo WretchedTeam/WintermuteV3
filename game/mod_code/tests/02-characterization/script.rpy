@@ -1,4 +1,5 @@
 label script2_main():
+    $ config.allow_skipping = True
     menu(screen="load_doki_choice"):
         "Monika":
             $ set_characterization_target("Monika", "boldly")
@@ -19,6 +20,8 @@ label script2_main():
         "Exit" (prepend_load=False):
             return False
 
+    $ config.allow_skipping = False
+    $ del _history_list[-1000:]
     return True
 
 label script2_qa(doki):
@@ -191,7 +194,7 @@ label script2_m_attractions():
 
 label script2_m():
     show monika forward at i11
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload
     show monika forward happ cm oe at t11
     mc "Hello, Monika."
     m lean happ om oe "Why hello, $EMPLOYEE_NAME!"
@@ -388,7 +391,7 @@ label script2_s_attractions():
 
 label script2_s():
     show sayori turned at i11
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload
     show sayori turned ma e1a b1a at t11
     mc "Hello, Sayori."
     show sayori mc e4b rup lup at h11
@@ -639,7 +642,7 @@ label script2_n_attractions():
 
 label script2_n():
     show natsuki turned at i11
-    call show_natsuki_reload()
+    call show_natsuki_reload() from _call_show_natsuki_reload
     show natsuki turned md e1b b1a at t11 zorder 2
     # Address Natsuki
     mc "Hello, Natsuki."
@@ -829,7 +832,7 @@ label script2_y_attractions():
 
 label script2_y():
     show yuri turned at i11
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload
     show yuri turned neut cm oe at t11
     mc "Hello, Yuri."
     show yuri lsur om oe at h11

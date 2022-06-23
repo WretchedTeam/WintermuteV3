@@ -38,44 +38,45 @@ transform penny_position():
     zoom 1.5 nearest True
 
 label title_drop():
+    $ config.allow_skipping = False
     scene black
     show t_os_copyright "\u00A9 Turnell Technologies"
-    pause(1.5)
+    $ renpy.pause(1.5, hard=True)
     show t_os_tagline "{image=startup_loading_dots}"
-    pause(.5)
+    $ renpy.pause(.5, hard=True)
     show t_os_title "Turnell{metropolis=regular}OS{/metropolis}"
     with Dissolve(2.0)
-    pause(6.0)
+    $ renpy.pause(5.0, hard=True)
     hide t_os_title
     hide t_os_tagline
     with Dissolve(1.0)
 
     show splash
     with Dissolve(1.0)
-    pause(3.0)
+    $ renpy.pause(3.0, hard=True)
     hide splash
     with Dissolve(0.5)
 
-    pause(1.0)
+    $ renpy.pause(1.0, hard=True)
 
     show penny neutral at penny_position
     with Dissolve(1.0)
-    pause 1.0
+    $ renpy.pause(1.0, hard=True)
 
     show penny sleep at penny_position
-    pause 0.1
+    $ renpy.pause(.1, hard=True)
     show penny neutral at penny_position
-    pause 0.01
+    $ renpy.pause(.01, hard=True)
     show penny sleep at penny_position
 
-    pause 0.1
+    $ renpy.pause(.1, hard=True)
 
     show penny neutral at penny_position
 
-    pause 1.0
+    $ renpy.pause(1.0, hard=True)
 
     show penny sleep at penny_position
-    pause 0.1
+    $ renpy.pause(.1, hard=True)
     show penny neutral at penny_position
 
     pause 1.0

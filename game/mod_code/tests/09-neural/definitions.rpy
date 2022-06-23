@@ -4,8 +4,8 @@ Lorem Ipsum"""
 define 2 neural_test =  _wm_test.WintermuteTest(
     key="neural_test",
     name="Neural Remembrance",
-    description="Lorem Ipsum",
-    final_report="Lorem Ipsum",
+    description="No description given.",
+    final_report="",
     assigned_on=datetime.date(year=2029, month=9, day=7),
     assigner="Yourself",
     headlines=(neural_test_headline_1, neural_test_headline_2, neural_test_headline_3, neural_test_headline_4),

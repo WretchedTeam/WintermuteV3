@@ -25,8 +25,9 @@ screen icon_grid():
 
         elif persistent.iwan_desktop:
             use desktop_app_icon("Email", mail_client_app, (0, 0), False)
-            use desktop_app_icon("Settings", settings_app, (0, 1), False)
-            use desktop_app_icon("Wintermute", dashboard_app, (0, 2), False)
+            use desktop_app_icon("Settings", settings_app, (1, 0), False)
+            use desktop_app_icon("Wintermute", dashboard_app, (2, 0), False)
+            use desktop_app_icon("News", news_client_app, (3, 0), False)
 
         else:
             use desktop_app_icon("Email", mail_client_app, (0, 0))

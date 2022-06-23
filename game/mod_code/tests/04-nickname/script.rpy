@@ -1,4 +1,5 @@
 label script4_main():
+    $ config.allow_skipping = True
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t4doki = "Monika"
@@ -19,12 +20,14 @@ label script4_main():
         "Exit" (prepend_load=False):
             return False
 
+    $ config.allow_skipping = False
+    $ del _history_list[-1000:]
     return True
 
 label script4_m():
 
     show monika forward at i11
-    call show_monika_reload()
+    call show_monika_reload() from _call_show_monika_reload_16
     show monika forward happ cm e1c at t11
     call test_prompt_button("Address Monika") from _call_test_prompt_button_144
     mc "Hello, Monika."
@@ -130,7 +133,7 @@ label script4_m():
 label script4_s():
 
     show sayori turned at i11
-    call show_sayori_reload()
+    call show_sayori_reload() from _call_show_sayori_reload_15
     show sayori turned ma e4b b1a lup rup at t11
     call test_prompt_button("Address Sayori") from _call_test_prompt_button_146
     mc "Hello, Sayori."
@@ -237,7 +240,7 @@ label script4_s():
 label script4_n():
 
     show natsuki turned at i11
-    call show_natsuki_reload()
+    call show_natsuki_reload() from _call_show_natsuki_reload_15
     show natsuki cross e1b mj b1a at t11
     call test_prompt_button("Address Natsuki") from _call_test_prompt_button_148
     mc "Hello, Natsuki."
@@ -337,7 +340,7 @@ label script4_n():
 label script4_y:
 
     show yuri turned at i11
-    call show_yuri_reload()
+    call show_yuri_reload() from _call_show_yuri_reload_15
     show yuri turned ma b1a e1b lup rup at t11
     call test_prompt_button("Address Yuri") from _call_test_prompt_button_150
     mc "Hello, Yuri."

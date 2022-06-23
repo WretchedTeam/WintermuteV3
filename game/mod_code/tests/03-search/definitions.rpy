@@ -13,7 +13,7 @@ When asked to look up breaking news stories from BBC News, Sayori oddly began to
 define 2 search_test =  _wm_test.WintermuteTest(
     key="search_test",
     name="Search Query",
-    description="Lorem Ipsum",
+    description="{i}\"To utilize the home assistant features of WINTERMUTE by asking targeted search queries.\"{/i}",
     final_report=search_test_report,
     assigned_on=datetime.date(year=2029, month=7, day=27),
     assigner="Iwan Green",

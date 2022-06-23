@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "0.9"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -150,6 +150,7 @@ define config.save_directory = "WintermuteV3-1636109150"
 ##
 ## The icon displayed on the taskbar or dock.
 
+define config.rollback_enabled = config.developer
 define config.window_icon = "mod_assets/os/penny/Penny.png"
 
 init python:
@@ -162,5 +163,7 @@ init python:
 
     # renpy.music.register_channel("music_player", "music_player")
 
-    # Force fullscreen by default 
+    _dismiss_pause = False
+    config.developer = False
+    # Force fullscreen by default
     config.default_fullscreen = True

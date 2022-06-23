@@ -1,12 +1,12 @@
 define stress_test_report = """
-Lorem Ipsum"""
+I don’t like this."""
 
 
 define 2 stress_test =  _wm_test.WintermuteTest(
     key="stress_test",
     name="Stress Test",
-    description="Lorem Ipsum",
-    final_report="Lorem Ipsum",
+    description="{i}\"To push the WINTERMUTE program to its breaking point.\"{/i}",
+    final_report=stress_test_report,
     assigned_on=datetime.date(year=2029, month=8, day=31),
     assigner="Iwan Green",
     headlines=(stress_test_headline_1, stress_test_headline_2, stress_test_headline_3, stress_test_headline_4),

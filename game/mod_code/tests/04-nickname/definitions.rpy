@@ -11,7 +11,7 @@ Almost immediately, Jeremy externally shut down my testing application in order 
 define 2 nickname_test =  _wm_test.WintermuteTest(
     key="nickname_test",
     name="Nickname Recognition",
-    description="Lorem Ipsum",
+    description="{i}\"Give a doki a nickname adn see how they respond\"{/i}",
     final_report=nickname_test_report,
     assigned_on=datetime.date(year=2029, month=8, day=3),
     assigner="Jeremy Osborne",

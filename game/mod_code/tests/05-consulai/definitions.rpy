@@ -9,7 +9,7 @@ However, when faced with the prospect of a customer leaving them, their attitude
 define 2 consulai_test =  _wm_test.WintermuteTest(
     key="consulai_test",
     name="ConsulAI",
-    description="Lorem Ipsum",
+    description="{i}\"To pose as a depressed customer, and have WINTERMUTE try and comfort you using the ConsulAI framework.\"{/i}",
     final_report=consulai_test_report,
     assigned_on=datetime.date(year=2029, month=8, day=10),
     assigner="Iwan Green",

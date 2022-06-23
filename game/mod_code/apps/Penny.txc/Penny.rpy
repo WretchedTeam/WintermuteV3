@@ -6,7 +6,7 @@ screen penny_idle(zoom_out=False):
     layer "penny"
 
     python:
-        lst = _wm_penny_dialogues.click_response_post_sensory if persistent.finished_sensory_test else _wm_penny_dialogues.click_response_pre_sensory
+        lst = _wm_penny_dialogues.click_response_iwan if persistent.iwan_desktop else _wm_penny_dialogues.click_response_post_sensory if persistent.finished_sensory_test else _wm_penny_dialogues.click_response_pre_sensory
 
     button:
         if zoom_out:

@@ -84,7 +84,8 @@ init python in _wm_penny:
             _wm_penny_dialogues.pre_test_dialogue_5,
             _wm_penny_dialogues.pre_test_dialogue_6,
             _wm_penny_dialogues.pre_test_dialogue_7,
-            _wm_penny_dialogues.pre_test_dialogue_8
+            _wm_penny_dialogues.pre_test_dialogue_8,
+            _wm_penny_dialogues.pre_test_dialogue_9
         )
 
         def __call__(self):
@@ -107,6 +108,7 @@ init python in _wm_penny:
         "replyable_email_received": PennyOneTimeDialogue("first_email_reply", _wm_penny_dialogues.first_email_reply),
         "spam_received": PennyOneTimeDialogue("first_spam_email", _wm_penny_dialogues.first_spam_email),
         "snake_open": PennyOneTimeDialogue("first_snake_open", _wm_penny_dialogues.first_snake_open),
+        "bell_reply": PennyOneTimeDialogue("robert_bell_replied", _wm_penny_dialogues.robert_bell_replied),
         "test_completed": PennyPostTestDialogue(),
         "test_assigned": PennyPreTestDialogue()
     }

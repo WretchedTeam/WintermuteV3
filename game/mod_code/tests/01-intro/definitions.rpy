@@ -5,7 +5,7 @@ Upon interaction with the WINTERMUTE program, the girls introduced themselves an
 define 2 intro_test = _wm_test.WintermuteTest(
     key="intro_test",
     name="Formal Introduction",
-    description="Lorem Ipsum",
+    description="{i}\"To introduce yourself to the WINTERMUTE companions.\"{/i}",
     final_report=intro_test_final_report,
     assigned_on=datetime.date(year=2029, month=7, day=13),
     assigner="Robert Bell",
