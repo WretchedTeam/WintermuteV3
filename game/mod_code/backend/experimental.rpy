@@ -122,8 +122,6 @@ init -10 python:
             return self._displayable
 
     class WindowRenderer(renpy.Displayable):
-        __slots__ = "app_ids", "opened", "children", "offsets", "start_times"
-
         def __init__(self, *args, **kwargs):
             super(WindowRenderer, self).__init__(**kwargs)
             self.children = { } 

@@ -17,7 +17,6 @@ init python in _wm_displayables:
                 0.0, 0.0, 1.0, 1.0,
             )
 
-            rv.opaque = False
             rv.add_shader(self.shader)
 
             def expand_dictionaries(d, *args, **kwargs):

@@ -28,7 +28,6 @@ init -100 python in _wm_rounded:
 
             if self.radius or self.outline_width:
                 rv.mesh = True
-                rv.opaque = False
 
                 rv.add_property("gl_pixel_perfect", True)
                 rv.add_property("gl_mipmap", False)
