@@ -15,8 +15,8 @@ TurnellOS Bootloader
 {font=mod_assets/gui/font/SourceCodePro-Regular.ttf}━━━━━━━━━━━━━━━━━━━━{/font}
 """.strip()
 
-define audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
-define audio.foley_enter_key = [ "<silence 0.01>", "mod_assets/audio/foley/enter_key.ogg" ]
+define -10 audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
+define -10 audio.foley_enter_key = [ "<silence 0.01>", "mod_assets/audio/foley/enter_key.ogg" ]
 
 init python:
     def terminal_character_callback(ev, **kwargs):

@@ -3,6 +3,12 @@
     me = singleton.SingleInstance()
 
 label splashscreen():
+    python:
+        missing_archives = { "fonts", "audio", "images" } - set(config.archives)
+
+        if missing_archives:
+            renpy.error("DDLC archive files not found in /game folder. Check your installation and try again.")
+
     if persistent.autoload is not None:
         jump expression persistent.autoload
 
