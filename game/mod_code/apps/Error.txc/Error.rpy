@@ -15,6 +15,7 @@ screen error_dialog(msg, sc_name="error_dialog"):
     modal True
 
     drag at window_animation:
+        drag_handle (0.0, 0.0, 1.0, 40)
         align (0.5, 0.5)
         vbox:
             xsize 700

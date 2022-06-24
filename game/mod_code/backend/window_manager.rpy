@@ -124,6 +124,7 @@ style header_frame:
 
 screen program_base(app, **props):
     drag at [ window_animation ]:
+        drag_handle (0.0, 0.0, 1.0, 40)
         pos _wm_manager.get_position(app.screen_id)
         activated app.raise_window
         dragged app.change_position
