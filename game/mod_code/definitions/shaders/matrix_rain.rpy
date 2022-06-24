@@ -28,9 +28,10 @@ init python:
         }
 
         float rain(vec2 uv, vec2 r, float time) {
+            uv.y = 1.0 - uv.y;
             uv -= mod(uv, tilesize);
             float offset = sin(uv.x * 10.0);
-            float y = fract(uv.y / r.y + offset + 0.25 * time);
+            float y = fract(uv.y / r.y - offset + 0.25 * time);
             return clamp(0.0, 1.0, 1.0 / (y * 20.0));
         }
     """,fragment_200="""
