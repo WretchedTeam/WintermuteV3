@@ -3,6 +3,9 @@
     me = singleton.SingleInstance()
 
 label splashscreen():
+    $ config.skipping = False
+    $ config.allow_skipping = False
+
     python:
         missing_archives = { "fonts", "audio", "images" } - set(config.archives)
 
