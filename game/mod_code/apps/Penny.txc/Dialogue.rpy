@@ -147,7 +147,7 @@ init -1000 python in _wm_penny_dialogues:
         ("penny flushed", "Hey, stoppp! … Aww, I can't stay mad at you, {b}partner{/b}."),
         ("penny dead", "Hey {b}buddy{/b}, look where you're {b}poking{/b}!"),
         ("penny confused", "Are you {b}petting{/b} me?! … That's {b}nice{/b} of you, [persistent.firstname!c]."),
-        ("penny happy", "Oh, {b}hey{/b} there! What's up{/b}?"),
+        ("penny happy", "Oh, {b}hey{/b} there! What's up?"),
         ("penny confused", "Can I {b}help{/b} you?"),
         ("penny happy", "{b}Howdy{/b}! What can I {b}do{/b} for ya?"),
         ("penny happier", "Hey [persistent.firstname!c]! Whaddya {b}need{/b}?"),
