@@ -2,14 +2,6 @@
 default -100 persistent.music_playlist = [ ]
 default -100 persistent.music_favorite = [ ]
 
-image music_player control background:
-    "mod_assets/os/music_player/control_background.png"
-    zoom 0.5
-
-image music_player sample cover_art:
-    "mod_assets/os/music_player/sample_cover_art.png"
-    zoom 0.5
-
 image music_player bar_left:
     ysize 20
 
