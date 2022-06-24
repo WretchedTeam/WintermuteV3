@@ -1,4 +1,5 @@
 label wm_start():
+    $ config.skipping = False
     $ renpy.scene("screens")
     $ _wm_manager.Application.close_all_apps()
 

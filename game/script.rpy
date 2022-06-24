@@ -60,6 +60,7 @@ label start():
 
 label wm_desktop():
     scene black
+    $ config.skipping = False
     $ _window_hide(None)
     $ renpy.scene("screens")
     call screen desktop with fade
