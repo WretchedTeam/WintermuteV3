@@ -83,7 +83,7 @@ init -10 python in _wm_icon_grid:
 
         return persistent.icon_positions[title]
 
-screen desktop_app_icon(title, app, cell=(0, 0), store=False):
+screen desktop_app_icon(title, app, cell=(0, 0), store=True):
     $ snap = _wm_icon_grid.GridSnap(title)
 
     drag:
@@ -99,7 +99,7 @@ screen desktop_app_icon(title, app, cell=(0, 0), store=False):
         hovered Play("audio", gui.hover_sound)
         focus_mask _wm_icon_grid.desktop_icon_image(app.icon, "")
 
-screen desktop_label_icon(title, icon, label_name, cell=(0, 0), store=False):
+screen desktop_label_icon(title, icon, label_name, cell=(0, 0), store=True):
     $ snap = _wm_icon_grid.GridSnap(title)
 
     drag:
@@ -115,7 +115,7 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0), store=False):
         hovered Play("audio", gui.hover_sound)
         focus_mask _wm_icon_grid.desktop_icon_image(icon, "")
 
-screen desktop_action_icon(title, icon, action, cell=(0, 0)store=False):
+screen desktop_action_icon(title, icon, action, cell=(0, 0), store=True):
     $ snap = _wm_icon_grid.GridSnap(title)
 
     drag:
