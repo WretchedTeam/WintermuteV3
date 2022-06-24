@@ -47,7 +47,7 @@ Quality Assurance Lead
         sender=rbell_sender,
         receiver="@Turnell",
         quick_replies=[
-            EmailReply("Fuck you.", _wm_penny.emit_event("bell_reply", 0.5, True)),
+            EmailReply("Fuck you.", Function( _wm_penny.emit_event, "bell_reply", 0.5, True)),
         ]
     )
 
