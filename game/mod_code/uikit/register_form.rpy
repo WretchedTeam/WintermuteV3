@@ -31,21 +31,38 @@ style register_form_label_text:
 screen register_form_input_field(input_val, default_text, filter):
     style_prefix "register_form_input_field"
 
-    button action input_val.Toggle():
-        if renpy.display.behavior.current_input_value is not input_val and not input_val.get_text():
-            text "[default_text]"
+    button action input_val.Enable():
+        showif input_val.get_text():
+            textbutton _("{cross}") action Function(input_val.set_text, "") style_suffix "clear_button"
+        else:
+            if renpy.display.behavior.current_input_value is not input_val:
+                text "[default_text]"
 
-        input value input_val allow filter
+        input value input_val allow filter length 28
 
 style register_form_input_field_button is empty
+style register_form_input_field_clear_button is empty
 
 style register_form_input_field_button:
     background RoundedFrame("#ffffff2f", radius=10.0)
     xsize 493 ysize 70
     padding (20, 20)
+    key_events True
+
+style register_form_input_field_clear_button:
+    xalign 1.0
+    key_events True
+
+image register_form_input_caret:
+    Text("|", style="register_form_label_text", yoffset=-1)
+    0.5
+    Text(" ", style="register_form_label_text", yoffset=-1)
+    0.5
+    repeat
 
 style register_form_input_field_input is register_form_label_text:
     hinting "none"
     yalign 0.5
+    caret "register_form_input_caret"
 
 style register_form_input_field_text is register_form_input_field_input
