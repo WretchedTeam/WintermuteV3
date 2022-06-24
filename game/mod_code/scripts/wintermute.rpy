@@ -30,7 +30,13 @@ label wm_start():
 
     label .test_start:
     if test is not None:
+        $ config.skipping = True
+        $ config.allow_skipping = True
         call expression test.main_label from _call_expression_9
+        $ _history_list.clear()
+        $ config.skipping = True
+        $ config.allow_skipping = False
+
         if _return:
             $ _wm_penny.emit_event("test_completed")
             $ test.mark_complete()

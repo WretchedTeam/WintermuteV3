@@ -32,8 +32,7 @@ screen history(return_action=None):
                     if "color" in h.who_args:
                         text_color h.who_args["color"]
 
-                text renpy.filter_text_tags(h.what, allow=gui.history_allow_tags):
-                    substitute False
+                text renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
 
         if not _history_list:
             label _("The text transcript is empty.")

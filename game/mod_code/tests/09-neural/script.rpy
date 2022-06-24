@@ -212,7 +212,7 @@ label script9_main():
             hide eg4
             show eg5 zorder 101
             pause(0.01)
-            $ del _history_list[-1000:]
+            $ _history_list.clear()
             $ config.allow_skipping = False
             jump ending_script_destroy
 

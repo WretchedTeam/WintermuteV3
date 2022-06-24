@@ -1,5 +1,4 @@
 label script5_main():
-    $ config.allow_skipping = True
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t5doki = "Monika"
@@ -20,8 +19,6 @@ label script5_main():
         "Exit" (prepend_load=False):
             return False
 
-    $ config.allow_skipping = False
-    $ del _history_list[-1000:]
     return True
 
 label script5_qa(doki):

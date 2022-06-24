@@ -1,5 +1,4 @@
 label script1_main():
-    $ config.allow_skipping = True
     while not all(persistent.script1_seen.values()):
         menu (screen="load_doki_choice"):
             "Monika" if not persistent.script1_seen["m"]:
@@ -21,8 +20,6 @@ label script1_main():
             "Exit" (prepend_load=False):
                 return False
 
-    $ config.allow_skipping = False
-    $ del _history_list[-1000:]
     return True
 
 label script1_m():

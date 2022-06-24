@@ -1,5 +1,4 @@
 label script7_main:
-    $ config.allow_skipping = True
     menu (screen="load_doki_choice"):
         "Monika":
             $ set_sensory_target("Monika", "sauvignon blanc wine", "n urban coffee shop")
@@ -20,8 +19,6 @@ label script7_main:
         "Exit" (prepend_load=False):
             return False
 
-    $ config.allow_skipping = False
-    $ del _history_list[-1000:]
     $ persistent.finished_sensory_test = True
     return True
 

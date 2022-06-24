@@ -1,5 +1,4 @@
 label script4_main():
-    $ config.allow_skipping = True
     menu (screen="load_doki_choice"):
         "Monika":
             $ persistent.t4doki = "Monika"
@@ -20,8 +19,6 @@ label script4_main():
         "Exit" (prepend_load=False):
             return False
 
-    $ config.allow_skipping = False
-    $ del _history_list[-1000:]
     return True
 
 label script4_m():
