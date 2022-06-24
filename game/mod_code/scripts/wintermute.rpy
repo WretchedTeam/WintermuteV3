@@ -34,7 +34,7 @@ label wm_start():
         $ config.allow_skipping = True
         call expression test.main_label from _call_expression_9
         $ _history_list.clear()
-        $ config.skipping = True
+        $ config.skipping = False
         $ config.allow_skipping = False
 
         if _return:
