@@ -165,7 +165,7 @@ label script9_main():
 
     menu:
         "Input command":
-            call nodecor_command(wm_terminal, "shred -f -z -n9 -u [/file/armitage/trnlwm]", "administrator privileges required to execute command. please confirm your administrator credentials:") from _call_nodecor_command_16
+            call nodecor_command(wm_terminal, "shred -f -z -n9 -u [[/file/armitage/trnlwm]", "administrator privileges required to execute command. please confirm your administrator credentials:") from _call_nodecor_command_16
             call nodecor_command(wm_terminal, "****************", "are you sure you want to continue? y/n") from _call_nodecor_command_17
             call nodecor_command(wm_terminal, "y") from _call_nodecor_command_18
             show sayori mb e4e b2c
