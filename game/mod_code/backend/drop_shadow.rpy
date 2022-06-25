@@ -57,6 +57,7 @@ init -100 python in _wm_shadow:
             rv = renpy.Render(cw, ch)
             rv.absolute_blit(sr, (-self.blur * 40 + self.xoffset, -self.blur * 40 + self.yoffset), focus=False, main=False)
             rv.blit(cr, (0, 0))
+            self.offsets = [(0, 0)]
 
             return rv
 

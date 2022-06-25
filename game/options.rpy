@@ -164,6 +164,6 @@ init python:
     # renpy.music.register_channel("music_player", "music_player")
 
     config.developer = False
-    _dismiss_pause = False
+    _dismiss_pause = config.developer
     # Force fullscreen by default
     config.default_fullscreen = True
