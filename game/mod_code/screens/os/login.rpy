@@ -46,7 +46,7 @@ transform login_fadein_y():
         ease_quad 0.5 alpha 1.0 yoffset 0 
 
     on hide:
-        ease_quad 0.5 alpha 0.0 yoffset -10
+        ease_quad 0.5 alpha 0.0 yoffset 10
 
 transform login_fade():
     alpha 1.0

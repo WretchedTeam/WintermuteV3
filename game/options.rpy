@@ -150,8 +150,13 @@ define config.save_directory = "WintermuteV3-1636109150"
 ##
 ## The icon displayed on the taskbar or dock.
 
+define -2 config.developer = True
+define _dismiss_pause = config.developer
 define config.rollback_enabled = config.developer
 define config.window_icon = "mod_assets/os/penny/Penny.png"
+
+# Force fullscreen by default
+define config.default_fullscreen = True
 
 init python:
     def game_menu_check():
@@ -161,9 +166,3 @@ init python:
     config.search_prefixes.append("mod_assets/")
     config.search_prefixes.append("../music/")
 
-    # renpy.music.register_channel("music_player", "music_player")
-
-    config.developer = False
-    _dismiss_pause = config.developer
-    # Force fullscreen by default
-    config.default_fullscreen = True
