@@ -33,8 +33,15 @@ transform dock_frame_trans:
     matrixtransform RotateMatrix(60.0, 0.0, 0.0) * OffsetMatrix(0.0, 0.0, -30.0)
 
 screen dock_app_icon(app):
-    button action Function(app.raise_window):
+    button:
         at _wm_shadow.DropShadow(blur=8.0, color="#1116")
+
+        action If(
+            app in _wm_manager.open_apps,
+            Function(app.raise_window),
+            Function(app.open)
+        )
+
         xysize (100, 100)
         padding (10, 10)
         add app.icon fit "contain"

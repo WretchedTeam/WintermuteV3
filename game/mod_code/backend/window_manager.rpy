@@ -77,6 +77,7 @@ init -1000 python in _wm_manager:
 
         def open(self, *args, **kwargs):
             renpy.show_screen(self.screen_id, _zorder=get_zorder(self.screen_id), *args, **kwargs)
+
             if self not in open_apps:
                 open_apps.append(self)
 
@@ -87,6 +88,8 @@ init -1000 python in _wm_manager:
 
             if self in open_apps:
                 open_apps.remove(self)
+
+            positions.pop(self.screen_id)
 
 transform window_animation():
     crop_relative True
