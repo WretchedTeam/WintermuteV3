@@ -60,9 +60,6 @@ init -100 python in _wm_shadow:
 
             return rv
 
-        def event(self, ev, x, y, st):
-            return self.child.event(ev, x - self.blur, y - self.blur, st)
-
     class DropShadow(object):
         def __init__(self, color="#000", xoff=0, yoff=0, blur=5.0, **kwargs):
             self.color = color
