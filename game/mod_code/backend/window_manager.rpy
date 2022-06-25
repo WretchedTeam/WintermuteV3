@@ -89,7 +89,7 @@ init -1000 python in _wm_manager:
             if self in open_apps:
                 open_apps.remove(self)
 
-            positions.pop(self.screen_id)
+            positions.pop(self.screen_id, None)
 
 transform window_animation():
     crop_relative True
