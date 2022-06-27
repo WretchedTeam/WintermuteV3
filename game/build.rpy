@@ -11,10 +11,21 @@ init python:
     build.package(build.directory_name + "Mac Exclusive",'zip','mac renpy mod binary',description="Wintermute - Mac")
     build.package(build.directory_name + "Linux Exclusive",'zip','linux renpy mod binary',description="Wintermute - Linux")
 
-    try:
-        build.renpy_patterns.remove(build.pattern_list([("renpy.py", "all")])[0])
-    except:
-        pass
+    renpy_dist_remapping = { "renpy.py": "renpy" }
+
+    def remap_renpy_patterns(x):
+        pattern, _ = x
+        if pattern in renpy_dist_remapping:
+            return (pattern, build.make_file_lists(renpy_dist_remapping[pattern]))
+
+        return x
+
+    build.renpy_patterns = list(map(remap_renpy_patterns, build.renpy_patterns))
+
+    def classify_renpy_n(pattern, groups, n=0):
+        build.renpy_patterns.insert(n, (pattern, build.make_file_lists(groups)))
+
+    classify_renpy_n("renpy/common/**", "renpy", 0)
 
     build.classify_renpy("renpy.py", 'renpy all')
 
