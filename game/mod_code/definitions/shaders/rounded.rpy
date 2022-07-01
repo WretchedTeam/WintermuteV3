@@ -1,3 +1,6 @@
+# Rounded corner shader with outlines.
+# SDF function's from https://www.iquilezles.org/www/articles/distfunctions/distfunctions2d.htm
+
 init -100 python:
     renpy.register_shader("wm.rounded_corners", variables="""
         uniform float u_radius;

@@ -1,3 +1,6 @@
+# Shader amalgamation of a Kawase blur function, 
+# an half-cocked alpha masking method and overlaying.
+
 init python:
     renpy.register_shader("wm.kawase_background", variables="""
         uniform sampler2D tex0;

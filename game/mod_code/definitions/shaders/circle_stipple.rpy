@@ -1,3 +1,4 @@
+# Unused.
 init -100 python:
     renpy.register_shader("wm.circle_stipple", variables="""
         uniform sampler2D tex0;

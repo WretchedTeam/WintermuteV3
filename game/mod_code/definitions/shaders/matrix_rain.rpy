@@ -1,3 +1,6 @@
+# It's The Matrix.
+# https://medium.com/@clashofcoins/how-to-make-matrix-effect-shader-with-glsl-8e24b6c2f43e
+
 init python:
     # Requires a specific fontmap from ShaderToy, 
     # the text function is hardcoded for that map.

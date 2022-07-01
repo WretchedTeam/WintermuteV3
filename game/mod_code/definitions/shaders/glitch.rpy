@@ -1,3 +1,6 @@
+# Unused.
+# `wm.reload_glitch` is from Q.
+
 init python:
     renpy.register_shader("wm.reload_glitch", variables="""
         uniform sampler2D tex0;

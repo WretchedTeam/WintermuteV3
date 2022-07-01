@@ -1,3 +1,4 @@
+# Unused.
 init python:
     renpy.register_shader("wm.circle_outline", variables="""
         uniform sampler2D tex0;

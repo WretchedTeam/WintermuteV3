@@ -1,3 +1,7 @@
+# Prototype low-budget Genie effect.
+# Shamelessly ripped off from ShaderToy.
+# https://www.shadertoy.com/view/4stGRr 
+
 init python:
     renpy.register_shader("wm.genie", variables="""
         uniform sampler2D tex0;

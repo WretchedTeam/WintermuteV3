@@ -1,3 +1,10 @@
+# Shader code for an Anti-Fisheye effect which  I ripped 
+# off Q's dumb ass (ily)
+
+# `wm.antifisheye` is Q's unmodified one.
+# `wm.antifisheye_transition` is a modified version to
+# serve as a transition.
+
 init python:
     renpy.register_shader("wm.antifisheye", variables="""
         uniform sampler2D tex0;

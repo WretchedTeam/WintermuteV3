@@ -1,3 +1,5 @@
+# A custom gradient shader with rotation support.
+
 init python:
     renpy.register_shader("wm.gradient", variables="""
         uniform float u_theta;
