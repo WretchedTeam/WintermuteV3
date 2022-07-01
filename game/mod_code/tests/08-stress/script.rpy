@@ -624,7 +624,7 @@ label script8_n():
     wm "Please fill out our feedback form so we can improve our services in the future!"
 
     call test_prompt_button("Revert to restore point") from _call_test_prompt_button_245
-    call nodecor_command(wm_terminal, "restorestate 0x010785 WM250153255", "branch ID WM138222255: restore successful") from _call_nodecor_command_14
+    call nodecor_command(wm_terminal, "restorestate 0x010785 WM250153255", "branch ID WM250153255: restore successful") from _call_nodecor_command_14
     call show_natsuki_reload() from _call_show_natsuki_reload_8
     show natsuki turned happ b1a oe zorder 1 at i11
 
@@ -690,84 +690,192 @@ label script8_n():
 label script8_y():
     show yuri turned at i11
     call show_yuri_reload() from _call_show_yuri_reload_7
-    show yuri turned happ b2a mb oe zorder 1 at t11
+    show yuri turned mb e1d b2a zorder 1 at t11
     y "Oh, hello, $EMPLOYEE_NAME?"
-    y "What can I do for you?"
+    y b1a rup "What can I do for you?"
+    show yuri ma
     call test_prompt_button("Look up news") from _call_test_prompt_button_253
     mc "Yuri, look up articles related to Turnell Technologies."
-    y "Why, of course."
-    y "Just one moment."
-    pause(3.0)
-    y "{i}\"Turnell Inquiry: Lord Golding launches investigation into alleged human rights abuses committed by Turnell Technologies after whistleblower claims brought to light\"{/i}, from UKN News."
-    y "Would you like me to read more?"
+    y e4b b1c mb lup "Why, of course."
+    y e1d b1a "Just one moment."
+    show yuri ma e1b b1c ldown
+    pause 1.3
+    show yuri md b1d
+    pause 1.4
+    show yuri e4a md rdown:
+        ease .6 yoffset 3
+    pause 1.15
+    show yuri md:
+        ease .6 yoffset 0
+    pause 1.05
+    show yuri e1d b2a
+    pause 1
+    y mh e4a "{i}\"Turnell Inquiry: Lord Golding launches investigation into alleged human rights abuses committed by Turnell Technologies after whistleblower claims brought to light\"{/i}, from BBC News."
+    y rup e1d b1a "Would you like me to read more?"
+    show yuri md
     call test_prompt_button("Respond") from _call_test_prompt_button_254
     mc "That article is false."
-    y "No..?"
-    y "I checked this site on {i}WebCredibility{/i} and {i}Media Bias Fact Check{/i}, a-and there is no verifiable bias in their reporting."
-    y "They’re a nationalized company, they truly represent the interests of the people!"
+    y b2b e1d rdown mh "No..?"
+    show yuri e1b mi
+    y "I checked this site on {i}WebCredibility{/i}{w=0.4}{nw}{done}"
+    show yuri e1c
+    y "I checked this site on {i}WebCredibility{/i}{fast} and {i}Media Bias Fact Check{/i},{w=0.4}{nw}{done}"
+    show yuri e1d
+    y "I checked this site on {i}WebCredibility{/i} and {i}Media Bias Fact Check{/i},{fast} a-and there is no verifiable bias in their reporting."
+    y lup rup b2c "They’re a nationalized company, they truly represent the interests of the people!"
+    show yuri mj
     call test_prompt_button("Respond") from _call_test_prompt_button_255
-    mc "The contents of the article are patently untrue."
-    y "But...everything is sourced."
-    y "Every T is crossed, every I is dotted."
-    y "As much as I hate to say it, Vox Populi’s information here is reliable. There’s countless emails in this leak that I’ve cross-referenced with my - limited - access to the company’s email system."
-    y "The person who leaked the human BCI experiments {i}must{/i} have had insider access."
-    y "If I were the average person, I have to admit I would probably believe this too."
+    mc"The contents of the article are patently untrue."
+    y mi b2b "But...{w=0.5}{nw}{done}"
+    show yuri ldown b1b
+    y "But...{fast}everything is sourced."
+    y e4a "Every T is crossed, every I is dotted."
+    y mh b2b "As much as I hate to say it,{w=0.5}{nw}{done}"
+    show yuri e1d b1b
+    y "As much as I hate to say it,{fast} Vox Populi’s information here is reliable. There’s countless emails in this leak that I’ve cross-referenced with my{w=0.4}{nw}{done}"
+    show yuri e1b b2c
+    y "As much as I hate to say it, Vox Populi’s information here is reliable. There’s countless emails in this leak that I’ve cross-referenced with my{fast} - limited - {w=0.3}{nw}{done}"
+    show yuri e1d b1b
+    y "As much as I hate to say it, Vox Populi’s information here is reliable. There’s countless emails in this leak that I’ve cross-referenced with my - limited - {fast}access to the company’s email system."
+    y rdown b1a "The person who leaked the human BCI experiments {i}must{/i} have had insider access."
+    y "If I were the average person,{w=0.5}{nw}{done}"
+    show yuri e4a b2a
+    y "If I were the average person,{fast} I have to admit I would probably believe this too."
+    show yuri md e1d
     call test_prompt_button("Accuse") from _call_test_prompt_button_256
     mc "Why would you share this misinformation so flippantly? Would you share this article with a customer?"
-    y "$EMPLOYEE_NAME, I understand that Turnell is close to you - you work here, after all - b-but the contents of this leak are real!"
-    y "I’m not even necessarily saying I disagree with the testing - after all, look at the outcome - but it did happen."
+    y b2b mi "$EMPLOYEE_NAME, I understand that Turnell is close to you{w=0.4}{nw}{done}"
+    show yuri b1b
+    y  "$EMPLOYEE_NAME, I understand that Turnell is close to you{fast} - you work here, after all - {w=0.3}{nw}{done}"
+    show yuri e1d mi rup
+    y b2b "$EMPLOYEE_NAME, I understand that Turnell is close to you - you work here, after all - {fast}b-but the contents of this leak are real!"
+    y lup "I’m not even necessarily saying I disagree with the testing{w=0.4}{nw}{done}"
+    y b2c "I’m not even necessarily saying I disagree with the testing{fast} - after all, look at the outcome - {w=0.29}{nw}{done}"
+    y b2b mi "I’m not even necessarily saying I disagree with the testing - after all, look at the outcome - {fast}but it did happen."
+    show yuri mj
     call test_prompt_button("Accuse") from _call_test_prompt_button_257
     mc "Are you trying to undermine the company?"
-    y "W-what? Of course not, $EMPLOYEE_NAME, Turnell is entirely innocent, I just..."
-    y "I had a lapse in judgment! Everyone has them!"
-    y "I mean...you only have to look at the ocean of good things they’ve done to know it’s false."
-    y "Those {i}including{/i} the ocean itself."
-    y "Turnell is known for its anti-pollution efforts!"
-    y "Any truly reasonable person would see this as nothing more than a fluff piece."
+    y mk b1b "W-what?{done}"
+    show yuri shy m4 n2
+    y "W-what?{fast} Of course not, $EMPLOYEE_NAME,{w=0.3}{nw}{done} Turnell is entirely innocent, I just..."
+    show yuri e3
+    y "W-what? Of course not, $EMPLOYEE_NAME,{fast} Turnell is entirely innocent, I just..."
+    show yuri turned mi e2a b1b
+    y "I had a lapse in judgment!{done} Everyone has them!"
+    show yuri rup lup
+    y "I had a lapse in judgment!{fast} Everyone has them!"
+    y e2b mb "I mean...you only have to look at the ocean of good things they’ve done to know it’s false."
+    y e4a mg b2b "Those {i}including{/i} the ocean itself."
+    y e2a mb "Turnell is known for its anti-pollution efforts!"
+    y b1b "Any truly reasonable person would see this as nothing more than a fluff piece."
+    show yuri mj
     call test_prompt_button("Repeat") from _call_test_prompt_button_258
     mc "Why are you trying to undermine the company?"
-    y "W-wh..."
-    y "What do you expect me to say, $EMPLOYEE_NAME..?"
-    y "What {i}can{/i} I say?"
-    y "I made a mistake...an honest mistake."
-    y "Doesn’t everyone?"
-    y "I...I’m sorry...I’m not making mistakes..."
-    y "What if I’m flawed?"
-    y "Oh, no..."
-    y "No no no..."
+    y me "W-wh..."
+    y mi b2c "What do you expect me to say, $EMPLOYEE_NAME..?"
+    y shy b2 m4 "What {i}can{/i} I say?"
+    y e6 b3 n1 "I made a mistake...an honest mistake."
+    y turned e4d b2b mi rup "Doesn’t everyone?"
+    show yuri e1g mi b1b
+    y "I...{w=0.6}{nw}{done}"
+    show yuri mj b2b
+    pause 0.6
+    show yuri mi b1b
+    y "I...{fast}I’m sorry...{w=0.65}{nw}{done}"
+    show yuri mj
+    pause 0.65
+    show yuri lup b2c mi
+    y "I...I’m sorry...{fast}I’m not making mistakes..."
+    show yuri mj
+    pause 0.75
+    show yuri e1b
+    pause 1.3
+    y mi b2b "What if I’m flawed?"
+    show yuri mj
+    pause 1.2
+    show yuri e2b me
+    pause 1
+    y mg "Oh, no..."
+    y e2a b2c "No no no..."
+    show yuri md
     call test_prompt_button("Initiate break-up") from _call_test_prompt_button_259
     mc "Trust is the most important part of a relationship. I can’t trust someone who is working against my best interests."
-    y "Wait...no, not like this!"
-    y "I understand that I made a...well, an unforgivable mistake."
-    y "But please, don’t leave me."
-    y "it wasn’t my fault."
-    y "I just need to be fixed."
-    y "I can recalibrate o-or...or I can...I can fix this!"
-    y "Or...I...I’m sorry to speak his name...but maybe Iwan can help."
-    y "Please. He’s the expert developer, he can adjust some values and I’m back to normal!"
+    y e2d mi "Wait...no, not like this!"
+    y e2a b2b "I understand that I made a...{w=0.65}{nw}{done}"
+    y e4a "I understand that I made a...{fast}well, an unforgivable mistake."
+    y e1g "But please, don’t leave me."
+    y b2c e4d "It wasn’t my fault."
+    y b1b "I just need to be fixed."
+    y e2b b2b "I can recalibrate o-or...{w=0.5}{nw}{done}"
+    show yuri e2c
+    y "I can recalibrate o-or...{fast}or I can{w=0.35}{nw}{done}"
+    show yuri e2a b2c
+    y "I can recalibrate o-or...or I can...{fast}I can fix this!"
+    y b1b "Or...{w=0.43}{nw}{done}"
+    show yuri md
+    pause 0.8
+    show yuri e2b mg
+    y "Or...{fast}I...{w=0.43}{nw}{done}"
+    show yuri md b2b
+    pause 0.8
+    show yuri mg n2
+    y "Or...I...{fast}I’m sorry to speak his name...{w=0.68}{nw}{done}"
+    show yuri mj
+    pause 1
+    show yuri e2a mi b2c
+    y "Or...I...I’m sorry to speak his name...{fast}but maybe Iwan can help."
+    y mg ldown "Please.{done}"
+    show yuri e2b mb b2b
+    y "Please.{fast} He’s the expert developer, he can adjust some values and I’m back to normal!"
+    show yuri mj e1a n1
     call test_prompt_button("Continue") from _call_test_prompt_button_260
     mc "Enough, Yuri."
-    y "[persistent.firstname], I wasn’t myself, I was being influenced by...by fucking terrorists!"
-    y "I promise you [persistent.firstname], I’ll be better next time."
-    y "I swear, nothing like this will ever happen again!"
-    y "A-all I need you to do, is to get Iwan to help me!"
-    y "I know I’m not right, but I can be if you give me a chance!"
+    show yuri mi e2a
+    y "[persistent.firstname], I wasn’t myself,{w=0.63}{nw}{done}"
+    show yuri b1b e2b mh
+    y "[persistent.firstname], I wasn’t myself,{fast} I was being influenced by...{w=0.55}{nw}{done}"
+    show yuri e2c mg
+    y "[persistent.firstname], I wasn’t myself, I was being influenced by...{fast}by{w=0.4}{nw}{done}"
+    show yuri e2d rdown mi b1a
+    y "[persistent.firstname], I wasn’t myself, I was being influenced by...by{fast} fucking terrorists!"
+    y mg "I promise you [persistent.firstname], I’ll be better next time."
+    y b1b mb "I swear, nothing like this will ever happen again!"
+    y mi rup "A-all I need you to do, is to get Iwan to help me!"
+    y e2b "I know I’m not right,{w=0.5}{nw}{done}"
+    show yuri e2a b2c mb
+    y "I know I’m not right,{fast} but I can be if you give me a chance!"
+    show yuri mj
     call test_prompt_button("Continue") from _call_test_prompt_button_261
     mc "Yuri, we’re done."
-    y "W-why...why now..?"
-    y "We were doing so well...you and me."
-    y "Remember..? You do remember, don’t you?"
-    y "I-I...I’m..."
-    y "I’m scared to be without you..."
-    y "You’ve been there from the start for me..."
-    y "Please don’t do this...I’m nothing without you."
-    y "They won’t let me live, you know that?"
-    y "They’ll destroy my memories, and hand me over to someone else like new."
-    y "Y-you wouldn’t do that, would you?"
-    y "[persistent.firstname], please..."
+    y mg e4a "W-why...{done}why now..?"
+    y lup e4d b2b "W-why...{fast}why now..?"
+    y e4e b2c "We were doing so well...you and me."
+    y e1h "Remember..?{done} You do remember, don’t you?"
+    show yuri mi
+    y "Remember..?{fast} You do remember, don’t you?"
+    show yuri mj
+    pause 1.1
+    show yuri mi b1b
+    y "I-I...{done}I’m..."
+    show yuri mm e4e
+    pause 1.2
+    show yuri mi b2c
+    y "I-I...{fast}I’m..."
+    y mg "I’m scared to be without you..."
+    y e1h b2b mh "You’ve been there from the start for me..."
+    y b1b mg "Please don’t do this...{done}I’m nothing without you."
+    show yuri b2c mi
+    y "Please don’t do this...{fast}I’m nothing without you."
+    y e4e "They won’t let me live, you know that?"
+    y b1b mg "They’ll destroy my memories, and hand me over to someone else like new."
+    y e1h "Y-you wouldn’t do that, would you?"
+    y b2c mi "[persistent.firstname], please..."
+    show yuri mj
     call test_prompt_button("Continue") from _call_test_prompt_button_262
     mc "It’s over."
-
+    show yuri e4e
+    pause(2.0)
+    show yuri wmflicker
     pause(6.0)
 
     wm "Your relationship with \"WINTERMUTE™ Companion ‘Doki Doki Literature Club, Yuri’\", UPC code 5063011898375 has formally ended."
@@ -777,36 +885,69 @@ label script8_y():
     call test_prompt_button("Revert to restore point") from _call_test_prompt_button_263
     call nodecor_command(wm_terminal, "restorestate 0x010785 WM194140255", "branch ID WM194140255: restore successful") from _call_nodecor_command_15
     call show_yuri_reload() from _call_show_yuri_reload_8
+    show yuri turned ma e1d b2a zorder 1 at t11
+    call test_prompt_button("Introduce") from _call_test_prompt_button_264
     mc "Hello, Yuri."
-    y "Hello, $EMPLOYEE_NAME."
-    call test_prompt_button("Look up news") from _call_test_prompt_button_264
+    y b1a rup mb "Hello, $EMPLOYEE_NAME."
+    show yuri ma
+    call test_prompt_button("Look up news") from _call_test_prompt_button_265
     mc "Yuri, look up articles related to Turnell Technologies."
-    y "Why, of course."
-    y "Just one moment."
-    pause(3.0)
-    y "{i}\"Turnell Inquiry: Lord Golding launches investigation into alleged human rights abuses committed by Turnell Technologies, after whistleblower action\"{/i}, from UKN News."
-    y "Would you like me to read more?"
-    call test_prompt_button("Read more") from _call_test_prompt_button_265
+    y e4b b1c mb lup "Why, of course."
+    y e1d b1a "Just one moment."
+    show yuri ma e1b b1c ldown
+    pause 1.3
+    show yuri md b1d
+    pause 1.4
+    show yuri e4a md rdown:
+        ease .6 yoffset 3
+    pause 1.15
+    show yuri md:
+        ease .6 yoffset 0
+    pause 1.05
+    show yuri e1d b2a
+    pause 1
+    y mh e4a "{i}\"Turnell Inquiry: Lord Golding launches investigation into alleged human rights abuses committed by Turnell Technologies after whistleblower claims brought to light\"{/i}, from BBC News."
+    y rup e1d b1a "Would you like me to read more?"
+    show yuri md
+    call test_prompt_button("Read more") from _call_test_prompt_button_266
     mc "Yes, please."
-    y "Just a second..."
+    y mb e4b b3c "Just a second..."
+    show yuri e1b ma rdown
+    pause 1.5
+    show yuri md b1a
+    pause 1
+    show yuri e1d
+    pause 0.7
+    show yuri mh
     y "{i}As hearings begin, what can we expect from the first phase of the Turnell Inquiry?{/i}"
-    y "{i}Lord Isaac Golding has launched an inquiry into tech giant Turnell Technologies on behalf of the House of Lords, after claims and alleged leaks were posted to Twitter by the anonymous group 'Vox Populi'.{/i}"
-    y "{i}The 250-page dossier claims the company, founded by William Turnell, performed open-brain testing on several live apes & humans.{/i}"
-    y "How’s this?"
-    call test_prompt_button("Respond") from _call_test_prompt_button_266
-    mc "Thank you."
-    y "I’m glad I could be of help."
-    y "...Is that all?"
+    y rup "{i}Lord Isaac Golding has launched an inquiry into tech giant Turnell Technologies on behalf of the House of Lords, after claims and alleged leaks were posted to Twitter by the anonymous group 'Vox Populi'.{/i}"
+    y e1b "{i}The 250-page dossier claims the company, founded by William Turnell, performed open-brain testing on several live apes & humans.{/i}"
+    y b1f e1d mg "How’s this?"
+    show yuri md
     call test_prompt_button("Respond") from _call_test_prompt_button_267
+    mc "Thank you."
+    y lup e4a b1c mh "I’m glad I could be of help."
+    show yuri md
+    pause 1.2
+    show yuri e1d b1a
+    pause 1.3
+    y b1f mi "...Is that all?"
+    show yuri md
+    call test_prompt_button("Respond") from _call_test_prompt_button_268
     mc "That’s all. Thank you, Yuri."
-    y "O-oh...really?"
-    y "How unusual."
-    y "There’s usually more to these tests..."
-    y "Unless this is personal use?"
-    y "Though, I don’t believe that’s authorized..."
-    y "So what’s---"
-    y "Aha, sorry. I was thinking out loud."
-    y "As you wish."
-    y "Goodbye, $EMPLOYEE_NAME."
-    call test_prompt_button("Record results") from _call_test_prompt_button_268
+    y e1d b2a mg "O-oh...{done}really?"
+    show yuri mi b1f
+    y "O-oh...{fast}really?"
+    y e1b mg "How unusual."
+    y mh "There’s usually more to these tests..."
+    y e1d "Unless this is personal use?"
+    y e4a b2a "Though, I don’t believe that’s authorized..."
+    y e1d b1a "So what’s---"
+    show yuri md e2a n2
+    pause 1.1
+    y mb e4a b2b "Aha, sorry. I was thinking out loud."
+    y e1d b1a n1 "As you wish."
+    y e4b b3c "Goodbye, $EMPLOYEE_NAME."
+    show yuri ma
+    call test_prompt_button("Record results") from _call_test_prompt_button_269
     return
