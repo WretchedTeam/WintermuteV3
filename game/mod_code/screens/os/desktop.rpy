@@ -6,6 +6,11 @@ screen desktop():
     on "show" action Function(execute_callbacks, _wm_manager.desktop_open_callbacks)
     on "hide" action Function(execute_callbacks, _wm_manager.desktop_hide_callbacks)
 
+    frame yalign 1.0:
+        style "empty"
+        offset (25, -25)
+        use wm_clock_text_left()
+
     mousearea:
         area (0.3, 0.9, 0.4, 1.0)
         hovered Show("dock", _zorder=len(_wm_manager.zorders) + 1)

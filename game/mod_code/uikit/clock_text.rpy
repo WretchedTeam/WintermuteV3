@@ -32,6 +32,11 @@ screen wm_clock_text():
         add _wm_clock_text.time_display xalign 1.0
         add _wm_clock_text.date_display
 
+screen wm_clock_text_left():
+    vbox:
+        add _wm_clock_text.time_display
+        add _wm_clock_text.date_display
+
 screen wm_clock_text_centered():
     vbox:
         add _wm_clock_text.time_display xalign 0.5
