@@ -4,12 +4,14 @@ image t_os_title = ParameterizedText(style="t_os_title", xalign=0.5, yalign=0.4)
 image t_os_tagline = ParameterizedText(style="t_os_underline", xalign=0.5, yalign=0.6)
 image t_os_copyright = ParameterizedText(style="t_os_copyright", xalign=0.5, yalign=0.95)
 image startup_loading_dots:
-    Text("...", style="t_os_underline")
-    0.5
+    Text("   ", style="t_os_underline")
+    0.2
     Text(".  ", style="t_os_underline")
-    0.5
+    0.2
     Text(".. ", style="t_os_underline")
-    0.5
+    0.2
+    Text("...", style="t_os_underline")
+    0.2
     repeat
 
 style t_os_title:
@@ -41,12 +43,12 @@ label title_drop():
     $ config.allow_skipping = False
     scene black
     show t_os_copyright "\u00A9 Turnell Technologies"
-    $ renpy.pause(1.5, hard=True)
-    show t_os_tagline "Starting up{image=startup_loading_dots}"
-    $ renpy.pause(.5, hard=True)
+    $ renpy.pause(0.5, hard=True)
     show t_os_title "Turnell{metropolis=regular}OS{/metropolis}"
-    with Dissolve(2.0)
-    $ renpy.pause(5.0, hard=True)
+    with Dissolve(1.0)
+    $ renpy.pause(1.0, hard=True)
+    show t_os_tagline "Starting up{image=startup_loading_dots}"
+    $ renpy.pause(4.0, hard=True)
     hide t_os_title
     hide t_os_tagline
     with Dissolve(1.0)

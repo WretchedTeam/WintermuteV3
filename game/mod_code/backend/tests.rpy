@@ -32,7 +32,7 @@ init -10 python in _wm_test:
         if has_label_and_unseen(cb): renpy.call(cb)
 
     def AdvanceTest():
-        return [ With(Fade(0.5, 1, 0.5)), Call("advance_test") ]
+        return Call("advance_test")
 
     class WintermuteTest(object):
         """
