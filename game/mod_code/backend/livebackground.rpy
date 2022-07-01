@@ -1,3 +1,6 @@
+# Interpolates between 24 colors based on in-game time.
+# Uses the MatrixColors, albeit directly as a shader uniform.
+
 init python in _wm_live_background:
     from store import wm_game_time, TintMatrix
 
