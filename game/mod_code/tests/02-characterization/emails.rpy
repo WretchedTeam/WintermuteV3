@@ -72,6 +72,6 @@ Jez
         quick_replies=[
             EmailReply("Sure!", _wm_test.AdvanceTest()),
             EmailReply("Maybe.", _wm_test.AdvanceTest()),
-            EmailReply("No Thanks.", _wm_test.AdvanceTest()),
+            EmailReply("No thanks.", _wm_test.AdvanceTest()),
         ]
     )

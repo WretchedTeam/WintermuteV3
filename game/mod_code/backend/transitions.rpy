@@ -16,8 +16,8 @@ init python:
                 d,
                 mesh=True,
                 align=(0.5, 0.5),
-                subpixel=True, 
-                alpha=alpha, 
+                subpixel=True,
+                alpha=alpha,
                 shader="wm.antifisheye",
                 u_value=fisheye_val,
             )
@@ -194,7 +194,7 @@ init python:
             width = min(top.width, bottom.width)
             height = min(top.height, bottom.height)
 
-            rv = renpy.display.render.Render(width, height, opaque=False)
+            rv = renpy.display.render.Render(width, height)
             target = rv.get_size()
 
             if top.get_size() != target:

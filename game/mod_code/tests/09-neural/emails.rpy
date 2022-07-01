@@ -3,6 +3,8 @@ init python:
         unique_id="neural_main_email",
         subject="(Draft) Note to [persistent.firstname]",
         contents="""
+Hello, [persistent.firstname!c]. If you're reading this, I see the password worked.
+
 I find it funny that despite the abundance of CCTV in the building, bugged headset microphones, social engineering, and whatever-the-fuck-else they use to keep eyes and ears trained on us...they can’t read the email drafts. Lmao.
 
 I appreciate you doing this for me. I can’t do it. All the shit I know about Turnell, and the pressure in the news, I can’t stand by it. I’m taking a step back for the foreseeable future. Nobody knows I’m not here right now, so you need to keep hush-hush about it.

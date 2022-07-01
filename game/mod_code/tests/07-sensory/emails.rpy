@@ -11,7 +11,7 @@ So basically people are dicks and we have to account for that, so over the past 
 
 What I want you to do when you boot up the program this time is to get them in a good mood with doing something youll know they like (this may require having a look at our ddlc bible document if you need to get to know the characters properly, it has info about them from ddlc, plus and LIBITINA)
 
-We have options for simulating taste touch smell etc etc and a selection of things to apply to that, so let natsuki taste a cupcake or smth like that, get them all happy
+We have options for simulating taste touch smell etc etc and a selection of things to apply to that, so give natsuki a cupcake or smth like that, get them all happy
 
 And you know that  3d environment stuff youve been setting the tests in to break up the monotony? Well not only does WM respond well to it but someone up in marketing has a huge hard on for it cause it enances 'atmosphere' so i been tweaking there reactions to environments that suit them (like yk yuri would just LOVE a rainy lounge w/ study area). basically find the most "them" environment u can and see how accurately they respond to it. we have a huuuuuuge library of premade environments that we have license to use so skim thru that
 

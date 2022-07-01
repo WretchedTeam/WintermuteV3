@@ -3,9 +3,9 @@ init python:
         unique_id="search_main_email",
         subject="Alexa",
         contents="""
-Hey, it's Iwan. I'll cut to the point here, so…the test.
+Hey, it’s Iwan. Busy day here, so I’ll cut to the point here.
 
-Long & short of it is, we're in the process of testing the "home assistant" features of the program. Just strike up a search query like you would with Alexa or Cortana or Alice or whatever (bonus points if it's related to DDLC. I know for a fact that every sad old neckbeard from here to Aberdeen will think it very funny to try it).
+Long & short of it is, we're in the process of testing the "home assistant" features of the program. Just strike up a search query like you would with Alexa or Cortana or Penny or whatever (bonus points if it's related to DDLC. I know for a fact that every sad old neckbeard from here to Aberdeen will think it very funny to try it).
 
 Record the results as usual, and you should be done for the day. Any complications or unusual activity goes in the report.
 
