@@ -1,3 +1,5 @@
+# Text clock on the corner of the login and desktop screen.
+
 image wm_clock_colon:
     Text("{lexend=regular}:{/lexend}", size=48)
     0.5

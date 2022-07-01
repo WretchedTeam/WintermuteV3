@@ -25,6 +25,19 @@ init python in _wm_reload:
 
     class SpriteReload(renpy.Displayable):
         def __init__(self, info, t_offset, val=1.0, **properties):
+            """
+            Displayable used to present Doki AI reloading.
+
+            `info`
+                A tuple containing the two sprites and its pixel bounds.
+
+            `t_offset`
+                The offset of the reloading text.
+
+            `val`
+                A set value to interpolate the reload effect to.
+                Not to be confused with time taken to finish the reload.
+            """
             super(SpriteReload, self).__init__(**properties)
             self.child1 = renpy.displayable("mod_assets/silhouettes/" + info[1])
             self.child2 = renpy.displayable("mod_assets/silhouettes/" + info[0])
@@ -82,6 +95,9 @@ init python in _wm_reload:
     Sayori = renpy.partial(SpriteReload, sayori_info, (28, 30)) 
     Yuri = renpy.partial(SpriteReload, yuri_info, (0, 0)) 
 
+# Helper labels to call the reload sprites.
+# This label also pauses execution till the effect is finished.
+ 
 label show_monika_reload():
     show expression _wm_reload.Monika(4.0) as monika
     $ hard_pause()

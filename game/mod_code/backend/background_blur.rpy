@@ -1,3 +1,15 @@
+# Effect used for the overlay VN interface.
+
+# It gets the layers as a single displayable behind 
+# the object's layer, and applies a shader which 
+# performs alpha masking, blurring and the final 
+# composition of the object over the blured background.
+
+# The Kawase blur is chosen due to its very low performance hit.
+
+# This is essentially how Q did his blurred multiply blend 
+# blue square, just modularized.
+
 init python in _wm_bg_blur:
     from store import Fixed, persistent
 

@@ -1,3 +1,5 @@
+# To keep track of blur transforms used an entire layer.
+
 init 10 python in _wm_layer_blur:
     from store import Function, SetDict, easein_blur, easeout_blur
 
@@ -11,6 +13,19 @@ init 10 python in _wm_layer_blur:
         layer_blur_radius = dict.fromkeys(renpy.config.layers, None)
 
     def ApplyBlur(key, blur, layers):
+        """
+        Applies blur to the given layers and keeps track of the key 
+        and layers.
+
+        `key`
+            Unique key to store values for the blur.
+
+        `blur`
+            Intensity of the blur.
+
+        `layers`
+            List of layers to be blurred.
+        """
         layers = [ l for l in layers if layer_keys[l] is None ]
 
         return [ 
@@ -20,6 +35,17 @@ init 10 python in _wm_layer_blur:
         ]
 
     def RemoveBlur(key, layers):
+        """
+        Remove blur from the given layers given that they 
+        have the same assigned key.
+
+        `key`
+            Unique key used for blurring the layers.
+
+        `layers`
+            Layers to remove the blur from.
+        """
+
         layers = [ layer for layer in layers if layer_keys[layer] == key ]
 
         return [ 

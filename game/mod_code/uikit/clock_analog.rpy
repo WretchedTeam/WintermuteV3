@@ -1,3 +1,5 @@
+# Fully in-code Analog Clock shown on the login screen.
+
 init python in _wm_clock_analog:
     from store._wm_displayables import DashedCircle
     from store import NoRollback, wm_game_time
