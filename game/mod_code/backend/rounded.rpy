@@ -43,9 +43,11 @@ init -100 python in _wm_rounded:
 
             return rv
 
-    renpy.add_to_all_stores("RoundedFrame", RoundedFrame)
-
     class RoundedWindows(renpy.Displayable):
+        """
+        Displayable used to do application window corner rounding 
+        using a shader.        
+        """
         def __init__(self, child, radius, outline_width, outline_color, *args, **kwargs):
             super(RoundedWindows, self).__init__(*args, **kwargs)
 
@@ -96,4 +98,5 @@ init -100 python in _wm_rounded:
 
             return rv
 
+    renpy.add_to_all_stores("RoundedFrame", RoundedFrame)
     renpy.add_to_all_stores("RoundedWindows", renpy.curry(RoundedWindows))
