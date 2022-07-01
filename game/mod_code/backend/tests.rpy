@@ -160,7 +160,6 @@ init -10 python in _wm_test:
                     email.unlock()
 
             if self.lore_emails is not None:
-                print(self.lore_emails)
                 for f in self.lore_emails:
                     _wm_lore_emails.unlock_email(f)
 

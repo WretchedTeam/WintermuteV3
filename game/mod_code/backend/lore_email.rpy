@@ -21,7 +21,7 @@ init python in _wm_lore_emails:
     def unlock_email(f):
         src = file_directory + f
 
-        if not renpy.exists(src):
+        if not renpy.loadable(src):
             return
 
         dst = os.path.join(output_directory, f)
