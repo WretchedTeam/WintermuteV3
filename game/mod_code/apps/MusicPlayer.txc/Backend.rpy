@@ -282,7 +282,7 @@ init -10 python in _wm_music_player:
             if not playlist:
                 return
 
-            return filter(filter_valid_files, playlist)
+            return [ i for i in playlist if filter_valid_files(i) ]
 
         def play(self, filename=None, offset=0, pos=0):
             playlist = self.get_valid_playlist()
