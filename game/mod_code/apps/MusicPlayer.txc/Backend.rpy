@@ -213,6 +213,10 @@ init -10 python in _wm_music_player:
             renpy.game.interface.timeout(0.0)
             self.f(st)
 
+    def stop_music(mp):
+        mp.last_playing = None
+        renpy.music.stop(mp.channel)
+
     class MusicPlayer(object):
         playlist_keys = ("all", "favorite", "playlist")
 
