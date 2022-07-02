@@ -1,5 +1,7 @@
 screen terminal_say(dialogue, items=None):
-    frame background None:
+    frame style "empty":
+        at _wm_crt_effect.CRTFilter
+
         padding (50, 50)
 
         has vbox:

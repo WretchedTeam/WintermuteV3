@@ -74,6 +74,28 @@ python early in _wm_blur_funcs:
 
         return render
 
+    def gaussian_blur_linear(render, blur, lod=gl_lod_bias):
+        def apply_gaussian_blur(render, blur, direction):
+            sigma = blur / 2.0
+            shader = "wm.gaussian_blur_linear"
+
+            render = new_render(render, shader)
+            add_uniform = render.add_uniform
+
+            add_uniform("u_radius", blur)
+            add_uniform("u_lod_bias", lod)
+            add_uniform("u_direction", direction)
+
+            add_uniform("u_sigma", sigma)
+            add_uniform("u_sqr_sigma", sigma * sigma)
+
+            return render
+
+        render = apply_gaussian_blur(render, blur, (0.0, 1.0))
+        render = apply_gaussian_blur(render, blur, (1.0, 0.0))
+
+        return render
+
     def gaussian_blur(render, blur, incre=False, lod=gl_lod_bias):
         RECI_SQRT_2PI = 1.0 / 2.50662827463
 
@@ -138,7 +160,7 @@ python early in _wm_blur_funcs:
         render = apply_default_blur(render, blur)
         return render
 
-    def shadow_blur(render, blur, lod):
+    def shadow_blur(render, blur, lod=gl_lod_bias):
         def apply_shadow_blur(render, i):
             render = new_render(render, "wm.shadow_blur")
             add_uniform = render.add_uniform
