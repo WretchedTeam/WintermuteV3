@@ -170,7 +170,7 @@ init -10 python in _wm_test:
 
 label advance_test():
     $ renpy.scene("screens")
-    $ _wm_music_player.stop_music(music_player_app.userdata.mp)
+    $ _wm_music_player.stop_music(music_player_proxy.mp)
     # $ renpy.transition(Fade(0.5, 1, 0.5))
     pause 2.0
 

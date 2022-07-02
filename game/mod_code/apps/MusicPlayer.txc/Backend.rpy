@@ -26,7 +26,8 @@ init -10 python in _wm_music_player:
         Function,
         ToggleSetMembership,
         ToggleField,
-        BarValue
+        BarValue,
+        Singleton
     )
 
     music_folder_path = os.path.join(basedir, "music")
@@ -217,7 +218,7 @@ init -10 python in _wm_music_player:
         mp.last_playing = None
         renpy.music.stop(mp.channel)
 
-    class MusicPlayer(object):
+    class MusicPlayer(object, metaclass=Singleton):
         playlist_keys = ("all", "favorite", "playlist")
 
         def __init__(self, channel, loop=True, single_track=False, shuffle=False):

@@ -1,4 +1,13 @@
 init -1400 python:
+    class Singleton(type):
+        __instances = {}
+
+        def __call__(cls, *args, **kwargs):
+            if cls not in cls.__instances:
+                cls.__instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+
+            return cls.__instances[cls]
+
     def show_screen_with_delay(screen_name, delay, *args, **kwargs):
         ui.timer(delay, Show(screen_name, *args, **kwargs))
 
