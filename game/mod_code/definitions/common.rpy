@@ -1,10 +1,14 @@
 init -1400 python:
+    import threading
+
     class Singleton(type):
         __instances = {}
+        __lock = threading.Lock()
 
         def __call__(cls, *args, **kwargs):
             if cls not in cls.__instances:
-                cls.__instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+                with cls.__lock:
+                    cls.__instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
 
             return cls.__instances[cls]
 
