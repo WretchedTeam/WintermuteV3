@@ -44,6 +44,7 @@ style terminal_entry_text:
     font _wm_font_jb_mono.medium
     color "#3f3"
     size 26
+    hinting "none"
 
 init -1500 python:
     terminal_list = None
