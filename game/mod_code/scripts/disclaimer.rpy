@@ -74,6 +74,9 @@ image startup_terminal_caret:
     repeat
 
 label disclaimer():
+    $ old_quit_action = config.quit_action
+    $ config.quit_action = renpy.quit
+
     $ menu = terminal_menu
 
     term_echo "[wm_ascii]{fast}{nw}\n"
@@ -94,6 +97,7 @@ label disclaimer():
 
     call installation_script from _call_installation_script
     $ menu = renpy.display_menu
+    $ config.quit_action = old_quit_action
     return
 
 label installation_script():
