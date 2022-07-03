@@ -19,7 +19,7 @@ init -100 python in _wm_shadow:
     """)
 
     class Silhouette(renpy.Container):
-        def __init__(self, child, color="#000", blur, **kwargs):
+        def __init__(self, child, color, blur, **kwargs):
             super(Silhouette, self).__init__(**kwargs)
             self.add(child)
             self.color = Color(color)
