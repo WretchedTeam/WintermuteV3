@@ -43,7 +43,7 @@ init -100 python in _wm_rounded:
 
             return rv
 
-    class RoundedWindows(renpy.Displayable):
+    class RoundedWindows(renpy.Container):
         """
         Displayable used to do application window corner rounding 
         using a shader.        
@@ -51,13 +51,10 @@ init -100 python in _wm_rounded:
         def __init__(self, child, radius, outline_width, outline_color, *args, **kwargs):
             super(RoundedWindows, self).__init__(*args, **kwargs)
 
-            self.child = renpy.displayable(child)
+            self.add(child)
             self.radius = radius
             self.outline_width = outline_width or 0.0
             self.outline_color = Color(outline_color)
-
-        def visit(self):
-            return [ self.child ]
 
         def event(self, ev, x, y, st):
             if self.outline_width is not None:
