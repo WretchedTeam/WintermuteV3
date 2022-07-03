@@ -18,6 +18,24 @@ init -100 python in _wm_shadow:
         gl_FragColor = texture2D(tex0, v_tex_coord.xy).a * u_color;
     """)
 
+    class Silhouette(renpy.Container):
+        def __init__(self, child, color="#000", blur, **kwargs):
+            super(Silhouette, self).__init__(**kwargs)
+            self.add(child)
+            self.color = Color(color)
+            self.blur = blur
+
+        def render(self, width, height, st, at):
+            cr = renpy.render(self.child, width, height, st, at)
+            cw, ch = cr.get_size()
+
+            rv = renpy.Render(cw, ch)
+            rv.mesh = True
+            rv.blit(cr, (0, 0))
+            rv.add_shader("wm.silhouette")
+            rv.add_uniform("u_color", normalize_color(self.color))
+            return rv
+
     class DropShadowCore(renpy.Container):
         def __init__(self, child, color="#000", xoffset=0, yoffset=0, blur=5.0, **kwargs):
             super(DropShadowCore, self).__init__(**kwargs)
@@ -26,23 +44,20 @@ init -100 python in _wm_shadow:
             self.xoffset = xoffset
             self.yoffset = yoffset
 
+            self.shadow = Silhouette(child, color, self.blur)
+            self.add(self.shadow)
+
             self.add(child)
 
         def shadow_render(self, width, height, st, at):
-            cr = renpy.render(self.child, width, height, st, at)
+            cr = renpy.render(self.shadow, width, height, st, at)
             cw, ch = cr.get_size()
-
-            sr = renpy.Render(cw, ch)
-            sr.mesh = True
-            sr.blit(cr, (0, 0))
-            sr.add_shader("wm.silhouette")
-            sr.add_uniform("u_color", normalize_color(self.color))
 
             rw = cw + self.blur * 2 * 40
             rh = ch + self.blur * 2 * 40
 
             rv = renpy.Render(rw, rh)
-            rv.absolute_blit(sr, (self.blur * 40, self.blur * 40))
+            rv.absolute_blit(cr, (self.blur * 40, self.blur * 40))
 
             return rv
 
@@ -60,6 +75,9 @@ init -100 python in _wm_shadow:
             self.offsets = [(0, 0)]
 
             return rv
+
+        def event(self, ev, x, y, st):
+            return self.child.event(ev, x, y, st)
 
     class DropShadow(object):
         def __init__(self, color="#000", xoff=0, yoff=0, blur=5.0, **kwargs):
