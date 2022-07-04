@@ -142,6 +142,7 @@ screen program_base(app, **props):
             use program_header(app.name, Function(app.close))
 
             button style "empty":
+                key_events True
                 clicked app.raise_window
 
                 transclude

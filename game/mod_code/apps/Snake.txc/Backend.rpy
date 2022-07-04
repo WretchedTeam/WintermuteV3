@@ -169,8 +169,7 @@ init python in _wm_snake:
         def reset(self):
             self.score = 0
 
-            self.done_start_delay = False # Are we done with the startup delay?
-            self.in_start_delay = True # Are we currently in the delay?
+            self.started = False # Have we started?
 
             self.paused = False # Is the minigame in a paused state?
             self.game_over = False # Is the snake dead?
@@ -214,7 +213,7 @@ init python in _wm_snake:
                     renpy.restart_interaction()
 
         def render(self, width, height, st, at):
-            if not (self.paused or self.game_over or not self.done_start_delay):
+            if not (self.paused or self.game_over) and self.started:
                 self.movement_step()
 
             rv = renpy.Render(width, height)
@@ -253,18 +252,7 @@ init python in _wm_snake:
                 rv.add_uniform("u_renpy_over", 1.0)
 
         def handle_redraws(self):
-            if not self.done_start_delay:
-                if self.in_start_delay:
-                    renpy.redraw(self, self.start_delay)
-                    self.in_start_delay = False
-                    renpy.restart_interaction()
-
-                else:
-                    self.done_start_delay = True
-                    renpy.restart_interaction()
-                    renpy.redraw(self, 0.0)
-
-            elif self.paused:
+            if self.paused:
                 pass
 
             elif self.game_over:
@@ -276,7 +264,7 @@ init python in _wm_snake:
         def event(self, ev, x, y, st):
             ignore_event = False
 
-            if self.paused or self.game_over or not self.done_start_delay:
+            if self.paused or self.game_over or not self.started:
                 return None
 
             direction_change_to = self.new_direction
@@ -336,8 +324,8 @@ init python in _wm_snake:
         def start_delay(self):
             return self.snake.start_delay
 
-        def has_done_start_delay(self):
-            return self.snake.done_start_delay
+        def has_started(self):
+            return self.snake.started
 
         def is_paused(self):
             return self.snake.paused
@@ -354,16 +342,23 @@ init python in _wm_snake:
                 if clicked and focused:
                     snake.reset()
                     renpy.redraw(snake, 0.0)
+                    renpy.restart_interaction()
                     return None
 
-            if clicked and snake.done_start_delay:
-                if focused:
-                    snake.paused = not snake.paused
-                else:
-                    snake.paused = True
+            if clicked:
+                if snake.started:
+                    if focused:
+                        snake.paused = not snake.paused
+                    else:
+                        snake.paused = True
 
-                renpy.redraw(snake, 0.0)
-                renpy.restart_interaction()
+                    renpy.redraw(snake, 0.0)
+                    renpy.restart_interaction()
+
+                else:
+                    snake.started = True
+                    renpy.redraw(snake, 0.0)
+                    renpy.restart_interaction()
 
             return self.snake.event(ev, x, y, st)
 

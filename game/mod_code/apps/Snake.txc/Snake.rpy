@@ -7,7 +7,7 @@ define 2 snake_app = _wm_manager.Application(
 screen snake_overlay(snake):
     style_prefix "snake_overlay"
 
-    if snake.has_done_start_delay():
+    if snake.has_started():
         frame:
             add DynamicDisplayable(_wm_snake_app.score_count, snake=snake)
 
@@ -29,10 +29,7 @@ screen snake_overlay(snake):
 
     else:
         frame:
-            add renpy.display.layout.AdjustTimes(
-                DynamicDisplayable(_wm_snake_app.start_delay_countdown, t=snake.start_delay()),
-                None, None
-            )
+            text _("Click to start.")
 
 style snake_overlay_frame is empty
 style snake_overlay_vbox is empty
@@ -73,13 +70,6 @@ style snake_fixed:
 
 init python in _wm_snake_app:
     from store import Text
-
-    def start_delay_countdown(st, at, t):
-        if st > t:
-            return Text("Startup: 0.0", color="#fff"), 0.0
-        else:
-            d = Text("Startup: {:.1f}".format(t - st), color="#fff")
-            return d, 0.0
 
     def score_count(st, at, snake):
         d = Text("Score: {}".format(snake.get_score()), color="#fff")
