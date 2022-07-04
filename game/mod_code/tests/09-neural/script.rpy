@@ -9,7 +9,8 @@ label disable_vn_overlay():
     return
 
 label script9_main():
-    $ config.allow_skipping = True
+    $ _skipping = True
+    $ quick_menu = False
     show monika forward at i11
     call show_monika_reload() from _call_show_monika_reload_9
     show monika forward neut cm oe
@@ -165,7 +166,7 @@ label script9_main():
 
     menu:
         "Input command":
-            call nodecor_command(wm_terminal, "shred -f -z -n9 -u [[/file/armitage/trnlwm]", "administrator privileges required to execute command. please confirm your administrator credentials:") from _call_nodecor_command_16
+            call nodecor_command(wm_terminal, "shred -f -z -n9 -u \"/file/armitage/trnlwm\"", "administrator privileges required to execute command. please confirm your administrator credentials:") from _call_nodecor_command_16
             call nodecor_command(wm_terminal, "****************", "are you sure you want to continue? y/n") from _call_nodecor_command_17
             call nodecor_command(wm_terminal, "y") from _call_nodecor_command_18
             show sayori mb e4e b2c
@@ -213,7 +214,7 @@ label script9_main():
             show eg5 zorder 101
             pause(0.01)
             $ _history_list.clear()
-            $ config.allow_skipping = False
+            $ _skipping = False
             jump ending_script_destroy
 
 
@@ -400,7 +401,7 @@ label script9_m():
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
     $ persistent.ending_obtained = 2
-    $ config.allow_skipping = False
+    $ _skipping = False
     call disable_vn_overlay from _call_disable_vn_overlay_1
     jump ending_script_test
 
@@ -562,7 +563,7 @@ label script9_s():
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
     $ persistent.ending_obtained = 2
-    $ config.allow_skipping = False
+    $ _skipping = False
     call disable_vn_overlay from _call_disable_vn_overlay_2
     jump ending_script_test
 
@@ -723,7 +724,7 @@ label script9_n():
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
     $ persistent.ending_obtained = 2
-    $ config.allow_skipping = False
+    $ _skipping = False
     call disable_vn_overlay from _call_disable_vn_overlay_3
     jump ending_script_test
 
@@ -888,6 +889,6 @@ label script9_y():
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
     $ persistent.ending_obtained = 2
-    $ config.allow_skipping = False
+    $ _skipping = False
     call disable_vn_overlay from _call_disable_vn_overlay_4
     jump ending_script_test

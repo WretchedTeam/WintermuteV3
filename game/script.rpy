@@ -3,8 +3,8 @@
     me = singleton.SingleInstance()
 
 label splashscreen():
-    $ config.skipping = False
-    $ config.allow_skipping = False
+    $ _skipping = False
+    $ _skipping = False
 
     python:
         missing_archives = { "fonts", "audio", "images" } - set(config.archives)
@@ -63,7 +63,7 @@ label start():
 
 label wm_desktop():
     scene black
-    $ config.skipping = False
+    $ _skipping = False
     $ _window_hide(None)
     $ renpy.scene("screens")
     call screen desktop with fade

@@ -1,5 +1,5 @@
 label wm_start():
-    $ config.skipping = False
+    $ _skipping = False
     $ renpy.scene("screens")
     $ _wm_manager.Application.close_all_apps()
 
@@ -30,12 +30,12 @@ label wm_start():
 
     label .test_start:
     if test is not None:
-        $ config.skipping = True
-        $ config.allow_skipping = True
+        $ _skipping = True
+        $ _skipping = True
         call expression test.main_label from _call_expression_9
         $ _history_list.clear()
-        $ config.skipping = False
-        $ config.allow_skipping = False
+        $ _skipping = False
+        $ _skipping = False
 
         if _return:
             $ _wm_penny.emit_event("test_completed")

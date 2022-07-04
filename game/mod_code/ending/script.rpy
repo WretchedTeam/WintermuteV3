@@ -91,8 +91,8 @@ label ending_script_destroy():
 
     $ renpy.config.quit_action = renpy.quit
     $ quick_menu = False
-    $ config.skipping = False
-    $ config.allow_skipping = False
+    $ _skipping = False
+    $ _skipping = False
     scene black
     show good_email
     # show screen email_fill()
@@ -111,7 +111,7 @@ label ending_script_test():
     label .post_bad_ending_loop:
     $ renpy.config.quit_action = renpy.quit
     $ quick_menu = False
-    $ config.skipping = False
-    $ config.allow_skipping = False
+    $ _skipping = False
+    $ _skipping = False
     call screen article_scroller with dissolve
     $ renpy.quit()

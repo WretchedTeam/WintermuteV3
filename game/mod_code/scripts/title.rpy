@@ -40,7 +40,7 @@ transform penny_position():
     zoom 1.5 nearest True
 
 label title_drop():
-    $ config.allow_skipping = False
+    $ _skipping = False
     scene black
     show t_os_copyright "\u00A9 Turnell Technologies"
     $ renpy.pause(0.5, hard=True)
