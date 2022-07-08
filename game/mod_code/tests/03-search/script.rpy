@@ -142,7 +142,7 @@ label script3_y():
     call test_prompt_button("Record results") from _call_test_prompt_button_162
     mc "Yes."
     y rup b1a e4a mh "{i}William Turnell,{w=0.2} CEO of Fortune 500 tech giant and leader in AI development,{w=0.2} Turnell Technologies,{w=0.2} said today that,{w=0.2} despite economic setbacks,{w=0.2} he will continue to authorize the company's annual £20 million donation to survivors of the New York City attacks.{/i}"
-    y mi "{i}The announcement comes only a week in advance of the 5 year anniversary of the biological attack that claimed the lives of 2,300 people thus far,{w=0.2} with more health issues and deaths being attributed to mass anthrax exposure since the attack.{/i}."
+    y mi "{i}The announcement comes only a week in advance of the 5 year anniversary of the biological attack that claimed the lives of 2,300 people thus far,{w=0.2} with more health issues and deaths being attributed to mass anthrax exposure since the attack.{/i}"
     call test_prompt_button("Ask to stop") from _call_test_prompt_button_163
     show yuri mf b1a e1a
     mc "That's enough,{w=0.2} thank you."
