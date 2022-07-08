@@ -1,30 +1,41 @@
-Wintermute Credits
-------------------
+Project WINTERMUTE - Credits
+----------------------------
 
-Team
-----
+WRETCHED TEAM
+-------------
 
 Writing
 -------
-
-Sven Weisserfuchs
 Oliver Norton
-jiaodaidev
+Sven Weisserfuchs
 Rosalyn Crothers
 LonesomeDev
+jiaodaidev
+
 
 Coding
 ------
-
+Pseurae
 Q™
 Oliver Norton
 ItsZekrom
-Pseurae
+
+
+Music
+-----
+StackerTheEOD:
+	James (Billy Joel cover)
+	Atom Free
+	Star Line
+	Humm Buzz
+	Fang Bare
+	Neww Dawn
+
 
 Assets
 ------
-
 ** Incomplete. **
+
 
 3rd Party Tools / Libraries
 ---------------------------
@@ -34,10 +45,12 @@ MPT
 Creators: Chronos, Terra, Yagamirai, DiabloGraves
 Link: https://github.com/chronoshag/DDLCMPT
 
+
 TinyTag
 -------
 Creator: devsnd
 Link: https://github.com/devsnd/tinytag
+
 
 Singleton
 ---------
