@@ -77,7 +77,8 @@ label ending_script_destroy():
     term_echo_nocb "The system has been shut down.{fast}{w=6.1}{nw}"
     scene black
     pause(4.0)
-    $ renpy.movie_cutscene("mod_assets/ending/end_video_beta.webm")
+    play music "mod_assets/ending/james.ogg" noloop
+    $ renpy.movie_cutscene("mod_assets/ending/end_video.webm")
     scene black
     pause(5.0)
     play audio "mod_assets/audio/os/emailget.ogg"
@@ -103,7 +104,8 @@ label ending_script_destroy():
 label ending_script_test():
     scene black
     pause(4.0)
-    $ renpy.movie_cutscene("mod_assets/ending/end_video_beta.webm")
+    play music "mod_assets/ending/james.ogg" noloop
+    $ renpy.movie_cutscene("mod_assets/ending/end_video.webm")
     scene black
     pause(7.0)
     $ persistent.autoload = "ending_script_test.post_bad_ending_loop"

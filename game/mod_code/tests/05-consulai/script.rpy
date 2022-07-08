@@ -257,7 +257,7 @@ label script5_m():
     m e4a "Now, if I may suggest something..."
     m b1a e4b rdown mc "How about I play you a song?"
     show monika ma
-    call test_prompt_button("Record Results") from _call_test_prompt_button_113
+    call test_prompt_button("Record results") from _call_test_prompt_button_113
     hide monika
     return
 
@@ -475,7 +475,7 @@ label script5_s:
     s e1a "Now, what next?"
     s b1f e1d rdown "Maybe you...wanna rent a movie?"
     show sayori mn
-    call test_prompt_button("Record Results") from _call_test_prompt_button_123
+    call test_prompt_button("Record results") from _call_test_prompt_button_123
     hide sayori
     return
 
@@ -786,7 +786,7 @@ label script5_n:
     show natsuki b1c mc e1a
     n "Parfait Girls?"
     show natsuki ma
-    call test_prompt_button("Record Results") from _call_test_prompt_button_133
+    call test_prompt_button("Record results") from _call_test_prompt_button_133
     hide natsuki
     return
 
@@ -1036,6 +1036,6 @@ label script5_y:
     y b1d e1a mb rdown "...I have a Portrait of Markov shaped book with your name on it."
 
     show yuri ma
-    call test_prompt_button("Record Results") from _call_test_prompt_button_143
+    call test_prompt_button("Record results") from _call_test_prompt_button_143
     hide yuri
     return

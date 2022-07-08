@@ -233,9 +233,9 @@ label script2_m():
     m happ om oe b1a "So, that's what I'm thinking about."
 
     ##BUTTON:
-    # Record Results
+    # Record results
     show monika ma
-    call test_prompt_button("Record Results") from _call_test_prompt_button_2
+    call test_prompt_button("Record results") from _call_test_prompt_button_2
     return True
 
 label script2_s_likes():
@@ -426,8 +426,8 @@ label script2_s():
     show sayori ma
 
     ##BUTTON:
-    # Record Results
-    call test_prompt_button("Record Results") from _call_test_prompt_button_5
+    # Record results
+    call test_prompt_button("Record results") from _call_test_prompt_button_5
     return True
 
 label script2_n_likes():
@@ -685,8 +685,8 @@ label script2_n():
     n b1c mh "Pretty please, with a cherry on top?"
     show natsuki md
     ##BUTTON:
-    # Record Results
-    call test_prompt_button("Record Results") from _call_test_prompt_button_8
+    # Record results
+    call test_prompt_button("Record results") from _call_test_prompt_button_8
     return True
 
 label script2_y_likes():
@@ -897,6 +897,6 @@ label script2_y():
     show yuri e1b ma
 
     ##BUTTON:
-    # Record Results
-    call test_prompt_button("Record Results") from _call_test_prompt_button_11
+    # Record results
+    call test_prompt_button("Record results") from _call_test_prompt_button_11
     return True

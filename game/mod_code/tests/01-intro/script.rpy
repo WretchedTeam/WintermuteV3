@@ -40,7 +40,7 @@ label script1_m():
     m b1a e1a "I can tell we're going to be great friends!"
     m lean b1 e1 m3 "Let me know when you're ready,{w=0.2} and we'll move forward."
 
-    call test_prompt_button("Record Results") from _call_test_prompt_button_165
+    call test_prompt_button("Record results") from _call_test_prompt_button_165
 
     show monika at thide
     hide monika
@@ -69,7 +69,7 @@ label script1_s():
     s mb rdown b1a e1a "Just don't be a big meanie about it, okay?"
     s e4b mc lup rup "I can't wait to talk to you. Let me know when you're ready!"
 
-    call test_prompt_button("Record Results") from _call_test_prompt_button_166
+    call test_prompt_button("Record results") from _call_test_prompt_button_166
 
     show sayori at thide
     hide sayori
@@ -97,7 +97,7 @@ label script1_y():
     y mb "But...I believe we will get along wonderfully.."
     y e1a "Let me know when you're ready to continue."
 
-    call test_prompt_button("Record Results") from _call_test_prompt_button_167
+    call test_prompt_button("Record results") from _call_test_prompt_button_167
 
     show yuri at thide
     hide yuri
@@ -119,7 +119,7 @@ label script1_n():
     n cross b2a "Just don't be weird, dummy."
     n mc e1f "And hit me up when you wanna carry on."
 
-    call test_prompt_button("Record Results") from _call_test_prompt_button_168
+    call test_prompt_button("Record results") from _call_test_prompt_button_168
 
     show natsuki at thide
     hide natsuki
