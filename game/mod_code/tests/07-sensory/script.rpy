@@ -204,6 +204,8 @@ label script7_m():
     m "Why do you ask?"
     show monika me
     call test_prompt_button("Record results") from _call_test_prompt_button_59
+    show monika at thide
+    hide monika
     return
 
 label script7_s():
@@ -390,6 +392,8 @@ label script7_s():
     s "Why? Have you got another test?"
     show sayori ma
     call test_prompt_button("Record results") from _call_test_prompt_button_73
+    show sayori at thide
+    hide sayori
     return
 
 label script7_n():
@@ -636,6 +640,9 @@ label script7_n():
     n "Hhhh...{fast}{i}pretty please, with a cherry on top?{/i}"
     show natsuki md
     call test_prompt_button("Record results") from _call_test_prompt_button_89
+
+    show natsuki at thide
+    hide natsuki
     return
 
 label script7_y():
@@ -846,4 +853,6 @@ label script7_y():
     y "Or...maybe not?"
     show yuri md
     call test_prompt_button("Record results") from _call_test_prompt_button_103
+    show yuri at thide
+    hide yuri
     return

@@ -258,6 +258,7 @@ label script5_m():
     m b1a e4b rdown mc "How about I play you a song?"
     show monika ma
     call test_prompt_button("Record results") from _call_test_prompt_button_113
+    show monika at thide
     hide monika
     return
 
@@ -476,6 +477,7 @@ label script5_s:
     s b1f e1d rdown "Maybe you...wanna rent a movie?"
     show sayori mn
     call test_prompt_button("Record results") from _call_test_prompt_button_123
+    show sayori at thide
     hide sayori
     return
 
@@ -787,6 +789,8 @@ label script5_n:
     n "Parfait Girls?"
     show natsuki ma
     call test_prompt_button("Record results") from _call_test_prompt_button_133
+
+    show natsuki at thide
     hide natsuki
     return
 
@@ -1037,5 +1041,6 @@ label script5_y:
 
     show yuri ma
     call test_prompt_button("Record results") from _call_test_prompt_button_143
+    show yuri at thide
     hide yuri
     return

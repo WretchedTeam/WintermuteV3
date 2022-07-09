@@ -47,6 +47,7 @@ label script3_m():
     m "Is there anything else you need?"
     show monika ma
     call test_prompt_button("Record results") from _call_test_prompt_button_154
+    show monika at thide
     hide monika
     return
 
@@ -73,6 +74,7 @@ label script3_s():
     s "..."
     s b2b mh e1h "That's..."
     call test_prompt_button("Record results") from _call_test_prompt_button_156
+    show sayori at thide
     hide sayori
     return
 
@@ -117,6 +119,8 @@ label script3_n():
     n "Anything else,{fast} {i}your highness{/i}?"
     show natsuki e1a md
     call test_prompt_button("Record results") from _call_test_prompt_button_160
+
+    show natsuki at thide
     hide natsuki
     return
 
@@ -150,5 +154,6 @@ label script3_y():
     y e1a b2b mh "Can I do anything else for you..?"
     show yuri md
     call test_prompt_button("Record results") from _call_test_prompt_button_164
+    show yuri at thide
     hide yuri
     return

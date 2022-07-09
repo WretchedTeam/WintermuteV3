@@ -236,6 +236,9 @@ label script2_m():
     # Record results
     show monika ma
     call test_prompt_button("Record results") from _call_test_prompt_button_2
+
+    show monika at thide
+    hide monika
     return True
 
 label script2_s_likes():
@@ -428,6 +431,8 @@ label script2_s():
     ##BUTTON:
     # Record results
     call test_prompt_button("Record results") from _call_test_prompt_button_5
+    show sayori at thide
+    hide sayori
     return True
 
 label script2_n_likes():
@@ -687,6 +692,9 @@ label script2_n():
     ##BUTTON:
     # Record results
     call test_prompt_button("Record results") from _call_test_prompt_button_8
+
+    show natsuki at thide
+    hide natsuki
     return True
 
 label script2_y_likes():
@@ -899,4 +907,6 @@ label script2_y():
     ##BUTTON:
     # Record results
     call test_prompt_button("Record results") from _call_test_prompt_button_11
+    show yuri at thide
+    hide yuri
     return True

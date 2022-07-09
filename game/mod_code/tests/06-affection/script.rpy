@@ -136,6 +136,8 @@ label script6_m():
     m "I love you."
     show monika ma
     call test_prompt_button("Record results") from _call_test_prompt_button_178
+    show monika at thide
+    hide monika
     return
 
 label script6_s():
@@ -247,7 +249,8 @@ label script6_s():
     s "I love you."
     show sayori ma
     call test_prompt_button("Record results") from _call_test_prompt_button_188
-
+    show sayori at thide
+    hide sayori
     return
 
 label script6_n():
@@ -392,6 +395,9 @@ label script6_n():
     n "I love you, {w=0.2}James."
     show natsuki mn
     call test_prompt_button("Record results") from _call_test_prompt_button_198
+
+    show natsuki at thide
+    hide natsuki
     return
 
 label script6_y():
@@ -502,4 +508,6 @@ label script6_y():
     y "And that's all that matters."
     show yuri ma
     call test_prompt_button("Record results") from _call_test_prompt_button_208
+    show yuri at thide
+    hide yuri
     return

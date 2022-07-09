@@ -155,6 +155,8 @@ label script8_m():
     m mh "There’s another test going on, right?"
     m e1a me "...$EMPLOYEE_NAME?"
     call test_prompt_button("Record results") from _call_test_prompt_button_216
+    show monika at thide
+    hide monika
     return
 
 label script8_s():
@@ -411,6 +413,8 @@ label script8_s():
     s "$EMPLOYEE_NAME?"
     show sayori md
     call test_prompt_button("Record results") from _call_test_prompt_button_232
+    show sayori at thide
+    hide sayori
     return
 
 label script8_n():
@@ -685,6 +689,9 @@ label script8_n():
     n "What’s the real test here?"
     show natsuki md
     call test_prompt_button("Record results") from _call_test_prompt_button_252
+
+    show natsuki at thide
+    hide natsuki
     return
 
 label script8_y():
@@ -950,4 +957,6 @@ label script8_y():
     y e4b b3c "Goodbye, $EMPLOYEE_NAME."
     show yuri ma
     call test_prompt_button("Record results") from _call_test_prompt_button_269
+    show yuri at thide
+    hide yuri
     return
