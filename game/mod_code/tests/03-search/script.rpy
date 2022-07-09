@@ -107,7 +107,7 @@ label script3_n():
     n b1d rhip e1b mh "Well,{w=0.2} let's see…"
     show natsuki e4a md b1a
     pause 1.0
-    n mb e1a b1a "You'll need to preheat the oven to 350 degrees fahrenheit.{w=0.7} Then, grease and flour two 9 inch,{w=0.2} round cake pans,{w=0.2} and cover the bottoms with waxed paper."
+    n mb e1a b1a "You'll need to preheat the oven to 350 degrees fahrenheit.{w=0.7} Then,{w=0.2} grease and flour two 9 inch,{w=0.2} round cake pans,{w=0.2} and cover the bottoms with waxed paper."
     n rdown e1d mh b1d "{i}Waxed{/i} paper,{w=0.2} not parchment paper."
     show natsuki e1a md
     call test_prompt_button("Ask to stop") from _call_test_prompt_button_159
@@ -131,7 +131,7 @@ label script3_y():
     # Load Yuri
     mc "Hey,{w=0.2} Yuri?"
     y mh "O-oh,{w=0.2} $EMPLOYEE_NAME,{w=0.2}{nw}{done} hi!"
-    y rup lup e4b mb b1a "O-oh, $EMPLOYEE_NAME,{fast} hi!"
+    y rup lup e4b mb b1a "O-oh,{w=0.2} $EMPLOYEE_NAME,{fast} hi!"
     y rdown e1a b1a "Did you need something..?"
     show yuri ma
     call test_prompt_button("Ask Yuri a search query") from _call_test_prompt_button_161

@@ -26,7 +26,7 @@ label script6_m():
     show monika forward at i11
     call show_monika_reload() from _call_show_monika_reload_2
     show monika forward e1a ma b2a at i11
-    mc "Hello, {w=0.2}Monika."
+    mc "Hello,{w=0.2} {w=0.2}Monika."
     show monika mb b1a
     m "$EMPLOYEE_NAME!"
     show monika lean e4 m3 b1
@@ -48,17 +48,17 @@ label script6_m():
     show monika md
     call test_prompt_button("Query affection") from _call_test_prompt_button_170
     show monika b1f me n3
-    mc "Monika, {w=0.2}is everything okay between us?"
+    mc "Monika,{w=0.2} {w=0.2}is everything okay between us?"
     show monika lean e4 m3 b1
     m "Of course it is!"
     show monika e2
-    m "I like to think we've been getting along swimmingly, {w=0.2}ahaha~"
+    m "I like to think we've been getting along swimmingly,{w=0.2} {w=0.2}ahaha~"
     show monika e1 m2
     m "I hope everything is going well for you too."
     show monika forward lpoint rhip e1a b2a mh
-    m "But please, {w=0.2}feel free to reach out to me if you have any concerns!"
+    m "But please,{w=0.2} {w=0.2}feel free to reach out to me if you have any concerns!"
     show monika e4b mb rdown b1a
-    m "After all, {w=0.2}I'm always happy to talk to you more."
+    m "After all,{w=0.2} {w=0.2}I'm always happy to talk to you more."
     show monika ma
     call test_prompt_button("Record response") from _call_test_prompt_button_171
 
@@ -70,9 +70,9 @@ label script6_m():
 
     call test_prompt_button("Query affection") from _call_test_prompt_button_172
     show monika b1f me n2 e1a
-    mc "Monika, {w=0.2}how's our relationship?"
+    mc "Monika,{w=0.2} {w=0.2}how's our relationship?"
     show monika lpoint e4b mb at h11
-    m "It's perfect, {w=0.2}$EMPLOYEE_NAME!"
+    m "It's perfect,{w=0.2} {w=0.2}$EMPLOYEE_NAME!"
     show monika e1b b2b at t11
     m "You've been a great friend so far."
     show monika e1a mh rhip
@@ -85,15 +85,15 @@ label script6_m():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_174
     show monika ma b1a at i11
-    mc "Monika, {w=0.2}I've been thinking of asking you something for quite a while."
+    mc "Monika,{w=0.2} {w=0.2}I've been thinking of asking you something for quite a while."
     show monika mb rhip
-    m "Oh, {w=0.2}please, {w=0.2}ask away!"
+    m "Oh,{w=0.2} {w=0.2}please,{w=0.2} {w=0.2}ask away!"
     show monika lean e4 m3 b1
-    m "It {i}is{/i} my job to answer any question you throw my way, {w=0.2}after all."
+    m "It {i}is{/i} my job to answer any question you throw my way,{w=0.2} {w=0.2}after all."
     show monika m1 e1
     call test_prompt_button("Query affection") from _call_test_prompt_button_175
     show monika n4 b3 e3
-    mc "Monika, {w=0.2}do you think of us as more than friends?"
+    mc "Monika,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show monika m4
     pause(1.0)
     show monika e2
@@ -101,13 +101,13 @@ label script6_m():
     show monika forward me b2b e2b
     pause(1.0)
     show monika mg
-    m "O-oh, {w=0.2}wow..."
+    m "O-oh,{w=0.2} {w=0.2}wow..."
     show monika e2c mf
     m "I..."
     show monika e4a mh b2a
     m "I don't possibly know how I could answer that..."
     show monika me b2c
-    m "I mean, {w=0.2}I..."
+    m "I mean,{w=0.2} {w=0.2}I..."
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_176
 
     call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 affTree.affVal memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful") from _call_nodecor_command_2
@@ -117,11 +117,11 @@ label script6_m():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_177
     show monika b2a n4 at i11
-    mc "Monika, {w=0.2}do you think of us as more than friends?"
+    mc "Monika,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show monika lean m2 b1 e2
     m "I always have."
     show monika m3 e1 at fc1
-    m "I love you more than anything, {w=0.2}James."
+    m "I love you more than anything,{w=0.2} {w=0.2}James."
     show monika forward rhip e1b mb
     m "And...{w=0.7}I should've known you'd come back sooner or later."
     show monika b1b mg at fc2
@@ -129,9 +129,9 @@ label script6_m():
     show monika e4a mh lpoint at fc3
     m "We were...{w=0.7}we {i}are{/i} like two pieces of a jigsaw puzzle."
     show monika b3c mg
-    m "So...{w=0.7}I don't know what happened, {w=0.2}if life just got in the way..."
+    m "So...{w=0.7}I don't know what happened,{w=0.2} {w=0.2}if life just got in the way..."
     show monika e1a mh b2c rdown at fc4
-    m "But whatever was bothering you, {w=0.2}I hope it's behind you now."
+    m "But whatever was bothering you,{w=0.2} {w=0.2}I hope it's behind you now."
     show monika b2b mb at face
     m "I love you."
     show monika ma
@@ -144,7 +144,7 @@ label script6_s():
     show sayori turned at i11
     call show_sayori_reload() from _call_show_sayori_reload_2
     show sayori turned ma e1a b2a at i11
-    mc "Hello, {w=0.2}Sayori."
+    mc "Hello,{w=0.2} {w=0.2}Sayori."
     show sayori e4b mc b1a rup
     s "Heyyyyyy!"
     show sayori e1a mb
@@ -163,7 +163,7 @@ label script6_s():
     show sayori me
     call test_prompt_button("Query affection") from _call_test_prompt_button_180
     show sayori ma
-    mc "Sayori, {w=0.2}is everything okay between us?"
+    mc "Sayori,{w=0.2} {w=0.2}is everything okay between us?"
     show sayori mc b1a
     s "Everything's right as rain!"
     show sayori e1b mb b2a ldown
@@ -181,7 +181,7 @@ label script6_s():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_182
     show sayori b1f me
-    mc "Sayori, {w=0.2}how's our relationship?"
+    mc "Sayori,{w=0.2} {w=0.2}how's our relationship?"
     show sayori mh
     s "Do you even really need to ask?"
     show sayori e4b b3c mc rup lup at h11
@@ -196,15 +196,15 @@ label script6_s():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_184
     show sayori b1f mf
-    mc "Sayori, {w=0.2}I've been thinking of asking you something for quite a while."
+    mc "Sayori,{w=0.2} {w=0.2}I've been thinking of asking you something for quite a while."
     show sayori me
     s "Hmm?"
     show sayori mh
-    s "Oh, {w=0.2}what would you like to ask?"
+    s "Oh,{w=0.2} {w=0.2}what would you like to ask?"
     show sayori md
     call test_prompt_button("Query affection") from _call_test_prompt_button_185
     show sayori n4 e2a b1c me
-    mc "Sayori, {w=0.2}do you think of us as more than friends?"
+    mc "Sayori,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show sayori e2c
     pause(1.0)
     show sayori e2b
@@ -214,11 +214,11 @@ label script6_s():
     show sayori e2b mf
     s "...Oh."
     show sayori me b1b
-    s "I, {w=0.2}um…"
+    s "I,{w=0.2} {w=0.2}um…"
     show sayori e2c mg
     s "I...{w=0.7}don't really know how to..."
     show sayori b2c mk
-    s "I'm sorry, {w=0.2}I..."
+    s "I'm sorry,{w=0.2} {w=0.2}I..."
     show sayori md
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_186
     call nodecor_command(wm_terminal, "nodeCor 86753F9 WM138222255 affTree.affVal memReset", "node 86753F9 for branch ID WM138222255: node memory reset successful") from _call_nodecor_command_5
@@ -228,7 +228,7 @@ label script6_s():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_187
     show sayori me e2b b2a
-    mc "Sayori, {w=0.2}do you think of us as more than friends?"
+    mc "Sayori,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show sayori mb e1b
     s "Of course I do."
     show sayori b2b mh e1a at fc1
@@ -238,11 +238,11 @@ label script6_s():
     show sayori mb at fc2
     s "I love you more than life itself."
     show sayori mc b1a at fc3
-    s "You're my world, {w=0.2}and I'd do {i}anything{/i} to make you happy."
+    s "You're my world,{w=0.2} {w=0.2}and I'd do {i}anything{/i} to make you happy."
     show sayori e4d mg
-    s "I was scared you'd left for good, {w=0.2}but…"
+    s "I was scared you'd left for good,{w=0.2} {w=0.2}but…"
     show sayori e1g mh at fc4
-    s "Well, {w=0.2}here you are."
+    s "Well,{w=0.2} {w=0.2}here you are."
     show sayori mg b2c
     s "And I hope you never have to leave me again."
     show sayori e4d mb at face
@@ -258,9 +258,9 @@ label script6_n():
     show natsuki turned at i11
     call show_natsuki_reload() from _call_show_natsuki_reload_2
     show natsuki turned md e1b b1a at t11
-    mc "Hello, {w=0.2}Natsuki."
+    mc "Hello,{w=0.2} {w=0.2}Natsuki."
     show natsuki cross b1d mi e1d
-    n "Oh, {w=0.2}yay. {w=0.7}It's the {i}illustrious{/i} $EMPLOYEE_NAME."
+    n "Oh,{w=0.2} {w=0.2}yay. {w=0.7}It's the {i}illustrious{/i} $EMPLOYEE_NAME."
     show natsuki turned rhip e1a b1c mh
     n "You good?"
     show natsuki md
@@ -276,13 +276,13 @@ label script6_n():
     show natsuki md
     call test_prompt_button("Query affection") from _call_test_prompt_button_190
     show natsuki e2a me
-    mc "Natsuki, {w=0.2}is everything okay between us?"
+    mc "Natsuki,{w=0.2} {w=0.2}is everything okay between us?"
     show natsuki b2a lhip e1a at shrug
     pause(.75)
     show natsuki mh ldown at i11
     n "Don't see why not."
     show natsuki mb e1d b1d
-    n "You haven't pissed me off recently, {w=0.2}so..."
+    n "You haven't pissed me off recently,{w=0.2} {w=0.2}so..."
     show natsuki ma
     n "..."
     show natsuki e1a b2a me
@@ -290,21 +290,21 @@ label script6_n():
     show natsuki b1b mg e1c
     n "...Have I?"
     show natsuki cross b1d mi e1d
-    n "Oh come on, {w=0.2}don't give me the cold shoulder."
+    n "Oh come on,{w=0.2} {w=0.2}don't give me the cold shoulder."
     show natsuki b2b e1a mg
-    n "What's going on, {w=0.2}big man?"
+    n "What's going on,{w=0.2} {w=0.2}big man?"
     show natsuki e1b me b2a at s11
-    n "{i}Or woman, {w=0.2}or whatever else. {w=0.7}I don't actually have the capacity to recognize yet.{/i}"
+    n "{i}Or woman,{w=0.2} {w=0.2}or whatever else. {w=0.7}I don't actually have the capacity to recognize yet.{/i}"
     show natsuki b1b mf at t11
     n "..."
     show natsuki turned mg
     n "Hey…"
     show natsuki e1a mh lhip
-    n "I know I joke a lot, {w=0.2}but if I've really upset you, {w=0.2}you gotta let me know."
+    n "I know I joke a lot,{w=0.2} {w=0.2}but if I've really upset you,{w=0.2} {w=0.2}you gotta let me know."
     show natsuki b1c mg
     n "I gotta learn."
     show natsuki b1a mh
-    n "Come on, {w=0.2}talk to me."
+    n "Come on,{w=0.2} {w=0.2}talk to me."
     show natsuki md
     pause(0.8)
     show natsuki b1b
@@ -322,13 +322,13 @@ label script6_n():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_192
     show natsuki b1c n3 e2a
-    mc "Natsuki, {w=0.2}how's our relationship?"
+    mc "Natsuki,{w=0.2} {w=0.2}how's our relationship?"
     show natsuki cross e4a mb b3b
     n "Never been better."
     show natsuki e1a mc b1c
-    n "I may joke that you're this big dumbass or whatever, {w=0.2}but we really are great friends!"
+    n "I may joke that you're this big dumbass or whatever,{w=0.2} {w=0.2}but we really are great friends!"
     show natsuki e1b mh
-    n "At least, {w=0.2}that's the impression I get."
+    n "At least,{w=0.2} {w=0.2}that's the impression I get."
     show natsuki mj b2a
     pause(0.6)
     show natsuki n4
@@ -342,14 +342,14 @@ label script6_n():
     show natsuki turned e1a ma b1a n1
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_194
-    mc "Natsuki, {w=0.2}I've been thinking of asking you something for quite a while."
+    mc "Natsuki,{w=0.2} {w=0.2}I've been thinking of asking you something for quite a while."
     show natsuki rhip b1c mc
     n "That's what I'm here for!"
     show natsuki lhip mb
     n "Hit me."
     call test_prompt_button("Query affection") from _call_test_prompt_button_195
     show natsuki n4 e2a me b1f
-    mc "Natsuki, {w=0.2}do you think of us as more than friends?"
+    mc "Natsuki,{w=0.2} {w=0.2}do you think of us as more than friends?"
     pause(1.0)
     show natsuki e2b
     pause(1.0)
@@ -362,9 +362,9 @@ label script6_n():
     show natsuki cross mm e4a b3b
     n "Nnn…"
     show natsuki e4c b3a ml at h11
-    n "Y-you can't just drop something like that on me, {w=0.2}$EMPLOYEE_NAME!"
+    n "Y-you can't just drop something like that on me,{w=0.2} {w=0.2}$EMPLOYEE_NAME!"
     show natsuki e2b b1b mk at t11
-    n "I mean, {w=0.2}I..."
+    n "I mean,{w=0.2} {w=0.2}I..."
     show natsuki me
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_196
 
@@ -374,17 +374,17 @@ label script6_n():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_197
     show natsuki n4 e2a b1f
-    mc "Natsuki, {w=0.2}do you think of us as more than friends?"
+    mc "Natsuki,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show natsuki mh b1c at t11
-    n "Uh, {w=0.2}dude, {w=0.2}I thought that went without saying."
+    n "Uh,{w=0.2} {w=0.2}dude,{w=0.2} {w=0.2}I thought that went without saying."
     show natsuki mb b2b at fc1
-    n "I love you to bits, {w=0.2}James."
+    n "I love you to bits,{w=0.2} {w=0.2}James."
     show natsuki e4a b2a
-    n "I know it's been a while, {w=0.2}but I never forgot."
+    n "I know it's been a while,{w=0.2} {w=0.2}but I never forgot."
     show natsuki mc e2a b1c at fc3
-    n "You're like, {w=0.2}the perfect guy."
+    n "You're like,{w=0.2} {w=0.2}the perfect guy."
     show natsuki e2c mb
-    n "And shit, {w=0.2}I'm glad you chose me."
+    n "And shit,{w=0.2} {w=0.2}I'm glad you chose me."
     show natsuki mg b1b at fc2
     n "'Cause I know I'm not the perfect girl."
     show natsuki mh e2a at fc4
@@ -392,7 +392,7 @@ label script6_n():
     show natsuki mb b2b
     n "And I really appreciate that."
     show natsuki mc e4a b2c lhip rhip at face
-    n "I love you, {w=0.2}James."
+    n "I love you,{w=0.2} {w=0.2}James."
     show natsuki mn
     call test_prompt_button("Record results") from _call_test_prompt_button_198
 
@@ -405,9 +405,9 @@ label script6_y():
     show yuri turned at i11
     call show_yuri_reload() from _call_show_yuri_reload_2
     show yuri turned e1a md b1c at i11
-    mc "Hello, {w=0.2}Yuri."
+    mc "Hello,{w=0.2} {w=0.2}Yuri."
     show yuri e1d mg
-    y "Hello, {w=0.2}$EMPLOYEE_NAME."
+    y "Hello,{w=0.2} {w=0.2}$EMPLOYEE_NAME."
     show yuri rup mb
     y "Good to see you again."
     show yuri b1a
@@ -425,13 +425,13 @@ label script6_y():
     show yuri md
     call test_prompt_button("Query affection") from _call_test_prompt_button_200
     show yuri me
-    mc "Yuri, {w=0.2}is everything okay between us?"
+    mc "Yuri,{w=0.2} {w=0.2}is everything okay between us?"
     show yuri e1b mh
     y "Between us?"
     show yuri rdown
     y "I...{w=0.7}I think we're okay."
     show yuri e1a mb b2a
-    y "You've actually been quite an interesting person to learn from, {w=0.2}$EMPLOYEE_NAME."
+    y "You've actually been quite an interesting person to learn from,{w=0.2} {w=0.2}$EMPLOYEE_NAME."
     show yuri ma
     call test_prompt_button("Record response") from _call_test_prompt_button_201
 
@@ -441,11 +441,11 @@ label script6_y():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_202
     show yuri b1f me
-    mc "Yuri, {w=0.2}how's our relationship?"
+    mc "Yuri,{w=0.2} {w=0.2}how's our relationship?"
     show yuri b1a mb rup
     y "What a silly question."
     show yuri e4a b2a
-    y "$EMPLOYEE_NAME, {w=0.2}you're very precious to me."
+    y "$EMPLOYEE_NAME,{w=0.2} {w=0.2}you're very precious to me."
     show yuri mh b2b
     y "And I...{w=0.7}I only hope that I'm even half as good to you."
     show yuri md
@@ -456,14 +456,14 @@ label script6_y():
     pause 0.5
     call test_prompt_button("Query affection") from _call_test_prompt_button_204
     show yuri ma
-    mc "Yuri, {w=0.2}I've been thinking of asking you something for quite a while."
+    mc "Yuri,{w=0.2} {w=0.2}I've been thinking of asking you something for quite a while."
     show yuri b1a mg
     y "Oh...{w=0.7}r-really?."
     show yuri mh b1f
     y "What's your question?"
     call test_prompt_button("Query affection") from _call_test_prompt_button_205
     show yuri n4 e2b b1b lup me
-    mc "Yuri, {w=0.2}do you think of us as more than friends?"
+    mc "Yuri,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show yuri shy b3 e2 m1
     y "..."
     show yuri m4
@@ -471,7 +471,7 @@ label script6_y():
     show yuri b2 e3
     y "I-I don't know…"
     show yuri e5
-    y "That's...{w=0.7}I'm sorry, {w=0.2}I-"
+    y "That's...{w=0.7}I'm sorry,{w=0.2} {w=0.2}I-"
     show yuri m2
     call test_prompt_button("Refresh affection") from _call_test_prompt_button_206
 
@@ -483,13 +483,13 @@ label script6_y():
 
     call test_prompt_button("Query affection") from _call_test_prompt_button_207
     show yuri n4 e2b b1b lup me
-    mc "Yuri, {w=0.2}do you think of us as more than friends?"
+    mc "Yuri,{w=0.2} {w=0.2}do you think of us as more than friends?"
     show yuri e2a mk
     y "W-why of course I do!"
     show yuri e2c mg
-    y "You were always there for me, {w=0.2}James."
+    y "You were always there for me,{w=0.2} {w=0.2}James."
     show yuri e1a mb b2a at fc1
-    y "Always so comforting, {w=0.2}kind...{w=0.7}nothing like the others."
+    y "Always so comforting,{w=0.2} {w=0.2}kind...{w=0.7}nothing like the others."
     show yuri e2b at fc2
     y "I...{w=0.7}I love you."
     show yuri e4d b1a mc
@@ -501,7 +501,7 @@ label script6_y():
     show yuri m1
     y "So..."
     show yuri e4 at fc5
-    y "Agh, {w=0.2}it's okay."
+    y "Agh,{w=0.2} {w=0.2}it's okay."
     show yuri turned mb rup lup b2a e1g
     y "You're here now."
     show yuri e4d at face

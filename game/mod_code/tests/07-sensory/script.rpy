@@ -26,7 +26,7 @@ label script7_m():
     show monika forward at i11
     call show_monika_reload() from _call_show_monika_reload_12
     show monika forward happ om at t11 zorder 1
-    m "Oh, $EMPLOYEE_NAME?"
+    m "Oh,{w=0.2} $EMPLOYEE_NAME?"
     show monika forward rhip ce
     m "What a pleasant surprise!"
     show monika lean oe
@@ -34,15 +34,15 @@ label script7_m():
     show monika m1
     call test_prompt_button("Initiate test") from _call_test_prompt_button_46
     show monika forward neut rhip ma
-    mc "Monika, can I ask you a few questions?"
+    mc "Monika,{w=0.2} can I ask you a few questions?"
     show monika lpoint happ ce om
-    m "That's what I'm here for, aha~"
+    m "That's what I'm here for,{w=0.2} aha~"
     show monika ma
     call test_prompt_button("Test control analysis") from _call_test_prompt_button_47
     show monika ldown e1a
     mc "Can you describe how this feels?"
     show monika curi cm
-    m "How what feels, $EMPLOYEE_NAME?"
+    m "How what feels,{w=0.2} $EMPLOYEE_NAME?"
     show monika awkw e1b mb b1b
     m "I'm not quite following."
     call test_prompt_button("Simulate taste") from _call_test_prompt_button_48
@@ -54,15 +54,15 @@ label script7_m():
     show monika mg at t11
     m "I get it now!"
     show monika rhip e4a mb
-    m "Yep, I'm definitely tasting some..."
+    m "Yep,{w=0.2} I'm definitely tasting some..."
     show monika lpoint mc e4b b3c
     m "Is that sauvignon blanc?"
     show monika lean e4 m3 at h11
-    m "Why, thank you!"
+    m "Why,{w=0.2} thank you!"
     show monika e2 b3
-    m "Of course, intoxication is out of the question in my current state, but..."
+    m "Of course,{w=0.2} intoxication is out of the question in my current state,{w=0.2} but..."
     show monika -m3 -e2 -b3 neut
-    m "If you don't mind me asking, though... why wine of all things?"
+    m "If you don't mind me asking,{w=0.2} though...{w=0.7}why wine of all things?"
     show monika b3 m3
     m "Is this because of that anecdote I told about Yuri?"
     show monika e4 b1 m1 at h11
@@ -74,7 +74,7 @@ label script7_m():
     show monika e1
     mc "Can you describe what you see?"
     show monika e3 m2 n3
-    m "Oh, this is-"
+    m "Oh,{w=0.2} this is-"
     show monika forward ma e2c
     pause(0.5)
     show monika e2b
@@ -82,15 +82,15 @@ label script7_m():
     show monika e2c
     pause(0.8)
     show monika e2a b1a mb
-    m "Very tasteful, $EMPLOYEE_NAME."
+    m "Very tasteful,{w=0.2} $EMPLOYEE_NAME."
     show monika b1d e1d rhip
     m "{i}How did you possibly know that independent coffee shops are my thing?{/i}"
     show monika e1a b1a mh
-    m "Well, I know you didn't create actual wine, but maybe we can get an actual coffee together!"
+    m "Well,{w=0.2} I know you didn't create actual wine,{w=0.2} but maybe we can get an actual coffee together!"
     show monika e1b b2a mb lpoint
-    m "I think I'm gonna go for...mmm...a caramel macchiato!"
+    m "I think I'm gonna go for...{w=0.7}mmm...{w=0.7}a caramel macchiato!"
     show monika b1a e1a
-    m "Don't worry, it's on me."
+    m "Don't worry,{w=0.2} it's on me."
     show monika ma
     call test_prompt_button("Simulate touch") from _call_test_prompt_button_50
     show monika forward curi ma b1f
@@ -98,17 +98,17 @@ label script7_m():
     show monika om ldown at s11
     m "Aw..."
     show monika rhip mb e2b
-    m "That's a shame. I liked the wine!"
+    m "That's a shame.{w=0.7} I liked the wine!"
     show monika rdown ma e4b b3c at t11
-    m "Well, thank you regardless!"
+    m "Well,{w=0.2} thank you regardless!"
     show monika -ma -e4b -b3c lsur at fc1
     m "..."
     show monika blaw mb e1b
-    m "O-oh, $EMPLOYEE_NAME..."
+    m "O-oh,{w=0.2} $EMPLOYEE_NAME..."
     show monika mc e1a
     m "Are you holding my hand?"
     show monika -mc -e1d happ ce
-    m "Well, I'm flattered, aha~"
+    m "Well,{w=0.2} I'm flattered,{w=0.2} aha~"
     show monika lean happ om ce
     m "But I'll happily hold your hand too."
     show monika cm oe
@@ -120,22 +120,22 @@ label script7_m():
     show monika happ mb ce
     m "That tickles!!"
     show monika mc at fc3
-    m "$EMPLOYEE_NAME, ahaha~"
+    m "$EMPLOYEE_NAME,{w=0.2} ahaha~"
     call test_prompt_button("Test further") from _call_test_prompt_button_52
     show monika mb
     mc "And now?"
     show monika -blaw -mb lsur oe at fc4
     m "Aha-agh!"
     show monika mg
-    m "$EMPLOYEE_NAME, you've got an iron grip."
+    m "$EMPLOYEE_NAME,{w=0.2} you've got an iron grip."
     show monika mh
-    m "You might wanna be a little more careful, becau--"
+    m "You might wanna be a little more careful,{w=0.2} becau--"
     show monika me
     call test_prompt_button("Test further") from _call_test_prompt_button_53
     show monika e1g mk at fc5
-    m "[persistent.firstname], really, that-- OW!"
+    m "[persistent.firstname],{w=0.2} really,{w=0.2} that-- OW!"
     show monika e1h ml b2c
-    m "Please, let go!"
+    m "Please,{w=0.2} let go!"
     show monika b2c mq
     m "AGH!!"
     show monika e4e b1e mm at vibrate
@@ -144,11 +144,11 @@ label script7_m():
     pause(2.0)
     call test_prompt_button("Stop testing") from _call_test_prompt_button_54
     show monika mh at t11
-    m "...What was that for, [persistent.firstname]?"
+    m "...What was that for,{w=0.2} [persistent.firstname]?"
     show monika e1h mf at sobbing
     m "You didn't have to..."
     show monika mk
-    m "If there's something you need to let off your chest, there are better ways than...this..."
+    m "If there's something you need to let off your chest,{w=0.2} there are better ways than...{w=0.7}this..."
     show monika e4e mj
     call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 sensTree.sensNode memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful") from _call_nodecor_command_35
 
@@ -165,11 +165,11 @@ label script7_m():
     show monika me
     m "..."
     show monika mg
-    m "Something's wrong, [persistent.firstname]..."
+    m "Something's wrong,{w=0.2} [persistent.firstname]..."
     show monika e1d mh b2b
     m "Really wrong..."
     show monika e1b
-    m "I...I feel like I've been shot in the stomach."
+    m "I...{w=0.7}I feel like I've been shot in the stomach."
     show monika b2c
     m "And I'm bleeding everywhere and I'm all alone."
     show monika e1c mg b1e
@@ -181,9 +181,9 @@ label script7_m():
     show monika e1h mh at sobbing
     m "What happened?"
     show monika e4e mg
-    m "One second, I was fine, then...this."
+    m "One second,{w=0.2} I was fine,{w=0.2} then...{w=0.7}this."
     show monika me b1c
-    m "Please...tell me what happened."
+    m "Please...{w=0.7}tell me what happened."
     show monika mj
     call nodecor_command(wm_terminal, "nodeCor 86753F9 WM125255140 sensTree.sensNode memReset", "node 86753F9 for branch ID WM125255140: node memory reset successful") from _call_nodecor_command_36
 
@@ -195,11 +195,11 @@ label script7_m():
     show monika me b1f
     m "Huh?"
     show monika b2a mb
-    m "Oh, I'm okay, $EMPLOYEE_NAME!"
+    m "Oh,{w=0.2} I'm okay,{w=0.2} $EMPLOYEE_NAME!"
     show monika e1b rhip
-    m "A little foggy, but that might just be the wine."
+    m "A little foggy,{w=0.2} but that might just be the wine."
     show monika mc e1a lpoint
-    m "Maybe it {i}does{/i} work after all, aha~"
+    m "Maybe it {i}does{/i} work after all,{w=0.2} aha~"
     show monika b1f mh
     m "Why do you ask?"
     show monika me
@@ -213,17 +213,17 @@ label script7_s():
     show sayori turned at i11
     call show_sayori_reload() from _call_show_sayori_reload_11
     show sayori turned happ mb zorder 1 at t11
-    s "Oh hey, $EMPLOYEE_NAME!"
+    s "Oh hey,{w=0.2} $EMPLOYEE_NAME!"
     show sayori e4b
-    s "Welcome back, ehe~"
+    s "Welcome back,{w=0.2} ehe~"
     show sayori mh e1a
     s "How're you?"
     show sayori ma
     call test_prompt_button("Initiate test") from _call_test_prompt_button_60
     show sayori e2a me
-    mc "Sayori, can I ask you a few questions?"
+    mc "Sayori,{w=0.2} can I ask you a few questions?"
     show sayori mf rup lup
-    s "Oooh, okay!"
+    s "Oooh,{w=0.2} okay!"
     show sayori b1f mh
     s "What is it?"
     show sayori ma
@@ -232,16 +232,16 @@ label script7_s():
     show sayori b2a mo e4b at h11
     s "Ehe~"
     show sayori b1f e1a mb at t11
-    s "Whadda you mean, $EMPLOYEE_NAME?"
+    s "Whadda you mean,{w=0.2} $EMPLOYEE_NAME?"
     show sayori b1a mc ldown
     s "I don't feel anything!"
     show sayori b2a e1b mb
-    s "Well, nothing new, but you know what I mean."
+    s "Well,{w=0.2} nothing new,{w=0.2} but you know what I mean."
     show sayori ma
     call test_prompt_button("Simulate taste") from _call_test_prompt_button_62
     mc "Can you describe it now?"
     show sayori mg b1f rdown
-    s "What's...wha-?"
+    s "What's...{w=0.7}wha-?"
     show sayori me
     s "Is that..?"
     show sayori e2a ml b1a rup lup at h11
@@ -251,13 +251,13 @@ label script7_s():
     show sayori e4b mc b3a ldown rdown at h11
     s "But awesome!"
     show sayori e1a mb b1f at t11
-    s "How did you do that, $EMPLOYEE_NAME?"
+    s "How did you do that,{w=0.2} $EMPLOYEE_NAME?"
     show sayori mn b2a e1c
     s "Mmm..."
     show sayori mb
     s "That's so good..."
     show sayori mc e1a b1a lup
-    s "It's delicious, $EMPLOYEE_NAME!"
+    s "It's delicious,{w=0.2} $EMPLOYEE_NAME!"
     show sayori e4b at h11
     s "Thanks!"
     show sayori ma at t11
@@ -269,23 +269,23 @@ label script7_s():
     show sayori e2a ml rup at h11
     s "Whaaa??"
     show sayori e1d mb b1d at t11
-    s "No way, $EMPLOYEE_NAME."
+    s "No way,{w=0.2} $EMPLOYEE_NAME."
     show sayori e4b mc b1a
     s "I love fairs!"
     show sayori b2a e1b mb ldown
-    s "Well...I love looking at them at least, ehehe~"
+    s "Well...{w=0.7}I love looking at them at least,{w=0.2} ehehe~"
     show sayori e1a
-    s "I think they're a bit too chaotic for me, but they look really fun!"
+    s "I think they're a bit too chaotic for me,{w=0.2} but they look really fun!"
     show sayori b1a lup
-    s "But...I'd be willing to give it a go with you!"
+    s "But...{w=0.7}I'd be willing to give it a go with you!"
     show sayori mc
-    s "Maybe we could go on the ferris wheel, or-"
+    s "Maybe we could go on the ferris wheel,{w=0.2} or-"
     show sayori mk e1c b1c rdown
-    s "Eek, maybe not. That's like, dizzyingly high!"
+    s "Eek,{w=0.2} maybe not.{w=0.7} That's like,{w=0.2} dizzyingly high!"
     show sayori e2a mb b1a at h11
-    s "Oh, oh! Spinning teacups!"
+    s "Oh,{w=0.2} oh!{w=0.7} Spinning teacups!"
     show sayori e4b mc b1d ldown at t11
-    s "Catch up, slowpoke!"
+    s "Catch up,{w=0.2} slowpoke!"
     show sayori mn
     call test_prompt_button("Simulate touch") from _call_test_prompt_button_64
     show sayori e1a
@@ -307,7 +307,7 @@ label script7_s():
     show sayori e2c mc b1a
     s "Are you holding my hand?"
     show sayori e4b mb
-    s "D'aww, you're so cute."
+    s "D'aww,{w=0.2} you're so cute."
     show sayori ma
     call test_prompt_button("Test further") from _call_test_prompt_button_65
     show sayori e1a mn
@@ -317,25 +317,25 @@ label script7_s():
     show sayori e1d
     s "That tickles!!"
     show sayori mo e4b b1c at fc3
-    s "$EMPLOYEE_NAME, that really-- ehehehe~"
+    s "$EMPLOYEE_NAME,{w=0.2} that really-- ehehehe~"
     call test_prompt_button("Test further") from _call_test_prompt_button_66
     mc "And now?"
     show sayori e1f mb ldown at fc4
     s "Ehe--ow!"
     show sayori b2b mi
-    s "You're holding on a little tight, $EMPLOYEE_NAME..."
+    s "You're holding on a little tight,{w=0.2} $EMPLOYEE_NAME..."
     show sayori mh b2c
-    s "Can you-- agh-- please, let go?"
+    s "Can you-- agh-- please,{w=0.2} let go?"
     show sayori me
     call test_prompt_button("Test further") from _call_test_prompt_button_67
     show sayori e4d mk at fc5
-    s "[persistent.firstname]...please..."
+    s "[persistent.firstname]...{w=0.7}please..."
     show sayori mf lup
     s "It really-..."
     show sayori e4e mm
     call test_prompt_button("Stop testing") from _call_test_prompt_button_68
     show sayori mh b2b rup at t11
-    s "Wh-why did you do that, [persistent.firstname]?"
+    s "Wh-why did you do that,{w=0.2} [persistent.firstname]?"
     show sayori mg b1c e1h
     s "That really hurt..."
     show sayori ml
@@ -357,17 +357,17 @@ label script7_s():
     show sayori e1a b2b rup
     s "Something feels wrong..."
     show sayori mh n2
-    s "What happened, [persistent.firstname]?"
+    s "What happened,{w=0.2} [persistent.firstname]?"
     show sayori e1g
     s "My head hurts so bad..."
     show sayori mf
     s "There's like..."
     show sayori e4d mi lup
-    s "People. Hundreds of them."
+    s "People.{w=0.7} Hundreds of them."
     show sayori b1d mh
-    s "They're shouting, screaming...barking at me."
+    s "They're shouting,{w=0.2} screaming...{w=0.7}barking at me."
     show sayori me rdown
-    s "Over and over and over, forever."
+    s "Over and over and over,{w=0.2} forever."
     show sayori b1e e4e mg
     s "And my head feels like it's on fire."
     show sayori e1h b2c ml
@@ -385,9 +385,9 @@ label script7_s():
     show sayori me b1f
     s "Huh?"
     show sayori b2a e1c mg
-    s "Hmmm...I miss the cookie..."
+    s "Hmmm...{w=0.7}I miss the cookie..."
     show sayori e4b mb b1a rup lup
-    s "But apart from that, I'm good!"
+    s "But apart from that,{w=0.2} I'm good!"
     show sayori mh e1a ldown
     s "Why? Have you got another test?"
     show sayori ma
@@ -401,20 +401,20 @@ label script7_n():
     show natsuki turned at i11
     call show_natsuki_reload() from _call_show_natsuki_reload_11
     show natsuki cross happ mh oe zorder 1 at t11
-    n "Oh, $EMPLOYEE_NAME?"
+    n "Oh,{w=0.2} $EMPLOYEE_NAME?"
     show natsuki mb
     n "What's got you up this early?"
     show natsuki cm
     call test_prompt_button("Initiate test") from _call_test_prompt_button_74
     show natsuki cross neut
-    mc "Natsuki, can I ask you a few questions?"
+    mc "Natsuki,{w=0.2} can I ask you a few questions?"
     show natsuki turned anno mg
-    n "Ugh. Always with the questions."
+    n "Ugh.{w=0.7} Always with the questions."
     show natsuki mi rhip
-    n "This isn't like that \"what's your favourite flavour of ice cream\" shit again, is it?"
+    n "This isn't like that \"what's your favourite flavour of ice cream\" shit again,{w=0.2} is it?"
     show natsuki cm
     call test_prompt_button("Respond") from _call_test_prompt_button_75
-    mc "No, nothing like that."
+    mc "No,{w=0.2} nothing like that."
     show natsuki om ce
     n "Alright..."
     show natsuki oe rdown
@@ -433,19 +433,19 @@ label script7_n():
     call test_prompt_button("Simulate taste") from _call_test_prompt_button_77
     mc "Can you describe it now?"
     show natsuki om
-    n "I...{p=0.75}{nw}{done} huh."
+    n "I...{w=0.7}{nw}{done} huh."
     show natsuki e1b mk b1a
-    n "I... {fast}huh."
+    n "I...{fast}huh."
     show natsuki b1b mg
     n "Is that..?"
     show natsuki e1c mh
-    n "I can taste...{w} strawberry cupcake."
+    n "I can taste...{w=0.7}strawberry cupcake."
     show natsuki e1a rhip lhip
-    n "You freak me out sometimes, $EMPLOYEE_NAME."
+    n "You freak me out sometimes,{w=0.2} $EMPLOYEE_NAME."
     show natsuki mg b1c
     n "...Does taste good though."
     show natsuki e1b mb
-    n "Mmh... like, really good."
+    n "Mmh...{w=0.7}like,{w=0.2} really good."
     show natsuki mo e4b b3c
     n "Like {i}I{/i} made them or something."
     $ nref()
@@ -454,9 +454,9 @@ label script7_n():
     show natsuki e2c
     pause 0.75
     show natsuki e2a mg
-    n "You haven't actually got any cupcakes with you, have you?"
+    n "You haven't actually got any cupcakes with you,{w=0.2} have you?"
     show natsuki mc b2c
-    n "Cause truth be told, I'd kill for one of those right now."
+    n "Cause truth be told,{w=0.2} I'd kill for one of those right now."
     show natsuki cm
     call test_prompt_button("Test environment recognition") from _call_test_prompt_button_78
     show bg n_sensory_location zorder 0
@@ -467,21 +467,21 @@ label script7_n():
     show natsuki e1c mk
     n "Whuh-...."
     show natsuki e1a mc b1a n3
-    n "Oh man, you know me too well."
+    n "Oh man,{w=0.2} you know me too well."
     show natsuki mb b1c
-    n "You got the manga, video games, {i}pizza{/i}?"
+    n "You got the manga,{w=0.2} video games,{w=0.2} {i}pizza{/i}?"
     show natsuki mc rhip lhip e4b
-    n "That's like, basically everything I'll ever need!"
+    n "That's like,{w=0.2} basically everything I'll ever need!"
     show natsuki mh n4 e2b
-    n "A-and you, I guess..."
+    n "A-and you,{w=0.2} I guess..."
     show natsuki mb e2a
-    n "Nice one, $EMPLOYEE_NAME."
+    n "Nice one,{w=0.2} $EMPLOYEE_NAME."
     show natsuki ma
     pause(0.5)
     show natsuki e2c
     pause(1.0)
     show natsuki e1a mh
-    n "Well, how about it?"
+    n "Well,{w=0.2} how about it?"
     show natsuki mb e1d
     n "One quick game?"
     show natsuki mn
@@ -497,7 +497,7 @@ label script7_n():
     show natsuki turned cm e2a b2a at fc1
     n "..."
     show natsuki e2a b1b mk
-    n "Ohh, that's weird."
+    n "Ohh,{w=0.2} that's weird."
     show natsuki mh
     n "Weird weird weird."
     show natsuki b1f
@@ -509,31 +509,31 @@ label script7_n():
     show natsuki e4a b3b mm
     n "...Fine."
     show natsuki mi
-    n "But just this once, 'cause I'm in a good mood."
+    n "But just this once,{w=0.2} 'cause I'm in a good mood."
     show natsuki md
     call test_prompt_button("Test further") from _call_test_prompt_button_80
     show natsuki e1a b1a
     mc "How about now?"
     show natsuki turned laug mb at fc2
-    n "O-okay, that--hey!"
+    n "O-okay,{w=0.2} that--hey!"
     show natsuki ce
     n "That tickles!"
     show natsuki om
-    n "You son-of-a---{p=0.75}{nw}{done}come on, lay off!"
+    n "You son-of-a---{p=0.75}{nw}{done}come on,{w=0.2} lay off!"
     show natsuki oe b1e at fc3
-    n "You son-of-a---{fast}come on, lay off!"
+    n "You son-of-a---{fast}come on,{w=0.2} lay off!"
     show natsuki mn
     call test_prompt_button("Test further") from _call_test_prompt_button_81
     show natsuki at fc4
     mc "And now?"
     show natsuki pani e2a  mi
-    n "Hey, that's a little too--!"
+    n "Hey,{w=0.2} that's a little too--!"
     show natsuki ml
-    n "Come on man, ease off!"
+    n "Come on man,{w=0.2} ease off!"
     show natsuki mi
     n "You're kinda crushing me here."
     show natsuki b1e e1d
-    n "Jesus dude, do you have ears?"
+    n "Jesus dude,{w=0.2} do you have ears?"
     show natsuki om e1g
     n "I said you're--"
     call test_prompt_button("Test further") from _call_test_prompt_button_82
@@ -557,11 +557,11 @@ label script7_n():
     show natsuki mm at t11
     n "..."
     show natsuki e1h mq
-    n "Come on, answer me!"
+    n "Come on,{w=0.2} answer me!"
     show natsuki mm
     call test_prompt_button("Reset memory") from _call_test_prompt_button_84
     show natsuki mp
-    n "If you don't tell me what the hell you just did to me {i}right now{/i}, I swear to God I'm gonna reach through that headset and I'm gonna kill you!!"
+    n "If you don't tell me what the hell you just did to me {i}right now{/i},{w=0.2} I swear to God I'm gonna reach through that headset and I'm gonna kill you!!"
     show natsuki mm
     call nodecor_command(wm_terminal, "nodeCor 86753F9 WM250153255 sensTree.sensNode memReset", "node 86753F9 for branch ID WM250153255: node memory reset successful") from _call_nodecor_command_39
     call show_natsuki_reload() from _call_show_natsuki_reload_12
@@ -588,22 +588,22 @@ label script7_n():
     show natsuki e1c mh
     n "Something happened just now."
     show natsuki e1g
-    n "I feel really...scared.."
+    n "I feel really...{w=0.7}scared.."
     show natsuki e4d me
     n "I don't..."
     show natsuki b2c mg
     n "I don't know what's..."
     show natsuki e1g mh
-    n "What am I feeling, [persistent.firstname]?"
+    n "What am I feeling,{w=0.2} [persistent.firstname]?"
     show natsuki mf
     n "Like..."
     show natsuki b2b
-    n "I feel like...I feel like there's alarm bells going off everywhere."
+    n "I feel like...{w=0.7}I feel like there's alarm bells going off everywhere."
     show natsuki e4a mg
     n "And I want to be anywhere but here."
     show natsuki fs sad m3 oe b3
-    n "And...I just want to be in someone's arms."
-    n "Not yours, but..."
+    n "And...{w=0.7}I just want to be in someone's arms."
+    n "Not yours,{w=0.2} but..."
     show natsuki ce
     n "...I don't know..."
     show natsuki cry oe
@@ -618,26 +618,26 @@ label script7_n():
     call test_prompt_button("Inquire") from _call_test_prompt_button_88
     mc "How do you feel now?"
     show natsuki cross b1f mg
-    n "Fine, I guess?"
+    n "Fine,{w=0.2} I guess?"
     show natsuki curi mh
-    n "Am I waiting for something to happen, or are you just being nice?"
+    n "Am I waiting for something to happen,{w=0.2} or are you just being nice?"
     show natsuki e1b cm
     n "Cause I don't feel anything yet."
     pause 1.0
     show natsuki -e1b neut b1c om
-    n "...Nope, nothing."
+    n "...Nope,{w=0.2} nothing."
     show natsuki b1e mg
     n "I'm gonna take a shot in the dark and say you're just milking it now."
     show natsuki -b1e happ om ce
-    n "For which, I think, warrants another cupcake."
+    n "For which,{w=0.2} I think,{w=0.2} warrants another cupcake."
     show natsuki cm oe
     pause 1.0
     show natsuki b1f e1d mj
     pause(1.0)
     show natsuki b1d e4a mf awkw at s11
-    n "Hhhh...{w}{done}{i}pretty please, with a cherry on top?{/i}"
+    n "Hhhh...{w=0.7}{done}{i}pretty please,{w=0.2} with a cherry on top?{/i}"
     show natsuki e1d b1d mi at t11
-    n "Hhhh...{fast}{i}pretty please, with a cherry on top?{/i}"
+    n "Hhhh...{fast}{i}pretty please,{w=0.2} with a cherry on top?{/i}"
     show natsuki md
     call test_prompt_button("Record results") from _call_test_prompt_button_89
 
@@ -650,16 +650,16 @@ label script7_y():
     show yuri turned at i11
     call show_yuri_reload() from _call_show_yuri_reload_11
     show yuri turned happ b2a mb oe zorder 1 at t11
-    y "Hello, $EMPLOYEE_NAME."
+    y "Hello,{w=0.2} $EMPLOYEE_NAME."
     show yuri e1a
-    y "It's...nice to see you."
+    y "It's...{w=0.7}nice to see you."
     show yuri b1a
     y "How can I help?"
     show yuri ma
     call test_prompt_button("Initiate test") from _call_test_prompt_button_90
-    mc "Yuri, can I ask you a few questions?"
+    mc "Yuri,{w=0.2} can I ask you a few questions?"
     show yuri rup mb e4a
-    y "Well, of course you can."
+    y "Well,{w=0.2} of course you can."
     show yuri mg e1a
     y "I'll do my best to answer anything you'd like to know."
     show yuri ma
@@ -668,7 +668,7 @@ label script7_y():
     show yuri b1f me
     y "..."
     show yuri mg
-    y "I'm...not sure I understand."
+    y "I'm...{w=0.7}not sure I understand."
     show yuri lup e1d
     y "Am I missing something?"
     show yuri mf
@@ -685,11 +685,11 @@ label script7_y():
     show yuri e1d mb
     y "It is..!"
     show yuri n1 e4a
-    y "This is {i}just{/i} the kind of brew I'd make on a rainy...oh, Sunday afternoon, to accompany my studies."
+    y "This is {i}just{/i} the kind of brew I'd make on a rainy...{w=0.7}oh,{w=0.2} Sunday afternoon,{w=0.2} to accompany my studies."
     show yuri mb e1a b1d ldown
     y "You know me too well."
     show yuri mh e1d b1b n4
-    y "I-I mean, thank you, of course..!"
+    y "I-I mean,{w=0.2} thank you,{w=0.2} of course..!"
     show yuri me
     call test_prompt_button("Test environment recognition") from _call_test_prompt_button_93
     show bg y_sensory_location zorder 0
@@ -702,58 +702,58 @@ label script7_y():
     show yuri e1c mn
     pause(0.8)
     show yuri e1a mb n3
-    y "Oh, $EMPLOYEE_NAME, aha..."
+    y "Oh,{w=0.2} $EMPLOYEE_NAME,{w=0.2} aha..."
     show yuri e1d b1d
-    y "I like this, very much."
+    y "I like this,{w=0.2} very much."
     show yuri mg b2a
     y "If I can just take a seat..."
     show yuri e1a mb n2
-    y "Mhm, this is lovely."
+    y "Mhm,{w=0.2} this is lovely."
     show yuri lup e4a
-    y "The pitter-patter of the rain on the window, the cool-but-not-chilly room, the brooding darkness..."
+    y "The pitter-patter of the rain on the window,{w=0.2} the cool-but-not-chilly room,{w=0.2} the brooding darkness..."
     show yuri b1a
     y "Perfect conditions to write in."
     show yuri e1a mh
-    y "Well, how about it?"
+    y "Well,{w=0.2} how about it?"
     show yuri n4 mb rup
     y "Maybe we could write something together?"
     show yuri ma
     call test_prompt_button("Simulate touch") from _call_test_prompt_button_94
     show yuri mf
     mc "Can you describe how this feels?"
-    #handhold, yuri's all blushy and that but likes it
+    #handhold,{w=0.2} yuri's all blushy and that but likes it
     show yuri e1c mg b2b
-    y "O-oh, well...maybe now's not the best time anyway..."
+    y "O-oh,{w=0.2} well...{w=0.7}maybe now's not the best time anyway..."
     show yuri n1 e1a mg b2a
-    y "Well, I can't taste the tea anymore, if that's what you-..."
+    y "Well,{w=0.2} I can't taste the tea anymore,{w=0.2} if that's what you-..."
     show yuri b1b e1d n4 rdown at fc1
     y "..."
     show yuri e1b
     y "O-oh..."
     show yuri mh
-    y "$EMPLOYEE_NAME, are you..?"
+    y "$EMPLOYEE_NAME,{w=0.2} are you..?"
     show yuri me e1a
     y "{size=-4}...holding my hand..?{/size}"
     show yuri mg
-    y "That's very...forward of you."
+    y "That's very...{w=0.7}forward of you."
     show yuri e1d mb ldown
     y "Not that I don't like it - I-I do."
     show yuri mf e1c
     y "{size=-8}A lot...{/size}"
     show yuri e4a mb b2a
-    y "This is nice. Thank you."
+    y "This is nice.{w=0.7} Thank you."
     show yuri ma
     y "..."
     call test_prompt_button("Test further") from _call_test_prompt_button_95
     show yuri e1a
     mc "How about now?"
-    #handhold goes into a tickle, yuri's trying to maintain composure
+    #handhold goes into a tickle,{w=0.2} yuri's trying to maintain composure
     show yuri e1d mk b1b at fc2
     y "Wh—ah!"
     show yuri lup mb e4b
     y "Ahaha!"
     show yuri e1d mc b1c
-    y "$EMPLOYEE_NAME, that-that really-{i}ahaha{/i}-tickles!!"
+    y "$EMPLOYEE_NAME,{w=0.2} that-that really-{i}ahaha{/i}-tickles!!"
     show yuri mo e4b
     y "Ahahaha!"
     show yuri b1e mc
@@ -763,13 +763,13 @@ label script7_y():
     show yuri mn
     call test_prompt_button("Test further") from _call_test_prompt_button_96
     mc "And now?"
-    #starts to hurt now, yuri asks you to let go
+    #starts to hurt now,{w=0.2} yuri asks you to let go
     show yuri mb e1a b1b at fc3
-    y "W-well, actually-"
+    y "W-well,{w=0.2} actually-"
     show yuri e4b b3a
     y "It's a little--ah!"
     show yuri lup b1b mk
-    y "You've such a strong grip, it's actually starting to h-hurt!"
+    y "You've such a strong grip,{w=0.2} it's actually starting to h-hurt!"
     show yuri ml e1d at fc4
     y "If you could-please let go!"
     show yuri e4d mi
@@ -787,7 +787,7 @@ label script7_y():
     show yuri rup lup at t11
     pause(0.75)
     show yuri b1e mi e1h at sobbing
-    y "Why, [persistent.firstname]?"
+    y "Why,{w=0.2} [persistent.firstname]?"
     show yuri e4e b2b mh
     y "Why did you..?"
     show yuri e1h mg
@@ -817,19 +817,19 @@ label script7_y():
     show yuri mg
     y "I...I feel awful..."
     show yuri b1b
-    y "What happened, [persistent.firstname]?"
+    y "What happened,{w=0.2} [persistent.firstname]?"
     show yuri e1b mh rup
-    y "Something...something terrible must have happened."
+    y "Something...{w=0.7}something terrible must have happened."
     show yuri mg
-    y "The last thing I remember is...you holding my hand..."
+    y "The last thing I remember is...{w=0.7}you holding my hand..."
     show yuri e4a mh
-    y "And now...I feel like my head's been cut open."
+    y "And now...{w=0.7}I feel like my head's been cut open."
     show yuri b2c lup
-    y "And there's people around me, and they're digging around inside it, poking and prodding."
+    y "And there's people around me,{w=0.2} and they're digging around inside it,{w=0.2} poking and prodding."
     show yuri e4d mi
-    y "And it hurts...oh my God it hurts."
+    y "And it hurts...{w=0.7}oh my God it hurts."
     show yuri shy e4 b1 m4
-    y "Why do I feel like this, [persistent.firstname]?"
+    y "Why do I feel like this,{w=0.2} [persistent.firstname]?"
     show yuri e6
     y "What happened to me?"
     show yuri m2
@@ -842,15 +842,15 @@ label script7_y():
     show yuri b1f
     mc "How do you feel now?"
     show yuri b1a mb e1d lup
-    y "I must admit, $EMPLOYEE_NAME, that tea has really pepped me up!"
+    y "I must admit,{w=0.2} $EMPLOYEE_NAME,{w=0.2} that tea has really pepped me up!"
     show yuri n3 b1d e1a
     y "Thank you for that."
     show yuri b2a mh rup
-    y "In fact, I'm more than ready to participate in any tests you'd like to run through."
+    y "In fact,{w=0.2} I'm more than ready to participate in any tests you'd like to run through."
     show yuri me
     y "..."
     show yuri e1c mg b2b ldown
-    y "Or...maybe not?"
+    y "Or...{w=0.7}maybe not?"
     show yuri md
     call test_prompt_button("Record results") from _call_test_prompt_button_103
     show yuri at thide
