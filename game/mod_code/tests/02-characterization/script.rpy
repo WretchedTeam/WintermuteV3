@@ -1,19 +1,19 @@
 label script2_main():
     menu(screen="load_doki_choice"):
         "Monika":
-            $ set_characterization_target("Monika",{w=0.2} "boldly")
+            $ set_characterization_target("Monika", "boldly")
             call script2_m from _call_script2_m
 
         "Sayori":
-            $ set_characterization_target("Sayori",{w=0.2} "reluctantly")
+            $ set_characterization_target("Sayori", "reluctantly")
             call script2_s from _call_script2_s
 
         "Yuri":
-            $ set_characterization_target("Yuri",{w=0.2} "nervously")
+            $ set_characterization_target("Yuri", "nervously")
             call script2_y from _call_script2_y
 
         "Natsuki":
-            $ set_characterization_target("Natsuki",{w=0.2} "snarkily")
+            $ set_characterization_target("Natsuki", "snarkily")
             call script2_n from _call_script2_n
 
         "Exit" (prepend_load=False):
