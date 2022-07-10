@@ -22,6 +22,8 @@
 # Thank you. Your answers have been recorded and have been flagged for manual review.
 # Please proceed.
 
+default persistent.shown_assessment = False
+
 define wm_terms_agreement = """
 By signing these terms, you acknowledge that:-
 

@@ -17,20 +17,19 @@ label splashscreen():
 
     if not persistent.shown_disclaimer:
         call disclaimer from _call_disclaimer
+        $ persistent.shown_disclaimer = True
+
         pause 1.0
 
-        call title_drop from _call_title_drop
-        pause 1.0
+    call title_drop from _call_title_drop
+    pause 1.0
 
+    if not persistent.shown_assessment:
         show desktop_background
         pause 0.25
 
         call screen assessment with BlurDissolveCurried(0.35, 16.0)
-    else:
-        call title_drop from _call_title_drop_1
-        pause 1.0
 
-    $ persistent.shown_disclaimer = True
 
     return
 
