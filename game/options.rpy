@@ -150,7 +150,7 @@ define config.save_directory = "WintermuteV3-1636109150"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define -2 config.developer = True
+define -2 config.developer = False
 define _dismiss_pause = config.developer
 define config.rollback_enabled = config.developer
 define config.window_icon = "mod_assets/os/penny/Penny.png"
@@ -165,4 +165,3 @@ init python:
     config.game_menu_action = game_menu_check
     config.search_prefixes.append("mod_assets/")
     config.search_prefixes.append("../music/")
-
