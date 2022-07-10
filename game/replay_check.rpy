@@ -8,7 +8,7 @@ init python in _wm_replay_check:
 
     if not persistent.has_replay_file:
         try: open(REPLAY_FILE_PATH, "w+").close()
-        finally: persistent.has_replay_file = True
+        else: persistent.has_replay_file = True
 
     elif not os.path.isfile(REPLAY_FILE_PATH):
         renpy.loadsave.location.unlink_persistent()
