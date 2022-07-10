@@ -16,7 +16,7 @@ init python:
     sensory_test_headline_3 = _wm_news.News(
         "SHOCKING: 'Vox Populi' troll group warns Turnell Technologies to \"prepare for the shakedown of the century\"",
         "t7a3.png",
-        _wm_news.P_TS,
+        _wm_news.P_DS,
         "Nicola Murray"
     )
 
