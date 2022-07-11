@@ -29,7 +29,7 @@ label splashscreen():
         pause 0.25
 
         call screen assessment with BlurDissolveCurried(0.35, 16.0)
-
+        $ persistent.shown_assessment = True
 
     return
 
