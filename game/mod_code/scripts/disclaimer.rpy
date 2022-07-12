@@ -89,6 +89,10 @@ label disclaimer():
     term_echo "{nw}"
     term_echo_caret "To fully simulate the desktop experience, it is recommended that Project WINTERMUTE is played in fullscreen."
     term_echo "{nw}"
+    term_echo_caret "Some key features of this mod were in development before the announcement of Doki Doki Literature Club Plus."
+    term_echo "{nw}"
+    term_echo_caret "Similarities between these features and Plus are purely coincidental, and are not intended to replicate or port the Plus experience."
+    term_echo "{nw}"
     term_echo_caret "By playing [config.name], you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within.{nw}"
 
     menu:

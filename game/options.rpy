@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "0.9"
+define config.version = "1.0.0"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -143,7 +143,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "WintermuteV3-1636109150"
+define config.save_directory = "TurnellOS"
 
 
 ## Icon ########################################################################
