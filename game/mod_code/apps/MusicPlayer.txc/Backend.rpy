@@ -50,8 +50,13 @@ init -10 python in _wm_music_player:
         try:
             l = os.listdir(music_folder_path)
             return [ i for i in l if i.endswith(supported_extensions) ]
+
         except OSError:
-            return [ ]
+            try:
+                os.mkdir(music_folder_path)
+            except: pass
+
+        return [ ]
 
     def filter_valid_files(x):
         return Track.get(x).is_valid_file
