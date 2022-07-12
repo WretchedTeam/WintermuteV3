@@ -1,0 +1,46 @@
+name: Wintermute CI
+on: [ workflow_dispatch ]
+
+
+jobs:
+  build-wintermute:
+    name: Build and deploy Wintermute
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone source
+        uses: actions/checkout@v1
+
+      - name: Build Wintermute
+        id: build-wm
+        run: |
+          chmod +x .github/scripts/buildwm.sh
+          sh .github/scripts/buildwm.sh .
+
+        env:
+          SDL_AUDIODRIVER: dummy
+          SDL_VIDEODRIVER: dummy
+
+      - name: Echo title and version
+        run: |
+          echo ${{ steps.build-wm.outputs.title }}
+          echo ${{ steps.build-wm.outputs.version }}
+      
+      - name: Retrieve filenames
+        id: retr-fn
+        run: |
+          content=$(find ${{ steps.build-wm.outputs.dest }} -type f)
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=files::$content"
+
+      - name: Create GH draft release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: True
+          prerelease: False
+          tag_name: ${{ github.ref }}
+          name: ${{ steps.build-wm.outputs.title }} ${{ steps.build-wm.outputs.version }}
+          files: |
+            ${{ steps.retr-fn.outputs.files }}

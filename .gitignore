@@ -35,10 +35,12 @@ project.json
 *.rpa
 firstrun
 
+
 # Generally ignored files #
 ###########################
 .DS_Store
 desktop.ini
+
 
 # Workplace Configs #
 #####################
@@ -49,10 +51,17 @@ desktop.ini
 ##############
 music
 
+
 # Unlocked Lore Emails #
 ########################
 email_backups
 
+
 # Wintermute Replay File #
 ##########################
 wm_replay
+
+
+# Wintermute Build Info #
+#########################
+buildinfo.txt

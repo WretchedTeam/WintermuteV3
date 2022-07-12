@@ -5,11 +5,11 @@
 init python:
     build.packages = []
 
-    build.package(build.directory_name + "Cross Platform",'zip','windows linux mac renpy mod binary',description="Wintermute - Cross Platform")
+    build.package("Cross Platform",'zip','windows linux mac renpy mod binary',description="Wintermute - Cross Platform")
 
-    build.package(build.directory_name + "Windows Exclusive",'zip','windows renpy mod binary',description="Wintermute - Windows")
-    build.package(build.directory_name + "Mac Exclusive",'zip','mac renpy mod binary',description="Wintermute - Mac")
-    build.package(build.directory_name + "Linux Exclusive",'zip','linux renpy mod binary',description="Wintermute - Linux")
+    build.package("Windows Exclusive",'zip','windows renpy mod binary',description="Wintermute - Windows")
+    build.package("Mac Exclusive",'zip','mac renpy mod binary',description="Wintermute - Mac")
+    build.package("Linux Exclusive",'zip','linux renpy mod binary',description="Wintermute - Linux")
 
     renpy_dist_remapping = { "renpy.py": "renpy" }
 
