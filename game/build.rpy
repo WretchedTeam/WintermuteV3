@@ -32,6 +32,7 @@ init python:
 
     build.archive("mod_assets", 'mod')
     build.archive("scripts", 'mod')
+    build.classify("music/**", 'mod')
 
     build.classify("game/README.txt", None)
     build.classify("game/python-packages/**", "mod all")
