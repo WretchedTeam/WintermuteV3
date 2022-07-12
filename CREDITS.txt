@@ -31,12 +31,6 @@ StackerTheEOD:
 	Fang Bare
 	Neww Dawn
 
-
-Assets
-------
-** Incomplete. **
-
-
 3rd Party Tools / Libraries
 ---------------------------
 

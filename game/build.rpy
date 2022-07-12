@@ -25,6 +25,7 @@ init python:
     def classify_renpy_n(pattern, groups, n=0):
         build.renpy_patterns.insert(n, (pattern, build.make_file_lists(groups)))
 
+    build.early_base_patterns.insert(0, ("override-mac-signing.sh", build.make_file_lists("mod")))
     classify_renpy_n("renpy/common/**", "renpy", 0)
 
     build.classify_renpy("renpy.py", 'renpy all')

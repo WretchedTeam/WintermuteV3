@@ -1,11 +1,3 @@
-image bsod = "mod_assets/ending/bsod/bsod_static.png"
-image p1 = "mod_assets/ending/bsod/percent_1.png"
-image p2 = "mod_assets/ending/bsod/percent_2.png"
-image p3 = "mod_assets/ending/bsod/percent_3.png"
-image p4 = "mod_assets/ending/bsod/percent_4.png"
-image p5 = "mod_assets/ending/bsod/percent_5.png"
-image p6 = "mod_assets/ending/bsod/percent_6.png"
-
 image good_email = "mod_assets/ending/good/email.png"
 image bad_article = "mod_assets/ending/bad/ns_page_end.png"
 
