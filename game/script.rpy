@@ -10,7 +10,7 @@ label splashscreen():
         missing_archives = { "fonts", "audio", "images" } - set(config.archives)
 
         if missing_archives and not config.developer:
-            renpy.error("DDLC archive files not found in /game folder. Check your installation and try again.")
+            persistent.no_archives = True
 
     if persistent.autoload is not None:
         jump expression persistent.autoload
