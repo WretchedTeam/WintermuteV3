@@ -5,7 +5,8 @@ init python:
 label splashscreen():
     $ _skipping = False
     $ _skipping = False
-
+    $ persistent.no_archives = False
+    $ persistent.no_archives = False
     python:
         missing_archives = { "fonts", "audio", "images" } - set(config.archives)
 
