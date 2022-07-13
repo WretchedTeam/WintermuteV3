@@ -1,69 +1,174 @@
-﻿init python:
-    import singleton
-    me = singleton.SingleInstance()
+default persistent.shown_disclaimer = False
+default persistent.no_archives = False
 
-label splashscreen():
-    $ _skipping = False
-    $ _skipping = False
+# "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
+# "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
+# "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
+# "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
 
-    python:
-        missing_archives = { "fonts", "audio", "images" } - set(config.archives)
+define wm_ascii = """
+TurnellOS Installation Script
+{font=mod_assets/gui/font/SourceCodePro-Regular.ttf}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{/font}
+""".strip()
 
-        if missing_archives and not config.developer:
-            persistent.no_archives = True
+define wm_ascii_end = """
+TurnellOS Bootloader
+{font=mod_assets/gui/font/SourceCodePro-Regular.ttf}━━━━━━━━━━━━━━━━━━━━{/font}
+""".strip()
 
-    if persistent.autoload is not None:
-        jump expression persistent.autoload
+define -10 audio.foley_typing = "mod_assets/audio/foley/typing.ogg"
+define -10 audio.foley_enter_key = [ "<silence 0.01>", "mod_assets/audio/foley/enter_key.ogg" ]
 
-    if not persistent.shown_disclaimer:
-        call disclaimer from _call_disclaimer
-        $ persistent.shown_disclaimer = True
+init python:
+    def terminal_character_callback(ev, **kwargs):
+        if ev == 'begin':
+            renpy.music.play(audio.foley_typing, "sound")
 
-        pause 1.0
+        elif ev == 'slow_done':
+            renpy.music.play(audio.foley_enter_key, "sound")
 
-    call title_drop from _call_title_drop
-    pause 1.0
+    def terminal_progress_bar_dd_func(st, at, fill="#", length=10, duration=2.0, **kwargs):
+        complete = min(st / float(duration), 1.0)
+        redraw_after = renpy.random.random() * 0.2 if complete < 1.0 else None
 
-    if not persistent.shown_assessment:
-        show desktop_background
-        pause 0.25
+        progress = int(length * complete)
+        left = length - progress
 
-        call screen assessment with BlurDissolveCurried(0.35, 16.0)
-        $ persistent.shown_assessment = True
+        s = "[[" + fill * progress + " " * left + "]"
+        return Text(s, **kwargs), redraw_after
 
-    return
+define term_command = TerminalCharacter("shell> ", callback=terminal_character_callback, ctc="startup_terminal_caret")
+define term_echo = TerminalCharacter(None, callback=terminal_character_callback)
+define term_echo_nocb = TerminalCharacter(None, callback=None)
+define term_echo_caret = TerminalCharacter("$ ", callback=terminal_character_callback, ctc="startup_terminal_caret")
 
-label main_menu:
-    return
+image startup_terminal_progress:
+    DynamicDisplayable(terminal_progress_bar_dd_func, style="terminal_entry_text", length=50)
 
-# The game starts here.
+image startup_terminal_dot_loading:
+    Text("", style="terminal_entry_text")
+    0.25
+    Text(".", style="terminal_entry_text")
+    0.25
+    Text("..", style="terminal_entry_text")
+    0.25
+    Text("...", style="terminal_entry_text")
+    0.25
+    repeat
 
-label start():
-    $ quick_menu = False
+image startup_terminal_loading:
+    Text("|", style="terminal_entry_text")
+    0.25
+    Text("/", style="terminal_entry_text")
+    0.25
+    Text("-", style="terminal_entry_text")
+    0.25
+    Text("\\", style="terminal_entry_text")
+    0.25
+    repeat
 
-    $ renpy.run(Play("sound", "mod_assets/audio/os/startupsound1.ogg"))
-    if persistent.firstname and persistent.lastname:
-        call screen login()
+image startup_terminal_caret:
+    Solid("#3f3", xsize=14, xoffset=4, ysize=28)
+    0.75
+    Null()
+    0.75
+    repeat
 
+label disclaimer():
+    $ old_quit_action = config.quit_action
+    $ config.quit_action = renpy.quit
+
+    $ menu = terminal_menu
+
+    term_echo "[wm_ascii]{fast}{nw}\n"
+    if not persistent.no_archives:
+        term_echo_caret "Project WINTERMUTE is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
+        term_echo "{nw}"
+        term_echo_caret "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
+        term_echo "{nw}"
+        term_echo_caret "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
+        term_echo "{nw}"
+        term_echo_caret "To fully simulate the desktop experience, it is recommended that Project WINTERMUTE is played in fullscreen."
+        term_echo "{nw}"
+        term_echo_caret "Some key features of this mod were in development before the announcement of Doki Doki Literature Club Plus."
+        term_echo "{nw}"
+        term_echo_caret "Similarities between these features and Plus are purely coincidental, and are not intended to replicate or port the Plus experience."
+        term_echo "{nw}"
+        term_echo_caret "By playing [config.name], you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within.{nw}"
+
+        menu:
+            "I Agree":
+                pass
+        
+        call installation_script from _call_installation_script
     else:
-        call screen register()
-
-    while True:
-        if persistent.done_rorschach_test:
-            python hide:
-                test = _wm_test.get_current_test()
-
-                if test is not None: 
-                    _wm_penny.emit_event("test_assigned")
-                    test.run_start()
-
-        call wm_desktop from _call_wm_desktop
+        term_echo_caret "DDLC archive files not found in /game folder. Check your installation and try again."
+        term_echo "{nw}"
+        $ renpy.quit()
+    $ menu = renpy.display_menu
+    $ config.quit_action = old_quit_action
     return
 
-label wm_desktop():
-    scene black
-    $ _skipping = False
-    $ _window_hide(None)
-    $ renpy.scene("screens")
-    call screen desktop with fade
+label installation_script():
+    $ terminal_clear()
+    $ renpy.pause(1.5, hard=True)
+
+    term_command "{nw}" (callback=None)
+
+    $ terminal_show()
+    $ renpy.pause(1.0, hard=True)
+    $ terminal_pop()
+
+    term_command "sh core/install_ui_service.sh --restart{nw}"
+    term_echo_nocb "Preparing to run script{image=startup_terminal_dot_loading}{fast}{nw}"
+    $ terminal_show()
+    $ renpy.pause(1.5, hard=True)
+
+    $ terminal_pop()
+    term_echo_nocb "Preparing to run script... Done.{fast}{nw}"
+
+    term_echo_nocb "Checking for root access{image=startup_terminal_dot_loading}{fast}{nw}"
+    $ terminal_show()
+    $ renpy.pause(1.5, hard=True)
+
+    $ terminal_pop()
+    term_echo_nocb "Checking for root access... Passed.{fast}{nw}"
+
+    term_echo_nocb "{nw}"
+
+    term_echo_nocb "Updating Package Lists{image=startup_terminal_dot_loading}{fast}{nw}"
+    $ terminal_show()
+    $ renpy.pause(1.2, hard=True)
+    $ terminal_pop()
+
+    term_echo_nocb "Updating Package Lists... Done.{fast}{nw}"
+
+    term_echo_nocb "{nw}"
+
+    $ completed_hashs = "#" * 50
+
+    term_echo_nocb "Building Dep Trees:{fast}{nw}"
+    term_echo_nocb "{image=startup_terminal_progress}{nw}"
+    $ terminal_show()
+    $ renpy.pause(2.0, hard=True)
+    $ terminal_pop()
+    term_echo_nocb "[[[completed_hashs]]{fast}{nw}"
+
+    term_echo_nocb "{nw}"
+
+    term_echo_nocb "Installing Packages:{fast}{nw}"
+    term_echo_nocb "{image=startup_terminal_progress}{nw}"
+    $ terminal_show()
+    $ renpy.pause(2.0, hard=True)
+    $ terminal_pop()
+    term_echo_nocb "[[[completed_hashs]]{fast}{nw}"
+
+    term_echo_nocb "{nw}"
+
+    term_echo_nocb "Installation Complete.{fast}{nw}"
+    term_echo_nocb "Restarting{image=startup_terminal_dot_loading}{fast}{nw}"
+    $ terminal_show()
+    $ renpy.pause(2.0, hard=True)
+    $ terminal_clear()
+
     return
