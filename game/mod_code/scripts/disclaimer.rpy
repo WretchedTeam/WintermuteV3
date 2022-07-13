@@ -1,4 +1,5 @@
 default persistent.shown_disclaimer = False
+default persistent.no_archives = False
 
 # "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
 # "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
