@@ -347,8 +347,8 @@ screen game_menu(title, scroll=None, yinitial=0.0, return_action=None):
         hbox:
 
             ## Reserve space for the navigation section.
-            frame:
-                style "game_menu_navigation_frame"
+            # frame:
+                # style "game_menu_navigation_frame"
 
             frame:
                 style "game_menu_content_frame"
@@ -419,7 +419,8 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
-    bottom_padding 30
+    xalign 0.5
+    bottom_padding 120
     top_padding 120
 
 style game_menu_navigation_frame:
