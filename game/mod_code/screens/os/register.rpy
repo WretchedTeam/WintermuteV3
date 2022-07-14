@@ -5,20 +5,29 @@ init python in _wm_register:
 
     name_input_filter = string.ascii_lowercase + string.ascii_uppercase
 
+    no_firstname_entry = False
+    no_lastname_entry = False
+
     def turnell_username():
         return "%s.%s" % (persistent.firstname[0].lower(), persistent.lastname.lower())
 
     def finish_register():
-        if not (persistent.firstname or persistent.lastname):
-            return
+        global no_firstname_entry, no_lastname_entry
 
-        username = turnell_username()
-        if username in sender_emails:
-            username += "1"
+        if (persistent.firstname and persistent.lastname):
 
-        persistent.username = username
+            username = turnell_username()
+            if username in sender_emails:
+                username += "1"
 
-        return True
+            persistent.username = username
+
+            return True
+
+        else:
+            no_firstname_entry = not persistent.firstname
+            no_lastname_entry = not persistent.lastname
+            renpy.show_screen("register")
 
 screen register():
     style_prefix "register"
@@ -40,7 +49,7 @@ screen register():
             has vbox:
                 spacing 40
 
-            use register_form(filter=_wm_register.name_input_filter)
+            use register_form(_wm_register.no_firstname_entry, _wm_register.no_lastname_entry, _wm_register.name_input_filter)
 
         null height 20
 
