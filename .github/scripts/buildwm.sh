@@ -2,15 +2,17 @@
 
 # From: https://github.com/ProjectAliceDev/renpy-build-action
 
-echo "Downloading the specified SDK (8.0.0)..."
-wget -q "https://www.renpy.org/dl/8.0.0/renpy-8.0.0-sdk.tar.bz2"
+VERSION="8.0.1"
+
+echo "Downloading the specified SDK ($VERSION)..."
+wget -q "https://www.renpy.org/dl/$VERSION/renpy-$VERSION-sdk.tar.bz2"
 clear
 
-echo "Downloaded SDK version (8.0.0)."
-echo "Setting up the specified SDK (8.0.0)..."
-tar -xf ./renpy-8.0.0-sdk.tar.bz2
-rm ./renpy-8.0.0-sdk.tar.bz2
-mv ./renpy-8.0.0-sdk ../renpy
+echo "Downloaded SDK version ($VERSION)."
+echo "Setting up the specified SDK ($VERSION)..."
+tar -xf ./renpy-$VERSION-sdk.tar.bz2
+rm ./renpy-$VERSION-sdk.tar.bz2
+mv ./renpy-$VERSION-sdk ../renpy
 
 RENPY="../renpy"
 
