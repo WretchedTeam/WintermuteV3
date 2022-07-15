@@ -107,7 +107,7 @@ label disclaimer():
         term_echo_caret "DDLC archive files not found in /game folder. Check your installation and try again.{nw}"
         
         menu:
-            "Quit":
+            "Quit Game":
                 $ renpy.quit()
     
     $ menu = renpy.display_menu
