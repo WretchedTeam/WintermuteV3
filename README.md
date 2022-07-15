@@ -44,3 +44,6 @@ Enter your password for sudo access if you're prompted to.
 Whenever you wish to reset your progress, just delete "wm_replay".   
 Next time the game boots, your saves will be cleared & you can start fresh.
 
+## Related Repos
+
+[WM-Pygame-Demos](https://github.com/Pseurae/WM-Pygame-Demos)
