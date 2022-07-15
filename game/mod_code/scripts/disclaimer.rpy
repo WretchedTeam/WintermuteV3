@@ -80,26 +80,40 @@ label disclaimer():
     $ menu = terminal_menu
 
     term_echo "[wm_ascii]{fast}{nw}\n"
+    
+    $ missing_archives = { "fonts", "audio", "images" } - set(config.archives)
 
-    term_echo_caret "Project WINTERMUTE is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
-    term_echo "{nw}"
-    term_echo_caret "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
-    term_echo "{nw}"
-    term_echo_caret "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
-    term_echo "{nw}"
-    term_echo_caret "To fully simulate the desktop experience, it is recommended that Project WINTERMUTE is played in fullscreen."
-    term_echo "{nw}"
-    term_echo_caret "Some key features of this mod were in development before the announcement of Doki Doki Literature Club Plus."
-    term_echo "{nw}"
-    term_echo_caret "Similarities between these features and Plus are purely coincidental, and are not intended to replicate or port the Plus experience."
-    term_echo "{nw}"
-    term_echo_caret "By playing [config.name], you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within.{nw}"
+    if not missing_archives:
+        label normal_disclaimer:
+            term_echo_caret "Project WINTERMUTE is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
+            term_echo "{nw}"
+            term_echo_caret "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
+            term_echo "{nw}"
+            term_echo_caret "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
+            term_echo "{nw}"
+            term_echo_caret "To fully simulate the desktop experience, it is recommended that Project WINTERMUTE is played in fullscreen."
+            term_echo "{nw}"
+            term_echo_caret "Some key features of this mod were in development before the announcement of Doki Doki Literature Club Plus."
+            term_echo "{nw}"
+            term_echo_caret "Similarities between these features and Plus are purely coincidental, and are not intended to replicate or port the Plus experience."
+            term_echo "{nw}"
+            term_echo_caret "By playing [config.name], you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within.{nw}"
 
-    menu:
-        "I Agree":
-            pass
-
-    call installation_script from _call_installation_script
+            menu:
+                "I Agree":
+                    pass
+        
+            call installation_script from _call_installation_script
+    elif missing_archives and not config.developer:
+        term_echo_caret "DDLC archive files not found in /game folder. Check your installation and try again.{nw}"
+        
+        menu:
+            "Ignore":
+                term_echo "{nw}"
+                jump normal_disclaimer
+            "Quit Game":
+                $ renpy.quit()
+    
     $ menu = renpy.display_menu
     $ config.quit_action = old_quit_action
     return
