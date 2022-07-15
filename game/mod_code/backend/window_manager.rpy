@@ -96,7 +96,7 @@ init -1000 python in _wm_manager:
         focusable = True
 
         def __init__(self, child, app, **kwargs):
-            super(AppResponder, self).__init__(**kwargs)
+            super(ApplicationFocus, self).__init__(**kwargs)
             self.add(child)
             self.app = app
 
