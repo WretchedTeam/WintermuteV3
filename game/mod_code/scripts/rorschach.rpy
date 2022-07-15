@@ -50,6 +50,7 @@ init 10 python in _wm_rorschach:
 
 label rorschach():
     show black with dissolve_scene_full
+    $ _wm_manager.Application.close_all_apps()
     $ renpy.say(rorschach_centered, rorschach_test_intro, advance=False)
 
     label .confirmed_start_click:
@@ -62,7 +63,7 @@ label rorschach():
             renpy.with_statement(rorschach_fade)
 
             renpy.pause(0.5, hard=True)
-            _window_show(dissolve)
+            _window_show(Dissolve(0.25, alpha=True))
 
             persistent.rorschach_responses[i] = ""
             while not persistent.rorschach_responses[i]:

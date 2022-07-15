@@ -1,5 +1,6 @@
 init -1000 python in _wm_manager:
-    from store import execute_callbacks
+    from store import execute_callbacks, SaturationMatrix
+    import pygame_sdl2
 
     zorders = None
     positions = None
@@ -91,6 +92,48 @@ init -1000 python in _wm_manager:
 
             positions.pop(self.screen_id, None)
 
+    class ApplicationFocus(renpy.Container):
+        focusable = True
+
+        def __init__(self, child, app, **kwargs):
+            super(AppResponder, self).__init__(**kwargs)
+            self.add(child)
+            self.app = app
+
+        def render(self, w, h, st, at):
+            is_app_on_top = self.is_app_on_top()
+
+            cr = renpy.render(self.child, w, h, st, at)
+            cw, ch = cr.get_size()
+
+            rv = renpy.Render(cw, ch)
+
+            rv.blit(cr, (0, 0), focus=is_app_on_top)
+            rv.add_focus(self, None, 0, 0, cw, ch)
+
+            if not is_app_on_top:
+                rv.add_shader("renpy.matrixcolor")
+                rv.add_uniform("u_renpy_matrixcolor", SaturationMatrix(0.75)(None, 1.0))
+
+            return rv
+
+        def is_app_on_top(self):
+            if zorders:
+                return zorders[-1] == self.app.screen_id
+
+            return False
+
+        def event(self, ev, x, y, st):
+            if self.is_focused():
+                if renpy.map_event(ev, "button_ignore"):
+                    raise renpy.IgnoreEvent()
+
+                if renpy.map_event(ev, "button_select"):
+                    self.app.raise_window()
+                    renpy.display.render.invalidate(self)
+
+            return self.child.event(ev, x, y, st)
+
 transform window_animation():
     crop_relative True
 
@@ -141,9 +184,7 @@ screen program_base(app, **props):
 
             use program_header(app.name, Function(app.close))
 
-            button style "empty":
-                key_events True
-                clicked app.raise_window
-
+            fixed style "empty":
+                at renpy.partial(_wm_manager.ApplicationFocus, app=app)
                 transclude
 
