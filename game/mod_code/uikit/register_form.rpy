@@ -1,10 +1,5 @@
-screen register_form(no_fn_entry, no_ln_entry, filter=""):
+screen register_form(input_vals, no_fn_entry, no_ln_entry, filter=""):
     style_prefix "register_form"
-
-    default input_vals = [
-        FieldInputValue(persistent, "firstname", False, False),
-        FieldInputValue(persistent, "lastname", False, False),
-    ]
 
     vbox:
         label _("First Name")
@@ -32,7 +27,7 @@ screen register_form_input_field(input_val, default_text, filter, error):
     style_prefix "register_form_input_field"
 
     button action input_val.Enable():
-        if error and not input_val.get_text():
+        if error:
             background RoundedFrame("#ffffff2f", radius=10.0, outline_width=2.0, outline_color="#f66")
         else:
             background RoundedFrame("#ffffff2f", radius=10.0)

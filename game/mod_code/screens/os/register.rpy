@@ -1,32 +1,54 @@
 init python in _wm_register:
     import string
-    from store import persistent
+    from store import persistent, FieldInputValue, Action
     from store._wm_email import sender_emails
 
     name_input_filter = string.ascii_lowercase + string.ascii_uppercase
 
-    no_firstname_entry = False
-    no_lastname_entry = False
+    no_fn_entry = False
+    no_ln_entry = False
+
+    input_vals = [
+        FieldInputValue(persistent, "firstname", False, False),
+        FieldInputValue(persistent, "lastname", False, False),
+    ]
 
     def turnell_username():
         return "%s.%s" % (persistent.firstname[0].lower(), persistent.lastname.lower())
 
-    def finish_register():
-        global no_firstname_entry, no_lastname_entry
+    class FinishRegister(Action):
+        def __call__(self):
+            global no_fn_entry, no_ln_entry
 
-        if (persistent.firstname and persistent.lastname):
+            if (persistent.firstname and persistent.lastname):
 
-            username = turnell_username()
-            if username in sender_emails:
-                username += "1"
+                username = turnell_username()
+                if username in sender_emails:
+                    username += "1"
 
-            persistent.username = username
+                persistent.username = username
 
-            return True
+                return True
 
-        else:
-            no_firstname_entry = not persistent.firstname
-            no_lastname_entry = not persistent.lastname
+            else:
+                no_fn_entry = not persistent.firstname
+                no_ln_entry = not persistent.lastname
+
+            renpy.restart_interaction()
+
+        def periodic(self, st):
+            check_if_typed()
+
+    def check_if_typed():
+        global no_fn_entry, no_ln_entry
+
+        if no_fn_entry and persistent.firstname:
+            no_fn_entry = False
+            renpy.restart_interaction()
+
+        if no_ln_entry and persistent.lastname:
+            no_ln_entry = False
+            renpy.restart_interaction()
 
 screen register():
     style_prefix "register"
@@ -48,12 +70,16 @@ screen register():
             has vbox:
                 spacing 40
 
-            use register_form(_wm_register.no_firstname_entry, _wm_register.no_lastname_entry, _wm_register.name_input_filter)
+            use register_form(
+                _wm_register.input_vals, 
+                _wm_register.no_fn_entry, 
+                _wm_register.no_ln_entry, 
+                _wm_register.name_input_filter
+            )
 
         null height 20
 
-        textbutton "{login} Register" action Function(_wm_register.finish_register) xalign 0.5
-
+        textbutton "{login} Register" action _wm_register.FinishRegister() xalign 0.5
 
     hbox spacing 40:
         align (0.5, 1.0) yoffset -40
