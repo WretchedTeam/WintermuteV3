@@ -109,7 +109,7 @@ label disclaimer():
         
         menu:
             "Quit":
-                renpy.quit()
+                $ renpy.quit()
     
     $ menu = renpy.display_menu
     $ config.quit_action = old_quit_action
