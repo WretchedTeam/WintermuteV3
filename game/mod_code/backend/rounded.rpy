@@ -23,6 +23,18 @@ init -100 python in _wm_rounded:
             self.outline_width = outline_width
             self.outline_color = Color(outline_color)
 
+        def __eq__(self, o):
+            if not super(RoundedFrame, self).__eq__(o):
+                return False
+
+            if self.outline_width != o.outline_width:
+                return False
+
+            if self.outline_color != o.outline_color:
+                return False
+
+            return True
+
         def render(self, width, height, st, at):
             rv = super(RoundedFrame, self).render(width, height, st, at)
 
@@ -36,7 +48,7 @@ init -100 python in _wm_rounded:
 
                 rv.add_uniform("u_radius", self.radius)
 
-                rv.add_uniform("u_outline_width", self.outline_width )
+                rv.add_uniform("u_outline_width", self.outline_width)
 
                 rv.add_uniform("u_outline_color", normalize_color(self.outline_color))
                 rv.add_property("texture_scaling", "nearest")

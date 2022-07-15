@@ -27,7 +27,6 @@ init python in _wm_register:
         else:
             no_firstname_entry = not persistent.firstname
             no_lastname_entry = not persistent.lastname
-            renpy.show_screen("register")
 
 screen register():
     style_prefix "register"

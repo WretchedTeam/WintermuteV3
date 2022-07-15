@@ -32,7 +32,7 @@ screen register_form_input_field(input_val, default_text, filter, error):
     style_prefix "register_form_input_field"
 
     button action input_val.Enable():
-        if error:
+        if error and not input_val.get_text():
             background RoundedFrame("#ffffff2f", radius=10.0, outline_width=2.0, outline_color="#f66")
         else:
             background RoundedFrame("#ffffff2f", radius=10.0)
