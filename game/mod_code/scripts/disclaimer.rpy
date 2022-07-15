@@ -105,7 +105,6 @@ label disclaimer():
         call installation_script from _call_installation_script
     elif missing_archives and not config.developer:
         term_echo_caret "DDLC archive files not found in /game folder. Check your installation and try again."
-        term_echo "{nw}"
         
         menu:
             "Quit":
