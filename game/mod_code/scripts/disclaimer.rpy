@@ -1,5 +1,4 @@
 default persistent.shown_disclaimer = False
-default persistent.no_archives = False
 
 # "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
 # "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
@@ -81,7 +80,10 @@ label disclaimer():
     $ menu = terminal_menu
 
     term_echo "[wm_ascii]{fast}{nw}\n"
-    if not persistent.no_archives:
+    
+    $ missing_archives = { "fonts", "audio", "images" } - set(config.archives)
+
+    if not missing_archives:
         term_echo_caret "Project WINTERMUTE is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
         term_echo "{nw}"
         term_echo_caret "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
@@ -101,10 +103,14 @@ label disclaimer():
                 pass
         
         call installation_script from _call_installation_script
-    else:
+    elif missing_archives and not config.developer:
         term_echo_caret "DDLC archive files not found in /game folder. Check your installation and try again."
         term_echo "{nw}"
-        $ renpy.quit()
+        
+        menu:
+            "Quit":
+                renpy.quit()
+    
     $ menu = renpy.display_menu
     $ config.quit_action = old_quit_action
     return
