@@ -18,12 +18,7 @@ Replace all overlapping files.
 
 4. Launch Project WINTERMUTE via "WintermuteV3".
 
-<details>
-<summary>
-<b>Note for Mac Users</b>
-</summary>
-<br>
-<blockquote>
+## Note for Mac Users
 Due to Wintermute.app not being notarized, Gatekeeper's not gonna allow Wintermute to launch normally. 
 
 To work around this:
@@ -39,8 +34,6 @@ Enter your password for sudo access if you're prompted to.
 
 3. Right click on WintermuteV3.app and click on "Open".
 4. Follow through with the rest of clicking dialog boxes.
-</blockquote>
-</details>
 
 ## Replaying the Mod
 
@@ -49,4 +42,5 @@ Next time the game boots, your saves will be cleared & you can start fresh.
 
 ## Related Repos
 
+[WintermuteV3](https://github.com/WretchedTeam/WintermuteV3) (in case you're looking at a fork)  
 [WM-Pygame-Demos](https://github.com/Pseurae/WM-Pygame-Demos)

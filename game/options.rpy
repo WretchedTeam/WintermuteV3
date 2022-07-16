@@ -150,7 +150,7 @@ define config.save_directory = "TurnellOS"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define -2 config.developer = True
+define -2 config.developer = False
 define _dismiss_pause = config.developer
 define config.rollback_enabled = config.developer
 define config.window_icon = "mod_assets/os/penny/Penny.png"

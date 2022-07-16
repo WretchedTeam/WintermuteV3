@@ -5,12 +5,14 @@ screen terminal_say(dialogue, items=None):
         padding (50, 50)
 
         has vbox:
+            xfill True
             spacing 10
 
         use terminal_say_entry(dialogue)
 
         if items:
             hbox box_wrap True:
+                spacing 20
                 xalign 0.5
 
                 for i in items:
