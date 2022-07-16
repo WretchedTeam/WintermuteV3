@@ -1,4 +1,7 @@
-# Project WINTERMUTE
+<div align="center">
+<h1>Project WINTERMUTE</h1>
+<p>Created by Wretched Team</p>
+</div>
 
 ## Installation Instructions
 

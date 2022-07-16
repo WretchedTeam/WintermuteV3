@@ -38,8 +38,8 @@ firstrun
 
 # Generally ignored files #
 ###########################
-.DS_Store
-desktop.ini
+.[Dd]S_Store
+[Dd]esktop.ini
 
 
 # Workplace Configs #
@@ -60,3 +60,13 @@ wm_replay
 # Wintermute Build Info #
 #########################
 buildinfo.txt
+
+# Wintermute Music Folder #
+###########################
+!music/
+music/**
+!music/Atom Free.mp3
+!music/Fang Bare.mp3
+!music/Humm Buzz.mp3
+!music/Neww Dawn.mp3
+!music/Star Line.mp3
