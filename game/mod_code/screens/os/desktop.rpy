@@ -18,11 +18,20 @@ screen desktop():
 
     key "K_ESCAPE" action config.quit_action
 
+init python:
+    def reset_icon_positions(dg):
+        default_icon_positions = _wm_icon_grid.default_icon_positions
+
+        for icon in dg.get_children():
+            position = default_icon_positions.get(icon.drag_name)
+            if position is not None:
+                icon.snap(*position, 0.25)
+
 screen icon_grid():
     frame style "empty":
         padding (10, 10)
 
-        has draggroup
+        has draggroup as dg
 
         if not persistent.done_rorschach_test:
             use desktop_label_icon("Rorschach", "rorschach icon", "rorschach", (0, 0), False)
@@ -48,3 +57,5 @@ screen icon_grid():
 
             if persistent.snake_received:
                 use desktop_app_icon("Snake", snake_app, (0, 5))
+
+    key "K_r" action Function(reset_icon_positions, dg)

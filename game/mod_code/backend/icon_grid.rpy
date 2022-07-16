@@ -16,6 +16,10 @@ init -10 python in _wm_icon_grid:
     HEIGHT = 130
     SPACING = (30, 25)
 
+    default_icon_positions = { }
+
+    renpy.config.interact_callbacks.append(default_icon_positions.clear)
+
     def desktop_icon_image(icon, title, background="#0000"):
         icon = renpy.displayable(icon)
         return Fixed(
@@ -30,6 +34,9 @@ init -10 python in _wm_icon_grid:
             return
 
         drags[0].top()
+
+    def add_default_position(t, cell):
+        default_icon_positions[t] = get_position(None, False, *cell)
 
     class GridSnap(object):
         def __init__(self, title):
@@ -85,8 +92,10 @@ init -10 python in _wm_icon_grid:
 
 screen desktop_app_icon(title, app, cell=(0, 0), store=True):
     $ snap = _wm_icon_grid.GridSnap(title)
+    $ _wm_icon_grid.add_default_position(title, cell)
 
     drag:
+        drag_name title
         dragged snap
         pos _wm_icon_grid.get_position(title, store, *cell)
         draggable True
@@ -101,8 +110,10 @@ screen desktop_app_icon(title, app, cell=(0, 0), store=True):
 
 screen desktop_label_icon(title, icon, label_name, cell=(0, 0), store=True):
     $ snap = _wm_icon_grid.GridSnap(title)
+    $ _wm_icon_grid.add_default_position(title, cell)
 
     drag:
+        drag_name title
         dragged snap
         pos _wm_icon_grid.get_position(title, store, *cell)
         draggable True
@@ -117,8 +128,10 @@ screen desktop_label_icon(title, icon, label_name, cell=(0, 0), store=True):
 
 screen desktop_action_icon(title, icon, action, cell=(0, 0), store=True):
     $ snap = _wm_icon_grid.GridSnap(title)
+    $ _wm_icon_grid.add_default_position(title, cell)
 
     drag:
+        drag_name title
         dragged snap
         pos _wm_icon_grid.get_position(title, store, *cell)
         draggable True
@@ -130,3 +143,4 @@ screen desktop_action_icon(title, icon, action, cell=(0, 0), store=True):
         activated _wm_icon_grid.desktop_icon_activated
         hovered Play("audio", gui.hover_sound)
         focus_mask _wm_icon_grid.desktop_icon_image(icon, "")
+
