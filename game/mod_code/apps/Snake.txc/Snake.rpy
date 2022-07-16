@@ -58,7 +58,7 @@ screen snake():
 
     on "show" action Function(_wm_penny.emit_event, "snake_open", 0.5, True)
 
-    use program_base(snake_app, xysize=(snake.width, snake.height)):
+    use program_base(snake_app, xysize=(snake.width, snake.height + 40)):
         fixed:
             add snake
             use snake_overlay(snake)

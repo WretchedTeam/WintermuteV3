@@ -68,8 +68,7 @@ screen context_menu(position):
 
     frame:
         at [ 
-            renpy.partial(_wm_context_menu.MenuAnchor, position=position),
-            _wm_bg_blur.apply(["screens"]),
+            renpy.partial(_wm_context_menu.MenuAnchor, position=position)
         ]
 
         has vbox

@@ -159,7 +159,7 @@ define config.window_icon = "mod_assets/os/penny/Penny.png"
 define config.default_fullscreen = True
 
 define config.layers = [ 
-    "master", "transient", "screens", "errors", "penny", "context_menu", "power_off", "overlay" 
+    "master", "transient", "screens", "context_menu", "errors", "penny", "power_off", "overlay" 
 ]
 
 init python:

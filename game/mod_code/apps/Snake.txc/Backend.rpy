@@ -7,8 +7,8 @@ init python in _wm_snake:
     grid_line_width = 1
     grid_line_color = "#cecece"
     grid_size = 30
-    xcells = 21
-    ycells = 21
+    xcells = 20
+    ycells = 20
 
     width = xcells * grid_size + (xcells - 1) * grid_line_width
     height = ycells * grid_size + (ycells - 1) * grid_line_width
