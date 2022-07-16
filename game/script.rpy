@@ -4,7 +4,6 @@ init python:
 
 label splashscreen():
     $ _skipping = False
-    $ _skipping = False
 
     if persistent.autoload is not None:
         jump expression persistent.autoload

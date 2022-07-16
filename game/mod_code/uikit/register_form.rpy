@@ -26,20 +26,30 @@ style register_form_label_text:
 screen register_form_input_field(input_val, default_text, filter, error):
     style_prefix "register_form_input_field"
 
-    button action input_val.Enable():
-        if error:
-            background RoundedFrame("#ffffff2f", radius=10.0, outline_width=2.0, outline_color="#f66")
-        else:
-            background RoundedFrame("#ffffff2f", radius=10.0)
+    fixed fit_first True:
+        box_reverse True
 
-        showif input_val.get_text():
-            textbutton _("{cross}") action Function(input_val.set_text, "") style_suffix "clear_button":
+        button action input_val.Enable():
+            # if error:
+            #     background RoundedFrame("#ffffff2f", radius=10.0, outline_width=2.0, outline_color="#f66")
+            # else:
+            #     background RoundedFrame("#ffffff2f", radius=10.0)
+
+            showif input_val.get_text():
+                textbutton _("{cross}") action Function(input_val.set_text, "") style_suffix "clear_button":
+                    at register_field_clear_button_transform
+            else:
+                if renpy.display.behavior.current_input_value is not input_val:
+                    text "[default_text]"
+
+            input value input_val allow filter length 28
+
+        showif error:
+            add RoundedFrame("#ffffff2f", radius=10.0, outline_width=2.0, outline_color="#f66"):
                 at register_field_clear_button_transform
         else:
-            if renpy.display.behavior.current_input_value is not input_val:
-                text "[default_text]"
-
-        input value input_val allow filter length 28
+            add RoundedFrame("#ffffff2f", radius=10.0):
+                at register_field_clear_button_transform
 
 style register_form_input_field_button is empty
 style register_form_input_field_clear_button is empty
