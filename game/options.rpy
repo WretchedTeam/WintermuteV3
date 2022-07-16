@@ -158,6 +158,10 @@ define config.window_icon = "mod_assets/os/penny/Penny.png"
 # Force fullscreen by default
 define config.default_fullscreen = True
 
+define config.layers = [ 
+    "master", "transient", "screens", "errors", "penny", "context_menu", "power_off", "overlay" 
+]
+
 init python:
     def game_menu_check():
         if quick_menu: renpy.call_in_new_context('_game_menu')

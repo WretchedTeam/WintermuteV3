@@ -3,9 +3,6 @@ define config.quit_action = Show("power_off_prompt", _layer="power_off")
 init python in _wm_power_service:
     blur_layers = [ "master", "screens", "penny" ]
 
-init -100 python:
-    renpy.add_layer("power_off", "screens")
-
 screen power_off_prompt():
     default hide_action = Hide("power_off_prompt", _layer="power_off")
     style_prefix "power_off_prompt"

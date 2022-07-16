@@ -1,6 +1,3 @@
-init 2 python:
-    renpy.add_layer("penny", below="power_off")
-
 screen penny_idle(zoom_out=False):
     style_prefix "penny_idle"
     layer "penny"
@@ -17,6 +14,7 @@ screen penny_idle(zoom_out=False):
         if zoom_out:
             at penny_correct_zoom
 
+        alternate NullAction()
         action [
             Hide("penny_idle"),
             Show("penny", t=[ renpy.random.choice(lst) ]),

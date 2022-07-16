@@ -2,8 +2,6 @@ init 2 python in _wm_error_dialog:
     from store import Show, Play
     register_feather_icon("error", "")
 
-    renpy.add_layer("errors", below="power_off")
-
     def OpenError(msg):
         return [ Show("error_dialog", msg=msg) ]
 
